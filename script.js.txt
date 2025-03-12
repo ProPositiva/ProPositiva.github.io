@@ -15,6 +15,7 @@ const languageData = {
     service3Title: "Real Estate",
     service3Description: "Helping you find the perfect space.",
     portfolioTitle: "Our Portfolio",
+    testimonialsTitle: "What Our Clients Say",
     contactTitle: "Contact Us",
     contactNameLabel: "Your Name",
     contactEmailLabel: "Your Email",
@@ -36,6 +37,7 @@ const languageData = {
     service3Title: "Bienes Raíces",
     service3Description: "Ayudándole a encontrar el espacio perfecto.",
     portfolioTitle: "Nuestro Portafolio",
+    testimonialsTitle: "Lo Que Dicen Nuestros Clientes",
     contactTitle: "Contáctenos",
     contactNameLabel: "Su Nombre",
     contactEmailLabel: "Su Correo Electrónico",
@@ -61,6 +63,7 @@ const elementsToUpdate = {
   service3Title: document.getElementById("service-3-title"),
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
+  testimonialsTitle: document.getElementById("testimonials-title"),
   contactTitle: document.getElementById("contact-title"),
   contactNameLabel: document.getElementById("contact-name-label"),
   contactEmailLabel: document.getElementById("contact-email-label"),
@@ -73,17 +76,14 @@ let currentLanguage = "es";
 
 // Function to update the language
 function updateLanguage(language) {
-  console.log("Updating language to:", language); // Debugging
   const data = languageData[language];
   for (const [key, element] of Object.entries(elementsToUpdate)) {
-    console.log(`Updating ${key} to:`, data[key]); // Debugging
     element.textContent = data[key];
   }
 }
 
 // Toggle language on button click
 languageButton.addEventListener("click", () => {
-  console.log("Button clicked!"); // Debugging
   if (currentLanguage === "en") {
     currentLanguage = "es";
     languageButton.textContent = "English";
@@ -91,10 +91,9 @@ languageButton.addEventListener("click", () => {
     currentLanguage = "en";
     languageButton.textContent = "Español";
   }
-  console.log("Current language:", currentLanguage); // Debugging
   updateLanguage(currentLanguage);
 });
 
 // Initialize with Spanish
 updateLanguage(currentLanguage);
-languageButton.textContent = "English"; // Set button text to "English" initially
+languageButton.textContent = "English";

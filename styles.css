@@ -6,21 +6,21 @@ body {
 }
 
 /* Language Toggle Button */
-/* .language-toggle { */
-  /* position: absolute; */
-  /* top: 1rem; */
-  /* right: 1rem; */
-  /* z-index: 10; */
-/* } */
+.language-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
 
-/* .language-toggle button { */
-  /* background: #ecb306; */
-  /* color: #fff; */
-  /* padding: 0.5rem 1rem; */
-  /* border: none; */
-  /* border-radius: 5px; */
-  /* cursor: pointer; */
-/* } */
+.language-toggle button {
+  background: #ecb306;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 /* Hero Section */
 .hero {
@@ -110,6 +110,26 @@ body {
   border-radius: 5px;
 }
 
+/* Testimonials Section */
+.testimonials {
+  padding: 2rem;
+  text-align: center;
+}
+
+.testimonial-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.testimonial {
+  width: 30%;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
 /* Contact Section */
 .contact {
   padding: 2rem;
@@ -142,6 +162,18 @@ form button {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 1rem;
+}
+
+.map {
+  margin-top: 2rem;
+}
+
+.social-media {
+  margin-top: 1rem;
+}
+
+.social-media img {
+  margin: 0 0.5rem;
 }
 
 /* Footer */
