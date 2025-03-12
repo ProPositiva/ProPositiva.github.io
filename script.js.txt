@@ -68,19 +68,22 @@ const elementsToUpdate = {
   contactSubmit: document.getElementById("contact-submit"),
 };
 
-// Set initial language
-let currentLanguage = "en";
+// Set initial language to Spanish
+let currentLanguage = "es";
 
 // Function to update the language
 function updateLanguage(language) {
+  console.log("Updating language to:", language); // Debugging
   const data = languageData[language];
   for (const [key, element] of Object.entries(elementsToUpdate)) {
+    console.log(`Updating ${key} to:`, data[key]); // Debugging
     element.textContent = data[key];
   }
 }
 
 // Toggle language on button click
 languageButton.addEventListener("click", () => {
+  console.log("Button clicked!"); // Debugging
   if (currentLanguage === "en") {
     currentLanguage = "es";
     languageButton.textContent = "English";
@@ -88,8 +91,10 @@ languageButton.addEventListener("click", () => {
     currentLanguage = "en";
     languageButton.textContent = "Español";
   }
+  console.log("Current language:", currentLanguage); // Debugging
   updateLanguage(currentLanguage);
 });
 
-// Initialize with English
+// Initialize with Spanish
 updateLanguage(currentLanguage);
+languageButton.textContent = "English"; // Set button text to "English" initially
