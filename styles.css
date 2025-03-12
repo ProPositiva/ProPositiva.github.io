@@ -14,7 +14,7 @@ body {
 }
 
 .language-toggle button {
-  background: #ff6b6b;
+  background: #ecb306;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -135,7 +135,7 @@ form input, form textarea {
 }
 
 form button {
-  background: #ff6b6b;
+  background: #ecb306;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
