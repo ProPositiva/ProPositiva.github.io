@@ -36,7 +36,7 @@
   </div>
 	
   <!-- Hero Section -->
-  <section id="hero" class="hero">
+  <section id="hero" class="hero" data-aos="fade-up">
     <video autoplay muted loop id="hero-video">
       <source src="Assets\Videos\architecture-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
@@ -49,14 +49,14 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about">
+  <section id="about" class="about" data-aos="fade-up">
     <h2 id="about-title">Sobre Nosotros</h2>
     <p id="about-description">Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.</p>
     <a href="#about" class="learn-more" id="about-cta">Saber Más</a>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="services">
+  <section id="services" class="services" data-aos="fade-up">
     <h2 id="services-title">Nuestros Servicios</h2>
     <div class="service-cards">
       <div class="card">
@@ -78,7 +78,7 @@
   </section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio">
+  <section id="portfolio" class="portfolio" data-aos="fade-up">
     <h2 id="portfolio-title">Nuestro Portafolio</h2>
     <div class="portfolio-grid">
       <div class="portfolio-item">
@@ -96,9 +96,31 @@
       <!-- Add more items -->
     </div>
   </section>
+  
+   <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials" data-aos="fade-up">
+    <h2 id="testimonials-title">Lo Que Dicen Nuestros Clientes</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>"El equipo entregó resultados excepcionales. ¡Altamente recomendados!"</p>
+        <p>- Nombre del Cliente</p>
+      </div>
+	  <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>"El equipo entregó resultados excepcionales. ¡Altamente recomendados!"</p>
+        <p>- Nombre del Cliente</p>
+      </div>
+	  <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>"El equipo entregó resultados excepcionales. ¡Altamente recomendados!"</p>
+        <p>- Nombre del Cliente</p>
+      </div>
+      <!-- Add more testimonials -->
+    </div>
+  </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="contact">
+  <section id="contact" class="contact" data-aos="fade-up">
     <h2 id="contact-title">Contáctenos</h2>
     <form action="https://formspree.io/f/xnnpqgwd" method="POST">
 		<label for="name" id="contact-name-label">Su Nombre</label>
@@ -116,6 +138,27 @@
     <div class="contact-info">
       <p>Email: info@propositivacr.com</p>
       <p>Phone: +(506) 2235 0260</p>
+	  <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1dYOUR_LOCATION_DATA!2dYOUR_LONGITUDE!3dYOUR_LATITUDE"
+          width="100%"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="social-media">
+        <a href="https://www.instagram.com/yourprofile" target="_blank">
+          <img src="assets/icons/instagram-icon.png" alt="Instagram" width="30">
+        </a>
+        <a href="https://www.linkedin.com/yourprofile" target="_blank">
+          <img src="assets/icons/linkedin-icon.png" alt="LinkedIn" width="30">
+        </a>
+        <a href="https://www.facebook.com/yourprofile" target="_blank">
+          <img src="assets/icons/facebook-icon.png" alt="Facebook" width="30">
+        </a>
+      </div>
     </div>
   </section>
 
@@ -124,7 +167,11 @@
     <p>&copy; Copyright Alianza ProPositiva 2025</p>
   </footer>
 
-  <!-- JavaScript for Language Toggle 
-  <script src="script.js"></script>-->
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
