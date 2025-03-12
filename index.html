@@ -77,18 +77,19 @@
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <h2 id="contact-title">Contáctenos</h2>
-    <form>
-      <label for="name" id="contact-name-label">Su Nombre</label>
-      <input type="text" id="name" name="name" placeholder="Su Nombre" required>
+    <form action="https://formspree.io/f/xnnpqgwd" method="POST">
+		<label for="name" id="contact-name-label">Su Nombre</label>
+		<input type="text" id="name" name="name" placeholder="Su Nombre" required>
 
-      <label for="email" id="contact-email-label">Su Correo Electrónico</label>
-      <input type="email" id="email" name="email" placeholder="Su Correo Electrónico" required>
+		<label for="email" id="contact-email-label">Su Correo Electrónico</label>
+		<input type="email" id="email" name="email" placeholder="Su Correo Electrónico" required>
 
-      <label for="message" id="contact-message-label">Su Mensaje</label>
-      <textarea id="message" name="message" placeholder="Su Mensaje" required></textarea>
+		<label for="message" id="contact-message-label">Su Mensaje</label>
+		<textarea id="message" name="message" placeholder="Su Mensaje" required></textarea>
 
-      <button type="submit" id="contact-submit">Enviar Mensaje</button>
-    </form>
+    <button type="submit" id="contact-submit">Enviar Mensaje</button>
+</form>
+
     <div class="contact-info">
       <p>Email: info@propositivacr.com</p>
       <p>Phone: +(506) 2235 0260</p>
