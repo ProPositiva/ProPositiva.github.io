@@ -6,21 +6,21 @@ body {
 }
 
 /* Language Toggle Button */
-.language-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
-}
+/* .language-toggle { */
+  /* position: absolute; */
+  /* top: 1rem; */
+  /* right: 1rem; */
+  /* z-index: 10; */
+/* } */
 
-.language-toggle button {
-  background: #ecb306;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+/* .language-toggle button { */
+  /* background: #ecb306; */
+  /* color: #fff; */
+  /* padding: 0.5rem 1rem; */
+  /* border: none; */
+  /* border-radius: 5px; */
+  /* cursor: pointer; */
+/* } */
 
 /* Hero Section */
 .hero {
@@ -50,7 +50,7 @@ body {
 }
 
 .cta-button {
-  background: #ff6b6bz;
+  background: #ecb306;
   color: #fff;
   padding: 0.5rem 1rem;
   text-decoration: none;
