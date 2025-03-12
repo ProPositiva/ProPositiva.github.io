@@ -14,7 +14,7 @@ body {
 }
 
 .language-toggle button {
-  background: #ff6b6b;
+  background: ecb306;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -50,7 +50,7 @@ body {
 }
 
 .cta-button {
-  background: #ff6b6b;
+  background: #ff6b6bz;
   color: #fff;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -65,7 +65,7 @@ body {
 }
 
 .learn-more {
-  color: #ff6b6b;
+  color: ecb306;
   text-decoration: none;
   font-weight: bold;
 }
@@ -135,7 +135,7 @@ form input, form textarea {
 }
 
 form button {
-  background: #ff6b6b;
+  background: ecb306;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
