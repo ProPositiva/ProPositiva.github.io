@@ -265,6 +265,7 @@ form input, form textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 form textarea {
@@ -282,6 +283,7 @@ form button {
   cursor: pointer;
   margin-top: 1rem;
   transition: background 0.3s ease;
+  font-family: 'Roboto', sans-serif;
 }
 
 form button:hover {
