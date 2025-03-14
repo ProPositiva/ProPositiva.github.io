@@ -97,3 +97,80 @@ languageButton.addEventListener("click", () => {
 // Initialize with Spanish
 updateLanguage(currentLanguage);
 languageButton.textContent = "English";
+
+
+
+
+
+
+
+
+
+
+
+// Portfolio Data
+const portfolioData = [
+  {
+    id: 1,
+    title: "Proyecto 1",
+    thumbnail: "assets/images/project1.jpg",
+    images: ["assets/images/project1-1.jpg", "assets/images/project1-2.jpg"],
+    videos: ["assets/videos/project1.mp4"],
+    description: "Descripción detallada del Proyecto 1.",
+    cost: "$50,000",
+    time: "3 meses",
+  },
+  {
+    id: 2,
+    title: "Proyecto 2",
+    thumbnail: "assets/images/project2.jpg",
+    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
+    videos: ["assets/videos/project2.mp4"],
+    description: "Descripción detallada del Proyecto 2.",
+    cost: "$75,000",
+    time: "6 meses",
+  },
+  // Add more projects as needed
+];
+
+// Function to generate portfolio grid
+function generatePortfolioGrid(limit) {
+  const portfolioGrid = document.getElementById("portfolio-grid");
+  portfolioGrid.innerHTML = ""; // Clear existing content
+
+  portfolioData.slice(0, limit).forEach((project) => {
+    const projectItem = document.createElement("div");
+    projectItem.classList.add("portfolio-item");
+
+    const projectImage = document.createElement("img");
+    projectImage.src = project.thumbnail;
+    projectImage.alt = project.title;
+
+    const projectTitle = document.createElement("h3");
+    projectTitle.textContent = project.title;
+
+    projectItem.appendChild(projectImage);
+    projectItem.appendChild(projectTitle);
+    portfolioGrid.appendChild(projectItem);
+  });
+}
+
+// Function to toggle "Show More" / "Show Less"
+function togglePortfolioView() {
+  const showMoreButton = document.getElementById("show-more-button");
+  const portfolioGrid = document.getElementById("portfolio-grid");
+
+  if (showMoreButton.textContent === "Mostrar Más") {
+    generatePortfolioGrid(portfolioData.length); // Show all projects
+    showMoreButton.textContent = "Mostrar Menos";
+  } else {
+    generatePortfolioGrid(3); // Show only 3 projects
+    showMoreButton.textContent = "Mostrar Más";
+  }
+}
+
+// Initialize portfolio grid with limited projects
+generatePortfolioGrid(3);
+
+// Add event listener to the "Show More" button
+document.getElementById("show-more-button").addEventListener("click", togglePortfolioView);
