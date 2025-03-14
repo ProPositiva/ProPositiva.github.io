@@ -306,10 +306,13 @@ form button:hover {
 
 .social-media {
   margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem; 
 }
 
 .social-media a {
-  margin: 0 0.5rem;
+  display: inline-block;
   transition: transform 0.3s ease;
 }
 
