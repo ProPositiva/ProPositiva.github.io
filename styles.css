@@ -208,10 +208,10 @@ body {
 .project-details {
   display: none; /* Hidden by default */
   padding: 2rem;
-  background: #404040; /* Darker background */
-  color: #fff;
-  border-radius: 10px;
+  background: #f9f9f9; /* Match the portfolio section background */
+  color: #333; /* Dark text for better readability */
   margin-top: 2rem;
+  border-radius: 10px;
 }
 
 .project-details.active {
@@ -221,6 +221,7 @@ body {
 .project-details h3 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #404040; /* Darker text for headings */
 }
 
 .project-media {
@@ -242,24 +243,8 @@ body {
 }
 
 .project-info strong {
-  color: #ecb306;
+  color: #ecb306; /* Accent color for emphasis */
 }
-
-/* Close Button */
-.close-button {
-  background: #ecb306;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: background 0.3s ease;
-}
-
-.close-button:hover {
-  background: #d49e05;
 }
 
 /* Testimonials Section */

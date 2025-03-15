@@ -172,17 +172,17 @@ function showProjectDetails(project) {
       <p><strong>Costo Estimado:</strong> ${project.cost}</p>
       <p><strong>Tiempo Estimado:</strong> ${project.time}</p>
     </div>
-    <button class="close-button">Cerrar</button>
   `;
-
-  // Add event listener to close button
-  const closeButton = projectDetails.querySelector(".close-button");
-  closeButton.addEventListener("click", () => {
-    projectDetails.classList.remove("active");
-  });
 
   // Show the project details section
   projectDetails.classList.add("active");
+
+  // Add event listener to close the details section when clicking outside
+  document.addEventListener("click", (event) => {
+    if (!projectDetails.contains(event.target) && !event.target.closest(".portfolio-item")) {
+      projectDetails.classList.remove("active");
+    }
+  });
 }
 
 // Function to toggle "Show More" / "Show Less"
