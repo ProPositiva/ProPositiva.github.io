@@ -130,6 +130,26 @@ const portfolioData = [
     cost: "$75,000",
     time: "6 meses",
   },
+  {
+    id: 3,
+    title: "Proyecto 3",
+    thumbnail: "assets/images/project2.jpg",
+    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
+    videos: ["assets/videos/project2.mp4"],
+    description: "Descripción detallada del Proyecto 3.",
+    cost: "$75,000",
+    time: "6 meses",
+  },
+  {
+    id: 4,
+    title: "Proyecto 4",
+    thumbnail: "assets/images/project2.jpg",
+    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
+    videos: ["assets/videos/project2.mp4"],
+    description: "Descripción detallada del Proyecto 4.",
+    cost: "$75,000",
+    time: "6 meses",
+  },
   // Add more projects as needed
 ];
 
