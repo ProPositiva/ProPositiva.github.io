@@ -16,7 +16,7 @@ body {
 }
 
 .language-toggle button {
-  background: #ecb306; 
+  background: #ecb306;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -26,7 +26,7 @@ body {
 }
 
 .language-toggle button:hover {
-  background: #d49e05; 
+  background: #d49e05;
 }
 
 /* Hero Section */
@@ -68,7 +68,7 @@ body {
 }
 
 .cta-button {
-  background: #ecb306; 
+  background: #ecb306;
   color: #fff;
   padding: 0.75rem 1.5rem;
   text-decoration: none;
@@ -78,7 +78,7 @@ body {
 }
 
 .cta-button:hover {
-  background: #d49e05; 
+  background: #d49e05;
 }
 
 /* About Section */
@@ -100,7 +100,7 @@ body {
 }
 
 .learn-more {
-  color: #ecb306; 
+  color: #ecb306;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
@@ -160,36 +160,6 @@ body {
 }
 
 /* Portfolio Section */
-/* .portfolio {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #f9f9f9;
-}
-
-.portfolio h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.portfolio-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  
-  .portfolio-item img:hover {
-  transform: scale(1.05);
-}
-} */
-
-
-/* TEST Portfolio Section */
 .portfolio {
   padding: 4rem 2rem;
   text-align: center;
@@ -214,6 +184,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .portfolio-item:hover {
@@ -233,8 +204,49 @@ body {
   color: #333;
 }
 
-/* Show More Button */
-#show-more-button {
+/* Project Details Section */
+.project-details {
+  display: none; /* Hidden by default */
+  padding: 2rem;
+  background: #404040; /* Darker background */
+  color: #fff;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.project-details.active {
+  display: block; /* Show when active */
+}
+
+.project-details h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-media img, .project-media video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.project-info p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.project-info strong {
+  color: #ecb306;
+}
+
+/* Close Button */
+.close-button {
   background: #ecb306;
   color: #fff;
   padding: 0.75rem 1.5rem;
@@ -242,16 +254,13 @@ body {
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+  margin-top: 1rem;
   transition: background 0.3s ease;
 }
 
-#show-more-button:hover {
+.close-button:hover {
   background: #d49e05;
 }
-
-
-
-
 
 /* Testimonials Section */
 .testimonials {
@@ -278,12 +287,6 @@ body {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial p {
@@ -331,7 +334,6 @@ form input, form textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
 }
 
 form textarea {
@@ -340,7 +342,7 @@ form textarea {
 }
 
 form button {
-  background: #ecb306; 
+  background: #ecb306;
   color: #fff;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -349,11 +351,10 @@ form button {
   cursor: pointer;
   margin-top: 1rem;
   transition: background 0.3s ease;
-  font-family: 'Roboto', sans-serif;
 }
 
 form button:hover {
-  background: #d49e05; 
+  background: #d49e05;
 }
 
 .contact-info {
@@ -371,13 +372,10 @@ form button:hover {
 
 .social-media {
   margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem; 
 }
 
 .social-media a {
-  display: inline-block;
+  margin: 0 0.5rem;
   transition: transform 0.3s ease;
 }
 
