@@ -107,6 +107,7 @@ languageButton.textContent = "English";
 
 
 
+
 // Portfolio Data
 const portfolioData = [
   {
@@ -154,13 +155,14 @@ function generatePortfolioGrid(limit) {
     portfolioGrid.appendChild(projectItem);
 
     // Add click event to show project details
-    projectItem.addEventListener("click", () => showProjectDetails(project));
+    projectItem.addEventListener("click", () => showProjectDetails(project, projectItem));
   });
 }
 
 // Function to show project details
-function showProjectDetails(project) {
-  const projectDetails = document.getElementById("project-details");
+function showProjectDetails(project, projectItem) {
+  const projectDetails = document.createElement("div");
+  projectDetails.classList.add("project-details", "active");
   projectDetails.innerHTML = `
     <h3>${project.title}</h3>
     <div class="project-media">
@@ -174,13 +176,13 @@ function showProjectDetails(project) {
     </div>
   `;
 
-  // Show the project details section
-  projectDetails.classList.add("active");
+  // Insert the details section below the clicked project
+  projectItem.insertAdjacentElement("afterend", projectDetails);
 
   // Add event listener to close the details section when clicking outside
   document.addEventListener("click", (event) => {
     if (!projectDetails.contains(event.target) && !event.target.closest(".portfolio-item")) {
-      projectDetails.classList.remove("active");
+      projectDetails.remove();
     }
   });
 }
