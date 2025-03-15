@@ -111,8 +111,8 @@ const portfolioData = [
   {
     id: 1,
     title: "Proyecto 1",
-    thumbnail: "assets/images/project1",
-    images: ["assets/images/project1", "assets/images/project1"],
+    thumbnail: "Assets\Images\project1",
+    images: ["Assets\Images\project1", "Assets\Images\project1"],
     videos: ["assets/videos/project1.mp4"],
     description: "Descripción detallada del Proyecto 1.",
     cost: "$50,000",
@@ -121,8 +121,8 @@ const portfolioData = [
   {
     id: 2,
     title: "Proyecto 2",
-    thumbnail: "assets/images/project2.jpg",
-    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
+    thumbnail: "Assets\Images\project2",
+    images: ["Assets\Images\project2", "Assets\Images\project2"],
     videos: ["assets/videos/project2.mp4"],
     description: "Descripción detallada del Proyecto 2.",
     cost: "$75,000",
