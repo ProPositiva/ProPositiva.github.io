@@ -188,7 +188,7 @@ const portfolioData = [
   {
     id: 1,
     title: "Proyecto 1",
-    thumbnail: "Assets\Images\project1.jpg",
+    thumbnail: "Assets/Images/project1.jpg",
     images: ["Assets\Images\project1.jpg", "Assets\Images\project1.jpg"],
     videos: ["assets/videos/project1.mp4"],
     description: "Descripción detallada del Proyecto 1.",
