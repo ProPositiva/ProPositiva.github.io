@@ -181,7 +181,7 @@ document.getElementById("show-more-button").addEventListener("click", togglePort
 
 
 
-
+/* 
 
 // Portfolio Data
 const portfolioData = [
@@ -308,4 +308,4 @@ function togglePortfolioView() {
 generatePortfolioGrid(3);
 
 // Add event listener to the "Show More" button
-document.getElementById("show-more-button").addEventListener("click", togglePortfolioView);
+document.getElementById("show-more-button").addEventListener("click", togglePortfolioView); */
