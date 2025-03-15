@@ -111,8 +111,8 @@ const portfolioData = [
   {
     id: 1,
     title: "Proyecto 1",
-    thumbnail: "assets/images/project1.jpg",
-    images: ["assets/images/project1-1.jpg", "assets/images/project1-2.jpg"],
+    thumbnail: "assets/images/project1",
+    images: ["assets/images/project1", "assets/images/project1"],
     videos: ["assets/videos/project1.mp4"],
     description: "Descripción detallada del Proyecto 1.",
     cost: "$50,000",
