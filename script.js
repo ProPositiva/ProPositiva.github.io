@@ -1,4 +1,5 @@
 // Language data
+// Language Data
 const languageData = {
   en: {
     heroTitle: "Innovative Architecture Solutions",
@@ -15,6 +16,8 @@ const languageData = {
     service3Title: "Real Estate",
     service3Description: "Helping you find the perfect space.",
     portfolioTitle: "Our Portfolio",
+    portfolioShowMore: "Show More",
+    portfolioShowLess: "Show Less",
     testimonialsTitle: "What Our Clients Say",
     contactTitle: "Contact Us",
     contactNameLabel: "Your Name",
@@ -28,7 +31,7 @@ const languageData = {
     heroCta: "Ver Nuestro Trabajo",
     aboutTitle: "Sobre Nosotros",
     aboutDescription: "Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.",
-    aboutCta: "Conocer Más",
+    aboutCta: "Saber Más",
     servicesTitle: "Nuestros Servicios",
     service1Title: "Consultoría",
     service1Description: "Asesoramiento experto para sus necesidades arquitectónicas.",
@@ -37,6 +40,8 @@ const languageData = {
     service3Title: "Bienes Raíces",
     service3Description: "Ayudándole a encontrar el espacio perfecto.",
     portfolioTitle: "Nuestro Portafolio",
+    portfolioShowMore: "Mostrar Más",
+    portfolioShowLess: "Mostrar Menos",
     testimonialsTitle: "Lo Que Dicen Nuestros Clientes",
     contactTitle: "Contáctenos",
     contactNameLabel: "Su Nombre",
@@ -63,6 +68,7 @@ const elementsToUpdate = {
   service3Title: document.getElementById("service-3-title"),
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
+  portfolioShowMore: document.getElementById("show-more-button"),
   testimonialsTitle: document.getElementById("testimonials-title"),
   contactTitle: document.getElementById("contact-title"),
   contactNameLabel: document.getElementById("contact-name-label"),
@@ -78,7 +84,9 @@ let currentLanguage = "es";
 function updateLanguage(language) {
   const data = languageData[language];
   for (const [key, element] of Object.entries(elementsToUpdate)) {
-    element.textContent = data[key];
+    if (element) {
+      element.textContent = data[key];
+    }
   }
 }
 
@@ -97,6 +105,73 @@ languageButton.addEventListener("click", () => {
 // Initialize with Spanish
 updateLanguage(currentLanguage);
 languageButton.textContent = "English";
+
+// Portfolio Data
+const portfolioData = [
+  {
+    id: 1,
+    title: "Proyecto 1",
+    thumbnail: "assets/images/project1.jpg",
+    images: ["assets/images/project1-1.jpg", "assets/images/project1-2.jpg"],
+    videos: ["assets/videos/project1.mp4"],
+    description: "Descripción detallada del Proyecto 1.",
+    cost: "$50,000",
+    time: "3 meses",
+  },
+  {
+    id: 2,
+    title: "Proyecto 2",
+    thumbnail: "assets/images/project2.jpg",
+    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
+    videos: ["assets/videos/project2.mp4"],
+    description: "Descripción detallada del Proyecto 2.",
+    cost: "$75,000",
+    time: "6 meses",
+  },
+  // Add more projects as needed
+];
+
+// Function to generate portfolio grid
+function generatePortfolioGrid(limit) {
+  const portfolioGrid = document.getElementById("portfolio-grid");
+  portfolioGrid.innerHTML = ""; // Clear existing content
+
+  portfolioData.slice(0, limit).forEach((project) => {
+    const projectItem = document.createElement("div");
+    projectItem.classList.add("portfolio-item");
+
+    const projectImage = document.createElement("img");
+    projectImage.src = project.thumbnail;
+    projectImage.alt = project.title;
+
+    const projectTitle = document.createElement("h3");
+    projectTitle.textContent = project.title;
+
+    projectItem.appendChild(projectImage);
+    projectItem.appendChild(projectTitle);
+    portfolioGrid.appendChild(projectItem);
+  });
+}
+
+// Function to toggle "Show More" / "Show Less"
+function togglePortfolioView() {
+  const showMoreButton = document.getElementById("show-more-button");
+  const portfolioGrid = document.getElementById("portfolio-grid");
+
+  if (showMoreButton.textContent === languageData[currentLanguage].portfolioShowMore) {
+    generatePortfolioGrid(portfolioData.length); // Show all projects
+    showMoreButton.textContent = languageData[currentLanguage].portfolioShowLess;
+  } else {
+    generatePortfolioGrid(3); // Show only 3 projects
+    showMoreButton.textContent = languageData[currentLanguage].portfolioShowMore;
+  }
+}
+
+// Initialize portfolio grid with limited projects
+generatePortfolioGrid(3);
+
+// Add event listener to the "Show More" button
+document.getElementById("show-more-button").addEventListener("click", togglePortfolioView);
 
 
 
