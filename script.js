@@ -1,113 +1,3 @@
-// Language Data
-const languageData = {
-  en: {
-    heroTitle: "Innovative Architecture Solutions",
-    heroTagline: "Transforming spaces, building futures.",
-    heroCta: "View Our Work",
-    aboutTitle: "About Us",
-    aboutDescription: "We are a leading architecture firm specializing in innovative design and sustainable solutions.",
-    aboutCta: "Learn More",
-    servicesTitle: "Our Services",
-    service1Title: "Consulting",
-    service1Description: "Expert advice for your architectural needs.",
-    service2Title: "Project Management",
-    service2Description: "From concept to completion, we manage it all.",
-    service3Title: "Real Estate",
-    service3Description: "Helping you find the perfect space.",
-    portfolioTitle: "Our Portfolio",
-    portfolioShowMore: "Show More",
-    portfolioShowLess: "Show Less",
-    testimonialsTitle: "What Our Clients Say",
-    contactTitle: "Contact Us",
-    contactNameLabel: "Your Name",
-    contactEmailLabel: "Your Email",
-    contactMessageLabel: "Your Message",
-    contactSubmit: "Send Message",
-  },
-  es: {
-    heroTitle: "Soluciones de Arquitectura Innovadoras",
-    heroTagline: "Transformando espacios, construyendo futuros.",
-    heroCta: "Ver Nuestro Trabajo",
-    aboutTitle: "Sobre Nosotros",
-    aboutDescription: "Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.",
-    aboutCta: "Saber Más",
-    servicesTitle: "Nuestros Servicios",
-    service1Title: "Consultoría",
-    service1Description: "Asesoramiento experto para sus necesidades arquitectónicas.",
-    service2Title: "Gestión de Proyectos",
-    service2Description: "Desde el concepto hasta la finalización, lo gestionamos todo.",
-    service3Title: "Bienes Raíces",
-    service3Description: "Ayudándole a encontrar el espacio perfecto.",
-    portfolioTitle: "Nuestro Portafolio",
-    portfolioShowMore: "Mostrar Más",
-    portfolioShowLess: "Mostrar Menos",
-    testimonialsTitle: "Lo Que Dicen Nuestros Clientes",
-    contactTitle: "Contáctenos",
-    contactNameLabel: "Su Nombre",
-    contactEmailLabel: "Su Correo Electrónico",
-    contactMessageLabel: "Su Mensaje",
-    contactSubmit: "Enviar Mensaje",
-  },
-};
-
-// Get the language button and all elements with text to update
-const languageButton = document.getElementById("language-button");
-const elementsToUpdate = {
-  heroTitle: document.getElementById("hero-title"),
-  heroTagline: document.getElementById("hero-tagline"),
-  heroCta: document.getElementById("hero-cta"),
-  aboutTitle: document.getElementById("about-title"),
-  aboutDescription: document.getElementById("about-description"),
-  aboutCta: document.getElementById("about-cta"),
-  servicesTitle: document.getElementById("services-title"),
-  service1Title: document.getElementById("service-1-title"),
-  service1Description: document.getElementById("service-1-description"),
-  service2Title: document.getElementById("service-2-title"),
-  service2Description: document.getElementById("service-2-description"),
-  service3Title: document.getElementById("service-3-title"),
-  service3Description: document.getElementById("service-3-description"),
-  portfolioTitle: document.getElementById("portfolio-title"),
-  portfolioShowMore: document.getElementById("show-more-button"),
-  testimonialsTitle: document.getElementById("testimonials-title"),
-  contactTitle: document.getElementById("contact-title"),
-  contactNameLabel: document.getElementById("contact-name-label"),
-  contactEmailLabel: document.getElementById("contact-email-label"),
-  contactMessageLabel: document.getElementById("contact-message-label"),
-  contactSubmit: document.getElementById("contact-submit"),
-};
-
-// Set initial language to Spanish
-let currentLanguage = "es";
-
-// Function to update the language
-function updateLanguage(language) {
-  const data = languageData[language];
-  for (const [key, element] of Object.entries(elementsToUpdate)) {
-    if (element) {
-      element.textContent = data[key];
-    }
-  }
-}
-
-// Toggle language on button click
-languageButton.addEventListener("click", () => {
-  if (currentLanguage === "en") {
-    currentLanguage = "es";
-    languageButton.textContent = "English";
-  } else {
-    currentLanguage = "en";
-    languageButton.textContent = "Español";
-  }
-  updateLanguage(currentLanguage);
-});
-
-// Initialize with Spanish
-updateLanguage(currentLanguage);
-languageButton.textContent = "English";
-
-
-
-
 // Portfolio Data
 const portfolioData = [
   {
@@ -127,26 +17,6 @@ const portfolioData = [
     images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
     videos: ["assets/videos/project2.mp4"],
     description: "Descripción detallada del Proyecto 2.",
-    cost: "$75,000",
-    time: "6 meses",
-  },
-  {
-    id: 3,
-    title: "Proyecto 3",
-    thumbnail: "assets/images/project2.jpg",
-    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
-    videos: ["assets/videos/project2.mp4"],
-    description: "Descripción detallada del Proyecto 3.",
-    cost: "$75,000",
-    time: "6 meses",
-  },
-  {
-    id: 4,
-    title: "Proyecto 4",
-    thumbnail: "assets/images/project2.jpg",
-    images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
-    videos: ["assets/videos/project2.mp4"],
-    description: "Descripción detallada del Proyecto 4.",
     cost: "$75,000",
     time: "6 meses",
   },
@@ -175,14 +45,16 @@ function generatePortfolioGrid(limit) {
     portfolioGrid.appendChild(projectItem);
 
     // Add click event to show project details
-    projectItem.addEventListener("click", () => showProjectDetails(project, projectItem));
+    projectItem.addEventListener("click", () => showProjectDetails(project));
   });
 }
 
-// Function to show project details
-function showProjectDetails(project, projectItem) {
-  const projectDetails = document.createElement("div");
-  projectDetails.classList.add("project-details", "active");
+// Function to show project details in split-screen
+function showProjectDetails(project) {
+  const overlay = document.getElementById("project-details-overlay");
+  const projectDetails = document.getElementById("project-details");
+
+  // Populate project details
   projectDetails.innerHTML = `
     <h3>${project.title}</h3>
     <div class="project-media">
@@ -194,15 +66,22 @@ function showProjectDetails(project, projectItem) {
       <p><strong>Costo Estimado:</strong> ${project.cost}</p>
       <p><strong>Tiempo Estimado:</strong> ${project.time}</p>
     </div>
+    <button class="close-button">Cerrar</button>
   `;
 
-  // Insert the details section below the clicked project
-  projectItem.insertAdjacentElement("afterend", projectDetails);
+  // Show the overlay
+  overlay.classList.add("active");
 
-  // Add event listener to close the details section when clicking outside
-  document.addEventListener("click", (event) => {
-    if (!projectDetails.contains(event.target) && !event.target.closest(".portfolio-item")) {
-      projectDetails.remove();
+  // Add event listener to close button
+  const closeButton = projectDetails.querySelector(".close-button");
+  closeButton.addEventListener("click", () => {
+    overlay.classList.remove("active");
+  });
+
+  // Close overlay when clicking outside the details section
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      overlay.classList.remove("active");
     }
   });
 }
