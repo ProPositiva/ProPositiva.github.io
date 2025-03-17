@@ -283,32 +283,32 @@ document.getElementById("show-more-catalog-button").addEventListener("click", to
 // Initialize Partners Carousel
 $(document).ready(function () {
   $(".partners-carousel").slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    dots: true, // Show dots for navigation
+    infinite: true, // Infinite looping
+    speed: 500, // Transition speed
+    slidesToShow: 5, // Number of logos to show at once
+    slidesToScroll: 1, // Number of logos to scroll at a time
+    autoplay: true, // Auto-play the carousel
+    autoplaySpeed: 2000, // Auto-play speed in milliseconds
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1024, // Adjust for tablets
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // Adjust for smaller tablets
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 480, // Adjust for mobile devices
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },

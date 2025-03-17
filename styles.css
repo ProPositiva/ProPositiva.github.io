@@ -299,17 +299,60 @@ body {
 .partners h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: #404040;
 }
 
 .partners-carousel {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 1200px;
 }
 
 .partners-carousel img {
   width: 150px;
   height: auto;
   margin: 0 auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.partners-carousel img:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  opacity: 0.8; /* Slightly fade on hover */
+}
+
+/* Slick Carousel Customizations */
+.slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: #ecb306; /* Match your theme color */
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+.slick-dots {
+  bottom: -40px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #ecb306; /* Match your theme color */
+}
+
+.slick-dots li.slick-active button:before {
+  color: #ecb306; /* Match your theme color */
+}
 }
 
 /* Contact Section */
