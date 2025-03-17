@@ -121,7 +121,7 @@ const portfolioData = [
   {
     id: 1,
     title: "Proyecto 1",
-    thumbnail: "Assets\Images\Projects\project1",
+    thumbnail: "Assets/Images/Projects/project1",
 /*     images: ["assets/images/project1-1.jpg", "assets/images/project1-2.jpg"],
     videos: ["assets/videos/project1.mp4"],
     description: "Descripción detallada del Proyecto 1.",
@@ -195,7 +195,7 @@ const catalogData = [
   {
     id: 1,
     title: "Catálogo 1",
-    thumbnail: "Assets\Images\Catalog\catalog1.jpg",
+    thumbnail: "Assets/Images/Catalog/catalog1.jpg",
     description: "Descripción detallada del Catálogo 1.",
   },
   {
