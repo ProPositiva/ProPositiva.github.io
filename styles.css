@@ -204,78 +204,49 @@ body {
   color: #333;
 }
 
-/* Split-Screen Project Details */
-.project-details-overlay {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-  z-index: 1000; /* Ensure it's above everything */
-  justify-content: center;
-  align-items: center;
+/* Catalog Section */
+.catalog {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9f9f9;
 }
 
-.project-details-overlay.active {
-  display: flex; /* Show when active */
-}
-
-.project-details {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto; /* Scroll if content is too long */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.project-details h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #404040;
-}
-
-.project-media {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.catalog h2 {
+  font-size: 2.5rem;
   margin-bottom: 2rem;
 }
 
-.project-media img,
-.project-media video {
-  max-width: 100%;
-  height: auto;
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.catalog-item {
+  background: #fff;
   border-radius: 10px;
-}
-
-.project-info p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-
-.project-info strong {
-  color: #ecb306;
-}
-
-/* Close Button */
-.close-button {
-  background: #ecb306;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  margin-top: 1rem;
-  transition: background 0.3s ease;
 }
 
-.close-button:hover {
-  background: #d49e05;
+.catalog-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.catalog-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+}
+
+.catalog-item h3 {
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: #333;
 }
 
 /* Testimonials Section */
@@ -288,7 +259,7 @@ body {
 .testimonials h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #404040; /* Ensure consistent heading color */
+  color: #404040;
 }
 
 .testimonial-cards {
@@ -316,6 +287,29 @@ body {
 .testimonial p:last-child {
   font-weight: bold;
   color: #333;
+}
+
+/* Partners Carousel */
+.partners {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.partners h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.partners-carousel {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.partners-carousel img {
+  width: 150px;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* Contact Section */

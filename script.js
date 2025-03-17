@@ -17,7 +17,11 @@ const languageData = {
     portfolioTitle: "Our Portfolio",
     portfolioShowMore: "Show More",
     portfolioShowLess: "Show Less",
+    catalogTitle: "Our Catalog",
+    catalogShowMore: "Show More",
+    catalogShowLess: "Show Less",
     testimonialsTitle: "What Our Clients Say",
+    partnersTitle: "Our Partners",
     contactTitle: "Contact Us",
     contactNameLabel: "Your Name",
     contactEmailLabel: "Your Email",
@@ -41,7 +45,11 @@ const languageData = {
     portfolioTitle: "Nuestro Portafolio",
     portfolioShowMore: "Mostrar Más",
     portfolioShowLess: "Mostrar Menos",
+    catalogTitle: "Nuestro Catálogo",
+    catalogShowMore: "Mostrar Más",
+    catalogShowLess: "Mostrar Menos",
     testimonialsTitle: "Lo Que Dicen Nuestros Clientes",
+    partnersTitle: "Nuestros Socios",
     contactTitle: "Contáctenos",
     contactNameLabel: "Su Nombre",
     contactEmailLabel: "Su Correo Electrónico",
@@ -68,7 +76,10 @@ const elementsToUpdate = {
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
   portfolioShowMore: document.getElementById("show-more-button"),
+  catalogTitle: document.getElementById("catalog-title"),
+  catalogShowMore: document.getElementById("show-more-catalog-button"),
   testimonialsTitle: document.getElementById("testimonials-title"),
+  partnersTitle: document.getElementById("partners-title"),
   contactTitle: document.getElementById("contact-title"),
   contactNameLabel: document.getElementById("contact-name-label"),
   contactEmailLabel: document.getElementById("contact-email-label"),
@@ -156,12 +167,9 @@ function generatePortfolioGrid(limit) {
   });
 }
 
-// Function to show project details in split-screen
+// Function to show project details
 function showProjectDetails(project) {
-  const overlay = document.getElementById("project-details-overlay");
   const projectDetails = document.getElementById("project-details");
-
-  // Populate project details
   projectDetails.innerHTML = `
     <h3>${project.title}</h3>
     <div class="project-media">
@@ -176,19 +184,19 @@ function showProjectDetails(project) {
     <button class="close-button">Cerrar</button>
   `;
 
-  // Show the overlay
-  overlay.classList.add("active");
+  // Show the project details section
+  projectDetails.classList.add("active");
 
   // Add event listener to close button
   const closeButton = projectDetails.querySelector(".close-button");
   closeButton.addEventListener("click", () => {
-    overlay.classList.remove("active");
+    projectDetails.classList.remove("active");
   });
 
   // Close overlay when clicking outside the details section
-  overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-      overlay.classList.remove("active");
+  document.addEventListener("click", (event) => {
+    if (!projectDetails.contains(event.target) && !event.target.closest(".portfolio-item")) {
+      projectDetails.classList.remove("active");
     }
   });
 }
@@ -212,3 +220,98 @@ generatePortfolioGrid(3);
 
 // Add event listener to the "Show More" button
 document.getElementById("show-more-button").addEventListener("click", togglePortfolioView);
+
+// Catalog Data
+const catalogData = [
+  {
+    id: 1,
+    title: "Catálogo 1",
+    thumbnail: "assets/images/catalog1.jpg",
+    description: "Descripción detallada del Catálogo 1.",
+  },
+  {
+    id: 2,
+    title: "Catálogo 2",
+    thumbnail: "assets/images/catalog2.jpg",
+    description: "Descripción detallada del Catálogo 2.",
+  },
+  // Add more catalog items as needed
+];
+
+// Function to generate catalog grid
+function generateCatalogGrid(limit) {
+  const catalogGrid = document.getElementById("catalog-grid");
+  catalogGrid.innerHTML = ""; // Clear existing content
+
+  catalogData.slice(0, limit).forEach((item) => {
+    const catalogItem = document.createElement("div");
+    catalogItem.classList.add("catalog-item");
+
+    const catalogImage = document.createElement("img");
+    catalogImage.src = item.thumbnail;
+    catalogImage.alt = item.title;
+
+    const catalogTitle = document.createElement("h3");
+    catalogTitle.textContent = item.title;
+
+    catalogItem.appendChild(catalogImage);
+    catalogItem.appendChild(catalogTitle);
+    catalogGrid.appendChild(catalogItem);
+  });
+}
+
+// Function to toggle "Show More" / "Show Less" for catalog
+function toggleCatalogView() {
+  const showMoreButton = document.getElementById("show-more-catalog-button");
+  const catalogGrid = document.getElementById("catalog-grid");
+
+  if (showMoreButton.textContent === languageData[currentLanguage].catalogShowMore) {
+    generateCatalogGrid(catalogData.length); // Show all catalog items
+    showMoreButton.textContent = languageData[currentLanguage].catalogShowLess;
+  } else {
+    generateCatalogGrid(3); // Show only 3 catalog items
+    showMoreButton.textContent = languageData[currentLanguage].catalogShowMore;
+  }
+}
+
+// Initialize catalog grid with limited items
+generateCatalogGrid(3);
+
+// Add event listener to the "Show More" button for catalog
+document.getElementById("show-more-catalog-button").addEventListener("click", toggleCatalogView);
+
+// Initialize Partners Carousel
+$(document).ready(function () {
+  $(".partners-carousel").slick({
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  });
+});
