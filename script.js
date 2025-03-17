@@ -182,66 +182,6 @@ function generatePortfolioGrid(limit) {
     projectItem.appendChild(projectTitle);
     portfolioGrid.appendChild(projectItem);
 
-    // Add click event to show project details
-    projectItem.addEventListener("click", () => showProjectDetails(project));
-  });
-}
-
-// Function to show project details in modal
-function showProjectDetails(project) {
-  const modal = document.getElementById("project-details-modal");
-  const modalContent = document.querySelector(".project-details-content");
-  const projectTitle = document.getElementById("project-details-title");
-  const projectDescription = document.getElementById("project-details-description");
-  const projectCost = document.getElementById("project-details-cost");
-  const projectTime = document.getElementById("project-details-time");
-  const projectMedia = document.querySelector(".project-media");
-
-  // Set the background image of the modal content
-  modalContent.style.backgroundImage = `url(${project.thumbnail})`;
-
-  // Populate project details
-  projectTitle.textContent = project.title;
-  projectDescription.textContent = project.description;
-  projectCost.textContent = project.cost;
-  projectTime.textContent = project.time;
-
-  // Clear existing media content
-  projectMedia.innerHTML = "";
-
-  // Add images
-  project.images.forEach((image) => {
-    const img = document.createElement("img");
-    img.src = image;
-    img.alt = project.title;
-    projectMedia.appendChild(img);
-  });
-
-  // Add videos
-  project.videos.forEach((video) => {
-    const vid = document.createElement("video");
-    vid.controls = true;
-    const source = document.createElement("source");
-    source.src = video;
-    source.type = "video/mp4";
-    vid.appendChild(source);
-    projectMedia.appendChild(vid);
-  });
-
-  // Show the modal
-  modal.classList.add("active");
-
-  // Add event listener to close button
-  const closeButton = document.getElementById("close-modal-button");
-  closeButton.addEventListener("click", () => {
-    modal.classList.remove("active");
-  });
-
-  // Close modal when clicking outside the content
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.classList.remove("active");
-    }
   });
 }
 
@@ -292,7 +232,7 @@ const catalogData = [
   {
     id: 4,
     title: "Catálogo 4",
-    thumbnail: "Assets\Images\Catalog\catalog14",
+    thumbnail: "Assets\Images\Catalog\catalog4",
     images: ["assets/images/project2-1.jpg", "assets/images/project2-2.jpg"],
     videos: ["assets/videos/project2.mp4"],
     description: "Descripción detallada del Catálogo 4.",
@@ -347,7 +287,7 @@ document.getElementById("show-more-catalog-button").addEventListener("click", to
 // Initialize Partners Carousel
 $(document).ready(function () {
   $(".partners-carousel").slick({
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 300,
     slidesToShow: 4,
