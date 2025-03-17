@@ -49,7 +49,7 @@ const languageData = {
     catalogShowMore: "Mostrar Más",
     catalogShowLess: "Mostrar Menos",
     testimonialsTitle: "Lo Que Dicen Nuestros Clientes",
-    partnersTitle: "Nuestros Aliados Comerciales",
+    partnersTitle: "Nuestros Aliados",
     contactTitle: "Contáctenos",
     contactNameLabel: "Su Nombre",
     contactEmailLabel: "Su Correo Electrónico",
