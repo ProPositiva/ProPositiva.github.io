@@ -293,17 +293,22 @@ body {
 .partners {
   padding: 4rem 2rem;
   text-align: center;
-/*   background: #f9f9f9;
- */}
+  /* background: #f9f9f9; */
+}
 
 .partners h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: #404040;
 }
 
 .partners-carousel {
   margin: 0 auto;
   max-width: 1200px;
+  background: #ffffff; 
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .partners-carousel img {
@@ -329,7 +334,7 @@ body {
 .slick-prev:before,
 .slick-next:before {
   font-size: 40px;
-  color: #ecb306;
+  color: #ecb306; 
 }
 
 .slick-prev {
@@ -340,17 +345,10 @@ body {
   right: -50px;
 }
 
+/* Remove dots */
 .slick-dots {
-  bottom: -40px;
+  display: none !important; /* Hide the dots */
 }
-
-.slick-dots li button:before {
-  font-size: 12px;
-  color: #ecb306;
-}
-
-.slick-dots li.slick-active button:before {
-  color: #ecb306;
 }
 
 /* Project Details Modal */
