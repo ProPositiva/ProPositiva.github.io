@@ -167,36 +167,60 @@ function generatePortfolioGrid(limit) {
   });
 }
 
-// Function to show project details
+// Function to show project details in modal
 function showProjectDetails(project) {
-  const projectDetails = document.getElementById("project-details");
-  projectDetails.innerHTML = `
-    <h3>${project.title}</h3>
-    <div class="project-media">
-      ${project.images.map((image) => `<img src="${image}" alt="${project.title}">`).join("")}
-      ${project.videos.map((video) => `<video controls><source src="${video}" type="video/mp4"></video>`).join("")}
-    </div>
-    <div class="project-info">
-      <p><strong>Descripción:</strong> ${project.description}</p>
-      <p><strong>Costo Estimado:</strong> ${project.cost}</p>
-      <p><strong>Tiempo Estimado:</strong> ${project.time}</p>
-    </div>
-    <button class="close-button">Cerrar</button>
-  `;
+  const modal = document.getElementById("project-details-modal");
+  const modalContent = document.querySelector(".project-details-content");
+  const projectTitle = document.getElementById("project-details-title");
+  const projectDescription = document.getElementById("project-details-description");
+  const projectCost = document.getElementById("project-details-cost");
+  const projectTime = document.getElementById("project-details-time");
+  const projectMedia = document.querySelector(".project-media");
 
-  // Show the project details section
-  projectDetails.classList.add("active");
+  // Set the background image of the modal content
+  modalContent.style.backgroundImage = `url(${project.thumbnail})`;
 
-  // Add event listener to close button
-  const closeButton = projectDetails.querySelector(".close-button");
-  closeButton.addEventListener("click", () => {
-    projectDetails.classList.remove("active");
+  // Populate project details
+  projectTitle.textContent = project.title;
+  projectDescription.textContent = project.description;
+  projectCost.textContent = project.cost;
+  projectTime.textContent = project.time;
+
+  // Clear existing media content
+  projectMedia.innerHTML = "";
+
+  // Add images
+  project.images.forEach((image) => {
+    const img = document.createElement("img");
+    img.src = image;
+    img.alt = project.title;
+    projectMedia.appendChild(img);
   });
 
-  // Close overlay when clicking outside the details section
-  document.addEventListener("click", (event) => {
-    if (!projectDetails.contains(event.target) && !event.target.closest(".portfolio-item")) {
-      projectDetails.classList.remove("active");
+  // Add videos
+  project.videos.forEach((video) => {
+    const vid = document.createElement("video");
+    vid.controls = true;
+    const source = document.createElement("source");
+    source.src = video;
+    source.type = "video/mp4";
+    vid.appendChild(source);
+    projectMedia.appendChild(vid);
+  });
+
+  // Show the modal
+  modal.classList.add("active");
+
+  // Add event listener to close button
+  const closeButton = document.getElementById("close-modal-button");
+  closeButton.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  // Close modal when clicking outside the content
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.remove("active");
     }
   });
 }
@@ -283,32 +307,32 @@ document.getElementById("show-more-catalog-button").addEventListener("click", to
 // Initialize Partners Carousel
 $(document).ready(function () {
   $(".partners-carousel").slick({
-    dots: true, // Show dots for navigation
-    infinite: true, // Infinite looping
-    speed: 500, // Transition speed
-    slidesToShow: 5, // Number of logos to show at once
-    slidesToScroll: 1, // Number of logos to scroll at a time
-    autoplay: true, // Auto-play the carousel
-    autoplaySpeed: 2000, // Auto-play speed in milliseconds
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
-        breakpoint: 1024, // Adjust for tablets
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768, // Adjust for smaller tablets
+        breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480, // Adjust for mobile devices
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
