@@ -116,79 +116,29 @@ languageButton.addEventListener("click", () => {
 updateLanguage(currentLanguage);
 languageButton.textContent = "English";
 
-// Portfolio Data
-const portfolioData = [
-  {
-    id: 1,
-    title: "Proyecto 1",
-    thumbnail: "Assets/Images/Projects/project1",
-/*     images: ["assets/images/project1-1.jpg", "assets/images/project1-2.jpg"],
-    videos: ["assets/videos/project1.mp4"],
-    description: "Descripción detallada del Proyecto 1.",
-    cost: "$50,000",
-    time: "3 meses", */
-  },
-  {
-    id: 2,
-    title: "Proyecto 2",
-    thumbnail: "Assets\Images\Projects\project2",
-  },
-  {
-    id: 3,
-    title: "Proyecto 3",
-    thumbnail: "Assets\Images\Projects\project3",
-  },
-  {
-    id: 4,
-    title: "Proyecto 4",
-    thumbnail: "Assets\Images\Projects\project4",
-  },
-  // Add more projects as needed
-];
+// Get all portfolio items
+const portfolioItems = document.querySelectorAll(".portfolio-item");
+const portfolioBackground = document.getElementById("portfolio-background");
 
-// Function to generate portfolio grid
-function generatePortfolioGrid(limit) {
-  const portfolioGrid = document.getElementById("portfolio-grid");
-  portfolioGrid.innerHTML = ""; // Clear existing content
+// Add event listeners for hover
+portfolioItems.forEach((item) => {
+  item.addEventListener("mouseenter", () => {
+    // Change the background image
+    const bgImage = item.getAttribute("data-bg");
+    portfolioBackground.style.backgroundImage = `url(${bgImage})`;
 
-  portfolioData.slice(0, limit).forEach((project) => {
-    const projectItem = document.createElement("div");
-    projectItem.classList.add("portfolio-item");
-    projectItem.dataset.id = project.id; // Add project ID as data attribute
-
-    const projectImage = document.createElement("img");
-    projectImage.src = project.thumbnail;
-    projectImage.alt = project.title;
-
-    const projectTitle = document.createElement("h3");
-    projectTitle.textContent = project.title;
-
-    projectItem.appendChild(projectImage);
-    projectItem.appendChild(projectTitle);
-    portfolioGrid.appendChild(projectItem);
-
+    // Add brackets to the text
+    item.textContent = `[${item.getAttribute("data-text")}]`;
   });
-}
 
-// Function to toggle "Show More" / "Show Less"
-function togglePortfolioView() {
-  const showMoreButton = document.getElementById("show-more-button");
-  const portfolioGrid = document.getElementById("portfolio-grid");
+  item.addEventListener("mouseleave", () => {
+    // Reset the background image (optional)
+    portfolioBackground.style.backgroundImage = "url('assets/images/project1.jpg')";
 
-  if (showMoreButton.textContent === languageData[currentLanguage].portfolioShowMore) {
-    generatePortfolioGrid(portfolioData.length); // Show all projects
-    showMoreButton.textContent = languageData[currentLanguage].portfolioShowLess;
-  } else {
-    generatePortfolioGrid(3); // Show only 3 projects
-    showMoreButton.textContent = languageData[currentLanguage].portfolioShowMore;
-  }
-}
-
-// Initialize portfolio grid with limited projects
-generatePortfolioGrid(3);
-
-// Add event listener to the "Show More" button
-document.getElementById("show-more-button").addEventListener("click", togglePortfolioView);
+    // Remove brackets from the text
+    item.textContent = item.getAttribute("data-text");
+  });
+});
 
 // Catalog Data
 const catalogData = [
