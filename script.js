@@ -120,6 +120,9 @@ languageButton.textContent = "English";
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 const portfolioBackground = document.getElementById("portfolio-background");
 
+// Store the original background image
+const originalBackground = portfolioBackground.style.backgroundImage;
+
 // Add event listeners for hover
 portfolioItems.forEach((item) => {
   item.addEventListener("mouseenter", () => {
