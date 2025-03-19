@@ -208,10 +208,10 @@ body {
   cursor: pointer;
   padding: 0.5rem 1rem; /* Adjust padding */
   font-size: 1.2rem;
-  color: #333; /* Text color */
+  color: #ffffff; /* Text color */
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-  border-radius: 5px; /* Rounded corners */
+  /* background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */ 
+  /* border-radius: 5px; /* Rounded corners */ 
 }
 
 .portfolio-item:hover {
@@ -221,13 +221,13 @@ body {
 }
 
 .portfolio-item::before {
-  content: "[";
+  content: "";
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .portfolio-item::after {
-  content: "]";
+  content: "";
   opacity: 0;
   transition: opacity 0.3s ease;
 }
