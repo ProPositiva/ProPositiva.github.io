@@ -179,7 +179,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("Assets\Images\Projects\project1"); /* Default background */
+  background-image: url("Assets\Images\Projects\project1.jpg"); /* Default background */
   background-size: cover;
   background-position: center;
   transition: background-image 0.5s ease;
