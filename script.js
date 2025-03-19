@@ -133,7 +133,7 @@ portfolioItems.forEach((item) => {
 
   item.addEventListener("mouseleave", () => {
     // Reset the background image (optional)
-    portfolioBackground.style.backgroundImage = "url('Assets/Images/Projects/project1.jpg')";
+    portfolioBackground.style.backgroundImage = "url('assets/images/project1.jpg')";
 
     // Remove brackets from the text
     item.textContent = item.getAttribute("data-text");

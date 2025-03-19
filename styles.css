@@ -189,7 +189,7 @@ body {
   position: relative;
   z-index: 1;
   padding: 2rem;
-  color: #333; /* Text color */
+  color: #ffffff; /* Text color */
   text-align: left; /* Align text to the left */
   max-width: 1200px; /* Limit content width */
   margin: 0 auto; /* Center the content */
