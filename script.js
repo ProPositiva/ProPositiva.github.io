@@ -116,6 +116,8 @@ languageButton.addEventListener("click", () => {
 updateLanguage(currentLanguage);
 languageButton.textContent = "English";
 
+
+
 // Get all portfolio items
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 const portfolioBackground = document.getElementById("portfolio-background");
@@ -134,9 +136,13 @@ portfolioItems.forEach((item) => {
     item.textContent = `[${item.getAttribute("data-text")}]`;
   });
 
-  item.addEventListener("mouseleave", () => {
+  /* item.addEventListener("mouseleave", () => {
     // Reset the background image (optional)
-    portfolioBackground.style.backgroundImage = "url('assets/images/project1.jpg')";
+    portfolioBackground.style.backgroundImage = "url('assets/images/project1.jpg')"; */
+
+	item.addEventListener("mouseleave", () => {
+    // Reset the background image to the original
+    portfolioBackground.style.backgroundImage = originalBackground;
 
     // Remove brackets from the text
     item.textContent = item.getAttribute("data-text");
