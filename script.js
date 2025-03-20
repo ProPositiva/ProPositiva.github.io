@@ -119,6 +119,37 @@ languageButton.textContent = "English";
 
 
 // Get all portfolio items
+/* const portfolioItems = document.querySelectorAll(".portfolio-item"); */
+/* const portfolioBackground = document.getElementById("portfolio-background"); */
+
+// Store the original background image
+/* const originalBackground = portfolioBackground.style.backgroundImage; */
+
+// Add event listeners for hover
+/* portfolioItems.forEach((item) => {
+  item.addEventListener("mouseenter", () => { */
+    // Change the background image
+/*     const bgImage = item.getAttribute("data-bg");
+    portfolioBackground.style.backgroundImage = `url(${bgImage})`;
+ */
+    // Add brackets to the text
+    /* item.textContent = `[${item.getAttribute("data-text")}]`; */
+  /* }); */
+
+  /* item.addEventListener("mouseleave", () => {
+    // Reset the background image (optional)
+    portfolioBackground.style.backgroundImage = "url('assets/images/project1.jpg')"; */
+
+	/* item.addEventListener("mouseleave", () => { */
+    // Reset the background image to the original
+    /* portfolioBackground.style.backgroundImage = originalBackground; */
+
+    // Remove brackets from the text
+/*     item.textContent = item.getAttribute("data-text");
+  });
+}); */
+
+// Get all portfolio items
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 const portfolioBackground = document.getElementById("portfolio-background");
 
@@ -127,22 +158,25 @@ const originalBackground = portfolioBackground.style.backgroundImage;
 
 // Add event listeners for hover
 portfolioItems.forEach((item) => {
+  // Skip the link item
+  if (item.classList.contains("portfolio-link")) return;
+
   item.addEventListener("mouseenter", () => {
-    // Change the background image
-    const bgImage = item.getAttribute("data-bg");
-    portfolioBackground.style.backgroundImage = `url(${bgImage})`;
+    // Change the background image with a delay
+    setTimeout(() => {
+      const bgImage = item.getAttribute("data-bg");
+      portfolioBackground.style.backgroundImage = `url(${bgImage})`;
+    }, 100); // 100ms delay
 
     // Add brackets to the text
     item.textContent = `[${item.getAttribute("data-text")}]`;
   });
 
-  /* item.addEventListener("mouseleave", () => {
-    // Reset the background image (optional)
-    portfolioBackground.style.backgroundImage = "url('assets/images/project1.jpg')"; */
-
-	item.addEventListener("mouseleave", () => {
-    // Reset the background image to the original
-    portfolioBackground.style.backgroundImage = originalBackground;
+  item.addEventListener("mouseleave", () => {
+    // Reset the background image to the original with a delay
+    setTimeout(() => {
+      portfolioBackground.style.backgroundImage = originalBackground;
+    }, 100); // 100ms delay
 
     // Remove brackets from the text
     item.textContent = item.getAttribute("data-text");
