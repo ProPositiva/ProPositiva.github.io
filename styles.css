@@ -513,24 +513,35 @@ form button:hover {
   margin-top: 2rem;
 }
 
+/* Social Media Icons */
 .social-media {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /
   margin-top: 1.5rem;
 }
 
 .social-media a {
   margin: 0 0.5rem;
   transition: transform 0.3s ease;
+  text-decoration: none; 
 }
 
 .social-media a:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); 
 }
 
 .social-media img {
   width: 30px;
   height: 30px;
+  display: block; 
 }
 
+/* Remove any pseudo-elements causing the dash */
+.social-media a::after,
+.social-media a::before {
+  content: none; 
+}
 /* Footer */
 footer {
   background: #333;
