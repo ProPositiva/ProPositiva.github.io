@@ -249,15 +249,18 @@ body {
   display: block; 
   width: 100%;
   height: 100%;
+  font-size: inherit; 
+  font-family: inherit; 
 }
 
 .portfolio-link:hover {
-  background: rgba(255, 255, 255, 0.2); /* Light background on hover */
-  color: #ecb306;
+  background: rgba(255, 255, 255, 0.2); 
+  color: #ecb306; 
 }
 
 .portfolio-link:hover a {
-  color: #ecb306; 
+  color: inherit; 
+} 
 }
 
 /* Catalog Section */
