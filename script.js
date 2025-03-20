@@ -35,7 +35,7 @@ const languageData = {
     aboutTitle: "Sobre Nosotros",
     aboutDescription: "Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.",
     aboutCta: "Conocer Más",
-    servicesTitle: "sERVICIOS",
+    servicesTitle: "SERVICIOS",
     service1Title: "Consultoría",
     service1Description: "Asesoramiento experto para sus necesidades arquitectónicas.",
     service2Title: "Gestión de Proyectos",
