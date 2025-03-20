@@ -338,14 +338,14 @@ body {
 .partners-carousel {
   margin: 0 auto;
   max-width: 1200px;
-  background: #ffffff; /* White background for the carousel */
+  background: #ffffff;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .partners-carousel img {
-  width: 150px;
+  width: 250px;
   height: auto;
   margin: 0 auto;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -367,7 +367,7 @@ body {
 .slick-prev:before,
 .slick-next:before {
   font-size: 40px;
-  color: #ecb306; /* Match your theme color */
+  color: #ecb306; 
 }
 
 .slick-prev {
@@ -380,7 +380,7 @@ body {
 
 /* Remove dots */
 .slick-dots {
-  display: none !important; /* Hide the dots */
+  display: none !important; 
 }
 
 /* Contact Section */
