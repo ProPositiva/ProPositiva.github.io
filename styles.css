@@ -455,6 +455,7 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Contact Form Styles */
 form {
   display: flex;
   flex-direction: column;
@@ -468,20 +469,41 @@ form label {
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1.1rem;
+  color: #333; 
 }
 
-form input, form textarea {
+form input,
+form textarea {
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
+  font-family: 'Roboto', sans-serif; 
+  color: #333; 
+  background-color: #fff; 
 }
 
 form textarea {
-  resize: vertical;
-  min-height: 150px;
+  resize: vertical; 
+  min-height: 150px; 
+}
+
+form button {
+  background: #ecb306;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #d49e05;
 }
 
 form button {
