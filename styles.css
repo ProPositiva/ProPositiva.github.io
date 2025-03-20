@@ -254,13 +254,22 @@ body {
 }
 
 .portfolio-link:hover {
-  background: rgba(255, 255, 255, 0.2); 
+  /* background: rgba(255, 255, 255, 0.2);  */
   color: #ecb306; 
 }
 
 .portfolio-link:hover a {
   color: inherit; 
 } 
+}
+
+.portfolio-link .arrow {
+  margin-left: 0.5rem; 
+  transition: transform 0.3s ease; 
+}
+
+.portfolio-link:hover .arrow {
+  transform: translateX(5px); 
 }
 
 /* Catalog Section */
