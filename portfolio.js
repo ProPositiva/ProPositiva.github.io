@@ -2,40 +2,18 @@
 const projects = [
   {
     title: "Project 1",
-    mainImage: "Assets/Images/Projects/project1.jpg",
-    gallery: [
+    media: [
+      "Assets/Images/Projects/project1.jpg",
       "Assets/Images/Projects/project1-1.jpg",
-      "Assets/Images/Projects/project1-2.jpg",
       "Assets/Videos/project1-video.mp4",
     ],
     details: "Additional information about Project 1.",
   },
   {
     title: "Project 2",
-    mainImage: "Assets/Images/Projects/project2.jpg",
-    gallery: [
+    media: [
+      "Assets/Images/Projects/project2.jpg",
       "Assets/Images/Projects/project2-1.jpg",
-      "Assets/Images/Projects/project2-2.jpg",
-      "Assets/Videos/project2-video.mp4",
-    ],
-    details: "Additional information about Project 2.",
-  },
-  {
-    title: "Project 3",
-    mainImage: "Assets/Images/Projects/project3.jpg",
-    gallery: [
-      "Assets/Images/Projects/project2-1.jpg",
-      "Assets/Images/Projects/project2-2.jpg",
-      "Assets/Videos/project2-video.mp4",
-    ],
-    details: "Additional information about Project 2.",
-  },
-  {
-    title: "Project 4",
-    mainImage: "Assets/Images/Projects/project4.jpg",
-    gallery: [
-      "Assets/Images/Projects/project2-1.jpg",
-      "Assets/Images/Projects/project2-2.jpg",
       "Assets/Videos/project2-video.mp4",
     ],
     details: "Additional information about Project 2.",
@@ -44,93 +22,58 @@ const projects = [
 ];
 
 let currentProjectIndex = 0;
+let currentMediaIndex = 0;
 
 // DOM Elements
 const projectTitle = document.getElementById("project-title");
-const mainImage = document.getElementById("main-image");
-const projectGallery = document.querySelector(".project-gallery");
-const infoModal = document.querySelector(".info-modal");
 const projectDetails = document.getElementById("project-details");
-const closeModal = document.querySelector(".close-modal");
+const mainMedia = document.getElementById("main-media");
 
 // Function to load project data
 function loadProject(index) {
   const project = projects[index];
   projectTitle.textContent = project.title;
-  mainImage.src = project.mainImage;
-
-  // Clear gallery
-  projectGallery.innerHTML = "";
-
-  // Load gallery items
-  project.gallery.forEach((item) => {
-    const galleryItem = document.createElement("div");
-    galleryItem.classList.add("gallery-item");
-
-    if (item.endsWith(".mp4")) {
-      const video = document.createElement("video");
-      video.controls = true;
-      const source = document.createElement("source");
-      source.src = item;
-      source.type = "video/mp4";
-      video.appendChild(source);
-      galleryItem.appendChild(video);
-    } else {
-      const img = document.createElement("img");
-      img.src = item;
-      galleryItem.appendChild(img);
-    }
-
-    projectGallery.appendChild(galleryItem);
-  });
-
-  // Update project details
   projectDetails.textContent = project.details;
+  loadMedia(0); // Load the first media item
+}
+
+// Function to load media
+function loadMedia(index) {
+  const media = projects[currentProjectIndex].media[index];
+  if (media.endsWith(".mp4")) {
+    mainMedia.innerHTML = `
+      <video controls autoplay>
+        <source src="${media}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    `;
+  } else {
+    mainMedia.innerHTML = `<img src="${media}" alt="Project Media">`;
+  }
 }
 
 // Navigation Arrows
-document.querySelector(".left-arrow").addEventListener("click", () => {
+document.querySelector(".up-arrow").addEventListener("click", () => {
   currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
   loadProject(currentProjectIndex);
 });
 
-document.querySelector(".right-arrow").addEventListener("click", () => {
+document.querySelector(".down-arrow").addEventListener("click", () => {
   currentProjectIndex = (currentProjectIndex + 1) % projects.length;
   loadProject(currentProjectIndex);
 });
 
-// Additional Info Modal
-document.querySelector(".info-button").addEventListener("click", () => {
-  infoModal.style.display = "block";
-});
-
-closeModal.addEventListener("click", () => {
-  infoModal.style.display = "none";
-});
-
-// Swipe Functionality (for touch devices)
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener("touchstart", (e) => {
-  touchStartX = e.touches[0].clientX;
-});
-
-document.addEventListener("touchend", (e) => {
-  touchEndX = e.changedTouches[0].clientX;
-  handleSwipe();
-});
-
-function handleSwipe() {
-  if (touchEndX < touchStartX) {
-    // Swipe left
-    currentProjectIndex = (currentProjectIndex + 1) % projects.length;
-  } else if (touchEndX > touchStartX) {
-    // Swipe right
-    currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+// Scroll Left/Right for Media
+document.addEventListener("wheel", (e) => {
+  if (e.deltaY > 0) {
+    // Scroll down (next media)
+    currentMediaIndex = (currentMediaIndex + 1) % projects[currentProjectIndex].media.length;
+  } else {
+    // Scroll up (previous media)
+    currentMediaIndex = (currentMediaIndex - 1 + projects[currentProjectIndex].media.length) % projects[currentProjectIndex].media.length;
   }
-  loadProject(currentProjectIndex);
-}
+  loadMedia(currentMediaIndex);
+});
 
 // Load the first project
 loadProject(currentProjectIndex);
