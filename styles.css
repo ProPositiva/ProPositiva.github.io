@@ -460,7 +460,7 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   max-width: 600px;
   margin: 0 auto;
 }
