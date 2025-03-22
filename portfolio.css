@@ -120,3 +120,29 @@ body {
   color: #ffffff; /* White text */
   text-align: left; /* Align text to the left */
 }
+
+/* Project Details Ribbon */
+.project-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #404040; /* Ribbon background color */
+  color: #ffffff; /* Text color */
+  padding: 1rem;
+  text-align: center;
+  z-index: 5; /* Ensure it's above the background image */
+}
+
+.project-details p {
+  margin: 0.5rem 0; /* Add spacing between lines */
+}
+
+#project-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#project-description {
+  font-size: 1rem;
+}
