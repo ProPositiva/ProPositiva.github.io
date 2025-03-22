@@ -10,8 +10,8 @@ body {
 /* Close Button */
 .close-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1rem; /* Same as header */
+  right: 1rem; /* Position on the right */
   z-index: 10; /* Ensure it's on top of the background image */
   cursor: pointer;
   padding: 0.5rem 1rem;
