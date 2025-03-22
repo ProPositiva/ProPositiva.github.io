@@ -4,62 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Full Portfolio</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Existing CSS for main styles -->
-  <link rel="stylesheet" href="portfolio.css"> <!-- New CSS for portfolio-specific styles -->
+  <link rel="stylesheet" href="styles.css"> <!-- Existing CSS -->
+  <link rel="stylesheet" href="portfolio.css"> <!-- New CSS for portfolio -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="portfolio-container">
-    <!-- Navigation Arrows -->
-    <div class="arrow left-arrow">
-      <i class="fas fa-chevron-left"></i>
-    </div>
-    <div class="arrow right-arrow">
-      <i class="fas fa-chevron-right"></i>
-    </div>
-
     <!-- Project Name -->
     <div class="project-name">
       <h2 id="project-title">Project Name</h2>
     </div>
 
-    <!-- Main Project Image -->
-    <div class="project-main">
-      <img id="main-image" src="Assets/Images/Projects/project1.jpg" alt="Project 1">
+    <!-- Additional Info -->
+    <div class="project-info">
+      <p id="project-details">Additional information about the project.</p>
     </div>
 
-    <!-- Additional Images/Videos -->
-    <div class="project-gallery">
-      <div class="gallery-item">
-        <img src="Assets/Images/Projects/project1-1.jpg" alt="Project 1 Image 1">
-      </div>
-      <div class="gallery-item">
-        <img src="Assets/Images/Projects/project1-2.jpg" alt="Project 1 Image 2">
-      </div>
-      <div class="gallery-item">
-        <video controls>
-          <source src="Assets/Videos/project1-video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
-
-    <!-- Additional Info Button -->
-    <div class="info-button">
-      <i class="fas fa-info-circle"></i>
-    </div>
-
-    <!-- Additional Info Modal -->
-    <div class="info-modal">
-      <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3>Project Details</h3>
-        <p id="project-details">Additional information about the project.</p>
-      </div>
+    <!-- Main Project Media -->
+    <div class="project-media">
+      <img id="main-media" src="Assets/Images/Projects/project1.jpg" alt="Project 1">
     </div>
   </div>
 
-  <script src="script.js"></script> <!-- Existing JS for shared functionality -->
-  <script src="portfolio.js"></script> <!-- New JS for portfolio-specific functionality -->
+  <script src="script.js"></script> <!-- Existing JS -->
+  <script src="portfolio.js"></script> <!-- New JS for portfolio -->
 </body>
 </html>
