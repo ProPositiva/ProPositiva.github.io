@@ -19,6 +19,8 @@ body {
   color: #ffffff;
   transition: all 0.3s ease;
   text-align: center;
+  background: transparent; /* Remove any background */
+  border: none; /* Remove any border */
 }
 
 .close-button a {
@@ -29,10 +31,12 @@ body {
   height: 100%;
   font-size: inherit; /* Inherit font size */
   font-family: inherit; /* Inherit font family */
+  background: transparent; /* Ensure no background */
 }
 
 .close-button:hover {
   color: #ecb306; /* Change text color on hover */
+  background: transparent; /* Ensure no background on hover */
 }
 
 .close-button:hover a::after {
