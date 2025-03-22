@@ -29,21 +29,27 @@
   <link rel="stylesheet" href="portfolio.css"> <!-- New CSS for portfolio -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
   <div class="portfolio-container">
     <!-- Project Name -->
     <div class="project-name">
       <h2 id="project-title">Project Name</h2>
-    </div>
-
-    <!-- Additional Info -->
-    <div class="project-info">
-      <p id="project-details">Additional information about the project.</p>
+      <a href="#" id="details-link">Details</a> <!-- Link to show details -->
     </div>
 
     <!-- Main Project Media -->
     <div class="project-media">
       <img id="main-media" src="Assets/Images/Projects/project1.jpg" alt="Project 1">
+    </div>
+
+    <!-- Project Details Card -->
+    <div class="details-card">
+      <div class="details-content">
+        <span class="close-details">&times;</span>
+        <h3 id="details-title">Project Details</h3>
+        <p id="details-text">Additional information about the project.</p>
+      </div>
     </div>
   </div>
 

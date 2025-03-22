@@ -31,15 +31,15 @@ body {
   font-weight: normal;
 }
 
-/* Additional Info */
-.project-info {
-  position: absolute;
-  top: 60px; /* Below project name */
-  left: 20px;
-  z-index: 10;
-  max-width: 80%;
+#details-link {
+  color: #fff;
+  text-decoration: none;
   font-size: 1rem;
-  line-height: 1.5;
+  margin-left: 10px;
+}
+
+#details-link:hover {
+  text-decoration: underline;
 }
 
 /* Main Project Media */
@@ -60,4 +60,34 @@ body {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain; /* Ensure media fits within the screen */
+}
+
+/* Project Details Card */
+.details-card {
+  position: fixed;
+  bottom: -100%; /* Hidden by default */
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 20;
+  transition: bottom 0.5s ease;
+}
+
+.details-card.open {
+  bottom: 0; /* Show card */
+}
+
+.details-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.close-details {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
