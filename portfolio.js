@@ -42,7 +42,7 @@ function loadMedia(index) {
   const media = projects[currentProjectIndex].media[index];
   if (media.endsWith(".mp4")) {
     mainMedia.innerHTML = `
-      <video controls autoplay>
+      <video controls autoplay muted loop>
         <source src="${media}" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -54,6 +54,8 @@ function loadMedia(index) {
 
 // Scroll Up/Down for Projects
 document.addEventListener("wheel", (e) => {
+  e.preventDefault(); // Prevent default scroll behavior
+
   if (e.deltaY > 0) {
     // Scroll down (next project)
     currentProjectIndex = (currentProjectIndex + 1) % projects.length;
@@ -68,4 +70,13 @@ document.addEventListener("wheel", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") {
     // Scroll left (previous media)
-   
+    currentMediaIndex = (currentMediaIndex - 1 + projects[currentProjectIndex].media.length) % projects[currentProjectIndex].media.length;
+  } else if (e.key === "ArrowRight") {
+    // Scroll right (next media)
+    currentMediaIndex = (currentMediaIndex + 1) % projects[currentProjectIndex].media.length;
+  }
+  loadMedia(currentMediaIndex);
+});
+
+// Load the first project
+loadProject(currentProjectIndex);
