@@ -121,28 +121,27 @@ body {
   text-align: left; /* Align text to the left */
 }
 
-/* Project Details Ribbon */
-.project-details {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #404040; /* Ribbon background color */
+/* Project Details Section */
+.project-details-section {
+  background-color: #404040; /* Background color */
   color: #ffffff; /* Text color */
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
-  z-index: 5; /* Ensure it's above the background image */
+  display: none; /* Hidden by default */
 }
 
-.project-details p {
-  margin: 0.5rem 0; /* Add spacing between lines */
+.project-details-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 #project-name {
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 #project-description {
-  font-size: 1rem;
+  font-size: 1.8rem;
+  line-height: 1.6;
 }
