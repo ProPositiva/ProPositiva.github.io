@@ -10,25 +10,24 @@ body {
 /* Close Button */
 .close-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1rem; /* Same as header */
+  right: 1rem; /* Position on the right */
   z-index: 10; /* Ensure it's on top of the background image */
   cursor: pointer;
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
   color: #ffffff;
   transition: all 0.3s ease;
-  text-align: right;
+  text-align: right; /* Align text to the right */
   background: transparent; /* Remove any background */
   border: none; /* Remove any border */
+  width: auto; /* Allow the button to shrink to fit content */
 }
 
 .close-button a {
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit text color */
-  display: block; /* Make the entire area clickable */
-  width: 100%;
-  height: 100%;
+  display: inline-block; /* Make the link inline-block for better alignment */
   font-size: inherit; /* Inherit font size */
   font-family: inherit; /* Inherit font family */
   background: transparent; /* Ensure no background */
@@ -46,7 +45,6 @@ body {
   bottom: -2px; /* Adjust position of underline */
   width: 100%;
   height: 2px; /* Thickness of underline */
-  font-weight: bold;
   background-color: white; /* White underline */
 }
 
