@@ -1,93 +1,59 @@
-/* General Styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #404040; /* Background color */
-  color: #fff;
+/* Portfolio Section */
+#portfolio {
+  position: relative;
+  height: auto; /* Adjust height for full portfolio */
   overflow: hidden;
+  background-color: #404040;
+  padding: 2rem 0; /* Add padding for better spacing */
 }
 
-/* Portfolio Container */
 .portfolio-container {
   position: relative;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-/* Project Name */
-.project-name {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-}
-
-.project-name h2 {
-  font-size: 1.5rem;
-  margin: 0;
-  font-weight: normal;
-}
-
-#details-link {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  margin-left: 10px;
-}
-
-#details-link:hover {
-  text-decoration: underline;
-}
-
-/* Main Project Media */
-.project-media {
+.portfolio-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  background-image: url("Assets/Images/Projects/project1.jpg");
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease;
+  opacity: 1;
 }
 
-.project-media img,
-.project-media video {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Ensure media fits within the screen */
-}
-
-/* Project Details Card */
-.details-card {
-  position: fixed;
-  bottom: -100%; /* Hidden by default */
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 20;
-  transition: bottom 0.5s ease;
-}
-
-.details-card.open {
-  bottom: 0; /* Show card */
-}
-
-.details-content {
-  max-width: 800px;
+.portfolio-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  color: #ffffff;
+  text-align: left;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+}
+
+.portfolio-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.portfolio-item {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  position: relative;
   text-align: center;
 }
 
-.close-details {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 1.5rem;
-  cursor: pointer;
+.portfolio-item:hover {
+  transform: scale(1.05);
+  color: #ecb306;
 }
