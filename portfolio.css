@@ -147,3 +147,25 @@ body {
   font-size: 1.8rem;
   line-height: 1.6;
 }
+
+.project-counter {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 100;
+}
+
+/* Make portfolio items full viewport height */
+.portfolio-item {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-item.active {
+  transform: scale(1.05);
+  color: #ecb306;
+}

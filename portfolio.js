@@ -69,3 +69,60 @@ document.addEventListener("click", (event) => {
     projectDetailsSection.style.display = "none"; // Hide the project details section
   }
 });
+
+let currentProjectIndex = 0;
+const portfolioItems = Array.from(document.querySelectorAll(".portfolio-item"));
+const totalProjects = portfolioItems.length;
+
+// Initialize
+document.getElementById("total-projects").textContent = totalProjects;
+updateActiveProject(0);
+
+// Handle wheel events
+window.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  
+  if (e.deltaY > 0) {
+    // Scroll down - next project
+    currentProjectIndex = (currentProjectIndex + 1) % totalProjects;
+  } else {
+    // Scroll up - previous project
+    currentProjectIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
+  }
+  
+  updateActiveProject(currentProjectIndex);
+});
+
+// Handle keyboard arrows
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown") {
+    currentProjectIndex = (currentProjectIndex + 1) % totalProjects;
+    updateActiveProject(currentProjectIndex);
+  } else if (e.key === "ArrowUp") {
+    currentProjectIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
+    updateActiveProject(currentProjectIndex);
+  }
+});
+
+function updateActiveProject(index) {
+  // Update counter
+  document.getElementById("current-project").textContent = index + 1;
+  
+  // Get current project
+  const project = portfolioItems[index];
+  
+  // Update background
+  const bgImage = project.getAttribute("data-bg");
+  document.getElementById("portfolio-background").style.backgroundImage = `url(${bgImage})`;
+  
+  // Update details
+  document.getElementById("project-name").textContent = project.getAttribute("data-text");
+  document.getElementById("project-description").textContent = project.getAttribute("data-description");
+  
+  // Scroll to project
+  project.scrollIntoView({ behavior: "smooth" });
+  
+  // Highlight active project
+  portfolioItems.forEach(item => item.classList.remove("active"));
+  project.classList.add("active");
+}
