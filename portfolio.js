@@ -4,29 +4,53 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioBackground = document.getElementById('portfolio-background');
   const projectDetails = document.getElementById('project-details');
   const currentProjectTitle = document.getElementById('current-project-title');
-  const portfolioTitle = document.getElementById('portfolio-title');
+  const portfolioList = document.querySelector('.portfolio-list');
+  const projectGallery = document.querySelector('.project-gallery');
+  const galleryContent = document.querySelector('.gallery-content');
+  const galleryClose = document.querySelector('.gallery-close');
   
   // State
   let currentIndex = 0;
   let isScrolling = false;
-  let isAnimating = false;
+  let isHorizontalScrolling = false;
   const totalProjects = portfolioItems.length;
   let touchStartY = 0;
+  let touchStartX = 0;
   let lastScrollTime = 0;
-  const scrollDelay = 1000;
+  const scrollDelay = 800;
 
   // Initialize
   function initPortfolio() {
     updateActiveProject(0, true);
-    preloadImages();
+    initGallery();
+    setupEventListeners();
   }
 
-  // Preload images
-  function preloadImages() {
-    portfolioItems.forEach(item => {
-      const bgImage = item.getAttribute('data-bg');
-      const img = new Image();
-      img.src = bgImage;
+  // Initialize gallery content
+  function initGallery() {
+    portfolioItems.forEach((item, index) => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      
+      // Parse gallery items from data attribute
+      const galleryItems = JSON.parse(item.getAttribute('data-gallery') || [];
+      
+      // Add all gallery media for this project
+      galleryItems.forEach(mediaPath => {
+        const mediaElement = mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm') 
+          ? document.createElement('video') 
+          : document.createElement('img');
+        
+        mediaElement.src = mediaPath;
+        if (mediaElement.tagName === 'VIDEO') {
+          mediaElement.controls = true;
+          mediaElement.autoplay = false;
+          mediaElement.loop = true;
+        }
+        galleryItem.appendChild(mediaElement);
+      });
+      
+      galleryContent.appendChild(galleryItem);
     });
   }
 
@@ -43,9 +67,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeItem = portfolioItems[index];
     activeItem.classList.add('active');
     
-    // Update project title
+    // Animate project title change
     const projectName = activeItem.getAttribute('data-title');
-    currentProjectTitle.textContent = `/${projectName}`;
+    gsap.to("#current-project-title", {
+      duration: 0.3,
+      opacity: 0,
+      y: -20,
+      onComplete: function() {
+        currentProjectTitle.textContent = `/${projectName}`;
+        gsap.to("#current-project-title", {
+          duration: 0.3,
+          opacity: 1,
+          y: 0
+        });
+      }
+    });
     
     // Update background
     const bgImage = activeItem.getAttribute('data-bg');
@@ -58,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         portfolioBackground.style.backgroundImage = `url(${bgImage})`;
         setTimeout(() => {
           portfolioBackground.classList.remove('fading');
-        }, 500);
+        }, 300);
       }, 100);
     }
     
@@ -79,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
     projectDetails.classList.add('visible');
   }
 
-  // Handle scroll navigation
-  function handleScroll(direction) {
+  // Handle vertical scroll navigation
+  function handleVerticalScroll(direction) {
     const now = Date.now();
     if (isScrolling || now - lastScrollTime < scrollDelay) return;
     
@@ -103,80 +139,113 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setTimeout(() => {
       isScrolling = false;
-    }, 800);
+    }, scrollDelay);
   }
 
-  // Throttle function
-  function throttle(func, limit = 300) {
-    let lastFunc;
-    let lastRan;
-    return function() {
-      const context = this;
-      const args = arguments;
-      if (!lastRan) {
-        func.apply(context, args);
-        lastRan = Date.now();
-      } else {
-        clearTimeout(lastFunc);
-        lastFunc = setTimeout(function() {
-          if ((Date.now() - lastRan) >= limit) {
-            func.apply(context, args);
-            lastRan = Date.now();
-          }
-        }, limit - (Date.now() - lastRan));
-      }
-    };
+  // Open gallery for current project
+  function openGallery() {
+    document.body.classList.add('gallery-active');
+    projectGallery.classList.add('active');
+    
+    // Scroll to current project's gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (galleryItems[currentIndex]) {
+      galleryItems[currentIndex].scrollIntoView();
+    }
   }
 
-  // Event Listeners
-  window.addEventListener('wheel', throttle((e) => {
-    if (Math.abs(e.deltaY) > 30) {
-      e.preventDefault();
-      handleScroll(e.deltaY > 0 ? 'down' : 'up');
-    }
-  }), { passive: false });
+  // Close gallery
+  function closeGallery() {
+    document.body.classList.remove('gallery-active');
+    projectGallery.classList.remove('active');
+  }
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown') handleScroll('down');
-    if (e.key === 'ArrowUp') handleScroll('up');
-  });
-
-  // Touch events
-  window.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  window.addEventListener('touchend', (e) => {
-    const touchEndY = e.changedTouches[0].clientY;
-    const diff = touchStartY - touchEndY;
-    if (Math.abs(diff) > 50) {
-      handleScroll(diff > 0 ? 'down' : 'up');
-    }
-  }, { passive: true });
-
-  // Intersection Observer
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.7
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !isScrolling) {
-        const index = portfolioItems.indexOf(entry.target);
-        if (index !== -1 && index !== currentIndex) {
-          updateActiveProject(index);
-        }
+  // Setup all event listeners
+  function setupEventListeners() {
+    // Vertical scroll (projects)
+    window.addEventListener('wheel', (e) => {
+      if (projectGallery.classList.contains('active')) return;
+      if (Math.abs(e.deltaY) > 30) {
+        e.preventDefault();
+        handleVerticalScroll(e.deltaY > 0 ? 'down' : 'up');
       }
+    }, { passive: false });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (projectGallery.classList.contains('active')) return;
+      if (e.key === 'ArrowDown') handleVerticalScroll('down');
+      if (e.key === 'ArrowUp') handleVerticalScroll('up');
     });
-  }, observerOptions);
 
-  // Observe all items
-  portfolioItems.forEach(item => {
-    observer.observe(item);
-  });
+    // Touch events for vertical scroll
+    window.addEventListener('touchstart', (e) => {
+      if (projectGallery.classList.contains('active')) return;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
 
-  // Initialize
+    window.addEventListener('touchend', (e) => {
+      if (projectGallery.classList.contains('active')) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+      if (Math.abs(diff) > 50) {
+        handleVerticalScroll(diff > 0 ? 'down' : 'up');
+      }
+    }, { passive: true });
+
+    // Horizontal swipe in gallery
+    galleryContent.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    galleryContent.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        isHorizontalScrolling = true;
+        if (diff > 0) {
+          // Swipe left
+          galleryContent.scrollBy({ left: galleryContent.offsetWidth, behavior: 'smooth' });
+        } else {
+          // Swipe right
+          galleryContent.scrollBy({ left: -galleryContent.offsetWidth, behavior: 'smooth' });
+        }
+        setTimeout(() => { isHorizontalScrolling = false; }, 500);
+      }
+    }, { passive: true });
+
+    // Click to open gallery
+    portfolioItems.forEach(item => {
+      item.addEventListener('click', () => {
+        openGallery();
+      });
+    });
+
+    // Close gallery
+    galleryClose.addEventListener('click', closeGallery);
+
+    // Intersection Observer for scroll detection
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isScrolling) {
+          const index = portfolioItems.indexOf(entry.target);
+          if (index !== -1 && index !== currentIndex) {
+            updateActiveProject(index);
+          }
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.7
+    });
+
+    // Observe all portfolio items
+    portfolioItems.forEach(item => {
+      observer.observe(item);
+    });
+  }
+
+  // Initialize everything
   initPortfolio();
 });
