@@ -8,24 +8,6 @@ body {
   overflow-x: hidden;
 }
 
-body.gallery-active {
-  overflow: hidden;
-}
-
-/* Custom Scrollbar */
-.portfolio-list::-webkit-scrollbar {
-  width: 2px;
-}
-
-.portfolio-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.portfolio-list::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 2px;
-}
-
 /* Close Button */
 .close-button {
   position: fixed;
@@ -104,28 +86,24 @@ body.gallery-active {
 /* Portfolio Header */
 .portfolio-header {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 1rem;
+  left: 1rem;
   z-index: 1000;
-  text-align: center;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
 }
 
 #portfolio-title {
-  font-size: 4vw;
-  white-space: nowrap;
+  font-size: 2.5rem;
   margin: 0;
   color: #ffffff;
-  display: inline-block;
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 #current-project-title {
   color: #ecb306;
   margin-left: 0.5rem;
   font-weight: normal;
-  display: inline-block;
 }
 
 /* Portfolio List */
@@ -147,7 +125,6 @@ body.gallery-active {
   justify-content: center;
   color: white;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 
 .portfolio-item .project-content {
@@ -170,69 +147,6 @@ body.gallery-active {
 
 .portfolio-item.active {
   color: #ecb306;
-}
-
-/* Project Gallery */
-.project-gallery {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.project-gallery.active {
-  display: flex;
-}
-
-.gallery-content {
-  width: 90%;
-  height: 80%;
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  align-items: center;
-  gap: 20px;
-  padding: 0 5%;
-}
-
-.gallery-item {
-  min-width: 90%;
-  height: 100%;
-  scroll-snap-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.gallery-item img, .gallery-item video {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 5px;
-}
-
-.gallery-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 21;
-  background: rgba(0,0,0,0.5);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
 }
 
 /* Background transitions */
@@ -309,8 +223,12 @@ body.gallery-active {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  #portfolio-title, #current-project-title {
-    font-size: 6vw;
+  #portfolio-title {
+    font-size: 1.8rem;
+  }
+  
+  #current-project-title {
+    font-size: 1.8rem;
   }
   
   .portfolio-item h3 {
@@ -331,14 +249,5 @@ body.gallery-active {
   
   #project-description {
     font-size: 1rem;
-  }
-  
-  .gallery-content {
-    width: 100%;
-    padding: 0 10px;
-  }
-  
-  .gallery-item {
-    min-width: 95%;
   }
 }
