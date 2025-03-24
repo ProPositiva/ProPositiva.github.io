@@ -35,11 +35,13 @@ body {
 }
 
 .close-button:hover {
+  text-decoration: none;
   color: #ecb306; /* Change text color on hover */
   background: transparent; /* Ensure no background on hover */
 }
 
 .close-button:hover a::after {
+  text-decoration: none;
   content: ""; /* Add pseudo-element for underline */
   position: absolute;
   left: 0;
