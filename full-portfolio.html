@@ -1,79 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Meta tags and favicon remain the same -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="Assets/Icons/FavIcon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="Assets/Icons/FavIcon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="Assets/Icons/FavIcon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="Assets/Icons/FavIcon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="Assets/Icons/FavIcon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="Assets/Icons/FavIcon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
+  <link rel="manifest" href="Assets/Icons/FavIcon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- Stylesheets -->
   <title>Portfolio - Alianza ProPositiva</title>
   <link rel="stylesheet" href="portfolio.css">
-  <!-- CSS links remain the same -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
 
 <!-- Portfolio Section -->
 <section id="portfolio" class="portfolio">
   <div class="portfolio-container">
+  
     <!-- Background Image -->
     <div class="portfolio-background" id="portfolio-background"></div>
 
     <!-- Portfolio Content -->
     <div class="portfolio-content">
-      <!-- Close Button -->
-      <div class="close-button">
-        <a href="index.html">X</a>
-      </div>
-      
-      <!-- Header Text -->
-      <h2 id="portfolio-title">PORTAFOLIO</h2>
-      
-      <!-- Project Counter -->
-      <div class="project-counter">
-        <span id="current-project">1</span>/<span id="total-projects">4</span>
-      </div>
-
-      <!-- Projects List -->
-      <div class="portfolio-list">
-        <!-- Project 1 -->
-        <div class="portfolio-item active" id="project-1" 
-             data-bg="Assets/Images/Projects/project1.jpg"
-             data-title="PROYECTO 1"
-             data-description="Descripción del Proyecto 1"
-             data-year="2023"
-             data-location="San José, CR">
-          <div class="project-content">
-            <h3>PROYECTO 1</h3>
-          </div>
-        </div>
-        
-        <!-- Project 2 -->
-        <div class="portfolio-item" id="project-2"
-             data-bg="Assets/Images/Projects/project2.jpg"
-             data-title="PROYECTO 2"
-             data-description="Descripción del Proyecto 2"
-             data-year="2023"
-             data-location="Heredia, CR">
-          <div class="project-content">
-            <h3>PROYECTO 2</h3>
-          </div>
-        </div>
-        
-        <!-- Add more projects following the same pattern -->
-      </div>
-    </div>
-  </div>
+	
+	
+	
+	<!-- Close Button -->
+	<div class="index-item index-link close-button" data-bg="Assets/Images/Projects/project1.jpg" data-text="X">
+		<a href="index.html">X</a>
+	</div>
+	
+	
+	<!-- Header Text -->
+    <h2 id="portfolio-title">PORTAFOLIO</h2>
+	<div class="project-counter">
+	  <span id="current-project">1</span>/<span id="total-projects">4</span>
+	</div>
+	  <div class="portfolio-list row">
+		<!-- Project 1 -->
+		<div class="col-12 col-md-6 col-lg-4 portfolio-item" data-bg="Assets/Images/Projects/project1.jpg" data-text="PROYECTO 1" data-description="Descripción del Proyecto 1">
+		  PROYECTO 1
+		</div>
+		<!-- Project 2 -->
+		<div class="col-12 col-md-6 col-lg-4 portfolio-item" data-bg="Assets/Images/Projects/project2.jpg" data-text="PROYECTO 2" data-description="Descripción del Proyecto 2">
+		  PROYECTO 2
+		</div>
+		<!-- Project 3 -->
+		<div class="col-12 col-md-6 col-lg-4 portfolio-item" data-bg="Assets/Images/Projects/project3.jpg" data-text="PROYECTO 3" data-description="Descripción del Proyecto 3">
+		  PROYECTO 3
+		</div>
+		<!-- Project 4 -->
+		<div class="col-12 col-md-6 col-lg-4 portfolio-item" data-bg="Assets/Images/Projects/project4.jpg" data-text="PROYECTO 4" data-description="Descripción del Proyecto 4">
+		  PROYECTO 4
+		</div>
+		<!-- Add more projects as needed -->
+	  </div> 
+	</div>
+</div>
 </section>
-
 <!-- Project Details Section -->
-<section id="project-details" class="project-details">
-  <div class="details-container">
-    <h3 id="project-title">Project Title</h3>
-    <div class="project-meta">
-      <span id="project-year">2023</span>
-      <span id="project-location">Location</span>
+  <section id="project-details" class="project-details">
+    <div class="details-container">
+      <h3 id="project-title">Project Title</h3>
+      <div class="project-meta">
+        <span class="project-year">2023</span>
+        <span class="project-location">San José, CR</span>
+      </div>
+      <p id="project-description">Project description goes here</p>
+      <div class="project-features">
+        <h4>Características:</h4>
+        <ul id="project-features-list">
+          <!-- Will be populated by JavaScript -->
+        </ul>
+      </div>
     </div>
-    <p id="project-description">Project description</p>
-  </div>
-</section>
+  </section>
 
-<!-- JavaScript files remain the same -->
-<script src="portfolio.js"></script>
+</section>
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="portfolio.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
