@@ -10,13 +10,37 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentIndex = 0;
   let isScrolling = false;
   const totalProjects = portfolioItems.length;
+  let touchStartY = 0;
   
   // Initialize
-  totalProjectsEl.textContent = totalProjects;
-  updateActiveProject(0);
+  function initPortfolio() {
+    totalProjectsEl.textContent = totalProjects;
+    updateActiveProject(0);
+    preloadImages();
+    
+    // Set initial active item
+    portfolioItems.forEach((item, index) => {
+      if (index === 0) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
   
-  // Core Functions
+  // Preload images for smoother transitions
+  function preloadImages() {
+    portfolioItems.forEach(item => {
+      const bgImage = item.getAttribute('data-bg');
+      const img = new Image();
+      img.src = bgImage;
+    });
+  }
+  
+  // Update active project
   function updateActiveProject(index) {
+    if (index < 0 || index >= totalProjects) return;
+    
     // Update state
     currentIndex = index;
     currentProjectEl.textContent = index + 1;
@@ -26,26 +50,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeItem = portfolioItems[index];
     activeItem.classList.add('active');
     
-    // Update background
+    // Update background with loading state
     const bgImage = activeItem.getAttribute('data-bg');
     portfolioBackground.style.backgroundImage = `url(${bgImage})`;
     
     // Update details
     updateProjectDetails(activeItem);
     
-    // Scroll to project
+    // Scroll to project (with smooth behavior)
     activeItem.scrollIntoView({ behavior: 'smooth' });
   }
   
+  // Update project details panel
   function updateProjectDetails(item) {
-    document.getElementById('project-title').textContent = item.getAttribute('data-title');
-    document.getElementById('project-description').textContent = item.getAttribute('data-description');
-    document.getElementById('project-year').textContent = item.getAttribute('data-year');
-    document.getElementById('project-location').textContent = item.getAttribute('data-location');
+    if (!item) return;
+    
+    document.getElementById('project-title').textContent = item.getAttribute('data-title') || '';
+    document.getElementById('project-description').textContent = item.getAttribute('data-description') || '';
+    document.getElementById('project-year').textContent = item.getAttribute('data-year') || '';
+    document.getElementById('project-location').textContent = item.getAttribute('data-location') || '';
+    
+    // Show details panel
     projectDetails.classList.add('visible');
+    
+    // Hide after delay if no interaction
+    setTimeout(() => {
+      if (!projectDetails.matches(':hover')) {
+        projectDetails.classList.remove('visible');
+      }
+    }, 5000);
   }
   
-  // Event Handlers
+  // Handle scroll navigation
   function handleScroll(direction) {
     if (isScrolling) return;
     isScrolling = true;
@@ -57,24 +93,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     updateActiveProject(currentIndex);
-    setTimeout(() => { isScrolling = false; }, 800);
+    
+    // Reset scroll lock after animation completes
+    setTimeout(() => {
+      isScrolling = false;
+    }, 800);
+  }
+  
+  // Debounce function for scroll events
+  function debounce(func, wait = 300) {
+    let timeout;
+    return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
   }
   
   // Event Listeners
-  window.addEventListener('wheel', (e) => {
+  window.addEventListener('wheel', debounce((e) => {
     if (Math.abs(e.deltaY) > 50) {
       e.preventDefault();
       handleScroll(e.deltaY > 0 ? 'down' : 'up');
     }
-  });
+  }), { passive: false });
   
   window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') handleScroll('down');
     if (e.key === 'ArrowUp') handleScroll('up');
   });
   
-  // Touch support for mobile
-  let touchStartY = 0;
+  // Touch events for mobile
   window.addEventListener('touchstart', (e) => {
     touchStartY = e.touches[0].clientY;
   }, { passive: true });
@@ -86,4 +134,24 @@ document.addEventListener('DOMContentLoaded', function() {
       handleScroll(diff > 0 ? 'down' : 'up');
     }
   }, { passive: true });
+  
+  // Click on project items
+  portfolioItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const index = portfolioItems.indexOf(item);
+      updateActiveProject(index);
+    });
+  });
+  
+  // Show details on hover
+  projectDetails.addEventListener('mouseenter', () => {
+    projectDetails.classList.add('visible');
+  });
+  
+  projectDetails.addEventListener('mouseleave', () => {
+    projectDetails.classList.remove('visible');
+  });
+  
+  // Initialize
+  initPortfolio();
 });
