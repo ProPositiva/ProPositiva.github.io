@@ -1,151 +1,78 @@
-/* General Styles */
+/* Base Styles */
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
-  color: #333;
+  overflow-x: hidden;
 }
 
-/* Close Button */
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10; /* Ensure it's on top of the background image */
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1.5rem;
-  color: #ffffff;
-  transition: all 0.3s ease;
-  text-align: right;
-  background: transparent; /* Remove any background */
-  border: none; /* Remove any border */
-}
-
-.close-button a {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit text color */
-  display: block; /* Make the entire area clickable */
-  width: 100%;
-  height: 100%;
-  font-size: inherit; /* Inherit font size */
-  font-family: inherit; /* Inherit font family */
-  background: transparent; /* Ensure no background */
-}
-
-.close-button:hover {
-  text-decoration: none;
-  color: #ecb306; /* Change text color on hover */
-  background: transparent; /* Ensure no background on hover */
-}
-
-.close-button:hover a::after {
-  text-decoration: none;
-  content: ""; /* Add pseudo-element for underline */
-  position: absolute;
-  left: 0;
-  bottom: -2px; /* Adjust position of underline */
-  width: 100%;
-  height: 2px; /* Thickness of underline */
-  font-weight: bold;
-  background-color: white; /* White underline */
-}
-
-/* Portfolio Section */
-#portfolio {
+/* Portfolio Layout */
+.portfolio {
   position: relative;
-  height: 100vh; /* Full screen height */
+  height: 100vh;
   overflow: hidden;
-  background-color: #404040;
 }
 
 .portfolio-container {
   position: relative;
-  width: 100%;
   height: 100%;
 }
 
 .portfolio-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("Assets/Images/Projects/project1.jpg");
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease;
-  opacity: 1;
+  z-index: -1;
+  transition: background-image 0.8s ease;
 }
 
+/* Portfolio Content */
 .portfolio-content {
   position: relative;
-  z-index: 1;
-  padding: 2rem;
-  color: #ffffff;
-  text-align: left;
-  max-width: 1200px;
-  margin: 0 auto;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 .portfolio-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
+  height: 100%;
 }
 
 .portfolio-item {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1.5rem;
-  color: #ffffff;
-  transition: all 0.3s ease;
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
+}
+
+.project-content {
   text-align: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
 }
 
-.portfolio-item:hover {
-  transform: scale(1.05);
-  color: #ecb306;
+.portfolio-item.active .project-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Portfolio Header */
-#portfolio h2 {
-  position: absolute; /* Position absolutely within the container */
-  top: 1rem; /* Distance from the top */
-  left: 1rem; /* Distance from the left */
-  z-index: 10; /* Ensure it's on top of the background image */
-  font-size: 2.5rem;
-  margin: 0; /* Remove default margin */
-  color: #ffffff; /* White text */
-  text-align: left; /* Align text to the left */
-}
-
-/* Project Details Section */
-.project-details-section {
-  background-color: #404040; /* Background color */
-  color: #ffffff; /* Text color */
-  padding: 2rem;
-  text-align: center;
-  display: none; /* Hidden by default */
-}
-
-.project-details-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-#project-name {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-#project-description {
-  font-size: 1.8rem;
-  line-height: 1.6;
+/* Navigation Elements */
+.close-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
 }
 
 .project-counter {
@@ -153,19 +80,33 @@ body {
   bottom: 2rem;
   right: 2rem;
   color: white;
-  font-size: 1.2rem;
   z-index: 100;
 }
 
-/* Make portfolio items full viewport height */
-.portfolio-item {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Project Details */
+.project-details {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(64, 64, 64, 0.9);
+  color: white;
+  padding: 2rem;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+  z-index: 10;
 }
 
+.project-details.visible {
+  transform: translateY(0);
+}
+
+.details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Active Project Styling */
 .portfolio-item.active {
-  transform: scale(1.05);
   color: #ecb306;
 }
