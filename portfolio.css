@@ -83,6 +83,29 @@ body {
   height: 100%;
 }
 
+/* Portfolio Header */
+.portfolio-header {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+}
+
+#portfolio-title {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #ffffff;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+#current-project-title {
+  color: #ecb306;
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
 /* Portfolio List */
 .portfolio-list {
   height: 100vh;
@@ -126,29 +149,15 @@ body {
   color: #ecb306;
 }
 
-/* Portfolio Header */
-#portfolio-title {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1000;
-  font-size: 2.5rem;
-  margin: 0;
-  color: #ffffff;
-  text-align: left;
+/* Background transitions */
+.portfolio-background.fading {
+  opacity: 0.5;
+  transition: opacity 0.3s ease, background-image 0.5s ease;
 }
 
-/* Project Counter */
-.project-counter {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  color: white;
-  font-size: 1.2rem;
-  z-index: 1000;
-  background: rgba(0,0,0,0.5);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+.portfolio-background {
+  transition: background-image 0.5s ease;
+  will-change: background-image;
 }
 
 /* Project Details */
@@ -212,25 +221,13 @@ body {
   font-size: 1.1rem;
 }
 
-/* Loading State */
-.loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  color: white;
-  font-size: 1.5rem;
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   #portfolio-title {
+    font-size: 1.8rem;
+  }
+  
+  #current-project-title {
     font-size: 1.8rem;
   }
   

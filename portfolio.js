@@ -3,32 +3,25 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioItems = Array.from(document.querySelectorAll('.portfolio-item'));
   const portfolioBackground = document.getElementById('portfolio-background');
   const projectDetails = document.getElementById('project-details');
-  const currentProjectEl = document.getElementById('current-project');
-  const totalProjectsEl = document.getElementById('total-projects');
+  const currentProjectTitle = document.getElementById('current-project-title');
+  const portfolioTitle = document.getElementById('portfolio-title');
   
   // State
   let currentIndex = 0;
   let isScrolling = false;
+  let isAnimating = false;
   const totalProjects = portfolioItems.length;
   let touchStartY = 0;
-  
+  let lastScrollTime = 0;
+  const scrollDelay = 1000;
+
   // Initialize
   function initPortfolio() {
-    totalProjectsEl.textContent = totalProjects;
-    updateActiveProject(0);
+    updateActiveProject(0, true);
     preloadImages();
-    
-    // Set initial active item
-    portfolioItems.forEach((item, index) => {
-      if (index === 0) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
   }
-  
-  // Preload images for smoother transitions
+
+  // Preload images
   function preloadImages() {
     portfolioItems.forEach(item => {
       const bgImage = item.getAttribute('data-bg');
@@ -36,32 +29,44 @@ document.addEventListener('DOMContentLoaded', function() {
       img.src = bgImage;
     });
   }
-  
+
   // Update active project
-  function updateActiveProject(index) {
-    if (index < 0 || index >= totalProjects) return;
+  function updateActiveProject(index, immediate = false) {
+    if (index < 0) index = totalProjects - 1;
+    if (index >= totalProjects) index = 0;
     
     // Update state
     currentIndex = index;
-    currentProjectEl.textContent = index + 1;
     
     // Update active item
     portfolioItems.forEach(item => item.classList.remove('active'));
     const activeItem = portfolioItems[index];
     activeItem.classList.add('active');
     
-    // Update background with loading state
+    // Update project title
+    const projectName = activeItem.getAttribute('data-title');
+    currentProjectTitle.textContent = `/${projectName}`;
+    
+    // Update background
     const bgImage = activeItem.getAttribute('data-bg');
-    portfolioBackground.style.backgroundImage = `url(${bgImage})`;
+    
+    if (immediate) {
+      portfolioBackground.style.backgroundImage = `url(${bgImage})`;
+    } else {
+      portfolioBackground.classList.add('fading');
+      setTimeout(() => {
+        portfolioBackground.style.backgroundImage = `url(${bgImage})`;
+        setTimeout(() => {
+          portfolioBackground.classList.remove('fading');
+        }, 500);
+      }, 100);
+    }
     
     // Update details
     updateProjectDetails(activeItem);
-    
-    // Scroll to project (with smooth behavior)
-    activeItem.scrollIntoView({ behavior: 'smooth' });
   }
-  
-  // Update project details panel
+
+  // Update project details
   function updateProjectDetails(item) {
     if (!item) return;
     
@@ -72,18 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show details panel
     projectDetails.classList.add('visible');
-    
-    // Hide after delay if no interaction
-    setTimeout(() => {
-      if (!projectDetails.matches(':hover')) {
-        projectDetails.classList.remove('visible');
-      }
-    }, 5000);
   }
-  
+
   // Handle scroll navigation
   function handleScroll(direction) {
-    if (isScrolling) return;
+    const now = Date.now();
+    if (isScrolling || now - lastScrollTime < scrollDelay) return;
+    
+    lastScrollTime = now;
     isScrolling = true;
     
     if (direction === 'down') {
@@ -94,39 +95,57 @@ document.addEventListener('DOMContentLoaded', function() {
     
     updateActiveProject(currentIndex);
     
-    // Reset scroll lock after animation completes
+    // Scroll to project
+    portfolioItems[currentIndex].scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'nearest'
+    });
+    
     setTimeout(() => {
       isScrolling = false;
     }, 800);
   }
-  
-  // Debounce function for scroll events
-  function debounce(func, wait = 300) {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
+
+  // Throttle function
+  function throttle(func, limit = 300) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+      const context = this;
+      const args = arguments;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(function() {
+          if ((Date.now() - lastRan) >= limit) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, limit - (Date.now() - lastRan));
+      }
     };
   }
-  
+
   // Event Listeners
-  window.addEventListener('wheel', debounce((e) => {
-    if (Math.abs(e.deltaY) > 50) {
+  window.addEventListener('wheel', throttle((e) => {
+    if (Math.abs(e.deltaY) > 30) {
       e.preventDefault();
       handleScroll(e.deltaY > 0 ? 'down' : 'up');
     }
   }), { passive: false });
-  
+
   window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') handleScroll('down');
     if (e.key === 'ArrowUp') handleScroll('up');
   });
-  
-  // Touch events for mobile
+
+  // Touch events
   window.addEventListener('touchstart', (e) => {
     touchStartY = e.touches[0].clientY;
   }, { passive: true });
-  
+
   window.addEventListener('touchend', (e) => {
     const touchEndY = e.changedTouches[0].clientY;
     const diff = touchStartY - touchEndY;
@@ -134,24 +153,30 @@ document.addEventListener('DOMContentLoaded', function() {
       handleScroll(diff > 0 ? 'down' : 'up');
     }
   }, { passive: true });
-  
-  // Click on project items
-  portfolioItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const index = portfolioItems.indexOf(item);
-      updateActiveProject(index);
+
+  // Intersection Observer
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.7
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !isScrolling) {
+        const index = portfolioItems.indexOf(entry.target);
+        if (index !== -1 && index !== currentIndex) {
+          updateActiveProject(index);
+        }
+      }
     });
+  }, observerOptions);
+
+  // Observe all items
+  portfolioItems.forEach(item => {
+    observer.observe(item);
   });
-  
-  // Show details on hover
-  projectDetails.addEventListener('mouseenter', () => {
-    projectDetails.classList.add('visible');
-  });
-  
-  projectDetails.addEventListener('mouseleave', () => {
-    projectDetails.classList.remove('visible');
-  });
-  
+
   // Initialize
   initPortfolio();
 });
