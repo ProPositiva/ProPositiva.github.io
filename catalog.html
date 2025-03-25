@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurador de Viviendas - Alianza ProPositiva</title>
+  <link rel="stylesheet" href="catalog.css">
+  <!-- Include your existing favicon and other meta tags -->
+</head>
+<body>
+  <div class="configurator-container">
+    <!-- Visualization Panel -->
+    <div class="visualization-panel">
+      <div class="model-viewer" id="model-viewer">
+        <!-- 3D model or rendered images will go here -->
+        <img src="Assets/Models/house-default.jpg" alt="Modelo base" id="current-model">
+      </div>
+      <div class="model-info">
+        <h2 id="model-name">Casa Moderna</h2>
+        <div class="price-estimate">
+          <span>Estimado:</span>
+          <span id="total-price">$250,000</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Configuration Panel -->
+    <div class="configuration-panel">
+      <div class="configuration-steps">
+        <!-- Step Navigation -->
+        <div class="step-nav">
+          <div class="step active" data-step="model">Modelo</div>
+          <div class="step" data-step="exterior">Exterior</div>
+          <div class="step" data-step="interior">Interior</div>
+          <div class="step" data-step="extras">Extras</div>
+          <div class="step" data-step="summary">Resumen</div>
+        </div>
+        
+        <!-- Step Content -->
+        <div class="step-content">
+          <!-- Model Selection -->
+          <div class="step-pane active" id="model-pane">
+            <h3>Seleccione su modelo base</h3>
+            <div class="option-grid">
+              <div class="model-option active" data-model="moderna" data-price="250000">
+                <img src="Assets/Models/moderna-thumb.jpg" alt="Casa Moderna">
+                <h4>Casa Moderna</h4>
+                <p>Desde $250,000</p>
+              </div>
+              <div class="model-option" data-model="clasica" data-price="220000">
+                <img src="Assets/Models/clasica-thumb.jpg" alt="Casa Clásica">
+                <h4>Casa Clásica</h4>
+                <p>Desde $220,000</p>
+              </div>
+              <!-- More models... -->
+            </div>
+          </div>
+          
+          <!-- Exterior Options -->
+          <div class="step-pane" id="exterior-pane">
+            <h3>Personalice el exterior</h3>
+            <div class="option-group">
+              <h4>Materiales de Fachada</h4>
+              <div class="option-selector">
+                <div class="option" data-option="ladrillo" data-price="0">Ladrillo visto</div>
+                <div class="option" data-option="piedra" data-price="15000">Piedra natural</div>
+                <div class="option" data-option="estuco" data-price="8000">Estuco texturizado</div>
+              </div>
+            </div>
+            <!-- More exterior options... -->
+          </div>
+          
+          <!-- Interior Options -->
+          <div class="step-pane" id="interior-pane">
+            <h3>Personalice el interior</h3>
+            <!-- Interior options would go here -->
+          </div>
+          
+          <!-- Summary -->
+          <div class="step-pane" id="summary-pane">
+            <h3>Resumen de su configuración</h3>
+            <div class="summary-details">
+              <!-- Configuration details will be populated here -->
+            </div>
+            <button class="cta-button">Solicitar Cotización</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="navigation-buttons">
+        <button class="nav-button prev" disabled>Anterior</button>
+        <button class="nav-button next">Siguiente</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="catalog.js"></script>
+</body>
+</html>
