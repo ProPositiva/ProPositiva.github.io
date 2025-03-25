@@ -6,17 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const centeredProjectName = document.getElementById('centered-project-name');
   const centeredProjectPreview = document.getElementById('centered-project-preview');
   const projectDetails = document.getElementById('project-details');
-  const galleryContent = document.querySelector('.gallery-content');
   
   // State
   let currentIndex = 0;
   let isScrolling = false;
+  const totalProjects = portfolioItems.length;
+  let touchStartY = 0;
+  let lastScrollTime = 0;
   const scrollDelay = 800;
 
   // Initialize
   function initPortfolio() {
     initDropdown();
-    initGallery();
     setupEventListeners();
     updateActiveProject(0, true);
   }
@@ -38,35 +39,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close dropdown when clicking elsewhere
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('/ #portfolio-title')) {
+      if (!e.target.closest('#portfolio-title')) {
         dropdown.style.display = 'none';
       }
     });
   }
 
-  // Initialize gallery
-  function initGallery() {
-    portfolioItems.forEach(item => {
-      const galleryItem = document.createElement('div');
-      galleryItem.className = 'gallery-item';
-      const mediaItems = JSON.parse(item.getAttribute('data-gallery') || []);
-      
-      mediaItems.forEach(mediaPath => {
-        const media = mediaPath.endsWith('.mp4') ? 
-          Object.assign(document.createElement('video'), { controls: true }) : 
-          document.createElement('img');
-        media.src = mediaPath;
-        galleryItem.appendChild(media);
-      });
-      
-      galleryContent.appendChild(galleryItem);
-    });
-  }
-
   // Update active project
   function updateActiveProject(index, immediate = false) {
-    if (index < 0) index = portfolioItems.length - 1;
-    if (index >= portfolioItems.length) index = 0;
+    if (index < 0) index = totalProjects - 1;
+    if (index >= totalProjects) index = 0;
     
     currentIndex = index;
     const activeItem = portfolioItems[index];
@@ -74,23 +56,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectPreview = activeItem.querySelector('.project-preview').textContent;
 
     // Update all project name displays
-    currentProjectTitle.textContent = `/ ${projectName}`;
+    currentProjectTitle.textContent = `/${projectName}`;
     centeredProjectName.textContent = projectName;
     centeredProjectPreview.textContent = projectPreview;
 
     // Update background
+    const bgImage = activeItem.getAttribute('data-bg');
     if (immediate) {
-      portfolioBackground.style.backgroundImage = `url(${activeItem.getAttribute('data-bg')})`;
+      portfolioBackground.style.backgroundImage = `url(${bgImage})`;
     } else {
       portfolioBackground.classList.add('fading');
       setTimeout(() => {
-        portfolioBackground.style.backgroundImage = `url(${activeItem.getAttribute('data-bg')})`;
+        portfolioBackground.style.backgroundImage = `url(${bgImage})`;
         setTimeout(() => portfolioBackground.classList.remove('fading'), 300);
       }, 100);
     }
     
     // Update details
     updateProjectDetails(activeItem);
+    
+    // Scroll to project
+    activeItem.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'nearest'
+    });
   }
 
   function updateProjectDetails(item) {
@@ -101,8 +90,86 @@ document.addEventListener('DOMContentLoaded', function() {
     projectDetails.classList.add('visible');
   }
 
-  // [Rest of your existing JavaScript for scrolling, etc.]
-  
-  // Initialize the portfolio
+  // Handle scroll navigation
+  function handleScroll(direction) {
+    const now = Date.now();
+    if (isScrolling || now - lastScrollTime < scrollDelay) return;
+    
+    lastScrollTime = now;
+    isScrolling = true;
+    
+    if (direction === 'down') {
+      currentIndex = (currentIndex + 1) % totalProjects;
+    } else {
+      currentIndex = (currentIndex - 1 + totalProjects) % totalProjects;
+    }
+    
+    updateActiveProject(currentIndex);
+    
+    setTimeout(() => {
+      isScrolling = false;
+    }, scrollDelay);
+  }
+
+  // Setup event listeners
+  function setupEventListeners() {
+    // Wheel scroll
+    window.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > 30) {
+        e.preventDefault();
+        handleScroll(e.deltaY > 0 ? 'down' : 'up');
+      }
+    }, { passive: false });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') handleScroll('down');
+      if (e.key === 'ArrowUp') handleScroll('up');
+    });
+
+    // Touch events for mobile
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+      if (Math.abs(diff) > 50) {
+        handleScroll(diff > 0 ? 'down' : 'up');
+      }
+    }, { passive: true });
+
+    // Click project items
+    portfolioItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const index = portfolioItems.indexOf(item);
+        updateActiveProject(index);
+      });
+    });
+
+    // Intersection Observer for scroll detection
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isScrolling) {
+          const index = portfolioItems.indexOf(entry.target);
+          if (index !== -1 && index !== currentIndex) {
+            updateActiveProject(index);
+          }
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.7
+    });
+
+    // Observe all portfolio items
+    portfolioItems.forEach(item => {
+      observer.observe(item);
+    });
+  }
+
+  // Initialize everything
   initPortfolio();
 });
