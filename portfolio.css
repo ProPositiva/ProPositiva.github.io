@@ -150,7 +150,6 @@ body {
   color: #ecb306;
   background: rgba(255,255,255,0.1);
 }
-}
 
 /* Portfolio List */
 .portfolio-list {
@@ -160,6 +159,7 @@ body {
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
 }
 
 .portfolio-item {
@@ -227,14 +227,6 @@ body {
     font-size: 1.8rem;
   }
   
-  #centered-project-name {
-    font-size: 2rem;
-  }
-  
-  #centered-project-preview {
-    font-size: 1.2rem;
-  }
-  
   .portfolio-item h3 {
     font-size: 2rem;
   }
@@ -245,5 +237,15 @@ body {
   
   .project-dropdown {
     min-width: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-list {
+    scroll-behavior: auto;
+  }
+  
+  .portfolio-background {
+    transition: none;
   }
 }

@@ -9,20 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // State
   let currentIndex = 0;
   let isScrolling = false;
-  let scrollTimeout = null;
-  const totalProjects = portfolioItems.length;
-  let touchStartY = 0;
+  let scrollEndTimer = null;
   const scrollDelay = 800;
+  let touchStartY = 0;
 
   // Initialize
   function initPortfolio() {
-    // Initialize with first project already showing
-    const firstProjectName = portfolioItems[0].querySelector('h3').textContent;
-    currentProjectTitle.textContent = `${firstProjectName}`;
-    
+    // Set initial project
+    updateActiveProject(0, true);
     initDropdown();
     setupEventListeners();
-    updateActiveProject(0, true);
   }
 
   // Initialize dropdown
@@ -50,16 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Update active project
   function updateActiveProject(index, immediate = false) {
-    if (index < 0) index = totalProjects - 1;
-    if (index >= totalProjects) index = 0;
+    if (index < 0 || index >= portfolioItems.length) return;
     
     currentIndex = index;
     const activeItem = portfolioItems[index];
     const projectName = activeItem.querySelector('h3').textContent;
 
-    // Update header project name immediately
-    currentProjectTitle.textContent = `${projectName}`;
-
+    // Update UI
+    currentProjectTitle.textContent = projectName;
+    
     // Update background
     const bgImage = activeItem.getAttribute('data-bg');
     if (immediate) {
@@ -85,59 +80,71 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Improved scroll handling
-  function handleScroll(direction) {
+  function handleScrollEnd() {
     if (isScrolling) return;
     isScrolling = true;
     
-    // Clear any pending scroll timeout
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
-    }
-
-    if (direction === 'down') {
-      currentIndex = Math.min(currentIndex + 1, totalProjects - 1);
-    } else {
-      currentIndex = Math.max(currentIndex - 1, 0);
+    // Find which project is currently in view
+    const portfolioRect = portfolioList.getBoundingClientRect();
+    let closestItem = null;
+    let closestDistance = Infinity;
+    
+    portfolioItems.forEach((item, index) => {
+      const itemRect = item.getBoundingClientRect();
+      const distance = Math.abs(portfolioRect.top - itemRect.top);
+      
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestItem = index;
+      }
+    });
+    
+    if (closestItem !== null && closestItem !== currentIndex) {
+      currentIndex = closestItem;
+      updateActiveProject(currentIndex);
     }
     
-    updateActiveProject(currentIndex);
-    portfolioItems[currentIndex].scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'nearest'
-    });
-
-    // Reset scroll lock after animation completes
-    scrollTimeout = setTimeout(() => {
-      isScrolling = false;
-    }, scrollDelay);
+    isScrolling = false;
   }
 
   // Setup event listeners
   function setupEventListeners() {
-    // Wheel scroll
-    window.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > 30) {
-        e.preventDefault();
-        handleScroll(e.deltaY > 0 ? 'down' : 'up');
+    // Mouse wheel/trackpad
+    portfolioList.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      
+      if (Math.abs(e.deltaY) > 5) {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(handleScrollEnd, 100);
       }
     }, { passive: false });
 
     // Keyboard navigation
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown') handleScroll('down');
-      if (e.key === 'ArrowUp') handleScroll('up');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        updateActiveProject(currentIndex + 1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        updateActiveProject(currentIndex - 1);
+      }
     });
 
     // Touch events for mobile
-    window.addEventListener('touchstart', (e) => {
+    portfolioList.addEventListener('touchstart', (e) => {
       touchStartY = e.touches[0].clientY;
     }, { passive: true });
 
-    window.addEventListener('touchend', (e) => {
+    portfolioList.addEventListener('touchend', (e) => {
       const touchEndY = e.changedTouches[0].clientY;
       const diff = touchStartY - touchEndY;
+      
       if (Math.abs(diff) > 50) {
-        handleScroll(diff > 0 ? 'down' : 'up');
+        if (diff > 0) {
+          updateActiveProject(currentIndex + 1);
+        } else {
+          updateActiveProject(currentIndex - 1);
+        }
       }
     }, { passive: true });
 
@@ -152,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Improved Intersection Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !isScrolling) {
+        if (entry.isIntersecting) {
           const index = portfolioItems.indexOf(entry.target);
           if (index !== -1 && index !== currentIndex) {
             currentIndex = index;
@@ -161,8 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }, {
-      root: null,
-      rootMargin: '0px',
+      root: portfolioList,
       threshold: 0.7
     });
 
