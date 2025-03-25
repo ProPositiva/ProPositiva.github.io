@@ -6,31 +6,13 @@
   
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="57x57" href="Assets/Icons/FavIcon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="Assets/Icons/FavIcon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="Assets/Icons/FavIcon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="Assets/Icons/FavIcon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="Assets/Icons/FavIcon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="Assets/Icons/FavIcon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
-  <link rel="manifest" href="Assets/Icons/FavIcon/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+  <!-- [Other favicon links] -->
   
   <!-- Stylesheets -->
   <title>Portfolio - Alianza ProPositiva</title>
   <link rel="stylesheet" href="portfolio.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- GSAP for animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 <body>
@@ -38,10 +20,7 @@
 <!-- Portfolio Section -->
 <section id="portfolio" class="portfolio">
   <div class="portfolio-container">
-    <!-- Background Image -->
     <div class="portfolio-background" id="portfolio-background"></div>
-
-    <!-- Portfolio Content -->
     <div class="portfolio-content">
       <!-- Close Button -->
       <div class="close-button">
@@ -54,17 +33,16 @@
         <div class="gallery-close">&times;</div>
       </div>
       
-      <!-- Portfolio Header (Now in top-left position) -->
+      <!-- Portfolio Header -->
       <div class="portfolio-header">
-        <h2 id="portfolio-title">PORTFOLIO<span id="current-project-title">/PROJECT 1</span></h2>
+        <h2 id="portfolio-title">PORTFOLIO<span id="current-project-title"></span></h2>
       </div>
       
       <!-- Portfolio List -->
       <div class="portfolio-list">
         <!-- Project 1 -->
         <div class="portfolio-item active" 
-             data-bg="Assets/Images/Projects/project1.jpg" 
-             data-title="PROJECT 1" 
+             data-bg="Assets/Images/Projects/project1.jpg"
              data-year="2023" 
              data-location="San José, CR"
              data-description="Descripción detallada del Proyecto 1"
@@ -77,8 +55,7 @@
         
         <!-- Project 2 -->
         <div class="portfolio-item" 
-             data-bg="Assets/Images/Projects/project2.jpg" 
-             data-title="PROJECT 2" 
+             data-bg="Assets/Images/Projects/project2.jpg"
              data-year="2023" 
              data-location="Heredia, CR"
              data-description="Descripción detallada del Proyecto 2"
@@ -91,8 +68,7 @@
         
         <!-- Project 3 -->
         <div class="portfolio-item" 
-             data-bg="Assets/Images/Projects/project3.jpg" 
-             data-title="PROJECT 3" 
+             data-bg="Assets/Images/Projects/project3.jpg"
              data-year="2022" 
              data-location="Alajuela, CR"
              data-description="Descripción detallada del Proyecto 3"
@@ -100,20 +76,6 @@
           <div class="project-content">
             <h3>PROYECTO 3</h3>
             <p class="project-preview">Marketing Digital · SEO</p>
-          </div>
-        </div>
-        
-        <!-- Project 4 -->
-        <div class="portfolio-item" 
-             data-bg="Assets/Images/Projects/project4.jpg" 
-             data-title="PROJECT 4" 
-             data-year="2022" 
-             data-location="Cartago, CR"
-             data-description="Descripción detallada del Proyecto 4"
-             data-gallery='["Assets/Images/Gallery/project4-1.jpg","Assets/Images/Gallery/project4-2.jpg"]'>
-          <div class="project-content">
-            <h3>PROYECTO 4</h3>
-            <p class="project-preview">Estrategia Digital · Redes</p>
           </div>
         </div>
       </div>
@@ -130,20 +92,12 @@
       <span class="project-location">San José, CR</span>
     </div>
     <p id="project-description">Project description goes here</p>
-    <div class="project-features">
-      <h4>Características:</h4>
-      <ul id="project-features-list">
-        <!-- Will be populated by JavaScript -->
-      </ul>
-    </div>
   </div>
 </section>
 
 <!-- JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="portfolio.js"></script>
 <script>
   AOS.init();
