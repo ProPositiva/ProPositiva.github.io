@@ -3,14 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioItems = Array.from(document.querySelectorAll('.portfolio-item'));
   const portfolioBackground = document.getElementById('portfolio-background');
   const currentProjectTitle = document.getElementById('current-project-title');
-  const centeredProjectName = document.getElementById('centered-project-name');
-  const centeredProjectPreview = document.getElementById('centered-project-preview');
   const projectDetails = document.getElementById('project-details');
-  const portfolioList = document.querySelector('.portfolio-list');
-  const projectGallery = document.querySelector('.project-gallery');
   const galleryContent = document.querySelector('.gallery-content');
   const galleryClose = document.querySelector('.gallery-close');
-  const dropdown = document.querySelector('.project-dropdown');
   
   // State
   let currentIndex = 0;
@@ -24,100 +19,90 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize
   function initPortfolio() {
-    initGallery();
     initDropdown();
+    initGallery();
     setupEventListeners();
     updateActiveProject(0, true);
   }
 
-  // Initialize gallery content
-  function initGallery() {
+  // Initialize dropdown
+  function initDropdown() {
+    const dropdown = document.querySelector('.project-dropdown');
+    
     portfolioItems.forEach((item, index) => {
+      const dropdownItem = document.createElement('div');
+      dropdownItem.className = 'project-dropdown-item';
+      dropdownItem.textContent = item.querySelector('h3').textContent;
+      dropdownItem.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateActiveProject(index);
+        dropdown.style.display = 'none';
+      });
+      dropdown.appendChild(dropdownItem);
+    });
+
+    // Toggle dropdown on header click
+    document.querySelector('.portfolio-header').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dropdown = document.querySelector('.project-dropdown');
+      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking elsewhere
+    document.addEventListener('click', () => {
+      dropdown.style.display = 'none';
+    });
+  }
+
+  // Initialize gallery
+  function initGallery() {
+    portfolioItems.forEach(item => {
       const galleryItem = document.createElement('div');
       galleryItem.className = 'gallery-item';
+      const mediaItems = JSON.parse(item.getAttribute('data-gallery') || [];
       
-      // Parse gallery items from data attribute
-      const galleryItems = JSON.parse(item.getAttribute('data-gallery') || []);
-      
-      // Add all gallery media for this project
-      galleryItems.forEach(mediaPath => {
-        const mediaElement = mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm') 
-          ? document.createElement('video') 
-          : document.createElement('img');
-        
-        mediaElement.src = mediaPath;
-        if (mediaElement.tagName === 'VIDEO') {
-          mediaElement.controls = true;
-          mediaElement.autoplay = false;
-          mediaElement.loop = true;
-        }
-        galleryItem.appendChild(mediaElement);
+      mediaItems.forEach(mediaPath => {
+        const media = mediaPath.endsWith('.mp4') ? 
+          Object.assign(document.createElement('video'), { 
+            controls: true,
+            autoplay: false,
+            loop: true 
+          }) : 
+          document.createElement('img');
+        media.src = mediaPath;
+        galleryItem.appendChild(media);
       });
       
       galleryContent.appendChild(galleryItem);
     });
   }
 
-  // Initialize dropdown
-  function initDropdown() {
-    portfolioItems.forEach((item, index) => {
-      const dropdownItem = document.createElement('div');
-      dropdownItem.className = 'project-dropdown-item';
-      dropdownItem.textContent = item.querySelector('h3').textContent;
-      dropdownItem.addEventListener('click', () => {
-        updateActiveProject(index);
-        portfolioItems[index].scrollIntoView({ behavior: 'smooth' });
-      });
-      dropdown.appendChild(dropdownItem);
-    });
-  }
-
   // Update active project
   function updateActiveProject(index, immediate = false) {
-    if (index < 0) index = totalProjects - 1;
-    if (index >= totalProjects) index = 0;
+    if (index < 0) index = portfolioItems.length - 1;
+    if (index >= portfolioItems.length) index = 0;
     
-    // Update state
     currentIndex = index;
     const activeItem = portfolioItems[index];
     const projectName = activeItem.querySelector('h3').textContent;
-    const projectPreview = activeItem.querySelector('.project-preview').textContent;
-    
-    // Update UI
-    updateActiveItem(activeItem);
-    updateHeader(projectName);
-    updateCenteredContent(projectName, projectPreview);
-    updateBackground(activeItem.getAttribute('data-bg'), immediate);
-    updateDetails(activeItem);
-  }
 
-  function updateActiveItem(item) {
-    portfolioItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-  }
-
-  function updateHeader(projectName) {
-    currentProjectTitle.textContent = `/${projectName}`;
-  }
-
-  function updateCenteredContent(name, preview) {
-    gsap.to([centeredProjectName, centeredProjectPreview], {
-      duration: 0.3,
-      opacity: 0,
-      y: -20,
-      onComplete: () => {
-        centeredProjectName.textContent = name;
-        centeredProjectPreview.textContent = preview;
-        gsap.to([centeredProjectName, centeredProjectPreview], {
-          duration: 0.3,
-          opacity: 1,
-          y: 0
-        });
-      }
+    // Reset all items
+    portfolioItems.forEach(item => {
+      item.classList.remove('active');
+      const h3 = item.querySelector('h3');
+      const preview = item.querySelector('.project-preview');
+      h3.style.position = 'static';
+      h3.style.transform = 'none';
+      preview.style.position = 'static';
+      preview.style.transform = 'none';
     });
-  }
 
-  function updateBackground(bgImage, immediate) {
+    // Update active item
+    activeItem.classList.add('active');
+    currentProjectTitle.textContent = `/${projectName}`;
+
+    // Update background
+    const bgImage = activeItem.getAttribute('data-bg');
     if (immediate) {
       portfolioBackground.style.backgroundImage = `url(${bgImage})`;
     } else {
@@ -127,9 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => portfolioBackground.classList.remove('fading'), 300);
       }, 100);
     }
+    
+    // Update details
+    updateProjectDetails(activeItem);
+    
+    // Scroll to project
+    activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  function updateDetails(item) {
+  function updateProjectDetails(item) {
     document.getElementById('project-title').textContent = item.querySelector('h3').textContent;
     document.getElementById('project-description').textContent = item.getAttribute('data-description');
     document.getElementById('project-year').textContent = item.getAttribute('data-year');
@@ -137,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
     projectDetails.classList.add('visible');
   }
 
-  // Handle vertical scroll navigation
   function handleVerticalScroll(direction) {
     const now = Date.now();
     if (isScrolling || now - lastScrollTime < scrollDelay) return;
@@ -153,40 +143,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     updateActiveProject(currentIndex);
     
-    // Scroll to project
-    portfolioItems[currentIndex].scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'nearest'
-    });
-    
     setTimeout(() => {
       isScrolling = false;
     }, scrollDelay);
   }
 
-  // Open gallery for current project
   function openGallery() {
     document.body.classList.add('gallery-active');
-    projectGallery.classList.add('active');
+    document.querySelector('.project-gallery').classList.add('active');
     
-    // Scroll to current project's gallery items
     const galleryItems = document.querySelectorAll('.gallery-item');
     if (galleryItems[currentIndex]) {
       galleryItems[currentIndex].scrollIntoView();
     }
   }
 
-  // Close gallery
   function closeGallery() {
     document.body.classList.remove('gallery-active');
-    projectGallery.classList.remove('active');
+    document.querySelector('.project-gallery').classList.remove('active');
   }
 
-  // Setup all event listeners
   function setupEventListeners() {
-    // Vertical scroll (projects)
+    // Vertical scroll
     window.addEventListener('wheel', (e) => {
-      if (projectGallery.classList.contains('active')) return;
+      if (document.querySelector('.project-gallery').classList.contains('active')) return;
       if (Math.abs(e.deltaY) > 30) {
         e.preventDefault();
         handleVerticalScroll(e.deltaY > 0 ? 'down' : 'up');
@@ -195,19 +175,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Keyboard navigation
     window.addEventListener('keydown', (e) => {
-      if (projectGallery.classList.contains('active')) return;
+      if (document.querySelector('.project-gallery').classList.contains('active')) return;
       if (e.key === 'ArrowDown') handleVerticalScroll('down');
       if (e.key === 'ArrowUp') handleVerticalScroll('up');
     });
 
     // Touch events for vertical scroll
     window.addEventListener('touchstart', (e) => {
-      if (projectGallery.classList.contains('active')) return;
+      if (document.querySelector('.project-gallery').classList.contains('active')) return;
       touchStartY = e.touches[0].clientY;
     }, { passive: true });
 
     window.addEventListener('touchend', (e) => {
-      if (projectGallery.classList.contains('active')) return;
+      if (document.querySelector('.project-gallery').classList.contains('active')) return;
       const touchEndY = e.changedTouches[0].clientY;
       const diff = touchStartY - touchEndY;
       if (Math.abs(diff) > 50) {
@@ -226,10 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (Math.abs(diff) > 50) {
         isHorizontalScrolling = true;
         if (diff > 0) {
-          // Swipe left
           galleryContent.scrollBy({ left: galleryContent.offsetWidth, behavior: 'smooth' });
         } else {
-          // Swipe right
           galleryContent.scrollBy({ left: -galleryContent.offsetWidth, behavior: 'smooth' });
         }
         setTimeout(() => { isHorizontalScrolling = false; }, 500);
@@ -245,36 +223,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close gallery
     galleryClose.addEventListener('click', closeGallery);
-
-    // Header dropdown hover
-    const header = document.querySelector('.portfolio-header');
-    header.addEventListener('mouseenter', () => {
-      dropdown.style.display = 'block';
-    });
-    header.addEventListener('mouseleave', () => {
-      dropdown.style.display = 'none';
-    });
-
-    // Intersection Observer for scroll detection
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !isScrolling) {
-          const index = portfolioItems.indexOf(entry.target);
-          if (index !== -1 && index !== currentIndex) {
-            updateActiveProject(index);
-          }
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.7
-    });
-
-    // Observe all portfolio items
-    portfolioItems.forEach(item => {
-      observer.observe(item);
-    });
   }
 
   // Initialize everything
