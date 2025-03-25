@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close dropdown when clicking elsewhere
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('| #portfolio-title')) {
+      if (!e.target.closest('#portfolio-title')) {
         dropdown.style.display = 'none';
       }
     });
