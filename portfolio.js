@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectName = activeItem.querySelector('h3').textContent;
 
     // Update header project name immediately
-    currentProjectTitle.textContent = `/${projectName}`;
+    currentProjectTitle.textContent = `${projectName}`;
 
     // Update background
     const bgImage = activeItem.getAttribute('data-bg');
