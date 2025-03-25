@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function initPortfolio() {
     // Initialize with first project already showing
     const firstProjectName = portfolioItems[0].querySelector('h3').textContent;
-    currentProjectTitle.textContent = `/${firstProjectName}`;
+    currentProjectTitle.textContent = `${firstProjectName}`;
     
     initDropdown();
     setupEventListeners();
