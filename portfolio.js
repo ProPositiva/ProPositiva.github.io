@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectPreview = activeItem.querySelector('.project-preview').textContent;
 
     // Update all project name displays
-    currentProjectTitle.textContent = `/${projectName}`;
+    currentProjectTitle.textContent = `${projectName}`;
     centeredProjectName.textContent = projectName;
     centeredProjectPreview.textContent = projectPreview;
 
