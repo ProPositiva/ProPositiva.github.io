@@ -116,7 +116,7 @@ body {
 
 #current-project-title {
   color: #ecb306;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
 }
 
 /* Dropdown Positioning */
@@ -124,7 +124,6 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  transform: translateX(0);
   background: rgba(64, 64, 64, 0.7);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255,255,255,0.1);
@@ -151,28 +150,6 @@ body {
   color: #ecb306;
   background: rgba(255,255,255,0.1);
 }
-
-/* Centered Project Name */
-.project-name-center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  pointer-events: none;
-}
-
-#centered-project-name {
-  font-size: 3rem;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  margin-bottom: 0.5rem;
-}
-
-#centered-project-preview {
-  font-size: 1.5rem;
-  color: rgba(255,255,255,0.8);
 }
 
 /* Portfolio List */

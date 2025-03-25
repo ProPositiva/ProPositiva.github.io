@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioItems = Array.from(document.querySelectorAll('.portfolio-item'));
   const portfolioBackground = document.getElementById('portfolio-background');
   const currentProjectTitle = document.getElementById('current-project-title');
-  const centeredProjectName = document.getElementById('centered-project-name');
-  const centeredProjectPreview = document.getElementById('centered-project-preview');
   const projectDetails = document.getElementById('project-details');
   
   // State
@@ -17,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize
   function initPortfolio() {
+    // Initialize with first project already showing
+    const firstProjectName = portfolioItems[0].querySelector('h3').textContent;
+    currentProjectTitle.textContent = `/${firstProjectName}`;
+    
     initDropdown();
     setupEventListeners();
     updateActiveProject(0, true);
@@ -53,12 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
     currentIndex = index;
     const activeItem = portfolioItems[index];
     const projectName = activeItem.querySelector('h3').textContent;
-    const projectPreview = activeItem.querySelector('.project-preview').textContent;
 
-    // Update all project name displays
-    currentProjectTitle.textContent = `${projectName}`;
-    centeredProjectName.textContent = projectName;
-    centeredProjectPreview.textContent = projectPreview;
+    // Update header project name immediately
+    currentProjectTitle.textContent = `/${projectName}`;
 
     // Update background
     const bgImage = activeItem.getAttribute('data-bg');
