@@ -150,7 +150,7 @@ body.gallery-active {
 .project-dropdown {
   position: absolute;
   top: 100%;
-  left: calc(100% - 0.5rem); /* Aligns with end of "PORTFOLIO" */
+  left: calc(100% - 0.2rem); /* Aligns with end of "PORTFOLIO" */
   transform: translateX(-100%);
   background: rgba(64, 64, 64, 0.7);
   backdrop-filter: blur(5px);
