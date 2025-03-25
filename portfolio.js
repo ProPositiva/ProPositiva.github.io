@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioBackground = document.getElementById('portfolio-background');
   const currentProjectTitle = document.getElementById('current-project-title');
   const projectDetails = document.getElementById('project-details');
+  const portfolioList = document.querySelector('.portfolio-list');
   
   // State
   let currentIndex = 0;
   let isScrolling = false;
+  let scrollTimeout = null;
   const totalProjects = portfolioItems.length;
   let touchStartY = 0;
-  let lastScrollTime = 0;
   const scrollDelay = 800;
 
   // Initialize
@@ -73,12 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update details
     updateProjectDetails(activeItem);
-    
-    // Scroll to project
-    activeItem.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'nearest'
-    });
   }
 
   function updateProjectDetails(item) {
@@ -89,23 +84,30 @@ document.addEventListener('DOMContentLoaded', function() {
     projectDetails.classList.add('visible');
   }
 
-  // Handle scroll navigation
+  // Improved scroll handling
   function handleScroll(direction) {
-    const now = Date.now();
-    if (isScrolling || now - lastScrollTime < scrollDelay) return;
-    
-    lastScrollTime = now;
+    if (isScrolling) return;
     isScrolling = true;
     
+    // Clear any pending scroll timeout
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+
     if (direction === 'down') {
-      currentIndex = (currentIndex + 1) % totalProjects;
+      currentIndex = Math.min(currentIndex + 1, totalProjects - 1);
     } else {
-      currentIndex = (currentIndex - 1 + totalProjects) % totalProjects;
+      currentIndex = Math.max(currentIndex - 1, 0);
     }
     
     updateActiveProject(currentIndex);
-    
-    setTimeout(() => {
+    portfolioItems[currentIndex].scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'nearest'
+    });
+
+    // Reset scroll lock after animation completes
+    scrollTimeout = setTimeout(() => {
       isScrolling = false;
     }, scrollDelay);
   }
@@ -147,12 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    // Intersection Observer for scroll detection
+    // Improved Intersection Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !isScrolling) {
           const index = portfolioItems.indexOf(entry.target);
           if (index !== -1 && index !== currentIndex) {
+            currentIndex = index;
             updateActiveProject(index);
           }
         }
