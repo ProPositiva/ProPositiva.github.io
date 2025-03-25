@@ -81,3 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+
+
+    // Observe all portfolio items
+    portfolioItems.forEach(item => {
+      observer.observe(item);
+    });
+  }
+
+  // Initialize everything
+  initPortfolio();
+});
