@@ -6,12 +6,36 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioList = document.querySelector('.portfolio-list');
   const dropdown = document.querySelector('.project-dropdown');
   
+  // Arrow controls
+  const arrowUp = document.querySelector('.arrow-up');
+  const arrowDown = document.querySelector('.arrow-down');
+  const arrowLeft = document.querySelector('.arrow-left');
+  const arrowRight = document.querySelector('.arrow-right');
+  
+  // Media Gallery Elements
+  const mediaGallery = document.createElement('div');
+  mediaGallery.className = 'project-media-gallery';
+  const galleryContent = document.createElement('div');
+  galleryContent.className = 'gallery-content';
+  const galleryClose = document.createElement('div');
+  galleryClose.className = 'gallery-close';
+  galleryClose.innerHTML = '×';
+  const galleryCounter = document.createElement('div');
+  galleryCounter.className = 'gallery-counter';
+  
+  mediaGallery.appendChild(galleryContent);
+  mediaGallery.appendChild(galleryClose);
+  mediaGallery.appendChild(galleryCounter);
+  document.body.appendChild(mediaGallery);
+
   // State
   let currentIndex = 0;
   let isScrolling = false;
   let scrollTimeout = null;
   const scrollDelay = 800;
   let touchStartY = 0;
+  let currentMediaIndex = 0;
+  let currentProjectMedia = [];
 
   // Initialize
   function initPortfolio() {
@@ -48,6 +72,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Load media for current project
+  function loadProjectMedia() {
+    const item = portfolioItems[currentIndex];
+    currentProjectMedia = JSON.parse(item.getAttribute('data-gallery') || '[]');
+    currentMediaIndex = 0;
+  }
+
+  // Show media gallery
+  function showMediaGallery() {
+    if (currentProjectMedia.length === 0) return;
+    
+    galleryContent.innerHTML = '';
+    
+    const mediaSrc = currentProjectMedia[currentMediaIndex];
+    let mediaElement;
+    
+    if (mediaSrc.match(/\.(mp4|webm|ogg)$/i)) {
+      mediaElement = document.createElement('video');
+      mediaElement.controls = true;
+      mediaElement.autoplay = true;
+      mediaElement.loop = true;
+    } else {
+      mediaElement = document.createElement('img');
+    }
+    
+    mediaElement.src = mediaSrc;
+    mediaElement.className = 'gallery-media';
+    galleryContent.appendChild(mediaElement);
+    
+    galleryCounter.textContent = `${currentMediaIndex + 1}/${currentProjectMedia.length}`;
+    mediaGallery.style.display = 'flex';
+  }
+
   // Update active project
   function updateActiveProject(index, immediate = false) {
     if (index < 0 || index >= portfolioItems.length) return;
@@ -71,12 +128,38 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 100);
     }
     
+    // Load media for this project
+    loadProjectMedia();
+    
     // Scroll to project
     if (!immediate) {
       isScrolling = true;
       activeItem.scrollIntoView({ behavior: 'smooth' });
       setTimeout(() => { isScrolling = false; }, 1000);
     }
+  }
+
+  // Navigation functions
+  function nextProject() {
+    if (isScrolling) return;
+    updateActiveProject(currentIndex + 1);
+  }
+
+  function prevProject() {
+    if (isScrolling) return;
+    updateActiveProject(currentIndex - 1);
+  }
+
+  function nextMedia() {
+    if (currentProjectMedia.length === 0) return;
+    currentMediaIndex = (currentMediaIndex + 1) % currentProjectMedia.length;
+    showMediaGallery();
+  }
+
+  function prevMedia() {
+    if (currentProjectMedia.length === 0) return;
+    currentMediaIndex = (currentMediaIndex - 1 + currentProjectMedia.length) % currentProjectMedia.length;
+    showMediaGallery();
   }
 
   // Handle scroll events
@@ -105,6 +188,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Setup event listeners
   function setupEventListeners() {
+    // Arrow controls
+    arrowUp.addEventListener('click', prevProject);
+    arrowDown.addEventListener('click', nextProject);
+    arrowLeft.addEventListener('click', prevMedia);
+    arrowRight.addEventListener('click', nextMedia);
+
+    // Keyboard controls
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      
+      switch(e.key) {
+        case 'ArrowUp': e.preventDefault(); prevProject(); break;
+        case 'ArrowDown': e.preventDefault(); nextProject(); break;
+        case 'ArrowLeft': e.preventDefault(); prevMedia(); break;
+        case 'ArrowRight': e.preventDefault(); nextMedia(); break;
+      }
+    });
+
+    // Close gallery
+    galleryClose.addEventListener('click', () => {
+      mediaGallery.style.display = 'none';
+    });
+
     // Scroll detection
     portfolioList.addEventListener('scroll', () => {
       if (!isScrolling) {
@@ -124,21 +230,12 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (Math.abs(diff) > 50) {
         if (diff > 0) {
-          updateActiveProject(currentIndex + 1);
+          nextProject();
         } else {
-          updateActiveProject(currentIndex - 1);
+          prevProject();
         }
       }
     }, { passive: true });
-
-    // Keyboard navigation
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown') {
-        updateActiveProject(currentIndex + 1);
-      } else if (e.key === 'ArrowUp') {
-        updateActiveProject(currentIndex - 1);
-      }
-    });
 
     // Intersection Observer for precise scroll detection
     const observer = new IntersectionObserver((entries) => {
