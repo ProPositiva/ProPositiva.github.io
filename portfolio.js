@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
       galleryItem.className = 'gallery-item';
       
       // Parse gallery items from data attribute
-      const galleryItems = JSON.parse(item.getAttribute('data-gallery') || [];
+      const galleryItems = JSON.parse(item.getAttribute('data-gallery') || []);
       
       // Add all gallery media for this project
       galleryItems.forEach(mediaPath => {

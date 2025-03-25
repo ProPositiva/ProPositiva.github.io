@@ -101,21 +101,18 @@ body.gallery-active {
   height: 100%;
 }
 
-/* Portfolio Header */
+/* Portfolio Header (Reverted to top-left position) */
 .portfolio-header {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 1rem;
+  left: 1rem;
   z-index: 1000;
-  text-align: center;
+  text-align: left;
   pointer-events: none;
-  transition: opacity 0.3s ease;
 }
 
 #portfolio-title {
-  font-size: 4vw;
-  white-space: nowrap;
+  font-size: 2.5rem;
   margin: 0;
   color: #ffffff;
   display: inline-block;
@@ -309,8 +306,12 @@ body.gallery-active {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  #portfolio-title, #current-project-title {
-    font-size: 6vw;
+  #portfolio-title {
+    font-size: 1.8rem;
+  }
+  
+  #current-project-title {
+    font-size: 1.8rem;
   }
   
   .portfolio-item h3 {
