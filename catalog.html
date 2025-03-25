@@ -5,16 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configurador de Viviendas - Alianza ProPositiva</title>
   <link rel="stylesheet" href="catalog.css">
-  <!-- Include your existing favicon and other meta tags -->
+  <!-- Favicon and other meta tags -->
 </head>
 <body>
   <div class="configurator-container">
     <!-- Visualization Panel -->
     <div class="visualization-panel">
-      <div class="model-viewer" id="model-viewer">
-        <!-- 3D model or rendered images will go here -->
-        <img src="Assets/Models/house-default.jpg" alt="Modelo base" id="current-model">
+      <div class="visualization-options">
+        <button class="view-option active" data-view="image">Imagen</button>
+        <button class="view-option" data-view="3d">Vista 3D</button>
+        <button class="view-option" data-view="floorplan">Plano</button>
       </div>
+      
+      <div class="model-viewer" id="model-viewer">
+        <img src="Assets/Models/house-default.jpg" alt="Modelo base" id="current-model">
+        <div class="threejs-container" id="3d-viewer"></div>
+        <div class="floorplan-view" id="floorplan-view">
+          <img src="Assets/Floorplans/default.png" alt="Floorplan" id="floorplan-image">
+          <div class="floorplan-controls">
+            <button class="floorplan-nav" data-room="default">Plano Completo</button>
+            <button class="floorplan-nav" data-room="living">Sala</button>
+            <button class="floorplan-nav" data-room="kitchen">Cocina</button>
+            <button class="floorplan-nav" data-room="bedroom">Dormitorio</button>
+          </div>
+        </div>
+      </div>
+      
       <div class="model-info">
         <h2 id="model-name">Casa Moderna</h2>
         <div class="price-estimate">
@@ -52,7 +68,11 @@
                 <h4>Casa Clásica</h4>
                 <p>Desde $220,000</p>
               </div>
-              <!-- More models... -->
+              <div class="model-option" data-model="contemporanea" data-price="280000">
+                <img src="Assets/Models/contemporanea-thumb.jpg" alt="Casa Contemporánea">
+                <h4>Casa Contemporánea</h4>
+                <p>Desde $280,000</p>
+              </div>
             </div>
           </div>
           
@@ -62,26 +82,41 @@
             <div class="option-group">
               <h4>Materiales de Fachada</h4>
               <div class="option-selector">
-                <div class="option" data-option="ladrillo" data-price="0">Ladrillo visto</div>
+                <div class="option active" data-option="ladrillo" data-price="0">Ladrillo visto</div>
                 <div class="option" data-option="piedra" data-price="15000">Piedra natural</div>
                 <div class="option" data-option="estuco" data-price="8000">Estuco texturizado</div>
               </div>
             </div>
-            <!-- More exterior options... -->
+            <div class="option-group">
+              <h4>Color de Techo</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="rojo" data-price="0">Rojo</div>
+                <div class="option" data-option="gris" data-price="5000">Gris</div>
+                <div class="option" data-option="negro" data-price="7000">Negro</div>
+              </div>
+            </div>
           </div>
           
           <!-- Interior Options -->
           <div class="step-pane" id="interior-pane">
             <h3>Personalice el interior</h3>
-            <!-- Interior options would go here -->
+            <div class="option-group">
+              <h4>Tipo de Piso</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="porcelanato" data-price="0">Porcelanato</div>
+                <div class="option" data-option="madera" data-price="12000">Madera</div>
+                <div class="option" data-option="marmol" data-price="18000">Mármol</div>
+              </div>
+            </div>
           </div>
           
           <!-- Summary -->
           <div class="step-pane" id="summary-pane">
             <h3>Resumen de su configuración</h3>
             <div class="summary-details">
-              <!-- Configuration details will be populated here -->
+              <!-- Will be populated by JavaScript -->
             </div>
+            <div class="pdf-viewer-container"></div>
             <button class="cta-button">Solicitar Cotización</button>
           </div>
         </div>
@@ -94,6 +129,16 @@
     </div>
   </div>
 
+  <div class="loading-indicator">
+    <div class="loading-spinner"></div>
+    <p>Generando documento...</p>
+  </div>
+
+  <!-- Three.js and other libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
   <script src="catalog.js"></script>
 </body>
 </html>

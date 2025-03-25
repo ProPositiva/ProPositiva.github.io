@@ -21,18 +21,95 @@ body {
   position: relative;
 }
 
+.visualization-options {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  gap: 10px;
+}
+
+.view-option {
+  padding: 8px 20px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.view-option:hover {
+  background-color: #eee;
+}
+
+.view-option.active {
+  background-color: #ecb306;
+  color: white;
+  border-color: #ecb306;
+}
+
 .model-viewer {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #eee;
+  position: relative;
+  overflow: hidden;
 }
 
 .model-viewer img {
   max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.threejs-container, .floorplan-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.floorplan-view {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+#floorplan-image {
+  max-width: 90%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.floorplan-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.floorplan-nav {
+  padding: 8px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.floorplan-nav:hover {
+  background-color: #555;
 }
 
 .model-info {
@@ -74,6 +151,11 @@ body {
   font-size: 0.9rem;
   color: #777;
   border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  color: #333;
 }
 
 .step.active {
@@ -90,6 +172,7 @@ body {
 
 .step-pane {
   display: none;
+  height: 100%;
 }
 
 .step-pane.active {
@@ -110,6 +193,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 .model-option:hover {
@@ -126,6 +210,7 @@ body {
   height: 100px;
   object-fit: cover;
   margin-bottom: 10px;
+  border-radius: 3px;
 }
 
 .option-group {
@@ -133,8 +218,9 @@ body {
 }
 
 .option-group h4 {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-size: 1rem;
+  color: #555;
 }
 
 .option-selector {
@@ -149,6 +235,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
 .option:hover {
@@ -161,6 +248,38 @@ body {
   border-color: #ecb306;
 }
 
+/* Summary Styles */
+.summary-details {
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item .label {
+  color: #777;
+}
+
+.summary-item .value {
+  font-weight: bold;
+}
+
+.pdf-viewer-container {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+  display: none;
+}
+
 /* Navigation Buttons */
 .navigation-buttons {
   display: flex;
@@ -170,11 +289,12 @@ body {
 }
 
 .nav-button {
-  padding: 10px 25px;
+  padding: 12px 25px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .nav-button.next {
@@ -182,8 +302,16 @@ body {
   color: white;
 }
 
+.nav-button.next:hover {
+  background-color: #d9a306;
+}
+
 .nav-button.prev {
   background-color: #eee;
+}
+
+.nav-button.prev:hover {
+  background-color: #ddd;
 }
 
 .nav-button:disabled {
@@ -202,6 +330,42 @@ body {
   font-weight: bold;
   cursor: pointer;
   margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #555;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: white;
+  display: none;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: #ecb306;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Responsive Design */
@@ -218,5 +382,34 @@ body {
   
   .model-viewer img {
     max-height: 50vh;
+  }
+  
+  .visualization-options {
+    padding: 10px;
+  }
+  
+  .view-option {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-nav {
+    flex-wrap: wrap;
+  }
+  
+  .step {
+    flex: 1 0 50%;
+    padding: 10px 5px;
+    font-size: 0.8rem;
+  }
+  
+  .option-selector {
+    justify-content: center;
   }
 }
