@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let touchStartX = 0;
   let currentMediaIndex = 0;
   let currentProjectMedia = [];
+  let isHorizontalSwipe = false;
 
   // Initialize
   function initPortfolio() {
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Update background media
+  // Update background media with mobile video fix
   function updateBackgroundMedia() {
     if (currentProjectMedia.length === 0) return;
     
@@ -92,6 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
       video.style.position = 'absolute';
       video.style.top = '0';
       video.style.left = '0';
+      
+      // Mobile video autoplay fix
+      if (/Mobi|Android/i.test(navigator.userAgent)) {
+        video.setAttribute('playsinline', '');
+        video.setAttribute('muted', '');
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            video.controls = true;
+          });
+        }
+      }
       
       portfolioBackground.appendChild(video);
     } else {
@@ -166,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Setup event listeners
+  // Setup event listeners with improved mobile swiping
   function setupEventListeners() {
     arrowUp.addEventListener('click', prevProject);
     arrowDown.addEventListener('click', nextProject);
@@ -191,39 +204,42 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    portfolioList.addEventListener('touchstart', (e) => {
+    // Improved touch handling for both vertical and horizontal swipes
+    portfolioBackground.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      isHorizontalSwipe = false;
     }, { passive: true });
 
-    portfolioList.addEventListener('touchend', (e) => {
+    portfolioBackground.addEventListener('touchmove', function(e) {
+      if (!isHorizontalSwipe) {
+        const xDiff = Math.abs(e.touches[0].clientX - touchStartX);
+        const yDiff = Math.abs(e.touches[0].clientY - touchStartY);
+        isHorizontalSwipe = xDiff > yDiff;
+      }
+    }, { passive: true });
+
+    portfolioBackground.addEventListener('touchend', function(e) {
+      const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY - touchEndY;
-      
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
+      const xDiff = touchStartX - touchEndX;
+      const yDiff = touchStartY - touchEndY;
+
+      if (isHorizontalSwipe && Math.abs(xDiff) > 50) {
+        e.preventDefault();
+        if (xDiff > 0) {
+          nextMedia();
+        } else {
+          prevMedia();
+        }
+      } else if (!isHorizontalSwipe && Math.abs(yDiff) > 50) {
+        if (yDiff > 0) {
           nextProject();
         } else {
           prevProject();
         }
       }
-    }, { passive: true });
-
-    portfolioBackground.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    portfolioBackground.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
-      
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          nextMedia();
-        } else {
-          prevMedia();
-        }
-      }
-    }, { passive: true });
+    }, { passive: false });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

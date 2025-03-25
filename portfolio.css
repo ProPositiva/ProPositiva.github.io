@@ -278,3 +278,19 @@ body {
     transition: none;
   }
 }
+/* Mobile Video and Swipe Improvements */
+@media (max-width: 768px) {
+  /* Improved video display for mobile */
+  .portfolio-background video.background-media {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Better touch area for swiping */
+  .portfolio-background {
+    touch-action: pan-y;
+  }
+}
