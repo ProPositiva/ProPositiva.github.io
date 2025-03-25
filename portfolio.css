@@ -101,13 +101,13 @@ body.gallery-active {
   height: 100%;
 }
 
-/* Portfolio Header with Dropdown */
+/* Portfolio Header */
 .portfolio-header {
   position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 1000;
-  cursor: pointer;
+  text-align: left;
 }
 
 #portfolio-title {
@@ -121,9 +121,11 @@ body.gallery-active {
   color: #ecb306;
   margin-left: 0.5rem;
   font-weight: normal;
+  display: inline-block;
+  cursor: pointer;
 }
 
-/* Transparent Dropdown */
+/* Project Dropdown */
 .project-dropdown {
   position: absolute;
   top: 100%;
@@ -135,6 +137,7 @@ body.gallery-active {
   padding: 0.5rem 0;
   min-width: 200px;
   display: none;
+  z-index: 1001;
 }
 
 .portfolio-header:hover .project-dropdown {
@@ -145,6 +148,7 @@ body.gallery-active {
   padding: 0.5rem 1rem;
   color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .project-dropdown-item:hover {
@@ -152,30 +156,27 @@ body.gallery-active {
   background: rgba(255,255,255,0.1);
 }
 
-/* Centered project content */
-.portfolio-item.active h3 {
+/* Centered Project Name */
+.project-name-center {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#centered-project-name {
   font-size: 3rem;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  z-index: 10;
-  pointer-events: none;
-  margin: 0;
+  margin-bottom: 0.5rem;
 }
 
-.portfolio-item.active .project-preview {
-  position: fixed;
-  top: calc(50% + 3.5rem);
-  left: 50%;
-  transform: translateX(-50%);
+#centered-project-preview {
   font-size: 1.5rem;
   color: rgba(255,255,255,0.8);
-  z-index: 10;
-  pointer-events: none;
-  margin: 0;
 }
 
 /* Portfolio List */
@@ -205,6 +206,17 @@ body.gallery-active {
   padding: 2rem;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.portfolio-item h3 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.project-preview {
+  font-size: 1.5rem;
+  opacity: 0.8;
 }
 
 .portfolio-item.active {
@@ -348,20 +360,20 @@ body.gallery-active {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  #portfolio-title {
+  #portfolio-title, #current-project-title {
     font-size: 1.8rem;
   }
   
-  #current-project-title {
-    font-size: 1.8rem;
+  #centered-project-name {
+    font-size: 2rem;
+  }
+  
+  #centered-project-preview {
+    font-size: 1.2rem;
   }
   
   .portfolio-item h3 {
     font-size: 2rem;
-  }
-  
-  .portfolio-item.active h3 {
-    font-size: 2.5rem;
   }
   
   .project-preview {
@@ -387,5 +399,9 @@ body.gallery-active {
   
   .gallery-item {
     min-width: 95%;
+  }
+  
+  .project-dropdown {
+    min-width: 150px;
   }
 }
