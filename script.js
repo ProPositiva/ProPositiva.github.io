@@ -27,6 +27,14 @@ const languageData = {
     contactEmailLabel: "Email",
     contactMessageLabel: "Message",
     contactSubmit: "Send Message",
+    processHeading1: "We are combining our love of well-designed architecture",
+    processHeading2: "with our technical knowledge to help you thrive.",
+    processCategory1: "CONSULTING",
+    processCategory2: "MANAGEMENT",
+    processCategory3: "REAL ESTATE",
+    ctaHeading: "Ready?",
+    ctaText: "Design. Construction. Excellence.<br>With us, no worries.",
+    ctaButton: "Contact us"
   },
   es: {
     heroTitle: "Soluciones de Arquitectura Innovadoras",
@@ -55,6 +63,14 @@ const languageData = {
     contactEmailLabel: "Correo Electrónico",
     contactMessageLabel: "Mensaje",
     contactSubmit: "Enviar Mensaje",
+    processHeading1: "Combinamos nuestra pasión por el diseño arquitectónico",
+    processHeading2: "con nuestro conocimiento técnico para ayudarte a crecer.",
+    processCategory1: "CONSULTORÍA",
+    processCategory2: "GESTIÓN",
+    processCategory3: "BIENES RAÍCES",
+    ctaHeading: "¿Listo?",
+    ctaText: "Diseño. Construcción. Excelencia.<br>Con nosotros, sin preocupaciones.",
+    ctaButton: "Contáctenos"
   },
 };
 
@@ -68,11 +84,11 @@ const elementsToUpdate = {
   aboutDescription: document.getElementById("about-description"),
   aboutCta: document.getElementById("about-cta"),
   servicesTitle: document.getElementById("services-title"),
-  service1Title: document.getElementById("service-1-title"),
+  service1Title: document.querySelector(".process-item:nth-child(1) .process-category"),
   service1Description: document.getElementById("service-1-description"),
-  service2Title: document.getElementById("service-2-title"),
+  service2Title: document.querySelector(".process-item:nth-child(2) .process-category"),
   service2Description: document.getElementById("service-2-description"),
-  service3Title: document.getElementById("service-3-title"),
+  service3Title: document.querySelector(".process-item:nth-child(3) .process-category"),
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
   portfolioShowMore: document.getElementById("show-more-button"),
@@ -85,6 +101,11 @@ const elementsToUpdate = {
   contactEmailLabel: document.getElementById("contact-email-label"),
   contactMessageLabel: document.getElementById("contact-message-label"),
   contactSubmit: document.getElementById("contact-submit"),
+  processHeading1: document.querySelector(".heading-line:nth-child(1)"),
+  processHeading2: document.querySelector(".heading-line:nth-child(2)"),
+  ctaHeading: document.querySelector(".cta-heading"),
+  ctaText: document.querySelector(".cta-text"),
+  ctaButton: document.querySelector(".btn-label")
 };
 
 // Set initial language to Spanish
@@ -95,7 +116,11 @@ function updateLanguage(language) {
   const data = languageData[language];
   for (const [key, element] of Object.entries(elementsToUpdate)) {
     if (element) {
-      element.textContent = data[key];
+      if (key === "ctaText") {
+        element.innerHTML = data[key]; // Use innerHTML for line breaks
+      } else {
+        element.textContent = data[key];
+      }
     }
   }
 }
@@ -115,7 +140,6 @@ languageButton.addEventListener("click", () => {
 // Initialize with Spanish
 updateLanguage(currentLanguage);
 languageButton.textContent = "English";
-
 
 // Get all portfolio items
 const portfolioItems = document.querySelectorAll(".portfolio-item");
@@ -167,20 +191,19 @@ const catalogData = [
   {
     id: 2,
     title: "Catálogo 2",
-    thumbnail: "Assets\Images\Catalog\catalog2.jpg",
+    thumbnail: "Assets\\Images\\Catalog\\catalog2.jpg",
     description: "Descripción detallada del Catálogo 2.",
   },
   {
     id: 3,
     title: "Catálogo 3",
-    thumbnail: "Assets\Images\Catalog\catalog3",
+    thumbnail: "Assets\\Images\\Catalog\\catalog3",
   },
   {
     id: 4,
     title: "Catálogo 4",
-    thumbnail: "Assets\Images\Catalog\catalog4",
+    thumbnail: "Assets\\Images\\Catalog\\catalog4",
   },
-  // Add more catalog items as needed
 ];
 
 // Function to generate catalog grid
@@ -259,4 +282,87 @@ $(document).ready(function () {
       },
     ],
   });
+});
+
+// Initialize scroll animations for services section
+document.addEventListener('DOMContentLoaded', function() {
+  // Set header height CSS variable
+  const header = document.querySelector('header');
+  if (header) {
+    document.documentElement.style.setProperty(
+      '--header-height', 
+      `${header.offsetHeight}px`
+    );
+  }
+
+  // Intersection Observer for scroll animations
+  const animateOnScroll = function() {
+    const itemsToAnimate = document.querySelectorAll(
+      '.process-item, .process-cta'
+    );
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    itemsToAnimate.forEach(item => {
+      observer.observe(item);
+    });
+  };
+
+  // Parallax effect for heading
+  const parallaxHeading = function() {
+    const heading = document.querySelector('.process-heading');
+    const stickyWrapper = document.querySelector('.sticky-wrapper');
+    
+    if (!heading || !stickyWrapper) return;
+
+    const headingHeight = heading.offsetHeight;
+    const wrapperHeight = stickyWrapper.offsetHeight;
+    
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY;
+      const wrapperOffset = stickyWrapper.offsetTop;
+      
+      if (scrollPosition > wrapperOffset && 
+          scrollPosition < wrapperOffset + wrapperHeight) {
+        const progress = (scrollPosition - wrapperOffset) / wrapperHeight;
+        const translateY = progress * -50;
+        const opacity = 1 - (progress * 0.5);
+        
+        heading.style.transform = `translateY(${translateY}px)`;
+        heading.style.opacity = opacity;
+      }
+    });
+  };
+
+  // Initialize all effects
+  animateOnScroll();
+  parallaxHeading();
+
+  // Resize observer for header height changes
+  const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      if (entry.target === header) {
+        document.documentElement.style.setProperty(
+          '--header-height', 
+          `${entry.contentRect.height}px`
+        );
+      }
+    }
+  });
+
+  if (header) {
+    resizeObserver.observe(header);
+  }
 });
