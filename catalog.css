@@ -24,23 +24,30 @@ body {
   position: relative;
 }
 
+/* Ribbon-style button group */
 .visualization-options {
   display: flex;
   justify-content: center;
-  padding: 15px;
   background-color: #333;
-  gap: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .view-option {
-  padding: 8px 20px;
-  background: none;
-  border: 1px solid #555;
-  border-radius: 20px;
+  padding: 12px 25px;
+  background-color: #333;
+  color: #ddd;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-  color: #ddd;
+  transition: all 0.2s ease;
+  margin: 0;
+  position: relative;
+}
+
+.view-option:not(:last-child) {
+  border-right: 1px solid #404040;
 }
 
 .view-option:hover {
@@ -49,8 +56,8 @@ body {
 
 .view-option.active {
   background-color: #ecb306;
-  color: white;
-  border-color: #ecb306;
+  color: #333;
+  font-weight: 500;
 }
 
 .model-viewer {
@@ -94,25 +101,32 @@ body {
 
 .floorplan-controls {
   display: flex;
-  gap: 10px;
   margin-top: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .floorplan-nav {
-  padding: 8px 15px;
+  padding: 10px 20px;
   background-color: #444;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
+  margin: 0;
+}
+
+.floorplan-nav:not(:last-child) {
+  border-right: 1px solid #555;
 }
 
 .floorplan-nav:hover {
+  background-color: #555;
+}
+
+.floorplan-nav.active {
   background-color: #ecb306;
+  color: #333;
 }
 
 .model-info {
@@ -154,17 +168,19 @@ body {
   font-size: 0.9rem;
   color: #bbb;
   border-bottom: 3px solid transparent;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .step:hover {
   color: #fff;
+  background-color: #3a3a3a;
 }
 
 .step.active {
   color: #fff;
   border-bottom-color: #ecb306;
   font-weight: 500;
+  background-color: #3a3a3a;
 }
 
 .step-content {
@@ -205,7 +221,7 @@ body {
   padding: 10px;
   background-color: #444;
   border: 1px solid #555;
-  border-radius: 4px;
+  border-radius: 0;
   color: #fff;
   font-family: 'Inter', sans-serif;
 }
@@ -227,9 +243,9 @@ body {
 .model-option {
   border: 2px solid #444;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-align: center;
   background-color: #3a3a3a;
 }
@@ -240,7 +256,7 @@ body {
 
 .model-option.active {
   border-color: #ecb306;
-  background-color: rgba(90, 124, 101, 0.2);
+  background-color: rgba(236, 179, 6, 0.1);
 }
 
 .model-option img {
@@ -248,7 +264,6 @@ body {
   height: 100px;
   object-fit: cover;
   margin-bottom: 10px;
-  border-radius: 3px;
 }
 
 .model-option h4 {
@@ -276,18 +291,23 @@ body {
 .option-selector {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 0;
 }
 
 .option {
-  padding: 8px 15px;
-  border: 1px solid #555;
-  border-radius: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   background-color: #444;
   color: #ddd;
+  margin: 0;
+}
+
+.option:not(:last-child) {
+  border-right: 1px solid #555;
 }
 
 .option:hover {
@@ -296,8 +316,7 @@ body {
 
 .option.active {
   background-color: #ecb306;
-  color: white;
-  border-color: #ecb306;
+  color: #333;
 }
 
 /* Button Styles */
@@ -305,18 +324,18 @@ body {
   width: 100%;
   padding: 15px;
   background-color: #ecb306;
-  color: white;
+  color: #333;
   border: none;
-  border-radius: 5px;
+  border-radius: 0;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
   margin-top: 20px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .cta-button:hover {
-  background-color: #4a6a55;
+  background-color: #d9a306;
 }
 
 .secondary-button {
@@ -325,12 +344,12 @@ body {
   background-color: #444;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .secondary-button:hover {
@@ -341,26 +360,27 @@ body {
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 0;
   border-top: 1px solid #444;
 }
 
 .nav-button {
-  padding: 12px 25px;
+  padding: 15px 25px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  flex: 1;
 }
 
 .nav-button.next {
   background-color: #ecb306;
-  color: white;
+  color: #333;
 }
 
 .nav-button.next:hover {
-  background-color: #4a6a55;
+  background-color: #d9a306;
 }
 
 .nav-button.prev {
@@ -428,7 +448,7 @@ body {
   width: 50px;
   height: 50px;
   border: 5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
+  border-radius: 0;
   border-top-color: #ecb306;
   animation: spin 1s ease-in-out infinite;
   margin-bottom: 15px;
@@ -455,11 +475,11 @@ body {
   }
   
   .visualization-options {
-    padding: 10px;
+    padding: 0;
   }
   
   .view-option {
-    padding: 8px 15px;
+    padding: 12px 15px;
     font-size: 0.8rem;
   }
 }
@@ -475,11 +495,34 @@ body {
   
   .step {
     flex: 1 0 50%;
-    padding: 10px 5px;
+    padding: 12px 5px;
     font-size: 0.8rem;
   }
   
   .option-selector {
-    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .option {
+    flex: 1 0 30%;
+    text-align: center;
+    padding: 8px 5px;
+  }
+  
+  .option:not(:last-child) {
+    border-right: none;
+  }
+  
+  .floorplan-controls {
+    flex-wrap: wrap;
+  }
+  
+  .floorplan-nav {
+    flex: 1 0 40%;
+    margin: 2px;
+  }
+  
+  .floorplan-nav:not(:last-child) {
+    border-right: none;
   }
 }
