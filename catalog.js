@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const loadingIndicator = document.querySelector('.loading-indicator');
   const loadingText = document.getElementById('loading-text');
   const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
-  const closeButton = document.getElementById('close-configurator');
 
   // Initialize everything
   function initConfigurator() {
@@ -137,14 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // PDF generation
     generatePdfButton.addEventListener('click', generatePDF);
-    
-    // Close button
-    closeButton.addEventListener('click', closeConfigurator);
-  }
-
-  // Close configurator function
-  function closeConfigurator() {
-    window.location.href = 'index.html';
   }
 
   // 3D Viewer Initialization

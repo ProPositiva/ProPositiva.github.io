@@ -15,36 +15,6 @@ body {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Panel Header */
-.panel-header {
-  position: relative;
-  height: 50px;
-}
-
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: none;
-  border: none;
-  color: #ddd;
-  font-size: 1.8rem;
-  font-weight: 300;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  z-index: 10;
-}
-
-.close-button:hover {
-  color: #ecb306;
-  transform: scale(1.1);
-}
-
 /* Visualization Panel */
 .visualization-panel {
   flex: 2;
@@ -183,7 +153,6 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  position: relative;
 }
 
 .step-nav {
