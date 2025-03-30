@@ -62,20 +62,136 @@
     
     <!-- Configuration Panel -->
     <div class="configuration-panel">
+      <div class="panel-header">
+        <button class="close-button" id="close-configurator">×</button>
+      </div>
       <div class="configuration-steps">
-        <!-- Step Navigation with Close Button -->
+        <!-- Step Navigation -->
         <div class="step-nav">
           <div class="step active" data-step="model">Modelo</div>
           <div class="step" data-step="exterior">Exterior</div>
           <div class="step" data-step="interior">Interior</div>
           <div class="step" data-step="extras">Extras</div>
           <div class="step" data-step="appointment">Agendar</div>
-          <button class="close-button" id="close-configurator">×</button>
         </div>
         
         <!-- Step Content -->
         <div class="step-content">
-          <!-- ... (rest of step content remains exactly the same) ... -->
+          <!-- Model Selection -->
+          <div class="step-pane active" id="model-pane">
+            <h3>Elige tu modelo preferido</h3>
+            <div class="option-grid">
+              <div class="model-option active" data-model="moderna">
+                <img src="Assets/Models/moderna-thumb.jpg" alt="Casa Moderna">
+                <h4>Casa Moderna</h4>
+                <p>Diseño contemporáneo con espacios abiertos</p>
+              </div>
+              <div class="model-option" data-model="clasica">
+                <img src="Assets/Models/clasica-thumb.jpg" alt="Casa Clásica">
+                <h4>Casa Clásica</h4>
+                <p>Estilo tradicional con detalles elegantes</p>
+              </div>
+              <div class="model-option" data-model="contemporanea">
+                <img src="Assets/Models/contemporanea-thumb.jpg" alt="Casa Contemporánea">
+                <h4>Casa Contemporánea</h4>
+                <p>Líneas limpias y diseño vanguardista</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Exterior Options -->
+          <div class="step-pane" id="exterior-pane">
+            <h3>Personaliza el exterior</h3>
+            <div class="option-group">
+              <h4>Materiales de Fachada</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="ladrillo">Ladrillo visto</div>
+                <div class="option" data-option="piedra">Piedra natural</div>
+                <div class="option" data-option="estuco">Estuco texturizado</div>
+              </div>
+            </div>
+            <div class="option-group">
+              <h4>Color de Techo</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="rojo">Rojo</div>
+                <div class="option" data-option="gris">Gris</div>
+                <div class="option" data-option="negro">Negro</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Interior Options -->
+          <div class="step-pane" id="interior-pane">
+            <h3>Personaliza el interior</h3>
+            <div class="option-group">
+              <h4>Tipo de Piso</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="porcelanato">Porcelanato</div>
+                <div class="option" data-option="madera">Madera</div>
+                <div class="option" data-option="marmol">Mármol</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Extras Options -->
+          <div class="step-pane" id="extras-pane">
+            <h3>Características adicionales</h3>
+            <div class="option-group">
+              <h4>Elementos Exteriores</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="none">Ninguno</div>
+                <div class="option" data-option="deck">Terraza con deck</div>
+                <div class="option" data-option="pergola">Pérgola</div>
+                <div class="option" data-option="outdoor-kitchen">Cocina exterior</div>
+              </div>
+            </div>
+            <div class="option-group">
+              <h4>Garaje</h4>
+              <div class="option-selector">
+                <div class="option active" data-option="2-car">2 vehículos</div>
+                <div class="option" data-option="3-car">3 vehículos</div>
+                <div class="option" data-option="4-car">4 vehículos</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Appointment Booking -->
+          <div class="step-pane" id="appointment-pane">
+            <h3>Agenda una cita con nuestro equipo</h3>
+            <form id="appointment-form">
+              <div class="form-group">
+                <label for="name">Nombre completo</label>
+                <input type="text" id="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="date">Fecha preferida</label>
+                <input type="date" id="date" required>
+              </div>
+              <div class="form-group">
+                <label for="time">Hora preferida</label>
+                <select id="time" required>
+                  <option value="">Selecciona una hora</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                </select>
+              </div>
+              <button type="submit" class="cta-button">Confirmar Cita</button>
+              <button type="button" class="secondary-button" id="generate-pdf">Descargar PDF</button>
+            </form>
+            <div class="pdf-viewer-container"></div>
+          </div>
         </div>
       </div>
       
@@ -86,6 +202,18 @@
     </div>
   </div>
 
-  <!-- ... (rest of the file remains exactly the same) ... -->
+  <div class="loading-indicator">
+    <div class="loading-spinner"></div>
+    <p id="loading-text">Agendando cita...</p>
+  </div>
+
+  <!-- Three.js and other libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+  <!-- Add ICS generator and PDF libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/ics-js/dist/ics.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <script src="catalog.js"></script>
 </body>
 </html>
