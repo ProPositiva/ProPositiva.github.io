@@ -5,7 +5,9 @@
     --accent-color: #ecb306;
     --light-color: #f8f8f8;
     --dark-color: #222;
-    --transition: all 0.3s ease;
+    --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -15,10 +17,11 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--primary-color);
     background-color: var(--light-color);
+    overflow-x: hidden;
 }
 
 .container {
@@ -34,19 +37,46 @@ header {
     color: white;
     padding: 2rem 0;
     text-align: center;
+    position: relative;
+    z-index: 100;
 }
 
 header h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
 }
 
+/* Catalog Intro */
+.catalog-intro {
+    text-align: center;
+    margin: 2rem 0 3rem;
+    padding: 0 1rem;
+}
+
+.catalog-intro h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.catalog-intro p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Navigation */
 nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
     gap: 1.5rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -56,6 +86,7 @@ nav a {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: var(--transition);
+    font-size: 0.95rem;
 }
 
 nav a:hover, nav a.active {
@@ -66,7 +97,7 @@ nav a:hover, nav a.active {
 /* Catalog Grid */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
 }
@@ -75,14 +106,25 @@ nav a:hover, nav a.active {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--card-shadow);
     transition: var(--transition);
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/4;
+    background: white;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
+
+.catalog-item:nth-child(1) { animation-delay: 0.1s; }
+.catalog-item:nth-child(2) { animation-delay: 0.2s; }
+.catalog-item:nth-child(3) { animation-delay: 0.3s; }
+.catalog-item:nth-child(4) { animation-delay: 0.4s; }
+.catalog-item:nth-child(5) { animation-delay: 0.5s; }
+.catalog-item:nth-child(6) { animation-delay: 0.6s; }
 
 .catalog-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: var(--hover-shadow);
 }
 
 .catalog-item img {
@@ -90,10 +132,7 @@ nav a:hover, nav a.active {
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
-}
-
-.catalog-item:hover img {
-    transform: scale(1.05);
+    display: block;
 }
 
 .item-overlay {
@@ -106,20 +145,32 @@ nav a:hover, nav a.active {
     color: white;
     transform: translateY(100%);
     transition: var(--transition);
+    opacity: 0;
 }
 
 .catalog-item:hover .item-overlay {
     transform: translateY(0);
+    opacity: 1;
 }
 
 .item-title {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .item-category {
-    font-size: 0.9rem;
-    opacity: 0.8;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Loading State */
+.loading-item {
+    background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+    background-size: 1000px 100%;
+    animation: shimmer 1.5s infinite linear;
 }
 
 /* Footer */
@@ -129,6 +180,23 @@ footer {
     text-align: center;
     padding: 1.5rem 0;
     margin-top: 3rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
 }
 
 /* Responsive Design */
@@ -143,13 +211,28 @@ footer {
     }
     
     nav ul {
-        flex-wrap: wrap;
         gap: 0.5rem;
+    }
+    
+    .catalog-intro h2 {
+        font-size: 1.6rem;
     }
 }
 
 @media (max-width: 480px) {
     .catalog-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .catalog-intro {
+        margin: 1.5rem 0;
+    }
+    
+    .catalog-intro h2 {
+        font-size: 1.4rem;
+    }
+    
+    .catalog-intro p {
+        font-size: 1rem;
     }
 }

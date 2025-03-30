@@ -3,35 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo</title>
+    <title>Product Details</title>
     <link rel="stylesheet" href="catalog_item.css">
-	  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="57x57" href="Assets/Icons/FavIcon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="Assets/Icons/FavIcon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="Assets/Icons/FavIcon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="Assets/Icons/FavIcon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="Assets/Icons/FavIcon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="Assets/Icons/FavIcon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
-  <link rel="manifest" href="Assets/Icons/FavIcon/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="Assets/Icons/FavIcon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="Assets/Icons/FavIcon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="Assets/Icons/FavIcon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="Assets/Icons/FavIcon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="Assets/Icons/FavIcon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="Assets/Icons/FavIcon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
+    <link rel="manifest" href="Assets/Icons/FavIcon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Initial state for animations */
+        body:not(.loaded) .item-detail,
+        body:not(.loaded) footer {
+            opacity: 0;
+        }
+        
+        /* Back button transition */
+        .back-button {
+            transition: var(--transition);
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <a href="catalog.html" class="back-button">
-                <i class="fas fa-arrow-left"></i> Regresar a Catalogo
+                <i class="fas fa-arrow-left"></i> Back to Catalog
             </a>
-            <h1 id="item-title">Detallo de Productos</h1>
+            <h1 id="item-title">Product Details</h1>
         </div>
     </header>
 
