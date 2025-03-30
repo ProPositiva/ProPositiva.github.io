@@ -273,8 +273,18 @@ $(document).ready(function () {
 
 // Initialize scroll animations for services section
 document.addEventListener('DOMContentLoaded', function() {
+  // Set header height CSS variable
+  const header = document.querySelector('header');
+  if (header) {
+    document.documentElement.style.setProperty(
+      '--header-height', 
+      `${header.offsetHeight}px`
+    );
+  }
+
   // Intersection Observer for scroll animations
   const animateOnScroll = function() {
+    const servicesSection = document.querySelector('.services');
     const itemsToAnimate = document.querySelectorAll('.process-item');
     
     const observerOptions = {
@@ -294,8 +304,31 @@ document.addEventListener('DOMContentLoaded', function() {
     itemsToAnimate.forEach(item => {
       observer.observe(item);
     });
+
+    // Make sure services section doesn't overlap others
+    const sectionsAfterServices = document.querySelectorAll('#testimonials, #partners, #contact');
+    sectionsAfterServices.forEach(section => {
+      section.style.position = 'relative';
+      section.style.zIndex = '2';
+    });
   };
 
   // Initialize effects
   animateOnScroll();
+
+  // Resize observer for header height changes
+  const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      if (entry.target === header) {
+        document.documentElement.style.setProperty(
+          '--header-height', 
+          `${entry.contentRect.height}px`
+        );
+      }
+    }
+  });
+
+  if (header) {
+    resizeObserver.observe(header);
+  }
 });
