@@ -27,14 +27,11 @@ const languageData = {
     contactEmailLabel: "Email",
     contactMessageLabel: "Message",
     contactSubmit: "Send Message",
-    processHeading1: "We are combining our love of well-designed architecture",
-    processHeading2: "with our technical knowledge to help you thrive.",
+    processHeading1: "We combine our passion for architectural design",
+    processHeading2: "with our technical knowledge to help you grow.",
     processCategory1: "CONSULTING",
     processCategory2: "MANAGEMENT",
-    processCategory3: "REAL ESTATE",
-    ctaHeading: "Ready?",
-    ctaText: "Design. Construction. Excellence.<br>With us, no worries.",
-    ctaButton: "Contact us"
+    processCategory3: "REAL ESTATE"
   },
   es: {
     heroTitle: "Soluciones de Arquitectura Innovadoras",
@@ -67,10 +64,7 @@ const languageData = {
     processHeading2: "con nuestro conocimiento técnico para ayudarte a crecer.",
     processCategory1: "CONSULTORÍA",
     processCategory2: "GESTIÓN",
-    processCategory3: "BIENES RAÍCES",
-    ctaHeading: "¿Listo?",
-    ctaText: "Diseño. Construcción. Excelencia.<br>Con nosotros, sin preocupaciones.",
-    ctaButton: "Contáctenos"
+    processCategory3: "BIENES RAÍCES"
   },
 };
 
@@ -102,10 +96,7 @@ const elementsToUpdate = {
   contactMessageLabel: document.getElementById("contact-message-label"),
   contactSubmit: document.getElementById("contact-submit"),
   processHeading1: document.querySelector(".heading-line:nth-child(1)"),
-  processHeading2: document.querySelector(".heading-line:nth-child(2)"),
-  ctaHeading: document.querySelector(".cta-heading"),
-  ctaText: document.querySelector(".cta-text"),
-  ctaButton: document.querySelector(".btn-label")
+  processHeading2: document.querySelector(".heading-line:nth-child(2)")
 };
 
 // Set initial language to Spanish
@@ -116,11 +107,7 @@ function updateLanguage(language) {
   const data = languageData[language];
   for (const [key, element] of Object.entries(elementsToUpdate)) {
     if (element) {
-      if (key === "ctaText") {
-        element.innerHTML = data[key]; // Use innerHTML for line breaks
-      } else {
-        element.textContent = data[key];
-      }
+      element.textContent = data[key];
     }
   }
 }
@@ -286,20 +273,9 @@ $(document).ready(function () {
 
 // Initialize scroll animations for services section
 document.addEventListener('DOMContentLoaded', function() {
-  // Set header height CSS variable
-  const header = document.querySelector('header');
-  if (header) {
-    document.documentElement.style.setProperty(
-      '--header-height', 
-      `${header.offsetHeight}px`
-    );
-  }
-
   // Intersection Observer for scroll animations
   const animateOnScroll = function() {
-    const itemsToAnimate = document.querySelectorAll(
-      '.process-item, .process-cta'
-    );
+    const itemsToAnimate = document.querySelectorAll('.process-item');
     
     const observerOptions = {
       threshold: 0.1,
@@ -320,49 +296,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   };
 
-  // Parallax effect for heading
-  const parallaxHeading = function() {
-    const heading = document.querySelector('.process-heading');
-    const stickyWrapper = document.querySelector('.sticky-wrapper');
-    
-    if (!heading || !stickyWrapper) return;
-
-    const headingHeight = heading.offsetHeight;
-    const wrapperHeight = stickyWrapper.offsetHeight;
-    
-    window.addEventListener('scroll', function() {
-      const scrollPosition = window.scrollY;
-      const wrapperOffset = stickyWrapper.offsetTop;
-      
-      if (scrollPosition > wrapperOffset && 
-          scrollPosition < wrapperOffset + wrapperHeight) {
-        const progress = (scrollPosition - wrapperOffset) / wrapperHeight;
-        const translateY = progress * -50;
-        const opacity = 1 - (progress * 0.5);
-        
-        heading.style.transform = `translateY(${translateY}px)`;
-        heading.style.opacity = opacity;
-      }
-    });
-  };
-
-  // Initialize all effects
+  // Initialize effects
   animateOnScroll();
-  parallaxHeading();
-
-  // Resize observer for header height changes
-  const resizeObserver = new ResizeObserver(entries => {
-    for (let entry of entries) {
-      if (entry.target === header) {
-        document.documentElement.style.setProperty(
-          '--header-height', 
-          `${entry.contentRect.height}px`
-        );
-      }
-    }
-  });
-
-  if (header) {
-    resizeObserver.observe(header);
-  }
 });
