@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let touchStartX = 0;
   let currentMediaIndex = 0;
   let currentProjectMedia = [];
-  let isHorizontalSwipe = false;
+  let isHorizontalSwipe = true;
 
   // Initialize
   function initPortfolio() {
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     portfolioItems.forEach((item, index) => {
       const itemRect = item.getBoundingClientRect();
-      const distance = Math.abs(portfolioRect.top - itemRect.top);
+      const distance = Math.abs(portfolioRect.left - itemRect.left);
       
       if (distance < closestDistance) {
         closestDistance = distance;
@@ -181,19 +181,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Setup event listeners with improved mobile swiping
   function setupEventListeners() {
-    arrowUp.addEventListener('click', prevProject);
-    arrowDown.addEventListener('click', nextProject);
-    arrowLeft.addEventListener('click', prevMedia);
-    arrowRight.addEventListener('click', nextMedia);
+    arrowUp.addEventListener('click', prevMedia);
+    arrowDown.addEventListener('click', nextMedia);
+    arrowLeft.addEventListener('click', prevProject);
+    arrowRight.addEventListener('click', nextProject);
 
     window.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT') return;
       
       switch(e.key) {
-        case 'ArrowUp': e.preventDefault(); prevProject(); break;
-        case 'ArrowDown': e.preventDefault(); nextProject(); break;
-        case 'ArrowLeft': e.preventDefault(); prevMedia(); break;
-        case 'ArrowRight': e.preventDefault(); nextMedia(); break;
+        case 'ArrowUp': e.preventDefault(); prevMedia(); break;
+        case 'ArrowDown': e.preventDefault(); nextMedia(); break;
+        case 'ArrowLeft': e.preventDefault(); prevProject(); break;
+        case 'ArrowRight': e.preventDefault(); nextProject(); break;
       }
     });
 
@@ -204,18 +204,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Improved touch handling for both vertical and horizontal swipes
+    // Improved touch handling for horizontal scrolling
     portfolioBackground.addEventListener('touchstart', function(e) {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
-      isHorizontalSwipe = false;
+      isHorizontalSwipe = true;
     }, { passive: true });
 
     portfolioBackground.addEventListener('touchmove', function(e) {
-      if (!isHorizontalSwipe) {
+      if (isHorizontalSwipe) {
         const xDiff = Math.abs(e.touches[0].clientX - touchStartX);
         const yDiff = Math.abs(e.touches[0].clientY - touchStartY);
-        isHorizontalSwipe = xDiff > yDiff;
+        if (yDiff > xDiff) {
+          isHorizontalSwipe = false;
+        }
       }
     }, { passive: true });
 
@@ -228,15 +230,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (isHorizontalSwipe && Math.abs(xDiff) > 50) {
         e.preventDefault();
         if (xDiff > 0) {
-          nextMedia();
-        } else {
-          prevMedia();
-        }
-      } else if (!isHorizontalSwipe && Math.abs(yDiff) > 50) {
-        if (yDiff > 0) {
           nextProject();
         } else {
           prevProject();
+        }
+      } else if (!isHorizontalSwipe && Math.abs(yDiff) > 50) {
+        if (yDiff > 0) {
+          nextMedia();
+        } else {
+          prevMedia();
         }
       }
     }, { passive: false });
@@ -253,7 +255,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }, {
       root: portfolioList,
-      threshold: 0.7
+      threshold: 0.7,
+      rootMargin: "0px",
+      trackVisibility: true,
+      delay: 100
     });
 
     portfolioItems.forEach(item => {
