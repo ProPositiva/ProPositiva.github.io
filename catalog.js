@@ -1,4 +1,4 @@
-// Sample catalog data (in a real app, this would come from an API)
+// Sample catalog data
 const catalogData = [
     {
         id: 1,
@@ -100,18 +100,21 @@ function renderCatalogItems(items) {
             <div class="item-overlay">
                 <h3 class="item-title">${item.title}</h3>
                 <span class="item-category">${item.category}</span>
-                <p class="item-description" style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.9; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
-                    ${item.description}
-                </p>
+                <p class="item-description">${item.description.substring(0, 80)}...</p>
             </div>
         `;
         
         itemElement.addEventListener('click', (e) => {
             if (!e.target.classList.contains('item-description')) {
-                itemElement.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    window.location.href = `item.html?id=${item.id}`;
-                }, 150);
+                // Save both product data and current filter
+                sessionStorage.setItem('currentProduct', JSON.stringify(item));
+                const activeFilter = document.querySelector('nav a.active')?.textContent;
+                if (activeFilter) {
+                    sessionStorage.setItem('currentFilter', activeFilter);
+                }
+                
+                // Navigate to detail page
+                window.location.href = `catalog_item.html?id=${item.id}`;
             }
         });
         
@@ -160,6 +163,17 @@ function setupEventListeners() {
             filterItems(link.textContent);
         });
     });
+    
+    // Check for filter on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const filter = urlParams.get('filter');
+    if (filter) {
+        const activeLink = [...navLinks].find(link => link.textContent === filter);
+        if (activeLink) {
+            activeLink.classList.add('active');
+            filterItems(filter);
+        }
+    }
 }
 
 // Initialize the catalog when the page loads

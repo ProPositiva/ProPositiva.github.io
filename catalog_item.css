@@ -45,6 +45,7 @@
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: var(--transition);
+    cursor: zoom-in;
 }
 
 .main-image img {
@@ -52,11 +53,6 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-}
-
-.main-image.zoomed img {
-    transform: scale(1.5);
-    cursor: zoom-out;
 }
 
 .thumbnail-grid {
@@ -131,6 +127,15 @@
     margin-bottom: 1rem;
 }
 
+.description ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.description li {
+    margin-bottom: 0.5rem;
+}
+
 .video-container {
     margin-top: 2rem;
     width: 100%;
@@ -145,6 +150,38 @@
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* Initial state for animations */
+body:not(.loaded) .item-detail,
+body:not(.loaded) footer {
+    opacity: 0;
+}
+
+body.loaded .item-detail,
+body.loaded footer {
+    opacity: 1;
+}
+
+/* Zoom effect */
+.main-image.zoomed {
+    cursor: zoom-out;
+    transform: scale(1.5);
+    z-index: 100;
+}
+
+.main-image.zoomed img {
+    transform: scale(1.5);
+}
+
+/* Not found page styles */
+.not-found-container {
+    text-align: center;
+    padding: 3rem;
+}
+
+.not-found-container h2 {
+    margin-bottom: 1rem;
 }
 
 /* Responsive Design */

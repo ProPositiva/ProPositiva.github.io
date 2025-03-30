@@ -9,71 +9,81 @@ const detailTitle = document.getElementById('detail-title');
 const detailCategory = document.getElementById('detail-category');
 const detailDescription = document.getElementById('detail-description');
 const videoContainer = document.getElementById('video-container');
+const backButton = document.getElementById('back-button');
 
-// Sample product data (replace with actual API call)
-const products = [
-    {
-        id: 1,
-        title: "Product 1",
-        category: "Category 1",
-        image: "images/product1.jpg",
-        description: "Detailed description of Product 1 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.\n\nAdditional features include:\n- High-quality materials\n- Eco-friendly production\n- 2-year warranty",
-        images: ["images/product1.jpg", "images/product1-1.jpg", "images/product1-2.jpg"],
-        videos: ["https://www.youtube.com/embed/example1"]
-    },
-    {
-        id: 2,
-        title: "Product 2",
-        category: "Category 2",
-        image: "images/product2.jpg",
-        description: "Detailed description of Product 2 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
-        images: ["images/product2.jpg", "images/product2-1.jpg"],
-        videos: []
-    },
-    {
-        id: 3,
-        title: "Product 3",
-        category: "Category 1",
-        image: "images/product3.jpg",
-        description: "Detailed description of Product 3 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
-        images: ["images/product3.jpg", "images/product3-1.jpg", "images/product3-2.jpg"],
-        videos: ["https://www.youtube.com/embed/example3"]
-    },
-    {
-        id: 4,
-        title: "Product 4",
-        category: "Category 3",
-        image: "images/product4.jpg",
-        description: "Detailed description of Product 4 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
-        images: ["images/product4.jpg", "images/product4-1.jpg"],
-        videos: []
-    },
-    {
-        id: 5,
-        title: "Product 5",
-        category: "Category 2",
-        image: "images/product5.jpg",
-        description: "Detailed description of Product 5 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
-        images: ["images/product5.jpg", "images/product5-1.jpg", "images/product5-2.jpg"],
-        videos: ["https://www.youtube.com/embed/example5"]
-    },
-    {
-        id: 6,
-        title: "Product 6",
-        category: "Category 3",
-        image: "images/product6.jpg",
-        description: "Detailed description of Product 6 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
-        images: ["images/product6.jpg", "images/product6-1.jpg"],
-        videos: []
-    }
-];
-
-// Find product by ID
+// Get product data from sessionStorage or sample data
 function getProductById(id) {
+    // First try to get from sessionStorage
+    const storedProduct = sessionStorage.getItem('currentProduct');
+    if (storedProduct) {
+        const product = JSON.parse(storedProduct);
+        if (product.id === parseInt(id)) {
+            return product;
+        }
+    }
+    
+    // Fallback to sample data if not found in sessionStorage
+    const products = [
+        {
+            id: 1,
+            title: "Product 1",
+            category: "Category 1",
+            image: "images/product1.jpg",
+            description: "Detailed description of Product 1 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.\n\nAdditional features:\n- High-quality materials\n- Eco-friendly production\n- 2-year warranty",
+            images: ["images/product1.jpg", "images/product1-1.jpg", "images/product1-2.jpg"],
+            videos: ["https://www.youtube.com/embed/example1"]
+        },
+        {
+            id: 2,
+            title: "Product 2",
+            category: "Category 2",
+            image: "images/product2.jpg",
+            description: "Detailed description of Product 2 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
+            images: ["images/product2.jpg", "images/product2-1.jpg"],
+            videos: []
+        },
+        {
+            id: 3,
+            title: "Product 3",
+            category: "Category 1",
+            image: "images/product3.jpg",
+            description: "Detailed description of Product 3 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
+            images: ["images/product3.jpg", "images/product3-1.jpg", "images/product3-2.jpg"],
+            videos: ["https://www.youtube.com/embed/example3"]
+        },
+        {
+            id: 4,
+            title: "Product 4",
+            category: "Category 3",
+            image: "images/product4.jpg",
+            description: "Detailed description of Product 4 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
+            images: ["images/product4.jpg", "images/product4-1.jpg"],
+            videos: []
+        },
+        {
+            id: 5,
+            title: "Product 5",
+            category: "Category 2",
+            image: "images/product5.jpg",
+            description: "Detailed description of Product 5 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
+            images: ["images/product5.jpg", "images/product5-1.jpg", "images/product5-2.jpg"],
+            videos: ["https://www.youtube.com/embed/example5"]
+        },
+        {
+            id: 6,
+            title: "Product 6",
+            category: "Category 3",
+            image: "images/product6.jpg",
+            description: "Detailed description of Product 6 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
+            images: ["images/product6.jpg", "images/product6-1.jpg"],
+            videos: []
+        }
+    ];
+    
     return products.find(product => product.id === parseInt(id));
 }
 
-// Render product details with animations
+// Render product details
 function renderProductDetails(product) {
     if (!product) {
         handleProductNotFound();
@@ -89,8 +99,10 @@ function renderProductDetails(product) {
     // Format description with paragraphs
     detailDescription.innerHTML = product.description
         .split('\n\n')
-        .map(para => `<p>${para}</p>`)
-        .join('');
+        .map(para => para.startsWith('- ') ? `<li>${para.substring(2)}</li>` : `<p>${para}</p>`)
+        .join('')
+        .replace('<li>', '<ul><li>')
+        .replace(/<\/li>(?![^<]*<\/ul>)/g, '</li></ul>');
     
     // Set main image
     mainImage.src = product.image;
@@ -134,6 +146,17 @@ function renderProductDetails(product) {
         this.classList.toggle('zoomed');
     });
     
+    // Set up back button
+    backButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const storedFilter = sessionStorage.getItem('currentFilter');
+        if (storedFilter) {
+            window.location.href = `catalog.html?filter=${encodeURIComponent(storedFilter)}`;
+        } else {
+            window.location.href = 'catalog.html';
+        }
+    });
+    
     // Mark as loaded
     setTimeout(() => {
         document.body.classList.add('loaded');
@@ -172,6 +195,12 @@ function handleProductNotFound() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if product ID exists
+    if (!productId) {
+        window.location.href = 'catalog.html';
+        return;
+    }
+    
     const product = getProductById(productId);
     
     // Add keyboard navigation for zoom
