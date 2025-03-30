@@ -48,9 +48,9 @@ body {
 }
 
 .view-option.active {
-  background-color: #5a7c65;
+  background-color: #ecb306;
   color: white;
-  border-color: #5a7c65;
+  border-color: #ecb306;
 }
 
 .model-viewer {
@@ -112,7 +112,7 @@ body {
 }
 
 .floorplan-nav:hover {
-  background-color: #5a7c65;
+  background-color: #ecb306;
 }
 
 .model-info {
@@ -163,7 +163,7 @@ body {
 
 .step.active {
   color: #fff;
-  border-bottom-color: #5a7c65;
+  border-bottom-color: #ecb306;
   font-weight: 500;
 }
 
@@ -213,7 +213,7 @@ body {
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #5a7c65;
+  border-color: #ecb306;
 }
 
 /* Option Styles */
@@ -239,7 +239,7 @@ body {
 }
 
 .model-option.active {
-  border-color: #5a7c65;
+  border-color: #ecb306;
   background-color: rgba(90, 124, 101, 0.2);
 }
 
@@ -295,16 +295,16 @@ body {
 }
 
 .option.active {
-  background-color: #5a7c65;
+  background-color: #ecb306;
   color: white;
-  border-color: #5a7c65;
+  border-color: #ecb306;
 }
 
 /* Button Styles */
 .cta-button {
   width: 100%;
   padding: 15px;
-  background-color: #5a7c65;
+  background-color: #ecb306;
   color: white;
   border: none;
   border-radius: 5px;
@@ -355,7 +355,7 @@ body {
 }
 
 .nav-button.next {
-  background-color: #5a7c65;
+  background-color: #ecb306;
   color: white;
 }
 
@@ -398,7 +398,7 @@ body {
 }
 
 .confirmation-message h3 {
-  color: #5a7c65;
+  color: #ecb306;
   margin-bottom: 15px;
 }
 
@@ -429,7 +429,7 @@ body {
   height: 50px;
   border: 5px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: #5a7c65;
+  border-top-color: #ecb306;
   animation: spin 1s ease-in-out infinite;
   margin-bottom: 15px;
 }
