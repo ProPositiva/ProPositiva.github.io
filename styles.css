@@ -43,7 +43,6 @@ body {
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
   transition: var(--transition);
@@ -178,8 +177,6 @@ body {
   padding: 4rem 2rem;
   text-align: center;
   background-color: var(--section-bg);
-  position: relative;
-  z-index: 2;
 }
 
 .catalog h2 {
@@ -188,54 +185,32 @@ body {
   color: #fff;
 }
 
-.catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+.catalog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: 2rem;
 }
 
-.catalog-item {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.catalog-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.catalog-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px 10px 0 0;
-}
-
-.catalog-item h3 {
-  font-size: 1.5rem;
-  margin: 1rem;
-  color: #333;
-}
-
-.cta-button {
+.catalog-link {
+  width: 200px;
+  height: 60px;
   background: var(--accent-color);
   color: #fff;
-  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-  border: none;
-  cursor: pointer;
-  margin: 1rem auto;
-  display: block;
+  font-weight: 600;
+  transition: var(--transition);
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
-.cta-button:hover {
+.catalog-link:first-child {
+  border-right: none;
+}
+
+.catalog-link:hover {
   background: #d49e05;
 }
 
@@ -244,8 +219,6 @@ body {
   padding: 4rem 2rem;
   text-align: center;
   background-color: var(--section-bg);
-  position: relative;
-  z-index: 2;
 }
 
 .about h2 {
@@ -274,16 +247,14 @@ body {
 
 /* Services Section */
 .services {
-  position: relative;
+  padding: 4rem 0;
   background-color: var(--dark-bg);
-  z-index: 1;
+  position: relative;
 }
 
 .process-container {
   position: relative;
   min-height: 100vh;
-  padding-top: var(--header-height);
-  z-index: 1;
 }
 
 .sticky-wrapper {
@@ -291,9 +262,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: calc(100vh - var(--header-height));
-  position: sticky;
-  top: var(--header-height);
-  z-index: 1;
 }
 
 .process-intro {
@@ -307,6 +275,7 @@ body {
   line-height: 1.2;
   max-width: 80%;
   color: #fff;
+  margin: 0 auto;
 }
 
 .heading-line {
@@ -316,7 +285,6 @@ body {
 .process-items {
   margin-top: 4rem;
   position: relative;
-  z-index: 1;
 }
 
 .process-item {
@@ -339,6 +307,7 @@ body {
 
 .process-item-content {
   max-width: 80%;
+  margin: 0 auto;
 }
 
 .process-header {
@@ -384,8 +353,6 @@ body {
   padding: 4rem 2rem;
   text-align: center;
   background-color: var(--section-bg);
-  position: relative;
-  z-index: 2;
 }
 
 .testimonials h2 {
@@ -404,20 +371,26 @@ body {
 .testimonial {
   width: 30%;
   min-width: 250px;
-  padding: 1.5rem;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #333;
+  padding: 2rem;
+  background: var(--dark-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .testimonial p {
   font-size: 1rem;
   margin-bottom: 1rem;
+  color: #fff;
 }
 
 .testimonial p:last-child {
   font-weight: bold;
+  color: var(--accent-color);
 }
 
 /* Partners Carousel */
@@ -425,8 +398,6 @@ body {
   padding: 4rem 2rem;
   text-align: center;
   background-color: var(--dark-bg);
-  position: relative;
-  z-index: 2;
 }
 
 .partners h2 {
@@ -440,8 +411,7 @@ body {
   max-width: 1200px;
   background: var(--section-bg);
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .partners-carousel img {
@@ -487,8 +457,6 @@ body {
   padding: 4rem 2rem;
   text-align: center;
   background-color: var(--section-bg);
-  position: relative;
-  z-index: 2;
 }
 
 .contact h2 {
@@ -521,7 +489,6 @@ form textarea {
   margin: 0.5rem 0;
   padding: 0.75rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
   color: #333;
@@ -536,15 +503,15 @@ form textarea {
 form button {
   background: var(--accent-color);
   color: #fff;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   margin-top: 1rem;
   transition: var(--transition);
   width: 100%;
   max-width: 200px;
+  font-weight: 600;
 }
 
 form button:hover {
@@ -596,8 +563,6 @@ footer {
   text-align: center;
   padding: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 2;
 }
 
 footer p {
@@ -611,8 +576,7 @@ footer p {
     margin-left: 40%;
   }
   
-  .process-item,
-  .process-cta {
+  .process-item {
     min-height: 70vh;
   }
   
@@ -622,19 +586,12 @@ footer p {
 }
 
 @media (max-width: 768px) {
-  .sticky-wrapper {
-    height: auto;
-    position: relative;
-    top: 0;
-  }
-  
   .process-heading,
   .process-item-content {
     max-width: 100%;
   }
   
-  .process-item,
-  .process-cta {
+  .process-item {
     min-height: 100vh;
     padding: 2rem 0;
   }
@@ -670,6 +627,21 @@ footer p {
   
   .partners-carousel img {
     max-width: 100px;
+  }
+  
+  .catalog-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .catalog-link {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .catalog-link:first-child {
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: none;
   }
 }
 

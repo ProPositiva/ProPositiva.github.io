@@ -15,11 +15,7 @@ const languageData = {
     service3Title: "Real Estate",
     service3Description: "Helping you find the perfect space.",
     portfolioTitle: "PORTFOLIO",
-    portfolioShowMore: "Show More",
-    portfolioShowLess: "Show Less",
     catalogTitle: "CATALOG",
-    catalogShowMore: "Show More",
-    catalogShowLess: "Show Less",
     testimonialsTitle: "What Our Clients Say",
     partnersTitle: "OUR ALLIES",
     contactTitle: "CONTACT US",
@@ -31,7 +27,9 @@ const languageData = {
     processHeading2: "with our technical knowledge to help you grow.",
     processCategory1: "CONSULTING",
     processCategory2: "MANAGEMENT",
-    processCategory3: "REAL ESTATE"
+    processCategory3: "REAL ESTATE",
+    catalogButton1: "CATALOG",
+    catalogButton2: "CONFIGURATOR"
   },
   es: {
     heroTitle: "Soluciones de Arquitectura Innovadoras",
@@ -48,11 +46,7 @@ const languageData = {
     service3Title: "Bienes Raíces",
     service3Description: "Ayudándole a encontrar el espacio perfecto.",
     portfolioTitle: "PORTAFOLIO",
-    portfolioShowMore: "Mostrar Más",
-    portfolioShowLess: "Mostrar Menos",
     catalogTitle: "CATALOGO",
-    catalogShowMore: "Mostrar Más",
-    catalogShowLess: "Mostrar Menos",
     testimonialsTitle: "Lo Que Dicen los Clientes",
     partnersTitle: "NUESTROS ALIADOS",
     contactTitle: "CONTACTENOS",
@@ -64,8 +58,10 @@ const languageData = {
     processHeading2: "con nuestro conocimiento técnico para ayudarte a crecer.",
     processCategory1: "CONSULTORÍA",
     processCategory2: "GESTIÓN",
-    processCategory3: "BIENES RAÍCES"
-  },
+    processCategory3: "BIENES RAÍCES",
+    catalogButton1: "CATALOGO",
+    catalogButton2: "CONFIGURADOR"
+  }
 };
 
 // Get the language button and all elements with text to update
@@ -85,9 +81,7 @@ const elementsToUpdate = {
   service3Title: document.querySelector(".process-item:nth-child(3) .process-category"),
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
-  portfolioShowMore: document.getElementById("show-more-button"),
   catalogTitle: document.getElementById("catalog-title"),
-  catalogShowMore: document.getElementById("show-more-catalog-button"),
   testimonialsTitle: document.getElementById("testimonials-title"),
   partnersTitle: document.getElementById("partners-title"),
   contactTitle: document.getElementById("contact-title"),
@@ -96,7 +90,9 @@ const elementsToUpdate = {
   contactMessageLabel: document.getElementById("contact-message-label"),
   contactSubmit: document.getElementById("contact-submit"),
   processHeading1: document.querySelector(".heading-line:nth-child(1)"),
-  processHeading2: document.querySelector(".heading-line:nth-child(2)")
+  processHeading2: document.querySelector(".heading-line:nth-child(2)"),
+  catalogButton1: document.querySelector(".catalog-link:first-child"),
+  catalogButton2: document.querySelector(".catalog-link:last-child")
 };
 
 // Set initial language to Spanish
@@ -167,74 +163,6 @@ portfolioItems.forEach((item) => {
   });
 });
 
-// Catalog Data
-const catalogData = [
-  {
-    id: 1,
-    title: "Catálogo 1",
-    thumbnail: "Assets/Images/Catalog/catalog1.jpg",
-    description: "Descripción detallada del Catálogo 1.",
-  },
-  {
-    id: 2,
-    title: "Catálogo 2",
-    thumbnail: "Assets\\Images\\Catalog\\catalog2.jpg",
-    description: "Descripción detallada del Catálogo 2.",
-  },
-  {
-    id: 3,
-    title: "Catálogo 3",
-    thumbnail: "Assets\\Images\\Catalog\\catalog3",
-  },
-  {
-    id: 4,
-    title: "Catálogo 4",
-    thumbnail: "Assets\\Images\\Catalog\\catalog4",
-  },
-];
-
-// Function to generate catalog grid
-function generateCatalogGrid(limit) {
-  const catalogGrid = document.getElementById("catalog-grid");
-  catalogGrid.innerHTML = ""; // Clear existing content
-
-  catalogData.slice(0, limit).forEach((item) => {
-    const catalogItem = document.createElement("div");
-    catalogItem.classList.add("catalog-item");
-
-    const catalogImage = document.createElement("img");
-    catalogImage.src = item.thumbnail;
-    catalogImage.alt = item.title;
-
-    const catalogTitle = document.createElement("h3");
-    catalogTitle.textContent = item.title;
-
-    catalogItem.appendChild(catalogImage);
-    catalogItem.appendChild(catalogTitle);
-    catalogGrid.appendChild(catalogItem);
-  });
-}
-
-// Function to toggle "Show More" / "Show Less" for catalog
-function toggleCatalogView() {
-  const showMoreButton = document.getElementById("show-more-catalog-button");
-  const catalogGrid = document.getElementById("catalog-grid");
-
-  if (showMoreButton.textContent === languageData[currentLanguage].catalogShowMore) {
-    generateCatalogGrid(catalogData.length); // Show all catalog items
-    showMoreButton.textContent = languageData[currentLanguage].catalogShowLess;
-  } else {
-    generateCatalogGrid(3); // Show only 3 catalog items
-    showMoreButton.textContent = languageData[currentLanguage].catalogShowMore;
-  }
-}
-
-// Initialize catalog grid with limited items
-generateCatalogGrid(3);
-
-// Add event listener to the "Show More" button for catalog
-document.getElementById("show-more-catalog-button").addEventListener("click", toggleCatalogView);
-
 // Initialize Partners Carousel
 $(document).ready(function () {
   $(".partners-carousel").slick({
@@ -284,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Intersection Observer for scroll animations
   const animateOnScroll = function() {
-    const servicesSection = document.querySelector('.services');
     const itemsToAnimate = document.querySelectorAll('.process-item');
     
     const observerOptions = {
@@ -303,13 +230,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     itemsToAnimate.forEach(item => {
       observer.observe(item);
-    });
-
-    // Make sure services section doesn't overlap others
-    const sectionsAfterServices = document.querySelectorAll('#testimonials, #partners, #contact');
-    sectionsAfterServices.forEach(section => {
-      section.style.position = 'relative';
-      section.style.zIndex = '2';
     });
   };
 
