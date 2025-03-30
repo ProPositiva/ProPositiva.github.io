@@ -10,6 +10,7 @@ body {
 
 /* Custom Scrollbar */
 .portfolio-list::-webkit-scrollbar {
+  height: 2px;
   width: 2px;
 }
 
@@ -134,7 +135,7 @@ body {
 .project-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   background: rgba(64, 64, 64, 0.9);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255,255,255,0.1);
@@ -164,18 +165,24 @@ body {
 
 /* Portfolio List */
 .portfolio-list {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
   height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  width: 100vw;
+  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+  touch-action: pan-x;
   scroll-behavior: smooth;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-x: contain;
 }
 
 .portfolio-item {
+  width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
+  flex: 0 0 auto;
   position: relative;
   display: flex;
   align-items: center;
@@ -207,9 +214,9 @@ body {
   z-index: 1000;
   display: grid;
   grid-template-areas:
-    ". up ."
     "left . right"
-    ". down .";
+    ". . ."
+    "up . down";
   gap: 10px;
 }
 
@@ -278,6 +285,7 @@ body {
     transition: none;
   }
 }
+
 /* Mobile Video and Swipe Improvements */
 @media (max-width: 768px) {
   /* Improved video display for mobile */
@@ -291,6 +299,10 @@ body {
   
   /* Better touch area for swiping */
   .portfolio-background {
-    touch-action: pan-y;
+    touch-action: pan-x;
+  }
+  
+  .portfolio-list {
+    touch-action: pan-x;
   }
 }
