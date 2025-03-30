@@ -1,0 +1,152 @@
+/* Base Styles */
+:root {
+  --header-height: 80px;
+  --section-padding: 4vw;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #f0f0f0;
+}
+
+/* Container Setup */
+.process-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.sticky-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+}
+
+/* Process Intro */
+.process-intro {
+  padding-top: var(--section-padding);
+}
+
+.process-heading {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Process Items */
+.process-items {
+  margin-top: 4rem;
+  position: relative;
+}
+
+.process-item {
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.process-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.process-category {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.process-icon img {
+  width: 40px;
+  height: auto;
+  margin-top: 1rem;
+}
+
+.process-abbrev {
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 0.8;
+}
+
+.process-description {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* CTA Section */
+.process-cta {
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.cta-heading {
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.cta-content {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  text-decoration: none;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation Classes */
+.process-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.process-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sticky-wrapper {
+    height: auto;
+    position: relative;
+    top: 0;
+  }
+  
+  .process-heading {
+    max-width: 100%;
+    font-size: 2rem;
+  }
+  
+  .process-item {
+    min-height: 250px;
+  }
+  
+  .process-abbrev {
+    font-size: 3rem;
+  }
+}
