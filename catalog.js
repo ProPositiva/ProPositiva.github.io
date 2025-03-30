@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       interior: {
         'tipo de piso': { name: 'porcelanato' }
+      },
+      extras: {
+        'outdoor features': { name: 'none' },
+        'garage options': { name: '2-car' }
       }
     },
     threeJS: {
@@ -221,11 +225,29 @@ document.addEventListener('DOMContentLoaded', function() {
     roof.rotation.y = Math.PI / 4;
     group.add(roof);
     
+    // Add garage based on selection
+    addGarage(config.selectedOptions.extras['garage options'].name);
+    
+    // Add outdoor feature based on selection
+    addOutdoorFeature(config.selectedOptions.extras['outdoor features'].name);
+    
     config.threeJS.model = group;
     config.threeJS.scene.add(group);
     
     // Apply selected materials
     applySelectedMaterials();
+  }
+
+  function addGarage(type) {
+    // This would be replaced with actual Three.js code
+    console.log(`Adding ${type} garage to model`);
+    // Would modify the 3D scene based on garage type
+  }
+
+  function addOutdoorFeature(feature) {
+    // This would be replaced with actual Three.js code
+    console.log(`Adding ${feature} to model`);
+    // Would modify the 3D scene based on feature
   }
 
   function applySelectedMaterials() {
@@ -316,12 +338,17 @@ document.addEventListener('DOMContentLoaded', function() {
     option.classList.add('active');
     
     config.selectedOptions[category][group] = {
-      name: option.textContent
+      name: option.dataset.option
     };
     
     // Update 3D materials if this is an exterior option
     if (category === 'exterior') {
       applySelectedMaterials();
+    }
+    
+    // Update 3D model if extras changed
+    if (category === 'extras') {
+      load3DModel(config.selectedModel);
     }
   }
 
