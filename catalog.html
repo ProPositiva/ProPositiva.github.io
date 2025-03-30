@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurador de Viviendas - Alianza ProPositiva</title>
+  <title>Diseña tu Casa Ideal - Alianza ProPositiva</title>
   <link rel="stylesheet" href="catalog.css">
-    <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="57x57" href="Assets/Icons/FavIcon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="Assets/Icons/FavIcon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="Assets/Icons/FavIcon/apple-icon-72x72.png">
@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="Assets/Icons/FavIcon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
@@ -23,7 +23,10 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="configurator-container">
@@ -51,9 +54,8 @@
       
       <div class="model-info">
         <h2 id="model-name">Casa Moderna</h2>
-        <div class="price-estimate">
-          <span>Estimado:</span>
-          <span id="total-price">$250,000</span>
+        <div class="model-description" id="model-description">
+          Un diseño contemporáneo con espacios abiertos y mucha luz natural.
         </div>
       </div>
     </div>
@@ -66,76 +68,103 @@
           <div class="step active" data-step="model">Modelo</div>
           <div class="step" data-step="exterior">Exterior</div>
           <div class="step" data-step="interior">Interior</div>
-          <div class="step" data-step="extras">Extras</div>
-          <div class="step" data-step="summary">Resumen</div>
+          <div class="step" data-step="appointment">Agendar</div>
         </div>
         
         <!-- Step Content -->
         <div class="step-content">
           <!-- Model Selection -->
           <div class="step-pane active" id="model-pane">
-            <h3>Seleccione su modelo base</h3>
+            <h3>Elige tu modelo preferido</h3>
             <div class="option-grid">
-              <div class="model-option active" data-model="moderna" data-price="250000">
+              <div class="model-option active" data-model="moderna">
                 <img src="Assets/Models/moderna-thumb.jpg" alt="Casa Moderna">
                 <h4>Casa Moderna</h4>
-                <p>Desde $250,000</p>
+                <p>Diseño contemporáneo con espacios abiertos</p>
               </div>
-              <div class="model-option" data-model="clasica" data-price="220000">
+              <div class="model-option" data-model="clasica">
                 <img src="Assets/Models/clasica-thumb.jpg" alt="Casa Clásica">
                 <h4>Casa Clásica</h4>
-                <p>Desde $220,000</p>
+                <p>Estilo tradicional con detalles elegantes</p>
               </div>
-              <div class="model-option" data-model="contemporanea" data-price="280000">
+              <div class="model-option" data-model="contemporanea">
                 <img src="Assets/Models/contemporanea-thumb.jpg" alt="Casa Contemporánea">
                 <h4>Casa Contemporánea</h4>
-                <p>Desde $280,000</p>
+                <p>Líneas limpias y diseño vanguardista</p>
               </div>
             </div>
           </div>
           
           <!-- Exterior Options -->
           <div class="step-pane" id="exterior-pane">
-            <h3>Personalice el exterior</h3>
+            <h3>Personaliza el exterior</h3>
             <div class="option-group">
               <h4>Materiales de Fachada</h4>
               <div class="option-selector">
-                <div class="option active" data-option="ladrillo" data-price="0">Ladrillo visto</div>
-                <div class="option" data-option="piedra" data-price="15000">Piedra natural</div>
-                <div class="option" data-option="estuco" data-price="8000">Estuco texturizado</div>
+                <div class="option active" data-option="ladrillo">Ladrillo visto</div>
+                <div class="option" data-option="piedra">Piedra natural</div>
+                <div class="option" data-option="estuco">Estuco texturizado</div>
               </div>
             </div>
             <div class="option-group">
               <h4>Color de Techo</h4>
               <div class="option-selector">
-                <div class="option active" data-option="rojo" data-price="0">Rojo</div>
-                <div class="option" data-option="gris" data-price="5000">Gris</div>
-                <div class="option" data-option="negro" data-price="7000">Negro</div>
+                <div class="option active" data-option="rojo">Rojo</div>
+                <div class="option" data-option="gris">Gris</div>
+                <div class="option" data-option="negro">Negro</div>
               </div>
             </div>
           </div>
           
           <!-- Interior Options -->
           <div class="step-pane" id="interior-pane">
-            <h3>Personalice el interior</h3>
+            <h3>Personaliza el interior</h3>
             <div class="option-group">
               <h4>Tipo de Piso</h4>
               <div class="option-selector">
-                <div class="option active" data-option="porcelanato" data-price="0">Porcelanato</div>
-                <div class="option" data-option="madera" data-price="12000">Madera</div>
-                <div class="option" data-option="marmol" data-price="18000">Mármol</div>
+                <div class="option active" data-option="porcelanato">Porcelanato</div>
+                <div class="option" data-option="madera">Madera</div>
+                <div class="option" data-option="marmol">Mármol</div>
               </div>
             </div>
           </div>
           
-          <!-- Summary -->
-          <div class="step-pane" id="summary-pane">
-            <h3>Resumen de su configuración</h3>
-            <div class="summary-details">
-              <!-- Will be populated by JavaScript -->
-            </div>
+          <!-- Appointment Booking -->
+          <div class="step-pane" id="appointment-pane">
+            <h3>Agenda una cita con nuestro equipo</h3>
+            <form id="appointment-form">
+              <div class="form-group">
+                <label for="name">Nombre completo</label>
+                <input type="text" id="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="date">Fecha preferida</label>
+                <input type="date" id="date" required>
+              </div>
+              <div class="form-group">
+                <label for="time">Hora preferida</label>
+                <select id="time" required>
+                  <option value="">Selecciona una hora</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                </select>
+              </div>
+              <button type="submit" class="cta-button">Confirmar Cita</button>
+              <button type="button" class="secondary-button" id="generate-pdf">Descargar PDF</button>
+            </form>
             <div class="pdf-viewer-container"></div>
-            <button class="cta-button">Solicitar Cotización</button>
           </div>
         </div>
       </div>
@@ -149,12 +178,14 @@
 
   <div class="loading-indicator">
     <div class="loading-spinner"></div>
-    <p>Generando documento...</p>
+    <p id="loading-text">Agendando cita...</p>
   </div>
 
   <!-- Three.js and other libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+  <!-- Add ICS generator and PDF libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/ics-js/dist/ics.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
   <script src="catalog.js"></script>

@@ -6,15 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedModel: 'moderna',
     selectedOptions: {
       exterior: {
-        'materiales de fachada': { name: 'ladrillo', price: 0 },
-        'color de techo': { name: 'rojo', price: 0 }
+        'materiales de fachada': { name: 'ladrillo' },
+        'color de techo': { name: 'rojo' }
       },
       interior: {
-        'tipo de piso': { name: 'porcelanato', price: 0 }
+        'tipo de piso': { name: 'porcelanato' }
       }
     },
-    basePrice: 250000,
-    totalPrice: 250000,
     threeJS: {
       scene: null,
       camera: null,
@@ -53,6 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
         gris: { color: '#808080' },
         negro: { color: '#000000' }
       }
+    },
+    modelDescriptions: {
+      moderna: 'Un diseño contemporáneo con espacios abiertos y mucha luz natural.',
+      clasica: 'Estilo tradicional con detalles elegantes y materiales cálidos.',
+      contemporanea: 'Líneas limpias y diseño vanguardista para un estilo moderno.'
     }
   };
 
@@ -64,21 +67,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevButton = document.querySelector('.prev');
   const currentModelImage = document.getElementById('current-model');
   const modelName = document.getElementById('model-name');
-  const totalPrice = document.getElementById('total-price');
+  const modelDescription = document.getElementById('model-description');
   const viewOptions = document.querySelectorAll('.view-option');
   const floorplanNavs = document.querySelectorAll('.floorplan-nav');
   const floorplanImage = document.getElementById('floorplan-image');
-  const summaryDetails = document.querySelector('.summary-details');
-  const ctaButton = document.querySelector('.cta-button');
+  const appointmentForm = document.getElementById('appointment-form');
+  const generatePdfButton = document.getElementById('generate-pdf');
   const loadingIndicator = document.querySelector('.loading-indicator');
+  const loadingText = document.getElementById('loading-text');
   const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
 
   // Initialize everything
   function initConfigurator() {
     setupEventListeners();
     init3DViewer();
-    updatePrice();
-    updateSummary();
     switchView('image');
   }
 
@@ -125,8 +127,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    // CTA Button
-    ctaButton.addEventListener('click', generatePDFQuote);
+    // Appointment form
+    appointmentForm.addEventListener('submit', bookAppointment);
+    
+    // PDF generation
+    generatePdfButton.addEventListener('click', generatePDF);
   }
 
   // 3D Viewer Initialization
@@ -135,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Scene
     config.threeJS.scene = new THREE.Scene();
-    config.threeJS.scene.background = new THREE.Color(0xf0f0f0);
+    config.threeJS.scene.background = new THREE.Color(0x252525);
     
     // Camera
     config.threeJS.camera = new THREE.PerspectiveCamera(
@@ -195,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
       config.threeJS.scene.remove(config.threeJS.model);
     }
     
-    // Simplified house model (in a real app, you would load a proper 3D model)
+    // Simplified house model
     const group = new THREE.Group();
     
     // Base (house shape)
@@ -258,11 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update navigation buttons
     updateNavButtons();
-    
-    // Update summary if we're on that step
-    if (step === 'summary') {
-      updateSummary();
-    }
   }
 
   function goToNextStep() {
@@ -271,8 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (currentIndex < stepsArray.length - 1) {
       navigateToStep(stepsArray[currentIndex + 1].dataset.step);
-    } else {
-      // Final step action (submit, etc.)
     }
   }
 
@@ -299,19 +297,17 @@ document.addEventListener('DOMContentLoaded', function() {
     option.classList.add('active');
     
     config.selectedModel = option.dataset.model;
-    config.basePrice = parseInt(option.dataset.price);
     
     // Update visualization
     currentModelImage.src = `Assets/Models/${option.dataset.model}-main.jpg`;
     modelName.textContent = option.querySelector('h4').textContent;
+    modelDescription.textContent = config.modelDescriptions[option.dataset.model];
     
     // Update 3D model
     load3DModel(option.dataset.model);
     
     // Update floorplan
     updateFloorplan();
-    
-    updatePrice();
   }
 
   function selectOption(option, category, group) {
@@ -320,16 +316,13 @@ document.addEventListener('DOMContentLoaded', function() {
     option.classList.add('active');
     
     config.selectedOptions[category][group] = {
-      name: option.textContent,
-      price: parseInt(option.dataset.price) || 0
+      name: option.textContent
     };
     
     // Update 3D materials if this is an exterior option
     if (category === 'exterior') {
       applySelectedMaterials();
     }
-    
-    updatePrice();
   }
 
   // View switching
@@ -370,122 +363,118 @@ document.addEventListener('DOMContentLoaded', function() {
                          config.floorplans[config.selectedModel].default;
   }
 
-  // Price calculation
-  function updatePrice() {
-    // Calculate total price
-    let total = config.basePrice;
+  // PDF Generation
+  function generatePDF() {
+    showLoading(true, 'Generando documento...');
     
-    // Add option prices
-    for (const category in config.selectedOptions) {
-      for (const option in config.selectedOptions[category]) {
-        total += config.selectedOptions[category][option].price;
-      }
-    }
+    // Create PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
     
-    config.totalPrice = total;
-    totalPrice.textContent = `$${total.toLocaleString()}`;
-  }
-
-  // Summary generation
-  function updateSummary() {
-    let html = `
-      <div class="summary-item">
-        <span class="label">Modelo:</span>
-        <span class="value">${modelName.textContent}</span>
-      </div>
-      <div class="summary-item">
-        <span class="label">Precio base:</span>
-        <span class="value">$${config.basePrice.toLocaleString()}</span>
-      </div>
-    `;
+    // Add logo
+    doc.addImage('Assets/logo.png', 'PNG', 15, 10, 40, 20);
+    
+    // Add title
+    doc.setFontSize(20);
+    doc.text('Diseño de Vivienda Personalizado', 105, 20, { align: 'center' });
+    
+    // Add configuration details
+    doc.setFontSize(14);
+    doc.text('Configuración Seleccionada:', 15, 40);
+    
+    doc.setFontSize(12);
+    let y = 50;
+    doc.text(`Modelo: ${modelName.textContent}`, 20, y);
+    y += 10;
     
     // Add selected options
     for (const category in config.selectedOptions) {
       for (const option in config.selectedOptions[category]) {
         const opt = config.selectedOptions[category][option];
-        if (opt.price > 0) {
-          html += `
-            <div class="summary-item">
-              <span class="label">${option}: ${opt.name}</span>
-              <span class="value">+$${opt.price.toLocaleString()}</span>
-            </div>
-          `;
-        }
+        doc.text(`${option}: ${opt.name}`, 25, y);
+        y += 7;
       }
     }
     
-    // Add total
-    html += `
-      <div class="summary-item" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
-        <span class="label" style="font-size: 1.1rem;">Total estimado:</span>
-        <span class="value" style="font-size: 1.1rem; color: #ecb306;">$${config.totalPrice.toLocaleString()}</span>
-      </div>
-    `;
+    // Add note
+    doc.setFontSize(11);
+    doc.text('* Este documento es una referencia visual de tu diseño personalizado.', 15, y + 15);
+    doc.text('Para más información y cotización, agenda una cita con nuestro equipo.', 15, y + 25);
     
-    summaryDetails.innerHTML = html;
+    // Save the PDF
+    const pdfUrl = URL.createObjectURL(doc.output('blob'));
+    
+    // Display PDF
+    pdfViewerContainer.innerHTML = `<iframe class="pdf-viewer" src="${pdfUrl}"></iframe>`;
+    pdfViewerContainer.style.display = 'block';
+    
+    showLoading(false);
   }
 
-  // PDF Generation
-  function generatePDFQuote() {
-    showLoading(true);
+  // Appointment booking
+  function bookAppointment(e) {
+    e.preventDefault();
+    showLoading(true, 'Agendando cita...');
     
-    // Simulate PDF generation (in a real app, this would call a backend service)
-    setTimeout(() => {
-      // Create a simple PDF (using jsPDF in this example)
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      
-      // Add logo
-      doc.addImage('Assets/logo.png', 'PNG', 15, 10, 40, 20);
-      
-      // Add title
-      doc.setFontSize(20);
-      doc.text('Cotización de Vivienda', 105, 20, { align: 'center' });
-      
-      // Add customer info section
-      doc.setFontSize(12);
-      doc.text('Fecha: ' + new Date().toLocaleDateString(), 15, 40);
-      doc.text('Cliente: [Nombre del Cliente]', 15, 50);
-      
-      // Add configuration details
-      doc.setFontSize(14);
-      doc.text('Configuración Seleccionada:', 15, 70);
-      
-      doc.setFontSize(12);
-      let y = 80;
-      doc.text(`Modelo: ${modelName.textContent}`, 20, y);
-      y += 10;
-      doc.text(`Precio base: $${config.basePrice.toLocaleString()}`, 20, y);
-      y += 10;
-      
-      // Add selected options
-      for (const category in config.selectedOptions) {
-        for (const option in config.selectedOptions[category]) {
-          const opt = config.selectedOptions[category][option];
-          if (opt.price > 0) {
-            doc.text(`${option}: ${opt.name} (+$${opt.price.toLocaleString()})`, 25, y);
-            y += 7;
-          }
-        }
-      }
-      
-      // Add total
-      doc.setFontSize(14);
-      doc.text(`Total estimado: $${config.totalPrice.toLocaleString()}`, 20, y + 10);
-      
-      // Save the PDF
-      const pdfUrl = URL.createObjectURL(doc.output('blob'));
-      
-      // Display PDF
-      pdfViewerContainer.innerHTML = `<iframe class="pdf-viewer" src="${pdfUrl}"></iframe>`;
-      pdfViewerContainer.style.display = 'block';
-      
+    // Get form data
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      date: document.getElementById('date').value,
+      time: document.getElementById('time').value
+    };
+    
+    // Create calendar event (ICS file)
+    const event = {
+      start: [parseInt(formData.date.split('-')[0]), parseInt(formData.date.split('-')[1]), parseInt(formData.date.split('-')[2]), parseInt(formData.time.split(':')[0]), parseInt(formData.time.split(':')[1])],
+      duration: { hours: 1 },
+      title: `Cita para diseño de vivienda - ${formData.name}`,
+      description: `Cita para discutir el diseño de vivienda personalizado.\n\nModelo seleccionado: ${modelName.textContent}\n\nDetalles de contacto:\nEmail: ${formData.email}\nTeléfono: ${formData.phone}`,
+      location: 'Oficinas Alianza ProPositiva',
+      status: 'CONFIRMED',
+      organizer: { name: 'Alianza ProPositiva', email: 'ventas@alianzapropositiva.com' },
+      attendees: [
+        { name: formData.name, email: formData.email, rsvp: true, partstat: 'ACCEPTED', role: 'REQ-PARTICIPANT' }
+      ]
+    };
+    
+    // Generate ICS file
+    const icsFile = new ics();
+    icsFile.addEvent(event);
+    
+    if (icsFile.error) {
+      console.error('Error generating ICS file:', icsFile.error);
       showLoading(false);
+      alert('Hubo un error al programar la cita. Por favor intente nuevamente.');
+      return;
+    }
+    
+    // Simulate server-side processing
+    setTimeout(() => {
+      showLoading(false);
+      
+      // Create download link for the ICS file
+      const blob = new Blob([icsFile.value], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      
+      // Show confirmation
+      const appointmentPane = document.getElementById('appointment-pane');
+      appointmentPane.innerHTML = `
+        <div class="confirmation-message">
+          <h3>¡Cita agendada con éxito!</h3>
+          <p>Hemos programado tu cita para el ${formData.date} a las ${formData.time}.</p>
+          <p>Se ha enviado un correo de confirmación a ${formData.email} con los detalles.</p>
+          <a href="${url}" download="cita-alianza-propositiva.ics" class="cta-button">Descargar Recordatorio</a>
+          <button class="secondary-button" onclick="window.location.reload()">Nuevo Diseño</button>
+        </div>
+      `;
     }, 1500);
   }
 
-  function showLoading(show) {
+  function showLoading(show, text = '') {
     loadingIndicator.style.display = show ? 'flex' : 'none';
+    loadingText.textContent = text;
   }
 
   // Initialize the configurator
