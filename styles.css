@@ -30,6 +30,18 @@ body {
   padding: 0 20px;
 }
 
+/* Section Title Styles */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 2rem;
+  margin: 0;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
 /* Language Toggle Button */
 .language-toggle {
   position: fixed;
@@ -110,6 +122,7 @@ body {
   height: 100vh;
   overflow: hidden;
   background-color: var(--section-bg);
+  margin-bottom: 0;
 }
 
 .portfolio-container {
@@ -134,7 +147,7 @@ body {
 .portfolio-content {
   position: relative;
   z-index: 1;
-  padding: 2rem;
+  padding: 0;
   color: #ffffff;
   max-width: 1200px;
   margin: 0 auto;
@@ -185,16 +198,20 @@ body {
 
 /* Catalog Section */
 .catalog {
+  position: relative;
   padding: 0;
-  text-align: center;
   background-color: var(--section-bg);
 }
 
-.catalog h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0;
-  padding: 2rem 0;
-  color: #fff;
+.catalog-container {
+  position: relative;
+}
+
+.catalog-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
 .catalog-grid {
@@ -206,6 +223,11 @@ body {
 .catalog-item {
   width: 100%;
   height: 33.33vh;
+  position: relative;
+}
+
+.catalog-item:first-child {
+  padding-top: 6rem;
 }
 
 .catalog-item img {
@@ -238,25 +260,19 @@ body {
   border: none;
 }
 
-.catalog-link:first-child {
-  border-right: none;
-}
-
 .catalog-link:hover {
   background: #d49e05;
 }
 
 /* About Section */
 .about {
-  padding: 4rem 2rem;
-  text-align: center;
+  padding: 0;
   background-color: var(--section-bg);
+  position: relative;
 }
 
-.about h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #fff;
+.about-container {
+  padding: 6rem 2rem 4rem;
 }
 
 .about p {
@@ -279,15 +295,13 @@ body {
 
 /* Services Section */
 .services {
-  padding: 4rem 2rem;
+  padding: 0;
   background-color: var(--dark-bg);
+  position: relative;
 }
 
-.services h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #fff;
-  text-align: center;
+.services-container {
+  padding: 6rem 2rem 4rem;
 }
 
 .service-cards {
@@ -330,15 +344,13 @@ body {
 
 /* Testimonials Section */
 .testimonials {
-  padding: 4rem 2rem;
-  text-align: center;
+  padding: 0;
   background-color: var(--section-bg);
+  position: relative;
 }
 
-.testimonials h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #fff;
+.testimonials-container {
+  padding: 6rem 2rem 4rem;
 }
 
 .testimonial-cards {
@@ -373,17 +385,15 @@ body {
   color: var(--accent-color);
 }
 
-/* Partners Carousel */
+/* Partners Section */
 .partners {
-  padding: 4rem 2rem;
-  text-align: center;
+  padding: 0;
   background-color: var(--dark-bg);
+  position: relative;
 }
 
-.partners h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #fff;
+.partners-container {
+  padding: 6rem 2rem 4rem;
 }
 
 .partners-carousel {
@@ -405,43 +415,15 @@ body {
   opacity: 0.8;
 }
 
-/* Slick Carousel Customizations */
-.slick-prev,
-.slick-next {
-  width: 40px;
-  height: 40px;
-  z-index: 1;
-}
-
-.slick-prev:before,
-.slick-next:before {
-  font-size: 40px;
-  color: var(--accent-color);
-}
-
-.slick-prev {
-  left: -50px;
-}
-
-.slick-next {
-  right: -50px;
-}
-
-.slick-dots {
-  display: none !important;
-}
-
 /* Contact Section */
 .contact {
-  padding: 4rem 2rem;
-  text-align: center;
+  padding: 0;
   background-color: var(--section-bg);
+  position: relative;
 }
 
-.contact h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #fff;
+.contact-container {
+  padding: 6rem 2rem 4rem;
 }
 
 form {
@@ -561,20 +543,17 @@ footer p {
 }
 
 @media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    padding: 1.5rem;
+  }
+  
   .portfolio-list {
     margin-left: 30%;
   }
   
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-  }
-  
-  .catalog-item {
-    height: 25vh;
+  .catalog-item:first-child {
+    padding-top: 5rem;
   }
   
   .service-cards,
@@ -591,15 +570,20 @@ footer p {
 }
 
 @media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
+  
   .portfolio-list {
     margin-left: 20%;
   }
   
-  .partners-carousel img {
-    max-width: 120px;
+  .catalog-item:first-child {
+    padding-top: 4rem;
   }
   
-  .catalog-item {
-    height: 20vh;
+  .partners-carousel img {
+    max-width: 120px;
   }
 }
