@@ -27,7 +27,7 @@ body {
   padding: 2rem;
 }
 
-/* Language Toggle Button */
+/* Language Toggle Button - Square */
 .language-toggle {
   position: fixed;
   top: 1rem;
@@ -43,10 +43,12 @@ body {
   cursor: pointer;
   font-size: 1rem;
   transition: var(--transition);
+  border-radius: 0 !important;
 }
 
 .language-toggle button:hover {
   background: #d49e05;
+  border-radius: 0 !important;
 }
 
 /* Hero Section */
@@ -116,14 +118,6 @@ body {
   background-color: var(--section-bg);
 }
 
-/* .catalog-item img {
-  transition: transform 0.3s ease;
-} */
-
-/* .catalog-item:hover img {
-  transform: scale(1.05);
-} */
-
 .catalog-link {
   flex: 1;
   height: 42px; 
@@ -137,11 +131,13 @@ body {
   font-size: 1.5rem;
   transition: var(--transition);
   border: none;
+  border-radius: 0 !important;
 }
 
 .catalog-link:hover {
   transform: scale(1.05);
   background: #d49e05;
+  border-radius: 0 !important;
 }
 
 /* About Process Section */
@@ -187,13 +183,17 @@ body {
 
 .process-item-content {
   max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  border-radius: 0 !important;
 }
 
 .process-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .process-category {
@@ -202,108 +202,37 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent-color);
+  margin-bottom: 1.5rem;
 }
 
 .process-icon .icon-img {
   width: 40px;
   height: auto;
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .process-abbrev {
   font-size: 8rem;
   font-weight: 600;
-  color: #fff;
   line-height: 0.8;
   color: rgba(255, 255, 255, 0.1);
+  margin-top: -1rem;
 }
 
 .process-description {
   font-size: 1.5rem;
   line-height: 1.5;
   max-width: 500px;
-}
-
-/* Services Process Section - Enhanced Spacing */
-.services-process {
-  background-color: var(--dark-bg);
-  padding: 6rem 0;
-}
-
-.process-items {
-  margin-top: 4rem;
-  position: relative;
-}
-
-.process-item {
-  padding: 4rem 0;
-  min-height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.process-item-content {
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem; /* Added gap between header and description */
-}
-
-.process-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 3rem; /* Increased from 2rem */
-}
-
-.process-category {
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-color);
-  margin-bottom: 1.5rem; /* Added space below category */
-}
-
-.process-icon .icon-img {
-  width: 40px;
-  height: auto;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem; /* Added space below icon */
-}
-
-.process-abbrev {
-  font-size: 5rem;
-  font-weight: 600;
-  line-height: 0.8;
-  color: rgba(255, 255, 255, 0.1);
-  margin-top: -1rem; /* Adjusted positioning */
-}
-
-.process-description {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  max-width: 500px;
-  margin-top: 2rem; /* Added space above description */
-  padding-top: 1rem; /* Added padding */
-  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator */
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Testimonials Section */
-/* .testimonials {
-  background-color: var(--section-bg);
-} */
-
 .testimonial {
-  /* background: var(--dark-bg); */
   transition: var(--transition);
 }
-
-/* .testimonial:hover {
-  transform: translateY(-5px);
-} */
 
 .testimonial p {
   color: #fff;
@@ -327,18 +256,29 @@ body {
   opacity: 0.8;
 }
 
-/* Contact Section */
+/* Contact Section - Square Elements */
 .contact {
   background-color: var(--section-bg);
 }
 
-form button {
-  background: var(--accent-color);
-  transition: var(--transition);
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea,
+.contact button[type="submit"] {
+  border-radius: 0 !important;
+  border: 1px solid #444;
 }
 
-form button:hover {
+.contact button[type="submit"] {
+  background: var(--accent-color);
+  transition: var(--transition);
+  padding: 0.75rem 2rem;
+  border-radius: 0 !important;
+}
+
+.contact button[type="submit"]:hover {
   background: #d49e05;
+  border-radius: 0 !important;
 }
 
 .contact-info p {
