@@ -1,4 +1,3 @@
-/* Base Styles */
 :root {
     --primary-color: #0a0a0a;
     --secondary-color: #1a1a1a;
@@ -20,7 +19,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Cursor */
 .cursor {
     position: fixed;
     width: 20px;
@@ -34,7 +32,11 @@ body {
     transition: transform 0.1s ease;
 }
 
-/* Navigation */
+.cursor-hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: rgba(255, 77, 77, 0.5);
+}
+
 header {
     position: fixed;
     width: 100%;
@@ -108,7 +110,6 @@ nav {
     transition: all 0.3s ease;
 }
 
-/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
@@ -204,7 +205,6 @@ nav {
     animation: scrollPulse 2s infinite;
 }
 
-/* Sections */
 section {
     padding: 100px 5%;
     position: relative;
@@ -230,7 +230,6 @@ section {
     margin: 0 auto;
 }
 
-/* Services */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -271,7 +270,6 @@ section {
     line-height: 1.6;
 }
 
-/* Work */
 .work-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -321,7 +319,6 @@ section {
     color: var(--text-secondary);
 }
 
-/* About */
 .about {
     display: flex;
     align-items: center;
@@ -353,7 +350,6 @@ section {
     height: 500px;
 }
 
-/* Contact */
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -396,7 +392,6 @@ section {
     box-shadow: 0 10px 20px rgba(255, 77, 77, 0.3);
 }
 
-/* Footer */
 footer {
     background-color: var(--secondary-color);
     padding: 60px 5% 30px;
@@ -447,7 +442,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -468,7 +462,6 @@ footer {
     }
 }
 
-/* Responsive */
 @media (max-width: 992px) {
     .hero-title {
         font-size: 3.5rem;
