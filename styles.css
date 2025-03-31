@@ -120,9 +120,9 @@ body {
   transition: transform 0.3s ease;
 }
 
-.catalog-item:hover img {
+/* .catalog-item:hover img {
   transform: scale(1.05);
-}
+} */
 
 .catalog-link {
   flex: 1;
@@ -140,6 +140,7 @@ body {
 }
 
 .catalog-link:hover {
+  transform: scale(1.05);
   background: #d49e05;
 }
 
