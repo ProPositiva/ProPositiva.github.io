@@ -121,7 +121,7 @@ body {
 
 .catalog-link {
   flex: 1;
-  height: 20px; /* Increased height */
+  height: 60px; /* Original height */
   background: var(--accent-color);
   color: #fff;
   display: flex;
@@ -129,7 +129,7 @@ body {
   justify-content: center;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1rem; /* Original font size */
   transition: var(--transition);
   border: none;
 }
