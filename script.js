@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     heroVideo.play().catch(error => {
       console.log('Video autoplay prevented:', error);
       // Fallback: Show poster image
-      document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.jpg)';
+      document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.png)';
       heroVideo.style.display = 'none';
     });
   });
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Fallback if video fails to load
   heroVideo.addEventListener('error', function() {
     console.log('Video failed to load');
-    document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.jpg)';
+    document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.png)';
     heroVideo.style.display = 'none';
   });
 });
