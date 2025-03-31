@@ -228,7 +228,7 @@ body {
 }
 
 .testimonial {
-  background: var(--dark-bg);
+  /* background: var(--dark-bg); */
   transition: var(--transition);
 }
 
