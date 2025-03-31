@@ -301,9 +301,9 @@ body {
   transition: var(--transition);
 }
 
-.testimonial:hover {
+/* .testimonial:hover {
   transform: translateY(-5px);
-}
+} */
 
 .testimonial p {
   color: #fff;
