@@ -23,13 +23,15 @@ body {
 
 .close-button {
 	flex: 1;
-  text-align: center;
-  padding: 15px 10px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: #bbb;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s ease;
+	text-align: center;
+	padding: 15px 10px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	color: #bbb;
+	border-bottom: 3px solid transparent;
+	transition: all 0.2s ease;
+	justify-content: center;
+
 /*   position: absolute;
   top: 15px;
   right: 20px;
@@ -43,7 +45,6 @@ body {
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
   transition: all 0.2s ease;
   z-index: 10; */
 }
