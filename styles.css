@@ -121,7 +121,7 @@ body {
 
 .catalog-link {
   flex: 1;
-  height: 120px; /* Increased height */
+  height: 80px; /* Increased height */
   background: var(--accent-color);
   color: #fff;
   display: flex;
