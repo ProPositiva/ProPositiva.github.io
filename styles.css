@@ -487,6 +487,7 @@ form button:hover {
 .contact-info p {
   font-size: 1.1rem;
   margin: 0.5rem 0;
+  text-align: center;
 }
 
 .map {
