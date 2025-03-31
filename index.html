@@ -42,10 +42,12 @@
   
   <!-- Hero Section -->
   <section id="hero" class="hero">
-    <video autoplay muted loop id="hero-video">
-      <source src="Assets\Videos\architecture-video.mp4" type="video/mp4">
-      Tu navegador no soporta la etiqueta de video.
-    </video>
+    <div class="video-container">
+      <video autoplay muted loop id="hero-video" poster="Assets/Images/hero-fallback.jpg">
+        <source src="Assets/Videos/architecture-video.mp4" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+      </video>
+    </div>
     <div class="hero-content">
       <h1 id="hero-title">Soluciones de Arquitectura Innovadoras</h1>
       <p id="hero-tagline">Transformando espacios, construyendo futuros.</p>

@@ -1,3 +1,25 @@
+// Initialize hero video
+document.addEventListener('DOMContentLoaded', function() {
+  const heroVideo = document.getElementById('hero-video');
+  
+  // Ensure video plays when loaded
+  heroVideo.addEventListener('loadedmetadata', function() {
+    heroVideo.play().catch(error => {
+      console.log('Video autoplay prevented:', error);
+      // Fallback: Show poster image
+      document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.jpg)';
+      heroVideo.style.display = 'none';
+    });
+  });
+
+  // Fallback if video fails to load
+  heroVideo.addEventListener('error', function() {
+    console.log('Video failed to load');
+    document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.jpg)';
+    heroVideo.style.display = 'none';
+  });
+});
+
 // Language Data
 const languageData = {
   en: {
