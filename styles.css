@@ -116,9 +116,9 @@ body {
   background-color: var(--section-bg);
 }
 
-.catalog-item img {
+/* .catalog-item img {
   transition: transform 0.3s ease;
-}
+} */
 
 /* .catalog-item:hover img {
   transform: scale(1.05);
