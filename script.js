@@ -1,4 +1,4 @@
-// Initialize hero video
+/* // Initialize hero video
 document.addEventListener('DOMContentLoaded', function() {
   const heroVideo = document.getElementById('hero-video');
   
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.video-container').style.backgroundImage = 'url(Assets/Images/hero-fallback.png)';
     heroVideo.style.display = 'none';
   });
-});
+}); */
 
 // Language Data
 const languageData = {
