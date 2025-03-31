@@ -1,21 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const cursor = document.querySelector('.cursor');
+    // Custom cursor functionality
+    const cursor = document.querySelector('.custom-cursor');
     
     document.addEventListener('mousemove', function(e) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
     
-    const hoverables = document.querySelectorAll('a, button, .service-card, .work-item');
-    hoverables.forEach(function(el) {
-        el.addEventListener('mouseenter', function() {
-            cursor.classList.add('cursor-hover');
+    // Cursor hover effects
+    const hoverElements = document.querySelectorAll(
+        'a, button, .service-item, .project-card, .main-button'
+    );
+    
+    hoverElements.forEach(function(element) {
+        element.addEventListener('mouseenter', function() {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursor.style.opacity = '0.7';
         });
-        el.addEventListener('mouseleave', function() {
-            cursor.classList.remove('cursor-hover');
+        
+        element.addEventListener('mouseleave', function() {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.opacity = '1';
         });
     });
     
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -33,8 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.service-card, .work-item, .about-content, .contact-form');
+    // Scroll animations
+    function animateOnScroll() {
+        const elements = document.querySelectorAll(
+            '.service-item, .project-card, .about-content, .contact-form'
+        );
         
         elements.forEach(function(element) {
             const elementPosition = element.getBoundingClientRect().top;
@@ -45,23 +57,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.transform = 'translateY(0)';
             }
         });
-    };
+    }
     
-    document.querySelectorAll('.service-card, .work-item, .about-content, .contact-form').forEach(function(el) {
+    // Set initial state for animated elements
+    document.querySelectorAll(
+        '.service-item, .project-card, .about-content, .contact-form'
+    ).forEach(function(el) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
     
+    // Run once on load
     animateOnScroll();
     
+    // Run on scroll
     window.addEventListener('scroll', animateOnScroll);
     
-    const header = document.querySelector('header');
+    // Header scroll effect
+    const header = document.querySelector('.main-header');
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(10, 10, 10, 0.9)';
+            header.style.backgroundColor = 'rgba(15, 15, 15, 0.9)';
             header.style.backdropFilter = 'blur(10px)';
         } else {
             header.style.backgroundColor = 'transparent';
@@ -69,42 +87,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    const menuBtn = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    // Mobile menu toggle
+    const menuButton = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
     
-    menuBtn.addEventListener('click', function() {
-        menuBtn.classList.toggle('open');
-        navLinks.classList.toggle('active');
+    menuButton.addEventListener('click', function() {
+        menuButton.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
     
-    const heroImage = document.querySelector('.hero-image .image-container');
+    // Parallax effect for hero visual
+    const heroVisual = document.querySelector('.hero-visual .visual-element');
     
-    if (heroImage) {
+    if (heroVisual) {
         window.addEventListener('mousemove', function(e) {
             const x = (window.innerWidth - e.pageX) / 20;
             const y = (window.innerHeight - e.pageY) / 20;
-            heroImage.style.transform = `translate(-50%, -50%) translateX(${x}px) translateY(${y}px)`;
+            heroVisual.style.transform = `translate(-50%, -50%) translateX(${x}px) translateY(${y}px)`;
         });
     }
     
-    const workItems = document.querySelectorAll('.work-item');
+    // Project card tilt effect
+    const projectCards = document.querySelectorAll('.project-card');
     
-    workItems.forEach(function(item) {
-        item.addEventListener('mousemove', function(e) {
-            const x = e.pageX - item.getBoundingClientRect().left;
-            const y = e.pageY - item.getBoundingClientRect().top;
+    projectCards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            const x = e.pageX - card.getBoundingClientRect().left;
+            const y = e.pageY - card.getBoundingClientRect().top;
             
-            const centerX = item.offsetWidth / 2;
-            const centerY = item.offsetHeight / 2;
+            const centerX = card.offsetWidth / 2;
+            const centerY = card.offsetHeight / 2;
             
             const angleX = (centerY - y) / 10;
             const angleY = (x - centerX) / 10;
             
-            item.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
         });
         
-        item.addEventListener('mouseleave', function() {
-            item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
         });
     });
 });

@@ -3,156 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company - Test</title>
+    <title>Digital Solutions Test</title>
     <link rel="stylesheet" href="test.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="cursor"></div>
+    <!-- Custom cursor element -->
+    <div class="custom-cursor"></div>
     
-    <header>
-        <nav>
+    <!-- Navigation -->
+    <header class="main-header">
+        <nav class="main-nav">
             <div class="logo">
-                <a href="#"><span>A</span>Toll</a>
+                <a href="#">Digital<span>Solutions</span></a>
             </div>
-            <div class="nav-links">
+            <div class="nav-menu">
                 <a href="#services">Services</a>
-                <a href="#work">Work</a>
+                <a href="#projects">Projects</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
-            <div class="menu-btn">
-                <div class="btn-line"></div>
-                <div class="btn-line"></div>
-            </div>
+            <button class="mobile-menu-btn">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
         </nav>
     </header>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero-section">
         <div class="hero-content">
-            <h1 class="hero-title">Digital <span>Experiences</span> That Matter</h1>
-            <p class="hero-subtitle">We craft innovative digital solutions that drive results.</p>
-            <a href="#contact" class="cta-button">Get in touch</a>
+            <h1>Creating <span>Digital</span> Experiences</h1>
+            <p>We build innovative solutions for the modern world</p>
+            <a href="#contact" class="main-button">Start a Project</a>
         </div>
-        <div class="hero-image">
-            <div class="image-container"></div>
+        <div class="hero-visual">
+            <div class="visual-element"></div>
         </div>
-        <div class="scroll-indicator">
+        <div class="scroll-hint">
             <div class="scroll-line"></div>
-            <span>Scroll</span>
+            <span>Scroll Down</span>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="section-header">
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="section-title">
             <h2>Our <span>Services</span></h2>
-            <p>We offer comprehensive digital solutions tailored to your needs.</p>
+            <p>Comprehensive solutions tailored to your needs</p>
         </div>
         <div class="services-grid">
-            <div class="service-card">
-                <div class="card-icon">
-                    <i class="fas fa-code"></i>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
                 </div>
                 <h3>Web Development</h3>
-                <p>Custom websites and web applications built with cutting-edge technologies.</p>
+                <p>Custom websites built with modern technologies</p>
             </div>
-            <div class="service-card">
-                <div class="card-icon">
-                    <i class="fas fa-mobile-alt"></i>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-screen"></i>
                 </div>
                 <h3>Mobile Apps</h3>
-                <p>Native and cross-platform mobile applications for iOS and Android.</p>
+                <p>iOS and Android applications</p>
             </div>
-            <div class="service-card">
-                <div class="card-icon">
-                    <i class="fas fa-paint-brush"></i>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-palette"></i>
                 </div>
                 <h3>UI/UX Design</h3>
-                <p>Beautiful, intuitive interfaces designed for optimal user experience.</p>
+                <p>User-centered interface design</p>
             </div>
         </div>
     </section>
 
-    <section id="work" class="work">
-        <div class="section-header">
-            <h2>Selected <span>Work</span></h2>
-            <p>Explore some of our recent projects.</p>
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-title">
+            <h2>Our <span>Projects</span></h2>
+            <p>Some of our recent work</p>
         </div>
-        <div class="work-grid">
-            <div class="work-item">
-                <div class="work-image" style="background-image: url('https://via.placeholder.com/600x400')"></div>
-                <div class="work-overlay">
-                    <h3>Project One</h3>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <h3>E-commerce Platform</h3>
                     <p>Web Development</p>
                 </div>
             </div>
-            <div class="work-item">
-                <div class="work-image" style="background-image: url('https://via.placeholder.com/600x400')"></div>
-                <div class="work-overlay">
-                    <h3>Project Two</h3>
-                    <p>Mobile App</p>
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <h3>Fitness App</h3>
+                    <p>Mobile Application</p>
                 </div>
             </div>
-            <div class="work-item">
-                <div class="work-image" style="background-image: url('https://via.placeholder.com/600x400')"></div>
-                <div class="work-overlay">
-                    <h3>Project Three</h3>
-                    <p>Brand Identity</p>
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <h3>Corporate Website</h3>
+                    <p>Web Design</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <!-- About Section -->
+    <section id="about" class="about-section">
         <div class="about-content">
             <h2>About <span>Us</span></h2>
-            <p>Company is a team of passionate designers and developers dedicated to creating exceptional digital experiences. We believe in the power of technology to transform businesses and connect people.</p>
-            <p>Our approach combines strategic thinking with creative execution to deliver solutions that are both beautiful and functional.</p>
+            <p>We are a team of passionate designers and developers creating digital solutions that make an impact.</p>
+            <p>Our approach combines creativity with technical excellence to deliver outstanding results.</p>
         </div>
-        <div class="about-image">
-            <div class="image-container"></div>
+        <div class="about-visual">
+            <div class="visual-element"></div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <div class="section-header">
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-title">
             <h2>Get In <span>Touch</span></h2>
-            <p>Ready to start your project? We'd love to hear from you.</p>
+            <p>Ready to discuss your project?</p>
         </div>
-        <form class="contact-form">.
-		
+        <form class="contact-form">
             <div class="form-group">
-                <input type="text" placeholder="Name" required>
+                <input type="text" placeholder="Your Name" required>
             </div>
             <div class="form-group">
-                <input type="email" placeholder="Email" required>
+                <input type="email" placeholder="Email Address" required>
             </div>
             <div class="form-group">
-                <textarea placeholder="Message" required></textarea>
+                <textarea placeholder="Your Message" required></textarea>
             </div>
-            <button type="submit" class="submit-btn">Send Message</button>
+            <button type="submit" class="main-button">Send Message</button>
         </form>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="#"><span>A</span>Toll</a>
+                <a href="#">Digital<span>Solutions</span></a>
             </div>
             <div class="footer-links">
                 <a href="#services">Services</a>
-                <a href="#work">Work</a>
+                <a href="#projects">Projects</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
-            <div class="social-links">
+            <div class="social-media">
                 <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Company. All rights reserved.</p>
+        <div class="footer-copyright">
+            <p>&copy; 2023 Digital Solutions. All rights reserved.</p>
         </div>
     </footer>
 
