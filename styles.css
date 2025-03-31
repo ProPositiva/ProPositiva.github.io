@@ -97,7 +97,7 @@ body {
 
 .portfolio-link a {
   text-decoration: none;
-  color: #ffffff !important; /* Force white color */
+  color: #ffffff !important;
   display: block;
   width: 100%;
   height: 100%;
@@ -143,42 +143,83 @@ body {
   background: #d49e05;
 }
 
-/* About Section */
-.about {
+/* About Process Section */
+.about-process {
   background-color: var(--section-bg);
+  padding: 6rem 0;
 }
 
-.learn-more {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
+.process-intro {
+  padding: 2rem 0;
 }
 
-.learn-more:hover {
-  text-decoration: underline;
+.process-heading {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 80%;
 }
 
-/* Services Section */
-.services {
+.heading-line {
+  display: block;
+}
+
+/* Services Process Section */
+.services-process {
   background-color: var(--dark-bg);
+  padding: 6rem 0;
 }
 
-.service-card {
-  background: var(--section-bg);
-  transition: var(--transition);
+.process-items {
+  margin-top: 4rem;
+  position: relative;
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
+.process-item {
+  padding: 4rem 0;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.service-card h3 {
-  color: #fff;
+.process-item-content {
+  max-width: 80%;
 }
 
-.service-card p {
-  color: #f0f0f0;
+.process-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.process-category {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-color);
+}
+
+.process-icon .icon-img {
+  width: 40px;
+  height: auto;
+  margin-top: 1.5rem;
+}
+
+.process-abbrev {
+  font-size: 5rem;
+  font-weight: 600;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.process-description {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  max-width: 500px;
 }
 
 /* Testimonials Section */
@@ -268,6 +309,24 @@ footer {
   
   .catalog-item:first-child {
     margin-top: 5rem;
+  }
+
+  .process-heading,
+  .process-item-content {
+    max-width: 100%;
+  }
+  
+  .process-item {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+  
+  .process-abbrev {
+    font-size: 3rem;
+  }
+  
+  .process-description {
+    font-size: 1.2rem;
   }
 }
 

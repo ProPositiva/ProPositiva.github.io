@@ -83,12 +83,9 @@
     <div class="catalog-container container-fluid p-0">
       <div class="row g-0">
         <div class="col-12 position-relative">
-          <!-- <h2 class="section-title position-absolute top-0 start-0 z-2 ps-5" id="catalog-title">CATALOGO</h2> -->
-          <div class="catalog-grid d-flex flex-column">
-          <!-- <h2 class="section-title position-absolute top-0 start-0 z-2 ps-5" id="catalog-title">CATALOGO</h2> -->
-            <div class="catalog-item w-100" style="height:33.33vh; margin-top: 6rem;">
           <h2 class="section-title position-absolute top-0 start-0 z-2 ps-5" id="catalog-title">CATALOGO</h2>
-			
+          <div class="catalog-grid d-flex flex-column">
+            <div class="catalog-item w-100" style="height:33.33vh; margin-top: 6rem;">
               <img src="Assets/Images/Catalog/catalog1.jpg" alt="Catalog Item 1" class="img-fluid w-100 h-100 object-fit-cover">
             </div>
             <div class="catalog-item w-100" style="height:33.33vh">
@@ -99,50 +96,86 @@
             </div>
           </div>
           <div class="catalog-buttons row g-0">
-			  <div class="col-md-6">
-				<a href="catalog.html" class="catalog-link" id="catalog-button1">CATALOGO</a>
-			  </div>
-			  <div class="col-md-6">
-				<a href="builder.html" class="catalog-link" id="catalog-button2">CONFIGURAR</a>
-			  </div>
-			</div>
+            <div class="col-md-6">
+              <a href="catalog.html" class="catalog-link" id="catalog-button1">CATALOGO</a>
+            </div>
+            <div class="col-md-6">
+              <a href="builder.html" class="catalog-link" id="catalog-button2">CONFIGURAR</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about position-relative py-5">
-    <div class="about-container container py-5">
-      <h2 class="section-title ps-5" id="about-title">NOSOTROS</h2>
-      <p id="about-description" class="mx-auto text-center" style="max-width:800px">Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.</p>
-      <!-- <a href="#about" class="learn-more" id="about-cta">Conocer Más</a> -->
+  <!-- About Section - Redesigned -->
+  <section id="about" class="about-process position-relative">
+    <div class="container">
+      <div class="process-intro">
+        <h2 class="process-heading">
+          <span class="heading-line" id="about-title">NOSOTROS</span>
+          <span class="heading-line" id="about-description">Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.</span>
+        </h2>
+      </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="services position-relative py-5">
-    <div class="services-container container py-5">
+  <!-- Services Section - Redesigned -->
+  <section id="services" class="services-process position-relative">
+    <div class="container">
       <h2 class="section-title mb-5 ps-5" id="services-title">SERVICIOS</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-lg-4 col-md-6">
-          <div class="service-card h-100 p-4 text-center">
-            <img src="Assets/Icons/consulting-icon.png" alt="Consultoría" class="mb-4" width="60" height="60">
-            <h3 id="service-1-title" class="mb-3">Consultoría</h3>
-            <p id="service-1-description">Asesoramiento experto para sus necesidades arquitectónicas.</p>
+      <div class="process-items">
+        <!-- Service 1 -->
+        <div class="process-item">
+          <div class="process-item-content">
+            <div class="process-header">
+              <div>
+                <div class="process-category">CONSULTORÍA</div>
+                <div class="process-icon">
+                  <img src="Assets/Icons/consulting-icon.png" alt="Consultoría" class="icon-img">
+                </div>
+              </div>
+              <div class="process-abbrev">CON</div>
+            </div>
+            <div class="process-description" id="service-1-description">
+              Asesoramiento experto para sus necesidades arquitectónicas.
+            </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-card h-100 p-4 text-center">
-            <img src="Assets/Icons/project-management-icon.png" alt="Gestión de Proyectos" class="mb-4" width="60" height="60">
-            <h3 id="service-2-title" class="mb-3">Gestión de Proyectos</h3>
-            <p id="service-2-description">Desde el concepto hasta la finalización, lo gestionamos todo.</p>
+        
+        <!-- Service 2 -->
+        <div class="process-item">
+          <div class="process-item-content">
+            <div class="process-header">
+              <div>
+                <div class="process-category">GESTIÓN</div>
+                <div class="process-icon">
+                  <img src="Assets/Icons/project-management-icon.png" alt="Gestión de Proyectos" class="icon-img">
+                </div>
+              </div>
+              <div class="process-abbrev">GES</div>
+            </div>
+            <div class="process-description" id="service-2-description">
+              Desde el concepto hasta la finalización, lo gestionamos todo.
+            </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-card h-100 p-4 text-center">
-            <img src="Assets/Icons/real-estate-icon.png" alt="Bienes Raíces" class="mb-4" width="60" height="60">
-            <h3 id="service-3-title" class="mb-3">Bienes Raíces</h3>
-            <p id="service-3-description">Ayudándole a encontrar el espacio perfecto.</p>
+        
+        <!-- Service 3 -->
+        <div class="process-item">
+          <div class="process-item-content">
+            <div class="process-header">
+              <div>
+                <div class="process-category">BIENES RAÍCES</div>
+                <div class="process-icon">
+                  <img src="Assets/Icons/real-estate-icon.png" alt="Bienes Raíces" class="icon-img">
+                </div>
+              </div>
+              <div class="process-abbrev">BIR</div>
+            </div>
+            <div class="process-description" id="service-3-description">
+              Ayudándole a encontrar el espacio perfecto.
+            </div>
           </div>
         </div>
       </div>
@@ -191,11 +224,6 @@
             <img src="Assets/Icons/Partners/Diatom.png" alt="Diatom" class="mx-auto" style="max-width:225px">
           </a>
         </div>
-        <!-- <div>
-          <a href="https://www.partner3.com" target="_blank">
-            <img src="assets/partners/partner3.png" alt="Partner 3" class="mx-auto" style="max-width:225px">
-          </a>
-        </div> -->
       </div>
     </div>
   </section>
