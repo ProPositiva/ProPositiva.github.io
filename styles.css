@@ -212,6 +212,7 @@ body {
 .process-abbrev {
   font-size: 5rem;
   font-weight: 600;
+  color: #fff;
   line-height: 0.8;
   color: rgba(255, 255, 255, 0.1);
 }
