@@ -4,8 +4,8 @@
   --section-padding: 4vw;
   --container-width: 1200px;
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --dark-bg: #040a14;
-  --section-bg: #091423;
+  --dark-bg: #404040;
+  --section-bg: ##7F7F7F;
   --accent-color: #ecb306;
 }
 
