@@ -41,7 +41,7 @@
   </div>
   
   <!-- Hero Section -->
-  <section id="hero" class="hero" data-aos="fade-up">
+  <section id="hero" class="hero">
     <video autoplay muted loop id="hero-video">
       <source src="Assets\Videos\architecture-video.mp4" type="video/mp4">
       Tu navegador no soporta la etiqueta de video.
@@ -79,20 +79,25 @@
   <!-- Catalog Section -->
   <section id="catalog" class="catalog">
     <h2 id="catalog-title">CATALOGO</h2>
-    <div class="catalog-grid" id="catalog-grid">
-      <!-- Catalog items will be dynamically added here -->
+    <div class="catalog-grid">
+      <div class="catalog-item">
+        <img src="Assets/Images/Catalog/catalog1.jpg" alt="Catalog Item 1">
+      </div>
+      <div class="catalog-item">
+        <img src="Assets/Images/Catalog/catalog2.jpg" alt="Catalog Item 2">
+      </div>
+      <div class="catalog-item">
+        <img src="Assets/Images/Catalog/catalog3.jpg" alt="Catalog Item 3">
+      </div>
     </div>
-    <button id="show-more-catalog-button" class="cta-button">Mostrar Más</button>
-    <div class="catalog-item catalog-link" data-text="CONFIGURAR">
-      <a href="catalog.html">CATALOGO</a>
-    </div>
-    <div class="catalog-item catalog-link" data-text="CONFIGURAR">
-      <a href="builder.html">CONFIGURAR</a>
+    <div class="catalog-buttons">
+      <a href="catalog.html" class="catalog-link" id="catalog-button1">CATALOGO</a>
+      <a href="builder.html" class="catalog-link" id="catalog-button2">CONFIGURAR</a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about" data-aos="fade-up">
+  <section id="about" class="about">
     <h2 id="about-title">Sobre Nosotros</h2>
     <p id="about-description">Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.</p>
     <a href="#about" class="learn-more" id="about-cta">Conocer Más</a>
@@ -100,78 +105,22 @@
 
   <!-- Services Section -->
   <section id="services" class="services">
-    <div class="process-container">
-      <div class="sticky-wrapper">
-        <section class="process-intro">
-          <div class="container">
-            <h2 class="process-heading">
-              <span class="heading-line">Combinamos nuestra pasión por el diseño arquitectónico</span>
-              <span class="heading-line">con nuestro conocimiento técnico para ayudarte a crecer.</span>
-            </h2>
-          </div>
-        </section>
-        
-        <div class="process-items">
-          <!-- Process Item 1 -->
-          <div class="process-item">
-            <div class="container">
-              <div class="process-item-content">
-                <div class="process-header">
-                  <div>
-                    <div class="process-category">CONSULTORÍA</div>
-                    <div class="process-icon">
-                      <img src="Assets\Icons\consulting-icon.png" alt="Consultoría" class="icon-img">
-                    </div>
-                  </div>
-                  <div class="process-abbrev">CON</div>
-                </div>
-                <div class="process-description" id="service-1-description">
-                  Asesoramiento experto para sus necesidades arquitectónicas.
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Process Item 2 -->
-          <div class="process-item">
-            <div class="container">
-              <div class="process-item-content">
-                <div class="process-header">
-                  <div>
-                    <div class="process-category">GESTIÓN</div>
-                    <div class="process-icon">
-                      <img src="Assets\Icons\project-management-icon.png" alt="Gestión" class="icon-img">
-                    </div>
-                  </div>
-                  <div class="process-abbrev">GES</div>
-                </div>
-                <div class="process-description" id="service-2-description">
-                  Desde el concepto hasta la finalización, lo gestionamos todo.
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Process Item 3 -->
-          <div class="process-item">
-            <div class="container">
-              <div class="process-item-content">
-                <div class="process-header">
-                  <div>
-                    <div class="process-category">BIENES RAÍCES</div>
-                    <div class="process-icon">
-                      <img src="Assets\Icons\real-estate-icon.png" alt="Bienes Raíces" class="icon-img">
-                    </div>
-                  </div>
-                  <div class="process-abbrev">BIR</div>
-                </div>
-                <div class="process-description" id="service-3-description">
-                  Ayudándole a encontrar el espacio perfecto.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <h2 id="services-title">SERVICIOS</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <img src="Assets\Icons\consulting-icon.png" alt="Consultoría">
+        <h3 id="service-1-title">Consultoría</h3>
+        <p id="service-1-description">Asesoramiento experto para sus necesidades arquitectónicas.</p>
+      </div>
+      <div class="service-card">
+        <img src="Assets\Icons\project-management-icon.png" alt="Gestión de Proyectos">
+        <h3 id="service-2-title">Gestión de Proyectos</h3>
+        <p id="service-2-description">Desde el concepto hasta la finalización, lo gestionamos todo.</p>
+      </div>
+      <div class="service-card">
+        <img src="Assets\Icons\real-estate-icon.png" alt="Bienes Raíces">
+        <h3 id="service-3-title">Bienes Raíces</h3>
+        <p id="service-3-description">Ayudándole a encontrar el espacio perfecto.</p>
       </div>
     </div>
   </section>

@@ -23,11 +23,6 @@ const languageData = {
     contactEmailLabel: "Email",
     contactMessageLabel: "Message",
     contactSubmit: "Send Message",
-    processHeading1: "We combine our passion for architectural design",
-    processHeading2: "with our technical knowledge to help you grow.",
-    processCategory1: "CONSULTING",
-    processCategory2: "MANAGEMENT",
-    processCategory3: "REAL ESTATE",
     catalogButton1: "CATALOG",
     catalogButton2: "CONFIGURATOR"
   },
@@ -54,11 +49,6 @@ const languageData = {
     contactEmailLabel: "Correo Electrónico",
     contactMessageLabel: "Mensaje",
     contactSubmit: "Enviar Mensaje",
-    processHeading1: "Combinamos nuestra pasión por el diseño arquitectónico",
-    processHeading2: "con nuestro conocimiento técnico para ayudarte a crecer.",
-    processCategory1: "CONSULTORÍA",
-    processCategory2: "GESTIÓN",
-    processCategory3: "BIENES RAÍCES",
     catalogButton1: "CATALOGO",
     catalogButton2: "CONFIGURADOR"
   }
@@ -74,11 +64,11 @@ const elementsToUpdate = {
   aboutDescription: document.getElementById("about-description"),
   aboutCta: document.getElementById("about-cta"),
   servicesTitle: document.getElementById("services-title"),
-  service1Title: document.querySelector(".process-item:nth-child(1) .process-category"),
+  service1Title: document.getElementById("service-1-title"),
   service1Description: document.getElementById("service-1-description"),
-  service2Title: document.querySelector(".process-item:nth-child(2) .process-category"),
+  service2Title: document.getElementById("service-2-title"),
   service2Description: document.getElementById("service-2-description"),
-  service3Title: document.querySelector(".process-item:nth-child(3) .process-category"),
+  service3Title: document.getElementById("service-3-title"),
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
   catalogTitle: document.getElementById("catalog-title"),
@@ -89,10 +79,8 @@ const elementsToUpdate = {
   contactEmailLabel: document.getElementById("contact-email-label"),
   contactMessageLabel: document.getElementById("contact-message-label"),
   contactSubmit: document.getElementById("contact-submit"),
-  processHeading1: document.querySelector(".heading-line:nth-child(1)"),
-  processHeading2: document.querySelector(".heading-line:nth-child(2)"),
-  catalogButton1: document.querySelector(".catalog-link:first-child"),
-  catalogButton2: document.querySelector(".catalog-link:last-child")
+  catalogButton1: document.getElementById("catalog-button1"),
+  catalogButton2: document.getElementById("catalog-button2")
 };
 
 // Set initial language to Spanish
@@ -197,58 +185,4 @@ $(document).ready(function () {
       },
     ],
   });
-});
-
-// Initialize scroll animations for services section
-document.addEventListener('DOMContentLoaded', function() {
-  // Set header height CSS variable
-  const header = document.querySelector('header');
-  if (header) {
-    document.documentElement.style.setProperty(
-      '--header-height', 
-      `${header.offsetHeight}px`
-    );
-  }
-
-  // Intersection Observer for scroll animations
-  const animateOnScroll = function() {
-    const itemsToAnimate = document.querySelectorAll('.process-item');
-    
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    itemsToAnimate.forEach(item => {
-      observer.observe(item);
-    });
-  };
-
-  // Initialize effects
-  animateOnScroll();
-
-  // Resize observer for header height changes
-  const resizeObserver = new ResizeObserver(entries => {
-    for (let entry of entries) {
-      if (entry.target === header) {
-        document.documentElement.style.setProperty(
-          '--header-height', 
-          `${entry.contentRect.height}px`
-        );
-      }
-    }
-  });
-
-  if (header) {
-    resizeObserver.observe(header);
-  }
 });
