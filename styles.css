@@ -399,7 +399,7 @@ body {
 .partners-carousel {
   margin: 0 auto;
   max-width: 1200px;
-  background: var(--section-bg);
+  /* background: var(--section-bg); */
   padding: 2rem;
 }
 
