@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="Assets/Icons/FavIcon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
@@ -25,6 +25,8 @@
   <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Stylesheets -->
   <title>Alianza ProPositiva</title>
   <link rel="stylesheet" href="styles.css">
@@ -36,44 +38,29 @@
 <body>
 
   <!-- Language Toggle Button -->
-  <div class="language-toggle">
-    <button id="language-button">English</button>
+  <div class="language-toggle position-fixed top-3 end-3 z-3">
+    <button id="language-button" class="btn btn-warning">English</button>
   </div>
   
   <!-- Hero Section -->
-<!--   <section id="hero" class="hero">
-    <div class="video-container">
-      <video autoplay muted loop id="hero-video" poster="Assets/Images/hero-fallback.png">
-	  <video autoplay muted loop id="hero-video">
-        <source src="Assets/Videos/architecture-video.mp4" type="video/mp4">
-        Tu navegador no soporta la etiqueta de video.
-      </video>
-    </div>
-    <div class="hero-content">
-      <h1 id="hero-title">Soluciones de Arquitectura Innovadoras</h1>
-      <p id="hero-tagline">Transformando espacios, construyendo futuros.</p>
-    </div>
-  </section> -->
-  
-    <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <video autoplay muted loop id="hero-video">
+  <section id="hero" class="hero position-relative vh-100 overflow-hidden">
+    <video autoplay muted loop id="hero-video" class="position-absolute top-50 start-50 translate-middle w-100 h-100 object-fit-cover z-0">
       <source src="Assets/Videos/architecture-video.mp4" type="video/mp4">
       Tu navegador no soporta la etiqueta de video.
     </video>
-    <div class="hero-content">
-      <h1 id="hero-title">Soluciones de Arquitectura Innovadoras</h1>
-      <p id="hero-tagline">Transformando espacios, construyendo futuros.</p>
+    <div class="hero-content position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-3 z-1">
+      <h1 id="hero-title" class="display-3 fw-bold mb-4">Soluciones de Arquitectura Innovadoras</h1>
+      <p id="hero-tagline" class="fs-3">Transformando espacios, construyendo futuros.</p>
     </div>
   </section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio">
-    <div class="portfolio-container">
-      <div class="portfolio-background" id="portfolio-background"></div>
-      <div class="portfolio-content">
+  <section id="portfolio" class="portfolio position-relative vh-100 overflow-hidden">
+    <div class="portfolio-container position-relative h-100">
+      <div class="portfolio-background position-absolute top-0 start-0 w-100 h-100" id="portfolio-background"></div>
+      <div class="portfolio-content position-relative z-1 h-100 d-flex flex-column justify-content-center">
         <h2 class="section-title" id="portfolio-title">PORTAFOLIO</h2>
-        <div class="portfolio-list">
+        <div class="portfolio-list d-flex flex-column gap-3 align-items-start ms-lg-5">
           <div class="portfolio-item" data-bg="Assets/Images/Projects/project2.jpg" data-text="PROYECTO 1">
             PROYECTO 1
           </div>
@@ -84,7 +71,7 @@
             PROYECTO 3
           </div>
           <div class="portfolio-item portfolio-link" data-bg="Assets/Images/Projects/project1.jpg" data-text="VER MAS">
-            <a href="portfolio.html">VER MAS</a>
+            <a href="portfolio.html" class="text-decoration-none">VER MAS</a>
           </div>
         </div>
       </div>
@@ -92,109 +79,119 @@
   </section>
   
   <!-- Catalog Section -->
-  <section id="catalog" class="catalog">
-    <div class="catalog-container">
-      <div class="catalog-grid">
-	  <h2 class="section-title" id="catalog-title">CATALOGO</h2>
-        <div class="catalog-item">
-          <img src="Assets/Images/Catalog/catalog1.jpg" alt="Catalog Item 1">
+  <section id="catalog" class="catalog position-relative">
+    <div class="catalog-container container-fluid p-0">
+      <div class="row g-0">
+        <div class="col-12 position-relative">
+          <h2 class="section-title position-absolute top-0 start-0 z-2" id="catalog-title">CATALOGO</h2>
+          <div class="catalog-grid d-flex flex-column">
+            <div class="catalog-item w-100" style="height:33.33vh">
+              <img src="Assets/Images/Catalog/catalog1.jpg" alt="Catalog Item 1" class="img-fluid w-100 h-100 object-fit-cover">
+            </div>
+            <div class="catalog-item w-100" style="height:33.33vh">
+              <img src="Assets/Images/Catalog/catalog2.jpg" alt="Catalog Item 2" class="img-fluid w-100 h-100 object-fit-cover">
+            </div>
+            <div class="catalog-item w-100" style="height:33.33vh">
+              <img src="Assets/Images/Catalog/catalog3.jpg" alt="Catalog Item 3" class="img-fluid w-100 h-100 object-fit-cover">
+            </div>
+          </div>
+          <div class="catalog-buttons row g-0">
+            <div class="col-md-6">
+              <a href="catalog.html" class="catalog-link d-flex align-items-center justify-content-center text-decoration-none" id="catalog-button1">CATALOGO</a>
+            </div>
+            <div class="col-md-6">
+              <a href="builder.html" class="catalog-link d-flex align-items-center justify-content-center text-decoration-none" id="catalog-button2">CONFIGURAR</a>
+            </div>
+          </div>
         </div>
-        <div class="catalog-item">
-          <img src="Assets/Images/Catalog/catalog2.jpg" alt="Catalog Item 2">
-        </div>
-        <div class="catalog-item">
-          <img src="Assets/Images/Catalog/catalog3.jpg" alt="Catalog Item 3">
-        </div>
-      </div>
-      <div class="catalog-buttons">
-        <a href="catalog.html" class="catalog-link" id="catalog-button1">CATALOGO</a>
-        <a href="builder.html" class="catalog-link" id="catalog-button2">CONFIGURAR</a>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about">
-    <div class="about-container">
+  <section id="about" class="about position-relative py-5">
+    <div class="about-container container py-5">
       <h2 class="section-title" id="about-title">NOSOTROS</h2>
-      <p id="about-description">Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.</p>
+      <p id="about-description" class="mx-auto text-center" style="max-width:800px">Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.</p>
       <!-- <a href="#about" class="learn-more" id="about-cta">Conocer Más</a> -->
     </div>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="services">
-    <div class="services-container">
-      <h2 class="section-title" id="services-title">SERVICIOS</h2>
-      <div class="service-cards">
-        <div class="service-card">
-          <img src="Assets\Icons\consulting-icon.png" alt="Consultoría">
-          <h3 id="service-1-title">Consultoría</h3>
-          <p id="service-1-description">Asesoramiento experto para sus necesidades arquitectónicas.</p>
+  <section id="services" class="services position-relative py-5">
+    <div class="services-container container py-5">
+      <h2 class="section-title mb-5" id="services-title">SERVICIOS</h2>
+      <div class="service-cards row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="service-card h-100 p-4 text-center">
+            <img src="Assets/Icons/consulting-icon.png" alt="Consultoría" class="mb-4" width="60" height="60">
+            <h3 id="service-1-title" class="mb-3">Consultoría</h3>
+            <p id="service-1-description">Asesoramiento experto para sus necesidades arquitectónicas.</p>
+          </div>
         </div>
-        <div class="service-card">
-          <img src="Assets\Icons\project-management-icon.png" alt="Gestión de Proyectos">
-          <h3 id="service-2-title">Gestión de Proyectos</h3>
-          <p id="service-2-description">Desde el concepto hasta la finalización, lo gestionamos todo.</p>
+        <div class="col-md-4">
+          <div class="service-card h-100 p-4 text-center">
+            <img src="Assets/Icons/project-management-icon.png" alt="Gestión de Proyectos" class="mb-4" width="60" height="60">
+            <h3 id="service-2-title" class="mb-3">Gestión de Proyectos</h3>
+            <p id="service-2-description">Desde el concepto hasta la finalización, lo gestionamos todo.</p>
+          </div>
         </div>
-        <div class="service-card">
-          <img src="Assets\Icons\real-estate-icon.png" alt="Bienes Raíces">
-          <h3 id="service-3-title">Bienes Raíces</h3>
-          <p id="service-3-description">Ayudándole a encontrar el espacio perfecto.</p>
+        <div class="col-md-4">
+          <div class="service-card h-100 p-4 text-center">
+            <img src="Assets/Icons/real-estate-icon.png" alt="Bienes Raíces" class="mb-4" width="60" height="60">
+            <h3 id="service-3-title" class="mb-3">Bienes Raíces</h3>
+            <p id="service-3-description">Ayudándole a encontrar el espacio perfecto.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
    
   <!-- Testimonials Section -->
-  <section id="testimonials" class="testimonials">
-    <div class="testimonials-container">
-      <h2 class="section-title" id="testimonials-title">Lo Que Dicen los Clientes</h2>
-      <div class="testimonial-cards">
-        <div class="testimonial">
-          <p>"El equipo entregó resultados excepcionales. ¡Altamente recomendados!"</p>
-          <p>- Nombre del Cliente</p>
+  <section id="testimonials" class="testimonials position-relative py-5">
+    <div class="testimonials-container container py-5">
+      <h2 class="section-title mb-5" id="testimonials-title">Lo Que Dicen los Clientes</h2>
+      <div class="testimonial-cards row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="testimonial h-100 p-4">
+            <p class="mb-3">"El equipo entregó resultados excepcionales. ¡Altamente recomendados!"</p>
+            <p class="fw-bold text-warning">- Nombre del Cliente</p>
+          </div>
         </div>
-        <div class="testimonial">
-          <p>"Increíble atención al detalle y profesionalismo. Volvería a trabajar con ellos."</p>
-          <p>- Nombre del Cliente</p>
+        <div class="col-md-4">
+          <div class="testimonial h-100 p-4">
+            <p class="mb-3">"Increíble atención al detalle y profesionalismo. Volvería a trabajar con ellos."</p>
+            <p class="fw-bold text-warning">- Nombre del Cliente</p>
+          </div>
         </div>
-        <div class="testimonial">
-          <p>"Transformaron nuestro espacio exactamente como lo imaginamos. ¡Gracias!"</p>
-          <p>- Nombre del Cliente</p>
+        <div class="col-md-4">
+          <div class="testimonial h-100 p-4">
+            <p class="mb-3">"Transformaron nuestro espacio exactamente como lo imaginamos. ¡Gracias!"</p>
+            <p class="fw-bold text-warning">- Nombre del Cliente</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Partners Carousel -->
-  <section id="partners" class="partners">
-    <div class="partners-container">
-      <h2 class="section-title" id="partners-title">NUESTROS ALIADOS</h2>
-      <div class="partners-carousel">
+  <section id="partners" class="partners position-relative py-5">
+    <div class="partners-container container py-5">
+      <h2 class="section-title mb-5" id="partners-title">NUESTROS ALIADOS</h2>
+      <div class="partners-carousel px-4">
         <div>
           <a href="https://www.propositivacr.com" target="_blank">
-            <img src="Assets/Icons/Partners/PROJECT SERVICE.png" alt="Project Service">
+            <img src="Assets/Icons/Partners/PROJECT SERVICE.png" alt="Project Service" class="mx-auto" style="max-width:225px">
           </a>
         </div>
         <div>
           <a href="https://diatomla.com/" target="_blank">
-            <img src="Assets/Icons/Partners/Diatom.png" alt="Diatom">
+            <img src="Assets/Icons/Partners/Diatom.png" alt="Diatom" class="mx-auto" style="max-width:225px">
           </a>
         </div>
         <!-- <div>
           <a href="https://www.partner3.com" target="_blank">
-            <img src="assets/partners/partner3.png" alt="Partner 3">
-          </a>
-        </div>
-        <div>
-          <a href="https://www.partner4.com" target="_blank">
-            <img src="assets/partners/partner4.png" alt="Partner 4">
-          </a>
-        </div>
-        <div>
-          <a href="https://www.partner5.com" target="_blank">
-            <img src="assets/partners/partner5.png" alt="Partner 5">
+            <img src="assets/partners/partner3.png" alt="Partner 3" class="mx-auto" style="max-width:225px">
           </a>
         </div> -->
       </div>
@@ -202,45 +199,41 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="contact-container">
-      <h2 class="section-title" id="contact-title">CONTACTENOS</h2>
-      <form action="https://formspree.io/f/xnnpqgwd" method="POST">
-        <label for="name" id="contact-name-label">Nombre</label>
-        <input type="text" id="name" name="name" placeholder="Nombre" required>
-
-        <label for="email" id="contact-email-label">Correo Electrónico</label>
-        <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
-
-        <label for="message" id="contact-message-label">Mensaje</label>
-        <textarea id="message" name="message" placeholder="Mensaje" required></textarea>
-
-        <button type="submit" id="contact-submit">Enviar</button>
+  <section id="contact" class="contact position-relative py-5">
+    <div class="contact-container container py-5">
+      <h2 class="section-title mb-5" id="contact-title">CONTACTENOS</h2>
+      <form action="https://formspree.io/f/xnnpqgwd" method="POST" class="row g-3 mx-auto" style="max-width:600px">
+        <div class="col-12">
+          <label for="name" class="form-label fw-bold" id="contact-name-label">Nombre</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required>
+        </div>
+        <div class="col-12">
+          <label for="email" class="form-label fw-bold" id="contact-email-label">Correo Electrónico</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="col-12">
+          <label for="message" class="form-label fw-bold" id="contact-message-label">Mensaje</label>
+          <textarea class="form-control" id="message" name="message" placeholder="Mensaje" required rows="5"></textarea>
+        </div>
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-warning px-4 py-2 fw-bold" id="contact-submit">Enviar</button>
+        </div>
       </form>
 
-      <div class="contact-info">
-        <p>Email: info@propositivacr.com</p>
-        <p>Phone: +(506) 2235 0260</p>
+      <div class="contact-info mt-5 text-center">
+        <p class="mb-1">Email: info@propositivacr.com</p>
+        <p class="mb-4">Phone: +(506) 2235 0260</p>
         <div class="map">
-          <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7176322375662!2d-84.05177082538525!3d9.957434790145758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e5e82518ebbf%3A0x550df56da39a4b2a!2sProPositiva!5e0!3m2!1sen!2scr!4v1742448206746!5m2!1sen!2scr"
-          width="100%" 
-          height="450" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-          </iframe>	 -->
-		  <iframe 
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7176322375662!2d-84.05177082538525!3d9.957434790145758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e5e82518ebbf%3A0x550df56da39a4b2a!2sProPositiva!5e0!3m2!1sen!2scr!4v1742448206746!5m2!1sen!2scr&style=feature:all|element:labels|visibility:off&style=feature:geometry|color:0x212121&style=feature:road|color:0x424242&style=feature:water|color:0x000000"
-			width="100%" 
-			height="450" 
-			style="border:0; filter: grayscale(100%) invert(90%) contrast(90%) hue-rotate(180deg);" 
-			allowfullscreen="" 
-			loading="lazy" 
-			referrerpolicy="no-referrer-when-downgrade">
-		</iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7176322375662!2d-84.05177082538525!3d9.957434790145758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e5e82518ebbf%3A0x550df56da39a4b2a!2sProPositiva!5e0!3m2!1sen!2scr!4v1742448206746!5m2!1sen!2scr&style=feature:all|element:labels|visibility:off&style=feature:geometry|color:0x212121&style=feature:road|color:0x424242&style=feature:water|color:0x000000"
+            class="w-100" 
+            height="450" 
+            style="border:0; filter: grayscale(100%) invert(90%) contrast(90%) hue-rotate(180deg);" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
-        <div class="social-media">
+        <div class="social-media d-flex justify-content-center gap-3 mt-4 flex-wrap">
           <a href="https://www.instagram.com/propositivacr?igsh=MWpqamJ0c2R6NjNvOA%3D%3D&utm_source=qr" target="_blank">
             <img src="Assets/Icons/Social Media/instagram.png" alt="Instagram" width="30">
           </a>      
@@ -268,10 +261,12 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; Copyright Alianza ProPositiva 2025</p>
+  <footer class="py-4">
+    <p class="text-center mb-0">&copy; Copyright Alianza ProPositiva 2025</p>
   </footer>
 
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -69,6 +69,7 @@ const languageData = {
   }
 };
 
+
 // Get the language button and all elements with text to update
 const languageButton = document.getElementById("language-button");
 const elementsToUpdate = {
