@@ -1,4 +1,4 @@
-/* // Initialize hero video
+// Initialize hero video
 document.addEventListener('DOMContentLoaded', function() {
   const heroVideo = document.getElementById('hero-video');
   
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     heroVideo.style.display = 'none';
   });
 });
- */
+
 // Language Data
 const languageData = {
   en: {
