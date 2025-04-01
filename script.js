@@ -33,7 +33,7 @@ const languageData = {
     catalogTitle: "CATALOG",
     testimonialsTitle: "TESTIMONIALS",
     partnersTitle: "OUR ALLIES",
-    contactTitle: "READY TO START YOUR PROJECT",
+    /* contactTitle: "READY TO START YOUR PROJECT", */
     contactNameLabel: "Name",
     contactEmailLabel: "Email",
     contactMessageLabel: "Message",
@@ -59,7 +59,7 @@ const languageData = {
     catalogTitle: "CATALOGO",
     testimonialsTitle: "TESTIMONIOS",
     partnersTitle: "NUESTROS ALIADOS",
-    contactTitle: "LISTOS PARA INICIAR CON SU PROYECTO",
+    /* contactTitle: "LISTOS PARA INICIAR CON SU PROYECTO", */
     contactNameLabel: "Nombre",
     contactEmailLabel: "Correo Electrónico",
     contactMessageLabel: "Mensaje",
