@@ -3,166 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Solutions Test</title>
-    <link rel="stylesheet" href="test.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Horizontal Scrolling Panels</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Custom cursor element -->
-    <div class="custom-cursor"></div>
-    
-    <!-- Navigation -->
-    <header class="main-header">
-        <nav class="main-nav">
-            <div class="logo">
-                <a href="#">Digital<span>Solutions</span></a>
-            </div>
-            <div class="nav-menu">
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="mobile-menu-btn">
-                <span class="menu-line"></span>
-                <span class="menu-line"></span>
-            </button>
-        </nav>
-    </header>
+    <div class="header">
+        <h1>Our Services</h1>
+        <p>Scroll horizontally to explore our offerings</p>
+        <div class="scroll-indicator">→</div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>Creating <span>Digital</span> Experiences</h1>
-            <p>We build innovative solutions for the modern world</p>
-            <a href="#contact" class="main-button">Start a Project</a>
+    <div class="panels-container" id="panelsContainer">
+        <div class="panels-wrapper" id="panelsWrapper">
+            <!-- Panels will be injected by JavaScript -->
         </div>
-        <div class="hero-visual">
-            <div class="visual-element"></div>
-        </div>
-        <div class="scroll-hint">
-            <div class="scroll-line"></div>
-            <span>Scroll Down</span>
-        </div>
-    </section>
+    </div>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="section-title">
-            <h2>Our <span>Services</span></h2>
-            <p>Comprehensive solutions tailored to your needs</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-item">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Web Development</h3>
-                <p>Custom websites built with modern technologies</p>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-screen"></i>
-                </div>
-                <h3>Mobile Apps</h3>
-                <p>iOS and Android applications</p>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>UI/UX Design</h3>
-                <p>User-centered interface design</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="section-title">
-            <h2>Our <span>Projects</span></h2>
-            <p>Some of our recent work</p>
-        </div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image"></div>
-                <div class="project-info">
-                    <h3>E-commerce Platform</h3>
-                    <p>Web Development</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image"></div>
-                <div class="project-info">
-                    <h3>Fitness App</h3>
-                    <p>Mobile Application</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image"></div>
-                <div class="project-info">
-                    <h3>Corporate Website</h3>
-                    <p>Web Design</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <h2>About <span>Us</span></h2>
-            <p>We are a team of passionate designers and developers creating digital solutions that make an impact.</p>
-            <p>Our approach combines creativity with technical excellence to deliver outstanding results.</p>
-        </div>
-        <div class="about-visual">
-            <div class="visual-element"></div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="section-title">
-            <h2>Get In <span>Touch</span></h2>
-            <p>Ready to discuss your project?</p>
-        </div>
-        <form class="contact-form">
-            <div class="form-group">
-                <input type="text" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email Address" required>
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="main-button">Send Message</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="#">Digital<span>Solutions</span></a>
-            </div>
-            <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="social-media">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2023 Digital Solutions. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="test.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

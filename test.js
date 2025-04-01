@@ -1,131 +1,161 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Custom cursor functionality
-    const cursor = document.querySelector('.custom-cursor');
-    
-    document.addEventListener('mousemove', function(e) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    
-    // Cursor hover effects
-    const hoverElements = document.querySelectorAll(
-        'a, button, .service-item, .project-card, .main-button'
-    );
-    
-    hoverElements.forEach(function(element) {
-        element.addEventListener('mouseenter', function() {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursor.style.opacity = '0.7';
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.opacity = '1';
-        });
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+    // Configuration
+    const config = {
+        initialPanels: 4,
+        panelData: [
+            {
+                title: "Web Development",
+                content: "Custom websites built with modern technologies like React, Vue, and Node.js.",
+                icon: "💻",
+                theme: "blue"
+            },
+            {
+                title: "Mobile Apps",
+                content: "iOS and Android applications developed with native and cross-platform solutions.",
+                icon: "📱",
+                theme: "green"
+            },
+            {
+                title: "UI/UX Design",
+                content: "Beautiful, intuitive interfaces designed for optimal user experience.",
+                icon: "🎨",
+                theme: "orange"
+            },
+            {
+                title: "Contact Us",
+                content: "Ready to start your project? Get in touch with our team.",
+                icon: "📧",
+                theme: "purple",
+                isContact: true
             }
-        });
-    });
-    
-    // Scroll animations
-    function animateOnScroll() {
-        const elements = document.querySelectorAll(
-            '.service-item, .project-card, .about-content, .contact-form'
-        );
-        
-        elements.forEach(function(element) {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementPosition < windowHeight - 100) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }
+        ],
+        loadThreshold: 0.8 // Load more when 80% scrolled
+    };
+
+    // DOM Elements
+    const panelsContainer = document.getElementById('panelsContainer');
+    const panelsWrapper = document.getElementById('panelsWrapper');
+    let isLoading = false;
+
+    // Initialize panels
+    function initPanels() {
+        panelsWrapper.innerHTML = '';
+        config.panelData.forEach((panel, index) => {
+            createPanel(panel, index);
         });
     }
-    
-    // Set initial state for animated elements
-    document.querySelectorAll(
-        '.service-item, .project-card, .about-content, .contact-form'
-    ).forEach(function(el) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // Run once on load
-    animateOnScroll();
-    
-    // Run on scroll
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Header scroll effect
-    const header = document.querySelector('.main-header');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(15, 15, 15, 0.9)';
-            header.style.backdropFilter = 'blur(10px)';
-        } else {
-            header.style.backgroundColor = 'transparent';
-            header.style.backdropFilter = 'none';
+
+    // Create a single panel
+    function createPanel(data, index) {
+        const panel = document.createElement('div');
+        panel.className = 'panel';
+        panel.dataset.theme = data.theme;
+        
+        const isContact = data.isContact || false;
+        
+        panel.innerHTML = `
+            <div class="panel-content">
+                <h2>${data.title}</h2>
+                <p>${data.content}</p>
+                <div class="icon">${data.icon}</div>
+                ${isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
+            </div>
+        `;
+        
+        panelsWrapper.appendChild(panel);
+        
+        // Add event listener to contact button if exists
+        if (isContact) {
+            panel.querySelector('.contact-btn').addEventListener('click', function() {
+                alert('Thank you for your interest! Our team will contact you soon.');
+            });
         }
-    });
-    
-    // Mobile menu toggle
-    const menuButton = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    menuButton.addEventListener('click', function() {
-        menuButton.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Parallax effect for hero visual
-    const heroVisual = document.querySelector('.hero-visual .visual-element');
-    
-    if (heroVisual) {
-        window.addEventListener('mousemove', function(e) {
-            const x = (window.innerWidth - e.pageX) / 20;
-            const y = (window.innerHeight - e.pageY) / 20;
-            heroVisual.style.transform = `translate(-50%, -50%) translateX(${x}px) translateY(${y}px)`;
+    }
+
+    // Handle scroll events
+    function handleScroll() {
+        if (isLoading) return;
+        
+        const scrollLeft = panelsContainer.scrollLeft;
+        const scrollWidth = panelsContainer.scrollWidth;
+        const clientWidth = panelsContainer.clientWidth;
+        const scrollPosition = (scrollLeft + clientWidth) / scrollWidth;
+        
+        if (scrollPosition > config.loadThreshold) {
+            loadMorePanels();
+        }
+    }
+
+    // Simulate loading more panels
+    function loadMorePanels() {
+        isLoading = true;
+        
+        // Show loading indicator
+        const loadingPanel = document.createElement('div');
+        loadingPanel.className = 'panel';
+        loadingPanel.innerHTML = '<div class="panel-content">Loading more...</div>';
+        panelsWrapper.appendChild(loadingPanel);
+        
+        // Simulate API call delay
+        setTimeout(() => {
+            // Remove loading indicator
+            panelsWrapper.removeChild(loadingPanel);
+            
+            // Add new panels (in a real app, this would come from an API)
+            const newPanel = {
+                title: "Additional Service " + (config.panelData.length + 1),
+                content: "This is a dynamically loaded panel with more content about our services.",
+                icon: "✨",
+                theme: "blue"
+            };
+            
+            config.panelData.push(newPanel);
+            createPanel(newPanel, config.panelData.length - 1);
+            
+            isLoading = false;
+        }, 1000);
+    }
+
+    // Initialize intersection observer for scroll detection
+    function initIntersectionObserver() {
+        const options = {
+            root: panelsContainer,
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && 
+                    entry.target === panelsWrapper.lastElementChild && 
+                    !isLoading) {
+                    loadMorePanels();
+                }
+            });
+        }, options);
+        
+        if (panelsWrapper.lastElementChild) {
+            observer.observe(panelsWrapper.lastElementChild);
+        }
+    }
+
+    // Initialize the app
+    function init() {
+        initPanels();
+        initIntersectionObserver();
+        
+        // Add scroll event listener as fallback
+        panelsContainer.addEventListener('scroll', handleScroll);
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                panelsContainer.scrollBy({ left: -window.innerWidth / 2, behavior: 'smooth' });
+            } else if (e.key === 'ArrowRight') {
+                panelsContainer.scrollBy({ left: window.innerWidth / 2, behavior: 'smooth' });
+            }
         });
     }
-    
-    // Project card tilt effect
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(function(card) {
-        card.addEventListener('mousemove', function(e) {
-            const x = e.pageX - card.getBoundingClientRect().left;
-            const y = e.pageY - card.getBoundingClientRect().top;
-            
-            const centerX = card.offsetWidth / 2;
-            const centerY = card.offsetHeight / 2;
-            
-            const angleX = (centerY - y) / 10;
-            const angleY = (x - centerX) / 10;
-            
-            card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        });
-    });
+
+    // Start the application
+    init();
 });
