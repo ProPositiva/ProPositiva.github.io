@@ -353,3 +353,65 @@ footer {
   }
 }
 
+/* About Simple Section */
+.about-simple {
+  height: 50vh;
+  min-height: 50vh;
+  background-color: var(--section-bg);
+  display: flex;
+  align-items: center;
+}
+
+.about-content {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Services Simple Section */
+.services-simple {
+  height: 50vh;
+  min-height: 50vh;
+  background-color: var(--dark-bg);
+}
+
+.services-container {
+  width: 100%;
+  height: 100%;
+}
+
+.panel-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.panel {
+  flex: 1;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel + .panel {
+  margin-left: -1px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .panel-container {
+    flex-direction: column;
+  }
+  
+  .panel {
+    height: calc(50vh / 3);
+    min-height: 200px;
+  }
+  
+  .panel + .panel {
+    margin-left: 0;
+    margin-top: -1px;
+  }
+}
