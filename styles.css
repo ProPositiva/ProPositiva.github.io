@@ -221,8 +221,8 @@ body {
 }
 
 .process-description {
-  font-size: 1.5rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1;
   max-width: 500px;
   margin-top: 2rem;
   padding-top: 1rem;
