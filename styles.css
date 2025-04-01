@@ -111,12 +111,15 @@ body {
 
 .portfolio-item:hover {
   transform: scale(1.05);
+  font-weight: bold;
   color: var(--accent-color);
 }
 
 .portfolio-link:hover {
   color: var(--accent-color);
   font-weight: bold;
+  color: var(--accent-color);
+  
 }
 
 .portfolio-link a {
