@@ -19,9 +19,9 @@ body {
 
 /* Section Title Styles */
 .section-title {
-  font-size: 10rem;
+  font-size: 40rem;
   font-weight: 600;
-  color: #fff;
+  color: --accent-color;
   position: relative;
   z-index: 2;
   padding: 2rem;
