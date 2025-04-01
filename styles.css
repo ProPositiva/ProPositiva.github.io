@@ -167,7 +167,9 @@ body {
 .catalog-link {
   flex: 1;
   height: 10rem;
-  background: var(--accent-color);
+  /* background: var(--accent-color); */
+    background: var(--section-bg);
+
   color: var(--dark-bg) !important;
   display: flex;
   align-items: center;
@@ -182,11 +184,13 @@ body {
 
 .catalog-link:hover {
   transform: scale(1.02);
-  background: #d49e05;
+  /* background: #d49e05; */
+    background: var(--accent-color);
+
 }
 
 /* About Process Section */
-/* .about-process {
+.about-process {
   background-color: var(--dark-bg);
   padding: 4rem 0;
   position: relative;
@@ -211,7 +215,7 @@ body {
 .heading-line {
   display: block;
 }
- */
+
 /* Services Process Section */
 .services-simple {
   background-color: var(--dark-bg);
@@ -313,7 +317,8 @@ body {
   align-items: center;
   width: 100%;
   min-height: 10rem;
-  background: var(--accent-color);
+  /* background: var(--accent-color); */
+  background: var(--section-bg);
   color: var(--dark-bg);
   text-decoration: none;
   font-size: 2.5rem;
@@ -325,7 +330,7 @@ body {
 }
 
 .contact-button:hover {
-  background: #d49e05;
+  background: var(--accent-color);
   transform: scale(1.02);
 }
 
