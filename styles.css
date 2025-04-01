@@ -53,7 +53,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background-color: var(--dark-bg);
+  background-color: var(--section-bg);
 }
 
 #hero-video {
@@ -66,7 +66,7 @@ body {
 
 /* Portfolio Section */
 .portfolio {
-  background-color: var(--dark-bg);
+  background-color: var(--section-bg);
   margin-bottom: 0;
 }
 
@@ -115,7 +115,7 @@ body {
 
 /* Catalog Section */
 .catalog {
-  background-color: var(--dark-bg);
+  background-color: var(--section-bg);
 }
 
 .catalog-link {
@@ -140,9 +140,8 @@ body {
   border-radius: 0 !important;
 }
 
-/* About Process Section */
+/* About Section - Reduced Height */
 .about-process {
-  background-color: var(--dark-bg);
   height: 50vh;
   min-height: 50vh;
   padding: 2rem 0;
@@ -150,20 +149,8 @@ body {
   align-items: center;
 }
 
-.process-intro {
-  padding: 2rem 0;
-}
-
 .process-heading {
-  font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: 500;
-  line-height: 1.2;
-  max-width: 80%;
   margin: 0;
-}
-
-.heading-line {
-  display: block;
 }
 
 /* Services Combined Section */
@@ -197,8 +184,10 @@ body {
 
 .panel:hover {
   background-color: rgba(0,0,0,0.5);
+  /* Removed the transform scale */
 }
 
+/* Restore original process styles */
 .process-item-content {
   height: 100%;
   display: flex;
@@ -285,19 +274,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.close-panel {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 11;
-}
-
-/* Partners Section */
+/* Restore Partners Section */
 .partners {
   background-color: var(--dark-bg);
   padding: 4rem 0;
@@ -311,9 +288,68 @@ body {
   margin-top: 2rem;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-process,
+  .services-combined {
+    height: auto;
+    min-height: 50vh;
+  }
+  
+  .panel-container {
+    flex-direction: column;
+  }
+  
+  .panel {
+    height: calc(50vh / 3);
+    min-height: 200px;
+  }
+  
+  .panel + .panel {
+    margin-left: 0;
+    margin-top: -1px;
+  }
+  
+  .process-abbrev {
+    font-size: 3rem;
+  }
+  
+  .hidden-panel {
+    height: 100vh;
+    top: 0;
+  }
+}
+
+/* Testimonials Section */
+.testimonial {
+  transition: var(--transition);
+}
+
+.testimonial p {
+  color: #fff;
+}
+
+.testimonial p:last-child {
+  color: var(--accent-color);
+}
+
+/* Partners Section */
+.partners {
+  background-color: var(--dark-bg);
+}
+
+.partners-carousel img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.partners-carousel img:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
 /* Contact Section - Square Elements */
 .contact {
-  background-color: var(--dark-bg);
+  background-color: var(--section-bg);
 }
 
 .contact input[type="text"],
@@ -375,33 +411,22 @@ footer {
     margin-top: 5rem;
   }
 
-  .about-process,
-  .services-combined {
-    height: auto;
-    min-height: 50vh;
+  .process-heading,
+  .process-item-content {
+    max-width: 100%;
   }
   
-  .panel-container {
-    flex-direction: column;
-  }
-  
-  .panel {
-    height: calc(50vh / 3);
-    min-height: 200px;
-  }
-  
-  .panel + .panel {
-    margin-left: 0;
-    margin-top: -1px;
+  .process-item {
+    min-height: auto;
+    padding: 3rem 0;
   }
   
   .process-abbrev {
     font-size: 3rem;
   }
   
-  .hidden-panel {
-    height: 100vh;
-    top: 0;
+  .process-description {
+    font-size: 1.2rem;
   }
 }
 
