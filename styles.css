@@ -118,13 +118,12 @@ body {
 .portfolio-link:hover {
   color: var(--accent-color);
   font-weight: bold;
-  color: var(--accent-color);
   
 }
 
 .portfolio-link a {
   text-decoration: none;
-  color: #ffffff !important;
+  color: #ffffff;
   display: block;
   width: 100%;
   height: 100%;
