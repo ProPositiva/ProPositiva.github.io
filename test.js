@@ -1,92 +1,107 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Configuration
     const config = {
-        panelData: [
+        panels: [
             {
                 title: "Web Development",
-                content: "Custom websites built with modern technologies.",
+                content: "Custom websites built with modern technologies including React, Vue, and Node.js. We create fast, responsive, and SEO-friendly web applications tailored to your business needs.",
                 icon: "💻",
-                theme: "blue"
+                isContact: false
             },
             {
                 title: "Mobile Apps",
-                content: "iOS and Android applications development.",
+                content: "iOS and Android applications developed with both native and cross-platform solutions. Our apps are optimized for performance and user experience across all devices.",
                 icon: "📱",
-                theme: "green"
+                isContact: false
             },
             {
                 title: "UI/UX Design",
-                content: "Beautiful, intuitive interface designs.",
+                content: "Beautiful, intuitive interfaces designed for optimal user experience. We combine aesthetics with functionality to create memorable digital experiences.",
                 icon: "🎨",
-                theme: "orange"
+                isContact: false
+            },
+            {
+                title: "Contact Us",
+                content: "Ready to start your project? Get in touch with our team of experts to discuss how we can bring your vision to life.",
+                icon: "📧",
+                isContact: true
             }
         ],
-        // Contact panel is always last
-        contactPanel: {
-            title: "Contact Us",
-            content: "Ready to start your project? Get in touch.",
-            icon: "📧",
-            theme: "purple",
-            isContact: true
-        }
+        isScrolling: false,
+        lastScrollPosition: 0,
+        scrollThreshold: 100
     };
 
     // DOM Elements
     const panelsContainer = document.getElementById('panelsContainer');
     const panelsWrapper = document.getElementById('panelsWrapper');
+    const panelsSection = document.querySelector('.panels-section');
 
     // Create all panels
     function createPanels() {
         panelsWrapper.innerHTML = '';
-        
-        // Create regular panels
-        config.panelData.forEach((panelData) => {
-            createPanel(panelData);
+        config.panels.forEach((panel, index) => {
+            const panelElement = document.createElement('div');
+            panelElement.className = 'panel';
+            
+            panelElement.innerHTML = `
+                <div class="panel-content">
+                    <h2>${panel.title}</h2>
+                    <p>${panel.content}</p>
+                    <div class="icon">${panel.icon}</div>
+                    ${panel.isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
+                </div>
+            `;
+            
+            panelsWrapper.appendChild(panelElement);
+            
+            if (panel.isContact) {
+                panelElement.querySelector('.contact-btn').addEventListener('click', function() {
+                    alert('Thank you for your interest! Our team will contact you soon.');
+                });
+            }
         });
-        
-        // Always add contact panel last
-        createPanel(config.contactPanel);
     }
 
-    // Create a single panel
-    function createPanel(panelData) {
-        const panel = document.createElement('div');
-        panel.className = 'panel';
-        panel.dataset.theme = panelData.theme;
+    // Handle vertical scroll to horizontal translation
+    function handleVerticalScroll() {
+        if (config.isScrolling) return;
         
-        panel.innerHTML = `
-            <div class="panel-content">
-                <h2>${panelData.title}</h2>
-                <p>${panelData.content}</p>
-                <div class="icon">${panelData.icon}</div>
-                ${panelData.isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
-            </div>
-        `;
+        const rect = panelsSection.getBoundingClientRect();
+        const isInView = rect.top <= 0 && rect.bottom >= 0;
         
-        panelsWrapper.appendChild(panel);
-        
-        // Add contact button event if this is the contact panel
-        if (panelData.isContact) {
-            panel.querySelector('.contact-btn').addEventListener('click', function() {
-                alert('Thank you for your interest! Our team will contact you soon.');
-            });
+        if (isInView) {
+            window.addEventListener('wheel', handleWheel, { passive: false });
+        } else {
+            window.removeEventListener('wheel', handleWheel);
+        }
+    }
+
+    // Convert vertical wheel to horizontal scroll
+    function handleWheel(e) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            // Vertical scroll detected
+            e.preventDefault();
+            
+            config.isScrolling = true;
+            panelsContainer.scrollLeft += e.deltaY;
+            
+            clearTimeout(window.scrollEndTimer);
+            window.scrollEndTimer = setTimeout(function() {
+                config.isScrolling = false;
+            }, 100);
         }
     }
 
     // Initialize keyboard navigation
     function initKeyboardNav() {
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowUp') {
-                panelsContainer.scrollBy({ top: -panelsContainer.clientHeight, behavior: 'smooth' });
-            } else if (e.key === 'ArrowDown') {
-                panelsContainer.scrollBy({ top: panelsContainer.clientHeight, behavior: 'smooth' });
+            if (e.key === 'ArrowLeft') {
+                panelsContainer.scrollBy({ left: -panelsContainer.clientWidth, behavior: 'smooth' });
+            } else if (e.key === 'ArrowRight') {
+                panelsContainer.scrollBy({ left: panelsContainer.clientWidth, behavior: 'smooth' });
             }
         });
-    }
-
-    // Check if mobile device
-    function isMobile() {
-        return window.matchMedia("(max-width: 768px)").matches;
     }
 
     // Initialize everything
@@ -94,10 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
         createPanels();
         initKeyboardNav();
         
-        // Switch to horizontal scroll on mobile
-        if (isMobile()) {
-            panelsContainer.style.scrollSnapType = 'x mandatory';
-        }
+        // Set up scroll listener
+        window.addEventListener('scroll', handleVerticalScroll);
+        
+        // Initial check
+        handleVerticalScroll();
     }
 
     // Start the app

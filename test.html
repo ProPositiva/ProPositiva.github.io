@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Square Panel Scroller</title>
+    <title>Horizontal Panel Scroller</title>
     <link rel="stylesheet" href="test.css">
 </head>
 <body>
     <div class="header">
         <h1>Our Services</h1>
-        <p>Scroll to view all options</p>
+        <p>Scroll down to navigate through our offerings</p>
     </div>
 
-    <div class="panels-container" id="panelsContainer">
-        <div class="panels-wrapper" id="panelsWrapper">
-            <!-- Panels injected by JavaScript -->
+    <div class="content-section">
+        <p>Additional content before panels...</p>
+    </div>
+
+    <div class="panels-section">
+        <div class="panels-container" id="panelsContainer">
+            <div class="panels-wrapper" id="panelsWrapper">
+                <!-- Panels will be injected by JavaScript -->
+            </div>
         </div>
+    </div>
+
+    <div class="content-section">
+        <p>Additional content after panels...</p>
     </div>
 
     <script src="test.js"></script>
