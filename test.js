@@ -1,121 +1,145 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Configuration
     const config = {
         panels: [
             {
                 title: "Web Development",
-                content: "Custom websites built with modern technologies including React, Vue, and Node.js. We create fast, responsive, and SEO-friendly web applications tailored to your business needs.",
-                icon: "💻",
+                content: "We build modern, responsive websites using cutting-edge technologies that drive results.",
                 isContact: false
             },
             {
                 title: "Mobile Apps",
-                content: "iOS and Android applications developed with both native and cross-platform solutions. Our apps are optimized for performance and user experience across all devices.",
-                icon: "📱",
+                content: "Native iOS and Android applications designed for performance and user engagement.",
                 isContact: false
             },
             {
                 title: "UI/UX Design",
-                content: "Beautiful, intuitive interfaces designed for optimal user experience. We combine aesthetics with functionality to create memorable digital experiences.",
-                icon: "🎨",
+                content: "Beautiful interfaces with intuitive user experiences that convert visitors to customers.",
                 isContact: false
             },
             {
                 title: "Contact Us",
-                content: "Ready to start your project? Get in touch with our team of experts to discuss how we can bring your vision to life.",
-                icon: "📧",
+                content: "Ready to start your project? Get in touch with our team today.",
                 isContact: true
             }
         ],
-        isScrolling: false,
-        lastScrollPosition: 0,
-        scrollThreshold: 100
+        currentIndex: 0,
+        isScrolling: false
     };
 
-    // DOM Elements
-    const panelsContainer = document.getElementById('panelsContainer');
-    const panelsWrapper = document.getElementById('panelsWrapper');
-    const panelsSection = document.querySelector('.panels-section');
+    const panelsStack = document.getElementById('panelsStack');
+    const panelWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--panel-width'));
+    const panelSpacing = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--panel-spacing'));
 
     // Create all panels
     function createPanels() {
-        panelsWrapper.innerHTML = '';
         config.panels.forEach((panel, index) => {
             const panelElement = document.createElement('div');
             panelElement.className = 'panel';
-            
             panelElement.innerHTML = `
-                <div class="panel-content">
-                    <h2>${panel.title}</h2>
-                    <p>${panel.content}</p>
-                    <div class="icon">${panel.icon}</div>
-                    ${panel.isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
-                </div>
+                <h2>${panel.title}</h2>
+                <p>${panel.content}</p>
+                ${panel.isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
             `;
-            
-            panelsWrapper.appendChild(panelElement);
+            panelsStack.appendChild(panelElement);
             
             if (panel.isContact) {
                 panelElement.querySelector('.contact-btn').addEventListener('click', function() {
-                    alert('Thank you for your interest! Our team will contact you soon.');
+                    alert('Thank you for your interest! Our team will contact you shortly.');
                 });
             }
         });
-    }
-
-    // Handle vertical scroll to horizontal translation
-    function handleVerticalScroll() {
-        if (config.isScrolling) return;
         
-        const rect = panelsSection.getBoundingClientRect();
-        const isInView = rect.top <= 0 && rect.bottom >= 0;
+        positionPanels();
+    }
+
+    // Position panels in stack
+    function positionPanels() {
+        const panels = document.querySelectorAll('.panel');
         
-        if (isInView) {
-            window.addEventListener('wheel', handleWheel, { passive: false });
-        } else {
-            window.removeEventListener('wheel', handleWheel);
-        }
-    }
-
-    // Convert vertical wheel to horizontal scroll
-    function handleWheel(e) {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            // Vertical scroll detected
-            e.preventDefault();
+        panels.forEach((panel, index) => {
+            let zIndex = config.panels.length - index;
+            let translateX = index * panelSpacing;
+            let scale = 1 - (0.1 * index);
+            let opacity = 1 - (0.2 * index);
             
-            config.isScrolling = true;
-            panelsContainer.scrollLeft += e.deltaY;
-            
-            clearTimeout(window.scrollEndTimer);
-            window.scrollEndTimer = setTimeout(function() {
-                config.isScrolling = false;
-            }, 100);
-        }
-    }
-
-    // Initialize keyboard navigation
-    function initKeyboardNav() {
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                panelsContainer.scrollBy({ left: -panelsContainer.clientWidth, behavior: 'smooth' });
-            } else if (e.key === 'ArrowRight') {
-                panelsContainer.scrollBy({ left: panelsContainer.clientWidth, behavior: 'smooth' });
+            // Adjust for current scroll position
+            if (index < config.currentIndex) {
+                translateX = -panelWidth;
+                scale = 0.9;
+                opacity = 0;
+            } else if (index > config.currentIndex + 2) {
+                translateX = (index - config.currentIndex) * panelWidth;
+                scale = 0.9;
+                opacity = 0;
+            } else if (index === config.currentIndex) {
+                zIndex = config.panels.length;
             }
+            
+            panel.style.transform = `translateX(${translateX}px) scale(${scale})`;
+            panel.style.zIndex = zIndex;
+            panel.style.opacity = opacity;
         });
     }
 
-    // Initialize everything
-    function init() {
-        createPanels();
-        initKeyboardNav();
+    // Handle scroll events
+    function handleScroll(e) {
+        if (config.isScrolling) return;
         
-        // Set up scroll listener
-        window.addEventListener('scroll', handleVerticalScroll);
+        const delta = Math.sign(e.deltaY);
+        const newIndex = config.currentIndex + delta;
         
-        // Initial check
-        handleVerticalScroll();
+        if (newIndex >= 0 && newIndex <= config.panels.length - 1) {
+            config.isScrolling = true;
+            config.currentIndex = newIndex;
+            positionPanels();
+            
+            setTimeout(() => {
+                config.isScrolling = false;
+            }, 500);
+        }
+        
+        // Prevent default only when we're actually moving panels
+        if (newIndex >= 0 && newIndex <= config.panels.length - 1) {
+            e.preventDefault();
+        }
     }
 
-    // Start the app
+    // Initialize
+    function init() {
+        createPanels();
+        
+        // Use wheel event for desktop
+        window.addEventListener('wheel', handleScroll, { passive: false });
+        
+        // Touch events for mobile
+        let touchStartX = 0;
+        
+        window.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        window.addEventListener('touchmove', (e) => {
+            if (config.isScrolling) return;
+            
+            const touchX = e.touches[0].clientX;
+            const deltaX = touchStartX - touchX;
+            
+            if (Math.abs(deltaX) > 50) { // Threshold for swipe
+                const delta = Math.sign(deltaX);
+                const newIndex = config.currentIndex + delta;
+                
+                if (newIndex >= 0 && newIndex <= config.panels.length - 1) {
+                    config.isScrolling = true;
+                    config.currentIndex = newIndex;
+                    positionPanels();
+                    
+                    setTimeout(() => {
+                        config.isScrolling = false;
+                    }, 500);
+                }
+            }
+        }, { passive: true });
+    }
+
     init();
 });
