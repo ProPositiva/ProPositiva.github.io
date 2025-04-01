@@ -184,15 +184,15 @@ body {
 }
 
 /* About Process Section */
-.about-process {
+/* .about-process {
   background-color: var(--dark-bg);
-  padding: 6rem 0;
+  padding: 4rem 0;
   position: relative;
   z-index: 1;
 }
 
 .process-intro {
-  padding: 2rem 0;
+  padding: 0rem 0;
 }
 
 .process-heading {
@@ -200,12 +200,16 @@ body {
   font-weight: 500;
   line-height: 1.2;
   max-width: 100%;
+  text-align: left;
+  padding-left: 0;
+  margin-left: 0;
+  width: 100%;
 }
 
 .heading-line {
   display: block;
 }
-
+ */
 /* Services Process Section */
 .services-simple {
   background-color: var(--dark-bg);
