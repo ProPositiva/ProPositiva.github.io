@@ -83,7 +83,7 @@ body {
 .portfolio-item {
   cursor: pointer;
   padding: 0.75rem 1.25rem;
-  font-size: 7.5rem; /* Tripled from 2.5rem */
+  font-size: 2.5rem;
   color: #ffffff;
   transition: all 0.3s ease;
   position: relative;
@@ -118,21 +118,10 @@ body {
 /* Catalog Section */
 .catalog {
   background-color: var(--dark-bg);
-  position: relative;
-}
-
-.catalog-grid {
-  margin-bottom: 0 !important;
-}
-
-.catalog-buttons {
-  margin-top: 0;
-  position: relative;
-  z-index: 2;
 }
 
 .catalog-link {
-  height: 120px; /* Increased for better visibility */
+  height: 80px;
   background: var(--accent-color);
   color: var(--dark-bg) !important;
   display: flex;
@@ -140,24 +129,30 @@ body {
   justify-content: center;
   text-decoration: none;
   font-weight: 700;
-  font-size: 6rem; /* Tripled from 2rem */
+  font-size: 2rem;
   transition: var(--transition);
   border: none;
   border-radius: 0 !important;
-  width: 100%;
 }
 
 .catalog-link:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
   background: #d49e05;
+  border-radius: 0 !important;
+}
+
+.catalog-buttons {
+  margin-top: 2rem;
 }
 
 /* About Process Section */
 .about-process {
   background-color: var(--dark-bg);
-  padding: 6rem 0;
-  position: relative;
-  z-index: 1;
+  height: 33vh;
+  min-height: 300px;
+  padding: 3rem 0;
+  display: flex;
+  align-items: center;
 }
 
 .process-intro {
@@ -181,9 +176,8 @@ body {
 /* Services Process Section */
 .services-simple {
   background-color: var(--dark-bg);
-  height: 58vh; /* Adjusted to be 1/6 larger than original */
-  min-height: 500px;
-  padding: 2rem 0;
+  height: 66vh;
+  min-height: 600px;
 }
 
 .services-container {
@@ -200,11 +194,10 @@ body {
 .panel {
   flex: 1;
   border: 1px solid rgba(255,255,255,0.1);
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
@@ -213,12 +206,11 @@ body {
 }
 
 .process-item-content {
-  width: 90%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  gap: 2rem;
 }
 
 .process-header {
@@ -229,23 +221,23 @@ body {
 }
 
 .process-category {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .process-icon .icon-img {
   width: 50px;
   height: auto;
   margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .process-abbrev {
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: 600;
   line-height: 0.8;
   color: #fff;
@@ -256,8 +248,8 @@ body {
   font-size: 1.2rem;
   line-height: 1.3;
   max-width: 500px;
-  margin-top: auto;
-  padding-top: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -266,12 +258,10 @@ body {
   background-color: var(--dark-bg);
   padding: 6rem 0;
   text-align: center;
-  position: relative;
 }
 
 .contact-container {
   position: relative;
-  width: 100%;
 }
 
 #contact-title {
@@ -279,32 +269,6 @@ body {
   text-align: center;
   padding: 0;
   margin-bottom: 3rem;
-  font-size: 3rem;
-}
-
-.contact-button-container {
-  width: 100%;
-  padding: 0;
-}
-
-.contact-button {
-  display: block;
-  width: 100%;
-  height: 120px;
-  line-height: 120px;
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--dark-bg);
-  background: var(--accent-color);
-  text-decoration: none;
-  text-align: center;
-  transition: var(--transition);
-  border-radius: 0 !important;
-}
-
-.contact-button:hover {
-  background: #d49e05;
-  transform: scale(1.01);
 }
 
 /* Footer */
@@ -313,8 +277,6 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem 0;
   text-align: center;
-  position: relative;
-  z-index: 2;
 }
 
 /* Animation */
@@ -333,21 +295,6 @@ footer {
   .portfolio-list {
     margin-left: 40%;
   }
-  
-  .portfolio-item {
-    font-size: 5rem;
-  }
-  
-  .catalog-link {
-    font-size: 4rem;
-    height: 100px;
-  }
-  
-  .contact-button {
-    font-size: 2.5rem;
-    height: 100px;
-    line-height: 100px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -360,7 +307,7 @@ footer {
   }
   
   .portfolio-item {
-    font-size: 3.5rem;
+    font-size: 1.8rem;
   }
 
   .catalog-item:first-child {
@@ -368,12 +315,14 @@ footer {
   }
 
   .about-process {
-    padding: 4rem 0;
+    height: auto;
+    min-height: 250px;
+    padding: 2rem 0;
   }
 
   .services-simple {
     height: auto;
-    min-height: 400px;
+    min-height: 0;
   }
   
   .panel-container {
@@ -388,7 +337,7 @@ footer {
   }
   
   .process-abbrev {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
   
   .process-description {
@@ -396,14 +345,8 @@ footer {
   }
 
   .catalog-link {
-    height: 80px;
-    font-size: 3rem;
-  }
-  
-  .contact-button {
-    font-size: 2rem;
-    height: 80px;
-    line-height: 80px;
+    height: 60px;
+    font-size: 1.5rem;
   }
 }
 
@@ -417,7 +360,7 @@ footer {
   }
   
   .portfolio-item {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 
   .catalog-item:first-child {
@@ -429,17 +372,7 @@ footer {
   }
 
   .catalog-link {
-    height: 60px;
-    font-size: 2rem;
-  }
-  
-  #contact-title {
-    font-size: 2rem;
-  }
-  
-  .contact-button {
-    font-size: 1.5rem;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    font-size: 1.2rem;
   }
 }
