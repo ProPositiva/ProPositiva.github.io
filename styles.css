@@ -258,7 +258,7 @@ body {
 
 /* Contact Section - Square Elements */
 .contact {
-  background-color: var(--section-bg);
+  background-color: var(--dark-bg);
 }
 
 .contact input[type="text"],
