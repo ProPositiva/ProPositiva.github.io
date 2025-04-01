@@ -15,6 +15,7 @@ body {
   background-color: var(--dark-bg);
   line-height: 1.6;
   overflow-x: hidden;
+  text-transform: uppercase;
 }
 
 /* Section Title Styles */
@@ -24,17 +25,23 @@ body {
   color: #fff;
   position: relative;
   z-index: 2;
-  padding: 2rem;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 /* Portfolio Section Header */
 #portfolio-title.section-title {
-  font-size: 10em;
+  font-size: 10vw;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 /* Catalog Section Header */
 #catalog-title.section-title {
-  font-size: 10rem;
+  font-size: 10vw;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 /* Language Toggle Button */
@@ -54,6 +61,7 @@ body {
   font-size: 1rem;
   transition: var(--transition);
   border-radius: 0 !important;
+  text-transform: uppercase;
 }
 
 .language-toggle button:hover {
@@ -74,6 +82,11 @@ body {
   z-index: 1;
 }
 
+.hero-content h1,
+.hero-content p {
+  text-transform: uppercase;
+}
+
 /* Portfolio Section */
 .portfolio {
   background-color: var(--dark-bg);
@@ -88,6 +101,10 @@ body {
   opacity: 1;
 }
 
+.portfolio-content {
+  margin-left: 50%;
+}
+
 .portfolio-item {
   cursor: pointer;
   padding: 0.75rem 1.25rem;
@@ -95,6 +112,7 @@ body {
   color: #ffffff;
   transition: all 0.3s ease;
   position: relative;
+  text-transform: uppercase;
 }
 
 .portfolio-item:hover {
@@ -116,6 +134,7 @@ body {
   font-size: inherit;
   font-weight: normal;
   position: relative;
+  text-transform: uppercase;
 }
 
 .portfolio-link a:hover {
@@ -128,10 +147,13 @@ body {
   background-color: var(--dark-bg);
   display: flex;
   flex-direction: column;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .catalog-grid {
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .catalog-item {
@@ -152,24 +174,24 @@ body {
 
 .catalog-link {
   flex: 1;
-  height: 42px;
+  height: 10rem;
   background: var(--accent-color);
-  color: #fff;
+  color: var(--dark-bg) !important;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   transition: var(--transition);
   border: none;
   border-radius: 0 !important;
+  text-transform: uppercase;
 }
 
 .catalog-link:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   background: #d49e05;
-  border-radius: 0 !important;
 }
 
 /* About Process Section */
@@ -189,6 +211,7 @@ body {
   font-weight: 500;
   line-height: 1.2;
   max-width: 100%;
+  text-transform: uppercase;
 }
 
 .heading-line {
@@ -198,7 +221,6 @@ body {
 /* Services Process Section */
 .services-simple {
   background-color: var(--dark-bg);
-  height: 58vh;
   min-height: 500px;
   padding: 2rem 0;
 }
@@ -210,6 +232,7 @@ body {
 
 .panel-container {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
@@ -223,10 +246,7 @@ body {
   justify-content: space-between;
   flex-direction: column;
   position: relative;
-}
-
-.panel + .panel {
-  margin-left: -1px;
+  margin-bottom: -1px;
 }
 
 .process-item-content {
@@ -248,10 +268,10 @@ body {
 .process-category {
   font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent-color);
   margin-bottom: 1.5rem;
+  text-transform: uppercase;
 }
 
 .process-icon .icon-img {
@@ -276,6 +296,7 @@ body {
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-transform: uppercase;
 }
 
 /* Contact Section */
@@ -287,11 +308,6 @@ body {
 .contact-container {
   width: 100%;
   padding: 0;
-}
-
-#contact-title {
-  padding: 2rem;
-  margin-bottom: 0;
 }
 
 .contact-button-container {
@@ -314,6 +330,7 @@ body {
   transition: var(--transition);
   border: none;
   border-radius: 0 !important;
+  text-transform: uppercase;
 }
 
 .contact-button:hover {
@@ -326,32 +343,57 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem 0;
   text-align: center;
+  text-transform: uppercase;
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (min-width: 768px) {
+  /* Desktop styles */
   #portfolio-title.section-title,
   #catalog-title.section-title {
-    font-size: 5rem;
+    font-size: 7.5rem;
   }
   
-  .contact-button {
+  .portfolio-content {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .panel-container {
+    flex-direction: row;
+  }
+  
+  .panel {
+    margin-bottom: 0;
+  }
+  
+  .panel + .panel {
+    margin-left: -1px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact-button,
+  .catalog-link {
     font-size: 2rem;
     min-height: 8rem;
-  }
-  
-  .portfolio-list {
-    margin-left: 40%;
   }
 }
 
 @media (max-width: 768px) {
   #portfolio-title.section-title,
   #catalog-title.section-title {
-    font-size: 3.5rem;
+    font-size: 15vw;
   }
   
-  .contact-button {
+  .portfolio-content {
+    margin-left: 0;
+    transform: none;
+    padding-left: 2rem;
+  }
+  
+  .contact-button,
+  .catalog-link {
     font-size: 1.8rem;
     min-height: 7rem;
     padding-left: 1.5rem;
@@ -361,28 +403,8 @@ footer {
     font-size: 2rem;
   }
   
-  .portfolio-list {
-    margin-left: 30%;
-  }
-  
   .catalog-item:first-child {
     margin-top: 5rem;
-  }
-
-  .services-simple {
-    height: auto;
-    min-height: 400px;
-  }
-  
-  .panel-container {
-    flex-direction: column;
-  }
-  
-  .panel {
-    height: 200px;
-    min-height: 200px;
-    width: 100%;
-    padding: 1.5rem;
   }
   
   .process-abbrev {
@@ -397,21 +419,18 @@ footer {
 @media (max-width: 576px) {
   #portfolio-title.section-title,
   #catalog-title.section-title {
-    font-size: 2.5rem;
+    font-size: 18vw;
   }
   
-  .contact-button {
+  .contact-button,
+  .catalog-link {
     font-size: 1.5rem;
     min-height: 6rem;
     padding-left: 1rem;
   }
   
-  .section-title {
-    font-size: 1.8rem;
-  }
-  
-  .portfolio-list {
-    margin-left: 20%;
+  .portfolio-content {
+    padding-left: 1rem;
   }
   
   .catalog-item:first-child {
