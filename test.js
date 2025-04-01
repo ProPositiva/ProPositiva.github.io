@@ -4,66 +4,58 @@ document.addEventListener('DOMContentLoaded', function() {
         panelData: [
             {
                 title: "Web Development",
-                content: "Custom websites built with modern technologies like React, Vue, and Node.js.",
+                content: "Custom websites built with modern technologies.",
                 icon: "💻",
                 theme: "blue"
             },
             {
                 title: "Mobile Apps",
-                content: "iOS and Android applications developed with native and cross-platform solutions.",
+                content: "iOS and Android applications development.",
                 icon: "📱",
                 theme: "green"
             },
             {
                 title: "UI/UX Design",
-                content: "Beautiful, intuitive interfaces designed for optimal user experience.",
+                content: "Beautiful, intuitive interface designs.",
                 icon: "🎨",
                 theme: "orange"
             },
             {
                 title: "Contact Us",
-                content: "Ready to start your project? Get in touch with our team.",
+                content: "Ready to start your project? Get in touch.",
                 icon: "📧",
                 theme: "purple",
                 isContact: true
             }
         ],
-        loadThreshold: 0.8
+        loading: false
     };
 
     // DOM Elements
     const panelsContainer = document.getElementById('panelsContainer');
     const panelsWrapper = document.getElementById('panelsWrapper');
-    let isLoading = false;
 
-    // Initialize panels
-    function initPanels() {
+    // Create all panels
+    function createPanels() {
         panelsWrapper.innerHTML = '';
-        config.panelData.forEach(createPanel);
-        setupContactButton();
-    }
+        config.panelData.forEach((panelData, index) => {
+            const panel = document.createElement('div');
+            panel.className = 'panel';
+            panel.dataset.theme = panelData.theme;
+            
+            panel.innerHTML = `
+                <div class="panel-content">
+                    <h2>${panelData.title}</h2>
+                    <p>${panelData.content}</p>
+                    <div class="icon">${panelData.icon}</div>
+                    ${panelData.isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
+                </div>
+            `;
+            
+            panelsWrapper.appendChild(panel);
+        });
 
-    // Create a single panel
-    function createPanel(data) {
-        const panel = document.createElement('div');
-        panel.className = 'panel';
-        panel.dataset.theme = data.theme;
-        
-        panel.innerHTML = `
-            <div class="panel-content">
-                <h2>${data.title}</h2>
-                <p>${data.content}</p>
-                <div class="icon">${data.icon}</div>
-                ${data.isContact ? '<button class="contact-btn">Contact Now</button>' : ''}
-            </div>
-        `;
-        
-        panelsWrapper.appendChild(panel);
-        return panel;
-    }
-
-    // Setup contact button event
-    function setupContactButton() {
+        // Add contact button event
         const contactBtn = document.querySelector('.contact-btn');
         if (contactBtn) {
             contactBtn.addEventListener('click', function() {
@@ -72,35 +64,60 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Handle infinite loading
+    // Handle infinite scroll
     function setupInfiniteScroll() {
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !isLoading) {
-                loadMoreContent();
-            }
-        }, { threshold: config.loadThreshold });
+        panelsContainer.addEventListener('scroll', function() {
+            if (config.loading) return;
 
-        if (panelsWrapper.lastElementChild) {
-            observer.observe(panelsWrapper.lastElementChild);
-        }
+            // Check if scrolled to 80% of container
+            const scrollLeft = panelsContainer.scrollLeft;
+            const scrollWidth = panelsContainer.scrollWidth;
+            const clientWidth = panelsContainer.clientWidth;
+            
+            if (scrollLeft + clientWidth > scrollWidth * 0.8) {
+                loadMorePanels();
+            }
+        });
     }
 
-    // Simulate loading more content
-    function loadMoreContent() {
-        isLoading = true;
+    // Load additional panels
+    function loadMorePanels() {
+        config.loading = true;
         
-        // Simulate API delay
+        // Create loading indicator
+        const loadingPanel = document.createElement('div');
+        loadingPanel.className = 'panel';
+        loadingPanel.innerHTML = '<div class="panel-content">Loading...</div>';
+        panelsWrapper.appendChild(loadingPanel);
+
+        // Simulate API call
         setTimeout(() => {
-            const newPanel = {
+            // Remove loading panel
+            panelsWrapper.removeChild(loadingPanel);
+            
+            // Add new panel (in a real app, this would come from an API)
+            const newPanelData = {
                 title: `Service ${config.panelData.length + 1}`,
-                content: "Additional service content loaded dynamically as you scroll.",
+                content: "Additional service loaded dynamically.",
                 icon: "✨",
                 theme: "blue"
             };
             
-            config.panelData.push(newPanel);
-            createPanel(newPanel);
-            isLoading = false;
+            config.panelData.push(newPanelData);
+            
+            const newPanel = document.createElement('div');
+            newPanel.className = 'panel';
+            newPanel.dataset.theme = newPanelData.theme;
+            newPanel.innerHTML = `
+                <div class="panel-content">
+                    <h2>${newPanelData.title}</h2>
+                    <p>${newPanelData.content}</p>
+                    <div class="icon">${newPanelData.icon}</div>
+                </div>
+            `;
+            
+            panelsWrapper.appendChild(newPanel);
+            config.loading = false;
         }, 1000);
     }
 
@@ -108,20 +125,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function initKeyboardNav() {
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') {
-                panelsContainer.scrollBy({ left: -window.innerWidth / 2, behavior: 'smooth' });
+                panelsContainer.scrollBy({ left: -panelsContainer.clientWidth, behavior: 'smooth' });
             } else if (e.key === 'ArrowRight') {
-                panelsContainer.scrollBy({ left: window.innerWidth / 2, behavior: 'smooth' });
+                panelsContainer.scrollBy({ left: panelsContainer.clientWidth, behavior: 'smooth' });
             }
         });
     }
 
     // Initialize everything
     function init() {
-        initPanels();
+        createPanels();
         setupInfiniteScroll();
         initKeyboardNav();
     }
 
-    // Start the application
+    // Start the app
     init();
 });
