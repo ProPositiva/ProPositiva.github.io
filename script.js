@@ -202,3 +202,78 @@ $(document).ready(function () {
     ],
   });
 });
+
+// Service Panels Functionality
+const servicePanels = document.querySelectorAll('.panel');
+const hiddenPanel = document.querySelector('.hidden-panel');
+const closePanelBtn = document.querySelector('.close-panel');
+const serviceDetails = document.getElementById('service-details');
+
+// Service content data
+const serviceContent = {
+  consulting: `
+    <h3>CONSULTORÍA ESPECIALIZADA</h3>
+    <p>Nuestro equipo de consultores ofrece soluciones arquitectónicas personalizadas para cada proyecto:</p>
+    <ul>
+      <li>Análisis de viabilidad técnica y económica</li>
+      <li>Estudios de mercado y ubicación</li>
+      <li>Optimización de espacios y flujos</li>
+      <li>Asesoría en normativas y permisos</li>
+      <li>Soluciones sostenibles y eficientes</li>
+    </ul>
+  `,
+  management: `
+    <h3>GESTIÓN INTEGRAL DE PROYECTOS</h3>
+    <p>Coordinamos todos los aspectos de su proyecto arquitectónico:</p>
+    <ul>
+      <li>Planificación estratégica y programación</li>
+      <li>Control de presupuestos y cronogramas</li>
+      <li>Selección y coordinación de contratistas</li>
+      <li>Supervisión de obra y control de calidad</li>
+      <li>Gestión de riesgos y soluciones</li>
+    </ul>
+  `,
+  real-estate: `
+    <h3>SOLUCIONES INMOBILIARIAS INTEGRALES</h3>
+    <p>Servicios completos para sus necesidades de bienes raíces:</p>
+    <ul>
+      <li>Evaluación y valoración de propiedades</li>
+      <li>Asesoría legal y contractual</li>
+      <li>Gestión de inversiones y desarrollos</li>
+      <li>Estudios de mercado y tendencias</li>
+      <li>Soluciones personalizadas</li>
+    </ul>
+  `
+};
+
+// Panel Click Handlers
+servicePanels.forEach(panel => {
+  panel.addEventListener('click', function() {
+    const serviceType = this.getAttribute('data-service');
+    serviceDetails.innerHTML = serviceContent[serviceType];
+    hiddenPanel.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// Close Panel Handler
+closePanelBtn.addEventListener('click', function() {
+  hiddenPanel.classList.remove('visible');
+  document.body.style.overflow = 'auto';
+});
+
+// Scroll Trigger
+window.addEventListener('scroll', function() {
+  const servicesSection = document.getElementById('services');
+  const scrollPosition = window.scrollY;
+  const sectionPosition = servicesSection.offsetTop;
+  const sectionHeight = servicesSection.offsetHeight;
+  
+  if (scrollPosition > sectionPosition + sectionHeight * 0.6) {
+    if (!hiddenPanel.classList.contains('visible')) {
+      hiddenPanel.classList.add('visible');
+    }
+  } else if (scrollPosition < sectionPosition + sectionHeight * 0.4) {
+    hiddenPanel.classList.remove('visible');
+  }
+});
