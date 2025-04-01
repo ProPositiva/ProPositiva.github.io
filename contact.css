@@ -93,6 +93,107 @@ body {
   transform: translateY(-5px);
 }
 
+
+/* Testimonials Section */
+.testimonials {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #404040;
+}
+
+.testimonial-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.testimonial {
+  width: 30%;
+  min-width: 250px;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.testimonial p:last-child {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Partners Carousel */
+.partners {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.partners h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.partners-carousel {
+  margin: 0 auto;
+  max-width: 1200px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.partners-carousel img {
+  width: 250px;
+  height: auto;
+  margin: 0 auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.partners-carousel img:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Slick Carousel Customizations */
+.slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: #ecb306; 
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+/* Remove dots */
+.slick-dots {
+  display: none !important; 
+}
+
 /* Footer */
 footer {
   background: var(--dark-bg);

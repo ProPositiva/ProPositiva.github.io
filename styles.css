@@ -118,7 +118,6 @@ body {
 .portfolio-link:hover {
   color: var(--accent-color);
   font-weight: bold;
-  
 }
 
 .portfolio-link a {
@@ -167,9 +166,7 @@ body {
 .catalog-link {
   flex: 1;
   height: 10rem;
-  /* background: var(--accent-color); */
-    background: var(--section-bg);
-
+  background: var(--section-bg);
   color: var(--dark-bg) !important;
   display: flex;
   align-items: center;
@@ -184,9 +181,7 @@ body {
 
 .catalog-link:hover {
   transform: scale(1.02);
-  /* background: #d49e05; */
-    background: var(--accent-color);
-
+  background: var(--accent-color);
 }
 
 /* About Process Section */
@@ -219,7 +214,7 @@ body {
 /* Services Process Section */
 .services-simple {
   background-color: var(--dark-bg);
-  min-height: 500px;
+  min-height: 100px;
   padding: 2rem 0;
 }
 
@@ -299,6 +294,7 @@ body {
 .contact {
   background-color: var(--dark-bg);
   position: relative;
+  /* padding-top: 2rem; /* Reduced spacing from services section */ */
 }
 
 .contact-container {
@@ -317,7 +313,6 @@ body {
   align-items: center;
   width: 100%;
   min-height: 10rem;
-  /* background: var(--accent-color); */
   background: var(--section-bg);
   color: var(--dark-bg);
   text-decoration: none;
