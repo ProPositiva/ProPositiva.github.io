@@ -58,20 +58,22 @@
   <section id="portfolio" class="portfolio position-relative vh-100 overflow-hidden">
     <div class="portfolio-container position-relative h-100">
       <div class="portfolio-background position-absolute top-0 start-0 w-100 h-100" id="portfolio-background"></div>
-      <div class="portfolio-content position-relative z-1 h-100 d-flex flex-column justify-content-center">
+      <div class="portfolio-content position-relative z-1 h-100 d-flex flex-column">
         <h2 class="section-title ps-5" id="portfolio-title">PORTAFOLIO</h2>
-        <div class="portfolio-list d-flex flex-column gap-3 align-items-start" style="margin-left: 50%; transform: translateX(-50%);">
-          <div class="portfolio-item" data-bg="Assets/Images/Projects/project2.jpg" data-text="PROYECTO 1">
-            PROYECTO 1
-          </div>
-          <div class="portfolio-item" data-bg="Assets/Images/Projects/project3.jpg" data-text="PROYECTO 2">
-            PROYECTO 2
-          </div>
-          <div class="portfolio-item" data-bg="Assets/Images/Projects/project4.jpg" data-text="PROYECTO 3">
-            PROYECTO 3
-          </div>
-          <div class="portfolio-item portfolio-link" data-bg="Assets/Images/Projects/project1.jpg" data-text="VER MAS">
-            <a href="portfolio.html" class="text-decoration-none">VER MAS</a>
+        <div class="portfolio-items-container d-flex flex-column justify-content-center">
+          <div class="portfolio-list d-flex flex-column gap-3 align-items-start">
+            <div class="portfolio-item" data-bg="Assets/Images/Projects/project2.jpg" data-text="PROYECTO 1">
+              PROYECTO 1
+            </div>
+            <div class="portfolio-item" data-bg="Assets/Images/Projects/project3.jpg" data-text="PROYECTO 2">
+              PROYECTO 2
+            </div>
+            <div class="portfolio-item" data-bg="Assets/Images/Projects/project4.jpg" data-text="PROYECTO 3">
+              PROYECTO 3
+            </div>
+            <div class="portfolio-item portfolio-link" data-bg="Assets/Images/Projects/project1.jpg" data-text="VER MAS">
+              <a href="portfolio.html" class="text-decoration-none">VER MAS</a>
+            </div>
           </div>
         </div>
       </div>
@@ -113,8 +115,7 @@
     <div class="container">
       <div class="process-intro">
         <h2 class="process-heading">
-          <!-- <span class="heading-line" id="about-title">NOSOTROS</span> -->
-          <span class="heading-line" id="about-description">SOMOS UNA FIRMA LÍDER EN ARQUITECTURA ESPECIALIZADA EN DISEÑO INNOVADOR Y SOLUCIONES SOSTENIBLES.es.</span>
+          <span class="heading-line" id="about-description">SOMOS UNA FIRMA LÍDER EN ARQUITECTURA ESPECIALIZADA EN DISEÑO INNOVADOR Y SOLUCIONES SOSTENIBLES.</span>
         </h2>
       </div>
     </div>
@@ -180,119 +181,10 @@
     </div>
   </div>
 </section>
-   
-<!--   Testimonials Section
-  <section id="testimonials" class="testimonials position-relative py-5">
-    <div class="testimonials-container container py-5">
-      <h2 class="section-title mb-5 ps-5" id="testimonials-title">Lo Que Dicen los Clientes</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-lg-4 col-md-6">
-          <div class="testimonial h-100 p-4">
-            <p class="mb-3">"El equipo entregó resultados excepcionales. ¡Altamente recomendados!"</p>
-            <p class="fw-bold text-warning">- Nombre del Cliente</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="testimonial h-100 p-4">
-            <p class="mb-3">"Increíble atención al detalle y profesionalismo. Volvería a trabajar con ellos."</p>
-            <p class="fw-bold text-warning">- Nombre del Cliente</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="testimonial h-100 p-4">
-            <p class="mb-3">"Transformaron nuestro espacio exactamente como lo imaginamos. ¡Gracias!"</p>
-            <p class="fw-bold text-warning">- Nombre del Cliente</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  Partners Carousel
-  <section id="partners" class="partners position-relative py-5">
-    <div class="partners-container container py-5">
-      <h2 class="section-title mb-5 ps-5" id="partners-title">NUESTROS ALIADOS</h2>
-      <div class="partners-carousel px-4">
-        <div>
-          <a href="https://www.propositivacr.com" target="_blank">
-            <img src="Assets/Icons/Partners/PROJECT SERVICE.png" alt="Project Service" class="mx-auto" style="max-width:225px">
-          </a>
-        </div>
-        <div>
-          <a href="https://diatomla.com/" target="_blank">
-            <img src="Assets/Icons/Partners/Diatom.png" alt="Diatom" class="mx-auto" style="max-width:225px">
-          </a>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
- <!--  Contact Section
-  <section id="contact" class="contact position-relative py-5">
-    <div class="contact-container container py-5">
-      <h2 class="section-title mb-5 ps-5" id="contact-title">CONTACTENOS</h2>
-      <form action="https://formspree.io/f/xnnpqgwd" method="POST" class="row g-3 mx-auto" style="max-width:600px">
-        <div class="col-12">
-          <label for="name" class="form-label fw-bold" id="contact-name-label">Nombre</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required>
-        </div>
-        <div class="col-12">
-          <label for="email" class="form-label fw-bold" id="contact-email-label">Correo Electrónico</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico" required>
-        </div>
-        <div class="col-12">
-          <label for="message" class="form-label fw-bold" id="contact-message-label">Mensaje</label>
-          <textarea class="form-control" id="message" name="message" placeholder="Mensaje" required rows="5"></textarea>
-        </div>
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-warning px-4 py-2 fw-bold" id="contact-submit">Enviar</button>
-        </div>
-      </form>
-
-      <div class="contact-info mt-5 text-center">
-        <p class="mb-1">Email: info@propositivacr.com</p>
-        <p class="mb-4">Phone: +(506) 2235 0260</p>
-        <div class="map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7176322375662!2d-84.05177082538525!3d9.957434790145758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e5e82518ebbf%3A0x550df56da39a4b2a!2sProPositiva!5e0!3m2!1sen!2scr!4v1742448206746!5m2!1sen!2scr&style=feature:all|element:labels|visibility:off&style=feature:geometry|color:0x212121&style=feature:road|color:0x424242&style=feature:water|color:0x000000"
-            class="w-100" 
-            height="450" 
-            style="border:0; filter: grayscale(100%) invert(90%) contrast(90%) hue-rotate(180deg);" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-        <div class="social-media d-flex justify-content-center gap-3 mt-4 flex-wrap">
-          <a href="https://www.instagram.com/propositivacr?igsh=MWpqamJ0c2R6NjNvOA%3D%3D&utm_source=qr" target="_blank">
-            <img src="Assets/Icons/Social Media/instagram.png" alt="Instagram" width="30">
-          </a>      
-          <a href="https://www.facebook.com/ProPositivacr/" target="_blank">
-            <img src="Assets/Icons/Social Media/facebook.png" alt="Facebook" width="30">
-          </a>
-          <a href="https://www.linkedin.com/company/alianza-propositiva/about/?viewAsMember=true" target="_blank">
-            <img src="Assets/Icons/Social Media/linkedin.png" alt="LinkedIn" width="30">
-          </a>
-          <a href="https://www.youtube.com/channel/UC2N3N1OFUauXUm6Wh9TWP5Q" target="_blank">
-            <img src="Assets/Icons/Social Media/youtube.png" alt="Youtube" width="30">
-          </a>
-          <a href="https://waze.com/ul/hd1u0xktnm" target="_blank">
-            <img src="Assets/Icons/Social Media/waze.png" alt="Waze" width="30">
-          </a>
-          <a href="https://www.tiktok.com" target="_blank">
-            <img src="Assets/Icons/Social Media/tiktok.png" alt="TikTok" width="30">
-          </a>
-          <a href="https://www.WhatsApp.com" target="_blank">
-            <img src="Assets/Icons/Social Media/whatsapp.png" alt="WhatsApp" width="30">
-          </a>
-        </div>
-      </div>
-    </div>
-  </section> -->
 
 <!-- Contact Section -->
 <section id="contact" class="contact position-relative">
   <div class="contact-container container-fluid p-0">
-    <!-- <h2 class="section-title mb-0 ps-5" id="contact-title"></h2> -->
     <div class="contact-button-container">
       <a href="contact.html" class="contact-button" id="contact-button">LISTOS PARA INICIAR CON SU PROYECTO CONTACTENOS</a>
     </div>
