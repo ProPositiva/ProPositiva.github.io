@@ -121,12 +121,12 @@
   </section>
 
   <!-- Services Section - Redesigned -->
-  <section id="services" class="services-process position-relative">
-    <div class="container">
+  <!-- <section id="services" class="services-process position-relative">
+    <div class="container"> -->
       <!-- <h2 class="section-title mb-5 ps-5" id="services-title">SERVICIOS</h2> -->
-      <div class="process-items">
+      <!-- <div class="process-items"> -->
         <!-- Service 1 -->
-        <div class="process-item">
+        <!-- <div class="process-item">
           <div class="process-item-content">
             <div class="process-header">
               <div>
@@ -141,10 +141,10 @@
               Asesoramiento experto para sus necesidades arquitectónicas.
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- Service 2 -->
-        <div class="process-item">
+        <!-- <div class="process-item">
           <div class="process-item-content">
             <div class="process-header">
               <div>
@@ -160,9 +160,9 @@
             </div>
           </div>
         </div>
-        
+         -->
         <!-- Service 3 -->
-        <div class="process-item">
+        <!-- <div class="process-item">
           <div class="process-item-content">
             <div class="process-header">
               <div>
@@ -180,7 +180,54 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+  
+  
+  <!-- Services Section - Redesigned with Panels -->
+<section id="services" class="services-panels position-relative">
+  <div class="services-container">
+    <div class="panel-container">
+      <div class="panel" data-service="consulting">
+        <div class="panel-content">
+          <div class="service-icon">
+            <img src="Assets/Icons/consulting-icon.png" alt="Consultoría">
+          </div>
+          <h3>CONSULTORÍA</h3>
+          <p>Asesoramiento experto para sus necesidades arquitectónicas.</p>
+        </div>
+      </div>
+      <div class="panel" data-service="management">
+        <div class="panel-content">
+          <div class="service-icon">
+            <img src="Assets/Icons/project-management-icon.png" alt="Gestión de Proyectos">
+          </div>
+          <h3>GESTIÓN DE PROYECTOS</h3>
+          <p>Desde el concepto hasta la finalización, lo gestionamos todo.</p>
+        </div>
+      </div>
+      <div class="panel" data-service="real-estate">
+        <div class="panel-content">
+          <div class="service-icon">
+            <img src="Assets/Icons/real-estate-icon.png" alt="Bienes Raíces">
+          </div>
+          <h3>BIENES RAÍCES</h3>
+          <p>Ayudándole a encontrar el espacio perfecto.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hidden Panel that appears on scroll -->
+    <div class="hidden-panel">
+      <div class="hidden-content">
+        <h2>DETALLES DEL SERVICIO</h2>
+        <div class="service-details" id="consulting-details">
+          <!-- Content will be loaded dynamically -->
+        </div>
+        <button class="close-panel">×</button>
+      </div>
+    </div>
+  </div>
+</section>
    
   <!-- Testimonials Section -->
  <!--  <section id="testimonials" class="testimonials position-relative py-5">

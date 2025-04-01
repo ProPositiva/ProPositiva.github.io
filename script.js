@@ -202,3 +202,73 @@ $(document).ready(function () {
     ],
   });
 });
+
+
+// Service Panels Functionality
+const servicePanels = document.querySelectorAll('.panel');
+const hiddenPanel = document.querySelector('.hidden-panel');
+const closePanelBtn = document.querySelector('.close-panel');
+const serviceDetails = document.getElementById('consulting-details');
+
+// Service content data
+const serviceContent = {
+  consulting: `
+    <h3>CONSULTORÍA ESPECIALIZADA</h3>
+    <p>Nuestro equipo de consultores ofrece soluciones arquitectónicas personalizadas...</p>
+    <ul>
+      <li>Análisis de viabilidad</li>
+      <li>Estudios de mercado</li>
+      <li>Optimización de espacios</li>
+    </ul>
+  `,
+  management: `
+    <h3>GESTIÓN INTEGRAL DE PROYECTOS</h3>
+    <p>Coordinamos todos los aspectos de su proyecto arquitectónico...</p>
+    <ul>
+      <li>Planificación estratégica</li>
+      <li>Control de presupuestos</li>
+      <li>Supervisión de obra</li>
+    </ul>
+  `,
+  real-estate: `
+    <h3>SOLUCIONES INMOBILIARIAS</h3>
+    <p>Encuentre la propiedad perfecta con nuestro servicio especializado...</p>
+    <ul>
+      <li>Evaluación de propiedades</li>
+      <li>Asesoría legal</li>
+      <li>Gestión de inversiones</li>
+    </ul>
+  `
+};
+
+// Click handlers for panels
+servicePanels.forEach(panel => {
+  panel.addEventListener('click', function() {
+    const serviceType = this.getAttribute('data-service');
+    serviceDetails.innerHTML = serviceContent[serviceType];
+    hiddenPanel.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// Close panel handler
+closePanelBtn.addEventListener('click', function() {
+  hiddenPanel.classList.remove('visible');
+  document.body.style.overflow = 'auto';
+});
+
+// Scroll trigger for hidden panel
+window.addEventListener('scroll', function() {
+  const servicesSection = document.getElementById('services');
+  const scrollPosition = window.scrollY;
+  const sectionPosition = servicesSection.offsetTop;
+  const sectionHeight = servicesSection.offsetHeight;
+  
+  if (scrollPosition > sectionPosition + sectionHeight * 0.3) {
+    if (!hiddenPanel.classList.contains('visible')) {
+      hiddenPanel.classList.add('visible');
+    }
+  } else {
+    hiddenPanel.classList.remove('visible');
+  }
+});
