@@ -269,6 +269,7 @@ form button:hover {
 
 .contact-info p {
   font-size: 1.1rem;
+  text-align: center;
   margin: 0.5rem 0;
   color: #fff
 }
