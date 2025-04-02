@@ -277,7 +277,7 @@ form button:hover {
 
 .map {
   margin-top: 2rem;
-  padding: 2rem;
+  padding: 7rem;
 }
 
 /* Social Media Icons */
@@ -299,8 +299,8 @@ form button:hover {
 }
 
 .social-media img {
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   display: block; 
 }
 
