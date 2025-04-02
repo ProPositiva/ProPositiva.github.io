@@ -86,7 +86,7 @@ body {
   padding: 4rem 2rem;
   text-align: left;
   background: var(--dark-bg);
-   display: flex !important;
+  /* display: flex !important; */
   align-items: center;
 }
 
