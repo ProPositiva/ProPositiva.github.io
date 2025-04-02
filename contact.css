@@ -86,6 +86,8 @@ body {
   padding: 4rem 2rem;
   text-align: left;
   background: var(--dark-bg);
+   display: flex !important;
+  align-items: center;
 }
 
 .partners h2 {
@@ -115,7 +117,45 @@ body {
   opacity: 0.8;
 }
 
+/* Partner Logo Size Control */
+.partners-carousel img {
+  width: 180px; /* Fixed width */
+  height: 80px; /* Fixed height */
+  object-fit: contain; /* Maintain aspect ratio */
+  padding: 10px; /* Spacing around logos */
+  margin: 0 auto; /* Center logos horizontally */
+  filter: grayscale(100%) brightness(0.8);
+  transition: all 0.3s ease;
+}
+
+/* For different sized logos, add specific overrides */
+.partners-carousel img[alt="Project Service"] {
+  width: 160px; /* Slightly narrower */
+  height: 70px;
+}
+
+.partners-carousel img[alt="Diatom"] {
+  width: 200px; /* Slightly wider */
+  height: 80px;
+}
+
 /* Slick Carousel Customizations */
+.partners-carousel .slick-track {
+  display: flex !important; 
+  align-items: center; 
+}
+
+.partners-carousel .slick-slide {
+  float: none !important; 
+  display: inline-block; 
+  vertical-align: middle; 
+  margin: 0 15px; 
+}
+
+.partners-carousel .slick-list {
+  overflow: visible; 
+  padding: 20px 0 !important; 
+}
 .slick-prev,
 .slick-next {
   width: 40px;
