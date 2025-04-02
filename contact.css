@@ -121,8 +121,8 @@ body {
 
 /* Partner Logo Size Control */
 .partners-carousel img {
-  width: 180px; 
-  height: 80px; 
+  width: 360px; 
+  height: 160px; 
   object-fit: contain; 
   padding: 10px; 
   margin: 0 auto; 
