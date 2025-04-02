@@ -164,15 +164,24 @@ body {
   padding: 2rem;
 }
 
+/* Style for both linked and non-linked partners */
+.partners-carousel a,
+.partners-carousel .partner-logo {
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 .partners-carousel img {
   width: 250px;
   height: auto;
   margin: 0 auto;
-  transition: transform 0.3s ease, opacity 0.3s ease;
   filter: grayscale(100%) brightness(0.8);
+  transition: inherit;
 }
 
-.partners-carousel img:hover {
+/* Hover effects for both */
+.partners-carousel a:hover img,
+.partners-carousel .partner-logo:hover img {
   transform: scale(1.05);
   opacity: 1;
   filter: grayscale(0%) brightness(1);
