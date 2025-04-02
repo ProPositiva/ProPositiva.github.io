@@ -131,7 +131,7 @@ body {
 /* For different sized logos, add specific overrides */
 .partners-carousel img[alt="PYMES"] {
   width: 300px; 
-  height: 80px;
+  height: 120px;
 }
 
 /* Slick Carousel Customizations */
