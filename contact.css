@@ -277,7 +277,6 @@ form button:hover {
 
 .map {
   margin-top: 2rem;
-  padding: 7rem;
 }
 
 /* Social Media Icons */
@@ -286,6 +285,8 @@ form button:hover {
   justify-content: center;
   gap: 1rem; /
   margin-top: 1.5rem;
+  /* padding: 7rem; */
+  
 }
 
 .social-media a {
