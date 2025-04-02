@@ -117,51 +117,38 @@ updateLanguage(currentLanguage);
 languageButton.textContent = "English";
 
 
-// Initialize Partners Carousel
+// Initialize Partners Carousel - Original Functionality
 $(document).ready(function () {
   $(".partners-carousel").slick({
     dots: false,
     infinite: true,
     speed: 300,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    centerMode: true,
-    centerPadding: '60px',
-    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '40px'
-        },
+          slidesToShow: 3,
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '40px'
-        },
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '20px'
-        },
-      },
-    ],
+          slidesToScroll: 1
+        }
+      }
+    ]
   });
-  
-  // Custom arrow positioning
-  $('.slick-prev').css('left', '25px');
-  $('.slick-next').css('right', '25px');
 });
