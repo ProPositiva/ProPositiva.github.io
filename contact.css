@@ -118,18 +118,17 @@ body {
 
 /* Partner Logo Size Control */
 .partners-carousel img {
-  width: 180px; /* Fixed width */
-  height: 80px; /* Fixed height */
-  object-fit: contain; /* Maintain aspect ratio */
-  padding: 10px; /* Spacing around logos */
-  margin: 0 auto; /* Center logos horizontally */
-  /* filter: grayscale(100%) brightness(0.8); */
+  width: 180px; 
+  height: 80px; 
+  object-fit: contain; 
+  padding: 10px; 
+  margin: 0 auto; 
   transition: all 0.3s ease;
 }
 
 /* For different sized logos, add specific overrides */
 .partners-carousel img[alt="PYMES"] {
-  width: 200px; /* Slightly wider */
+  width: 300px; 
   height: 80px;
 }
 
