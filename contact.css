@@ -123,7 +123,7 @@ body {
   object-fit: contain; /* Maintain aspect ratio */
   padding: 10px; /* Spacing around logos */
   margin: 0 auto; /* Center logos horizontally */
-  filter: grayscale(100%) brightness(0.8);
+  /* filter: grayscale(100%) brightness(0.8); */
   transition: all 0.3s ease;
 }
 
