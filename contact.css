@@ -9,20 +9,48 @@
   --accent-color: #ecb306;
 }
 
-/* Section Headers */
-.section-header {
-  color: var(--accent-color);
-  font-size: 4.5rem;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 3rem;
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* About Section */
+.about {
+  padding: 4rem 2rem;
+  text-align: left;
+  background: var(--dark-bg);
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-size: 3.5rem;
+  text-align: left;
+  /* font-weight: bold; */
+  
+  color: #fff;
+  max-width: 100;
+  /* margin: 0 auto 2rem; */
 }
 
 /* Testimonials Section */
 .testimonials {
   padding: 4rem 2rem;
-  text-align: center;
-  background-color: var(--dark-bg);
+  text-align: left;
+  background: var(--dark-bg);
+}
+
+.testimonials h2 {
+  font-size: 3.5rem;
+  margin-bottom: 5rem;
+  color: var(--accent-color);
 }
 
 .testimonial-cards {
@@ -30,21 +58,21 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .testimonial {
   width: 30%;
   min-width: 250px;
   padding: 1.5rem;
-  background-color: #333;
+  /* background: #fff; */
   border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .testimonial p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #fff;
+  /* font-weight: bold; */
   margin-bottom: 1rem;
 }
 
@@ -56,27 +84,35 @@
 /* Partners Carousel */
 .partners {
   padding: 4rem 2rem;
-  text-align: center;
+  text-align: left;
   background: var(--dark-bg);
+}
+
+.partners h2 {
+  font-size: 3.5rem;
+  margin-bottom: 5rem;
+  color: var(--accent-color);
 }
 
 .partners-carousel {
   margin: 0 auto;
   max-width: 1200px;
+  /* background: #ffffff; */
+  padding: 2rem;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
 }
 
 .partners-carousel img {
-  width: 200px;
-  height: 100px;
-  object-fit: contain;
+  width: 250px;
+  height: auto;
   margin: 0 auto;
-  filter: grayscale(100%) brightness(0.8);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .partners-carousel img:hover {
-  filter: grayscale(0%) brightness(1);
-  transform: scale(1.05);
+  transform: scale(1.1);
+  opacity: 0.8;
 }
 
 /* Slick Carousel Customizations */
@@ -90,7 +126,7 @@
 .slick-prev:before,
 .slick-next:before {
   font-size: 40px;
-  color: var(--accent-color);
+  color: #ecb306; 
 }
 
 .slick-prev {
@@ -101,12 +137,149 @@
   right: -50px;
 }
 
+/* Remove dots */
 .slick-dots {
-  display: none !important;
+  display: none !important; 
 }
 
+/* Contact Section */
+.contact {
+  padding: 4rem 2rem;
+  text-align: left;
+  background: var(--dark-bg);
+}
+
+.contact h2 {
+  font-size: 3.5rem;
+  margin-bottom: 5rem;
+  color: var(--accent-color);
+}
+
+/* Contact Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff; 
+  text-align: left;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif; 
+  color: #333; 
+  background-color: #fff; 
+    border-radius: 0 !important;
+
+}
+
+form textarea {
+  resize: vertical; 
+  min-height: 150px; 
+}
+
+form button {
+  background: #ecb306;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+  
+}
+
+form button:hover {
+  background: #d49e05;
+}
+
+form button {
+  background: #ecb306;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+    border-radius: 0 !important;
+  font-weight: bold;
+
+}
+
+form button:hover {
+  background: #d49e05;
+  border-radius: 0 !important;
+
+}
+
+.contact-info {
+  margin-top: 2rem;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: #fff
+}
+
+.map {
+  margin-top: 2rem;
+}
+
+/* Social Media Icons */
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /
+  margin-top: 1.5rem;
+}
+
+.social-media a {
+  margin: 0 0.5rem;
+  transition: transform 0.3s ease;
+  text-decoration: none; 
+}
+
+.social-media a:hover {
+  transform: translateY(-5px); 
+}
+
+.social-media img {
+  width: 30px;
+  height: 30px;
+  display: block; 
+}
+
+/* Remove any pseudo-elements causing the dash */
+.social-media a::after,
+.social-media a::before {
+  content: none; 
+}
 /* Footer */
 footer {
-  background: var(--dark-bg);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
 }
