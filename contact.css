@@ -57,7 +57,16 @@ body {
 
 /* Contact Section - Square Elements */
 .contact {
-  background-color: var(--section-bg);
+  background-color: var(--dark-bg);
+}
+
+.contact-title2{
+	/* color: #fff; */
+	color: var(--accent-color);
+	font-size: 4.5rem;	
+	text-align: center;
+	font-weight: bold;
+	
 }
 
 .contact input[type="text"],
@@ -98,13 +107,14 @@ body {
 .testimonials {
   padding: 4rem 2rem;
   text-align: center;
-  background: #f9f9f9;
+  background-color: var(--dark-bg);
+  
 }
 
 .testimonials h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #404040;
+  color: #fff;
 }
 
 .testimonial-cards {
@@ -118,27 +128,27 @@ body {
   width: 30%;
   min-width: 250px;
   padding: 1.5rem;
-  background: #fff;
+  background-color: var(--dark-bg);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .testimonial p {
   font-size: 1rem;
-  color: #666;
+  color: #fff;
   margin-bottom: 1rem;
 }
 
 .testimonial p:last-child {
   font-weight: bold;
-  color: #333;
+  color: var(--accent-color);
 }
 
 /* Partners Carousel */
 .partners {
   padding: 4rem 2rem;
   text-align: center;
-  background: #f9f9f9;
+  background: var(--dark-bg);
 }
 
 .partners h2 {
@@ -149,10 +159,10 @@ body {
 .partners-carousel {
   margin: 0 auto;
   max-width: 1200px;
-  background: #ffffff;
+  /* background: #ffffff; */
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
 }
 
 .partners-carousel img {

@@ -1,25 +1,10 @@
-// Initialize hero video
-document.addEventListener('DOMContentLoaded', function() {
-  const heroVideo = document.getElementById('hero-video');
-  
-  // Ensure video plays when loaded
-  heroVideo.play().catch(error => {
-    console.log('Video autoplay prevented:', error);
-  });
-
-  // Fallback if video fails to load
-  heroVideo.addEventListener('error', function() {
-    console.log('Video failed to load');
-  });
-});
-
 // Language Data
 const languageData = {
   en: {
     heroTitle: "Innovative Architecture Solutions",
     heroTagline: "Transforming spaces, building futures.",
     heroCta: "View Our Work",
-    aboutTitle: "ABOUT US",
+    aboutTitle: "About Us",
     aboutDescription: "We are a leading architecture firm specializing in innovative design and sustainable solutions.",
     aboutCta: "Learn More",
     servicesTitle: "SERVICES",
@@ -30,22 +15,24 @@ const languageData = {
     service3Title: "Real Estate",
     service3Description: "Helping you find the perfect space.",
     portfolioTitle: "PORTFOLIO",
+    portfolioShowMore: "Show More",
+    portfolioShowLess: "Show Less",
     catalogTitle: "CATALOG",
-    testimonialsTitle: "TESTIMONIALS",
+    catalogShowMore: "Show More",
+    catalogShowLess: "Show Less",
+    testimonialsTitle: "What Our Clients Say",
     partnersTitle: "OUR ALLIES",
     contactTitle: "CONTACT US",
     contactNameLabel: "Name",
     contactEmailLabel: "Email",
     contactMessageLabel: "Message",
     contactSubmit: "Send Message",
-    catalogButton1: "CATALOG",
-    catalogButton2: "CONFIGURATOR"
   },
   es: {
     heroTitle: "Soluciones de Arquitectura Innovadoras",
     heroTagline: "Transformando espacios, construyendo futuros.",
     heroCta: "Ver Nuestro Trabajo",
-    aboutTitle: "NOSOTROS",
+    aboutTitle: "Sobre Nosotros",
     aboutDescription: "Somos una firma líder en arquitectura especializada en diseño innovador y soluciones sostenibles.",
     aboutCta: "Conocer Más",
     servicesTitle: "SERVICIOS",
@@ -56,19 +43,20 @@ const languageData = {
     service3Title: "Bienes Raíces",
     service3Description: "Ayudándole a encontrar el espacio perfecto.",
     portfolioTitle: "PORTAFOLIO",
+    portfolioShowMore: "Mostrar Más",
+    portfolioShowLess: "Mostrar Menos",
     catalogTitle: "CATALOGO",
-    testimonialsTitle: "TESTIMONIOS",
+    catalogShowMore: "Mostrar Más",
+    catalogShowLess: "Mostrar Menos",
+    testimonialsTitle: "Lo Que Dicen los Clientes",
     partnersTitle: "NUESTROS ALIADOS",
     contactTitle: "CONTACTENOS",
     contactNameLabel: "Nombre",
     contactEmailLabel: "Correo Electrónico",
     contactMessageLabel: "Mensaje",
-    contactSubmit: "Enviar",
-    catalogButton1: "CATALOGO",
-    catalogButton2: "CONFIGURADOR"
-  }
+    contactSubmit: "Enviar Mensaje",
+  },
 };
-
 
 // Get the language button and all elements with text to update
 const languageButton = document.getElementById("language-button");
@@ -87,7 +75,9 @@ const elementsToUpdate = {
   service3Title: document.getElementById("service-3-title"),
   service3Description: document.getElementById("service-3-description"),
   portfolioTitle: document.getElementById("portfolio-title"),
+  portfolioShowMore: document.getElementById("show-more-button"),
   catalogTitle: document.getElementById("catalog-title"),
+  catalogShowMore: document.getElementById("show-more-catalog-button"),
   testimonialsTitle: document.getElementById("testimonials-title"),
   partnersTitle: document.getElementById("partners-title"),
   contactTitle: document.getElementById("contact-title"),
@@ -95,8 +85,6 @@ const elementsToUpdate = {
   contactEmailLabel: document.getElementById("contact-email-label"),
   contactMessageLabel: document.getElementById("contact-message-label"),
   contactSubmit: document.getElementById("contact-submit"),
-  catalogButton1: document.getElementById("catalog-button1"),
-  catalogButton2: document.getElementById("catalog-button2")
 };
 
 // Set initial language to Spanish
@@ -127,6 +115,7 @@ languageButton.addEventListener("click", () => {
 // Initialize with Spanish
 updateLanguage(currentLanguage);
 languageButton.textContent = "English";
+
 
 // Initialize Partners Carousel
 $(document).ready(function () {
