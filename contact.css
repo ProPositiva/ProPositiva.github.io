@@ -22,7 +22,9 @@ body {
 .about {
   padding: 4rem 2rem;
   text-align: left;
-  background: var(--dark-bg);
+  background: var(--accent-color);  
+  font-weight: bold;
+
 }
 
 .about h2 {
