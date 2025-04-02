@@ -129,12 +129,7 @@ body {
 }
 
 /* For different sized logos, add specific overrides */
-.partners-carousel img[alt="Project Service"] {
-  width: 160px; /* Slightly narrower */
-  height: 70px;
-}
-
-.partners-carousel img[alt="Diatom"] {
+.partners-carousel img[alt="PYMES"] {
   width: 200px; /* Slightly wider */
   height: 80px;
 }
