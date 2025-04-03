@@ -21,37 +21,32 @@ body {
   height: 50px;
 }
 
+
+
 .close-button {
-	flex: 1;
-	text-align: center;
-	padding: 15px 10px;
-	cursor: pointer;
-	font-size: 0.9rem;
-	color: #bbb;
-	border-bottom: 3px solid transparent;
-	transition: all 0.2s ease;
-	justify-content: center;
-  
-/*   position: absolute;
-  top: 15px;
-  right: 20px;
   background: none;
   border: none;
-  color: #ddd;
+  color: #bbb;
   font-size: 0.9rem;
-  font-weight: 300;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
   transition: all 0.2s ease;
-  z-index: 10; */
+  text-align: left;
+  z-index: 10;
+
 }
 
 .close-button:hover {
   color: #ecb306;
+  font-weight: bold;
   transform: scale(1.1);
+
+}
+
+.close.active {
+  color: #fff;
+  border-bottom-color: #ecb306;
+  font-weight: 500;
+  background-color: #3a3a3a;
 }
 
 /* Visualization Panel */
