@@ -133,7 +133,11 @@ const portfolioItems = document.querySelectorAll(".portfolio-item");
 const portfolioBackground = document.getElementById("portfolio-background");
 
 // Store the original background image
-const originalBackground = portfolioBackground.style.backgroundImage;
+/* const originalBackground = portfolioBackground.style.backgroundImage; */
+
+const firstProjectBg = document.querySelector(".portfolio-item").getAttribute("data-bg");
+const originalBackground = `url(${firstProjectBg})`;
+portfolioBackground.style.backgroundImage = originalBackground;
 
 // Add event listeners for hover
 portfolioItems.forEach((item) => {
