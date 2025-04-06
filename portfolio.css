@@ -25,10 +25,10 @@ body {
   transition: var(--transition);
 }
 
-.home-button:hover {
+/* .home-button:hover {
   transform: scale(1.1);
 }
-
+ */
 .home-icon {
   width: 60px; 
   height: 60px;
@@ -169,7 +169,7 @@ body {
 /* Portfolio Header */
 .portfolio-header {
   position: fixed;
-  top: 1rem;
+  top: 6rem;
   left: 1rem;
   z-index: 1000;
 }
