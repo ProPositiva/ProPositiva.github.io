@@ -1,5 +1,5 @@
 // Second logo fade on scroll
-document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
   const secondLogo = document.querySelector('.second-logo');
   
   window.addEventListener('scroll', function() {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
+ */
 document.addEventListener('DOMContentLoaded', function() {
   // Elements
   const portfolioItems = Array.from(document.querySelectorAll('.portfolio-item'));

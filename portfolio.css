@@ -37,7 +37,7 @@ body {
 }
 
 /* Second Logo */
-.second-logo {
+/* .second-logo {
   position: fixed;
   top: 1rem;
   left: 4.5rem; 
@@ -63,7 +63,7 @@ body {
   width: 200px;
   height: 60px;
   object-fit: contain;
-}
+} */
 
 /* Custom Scrollbar */
 .portfolio-list::-webkit-scrollbar {
@@ -169,8 +169,8 @@ body {
 /* Portfolio Header */
 .portfolio-header {
   position: fixed;
-  top: 6rem;
-  left: 1rem;
+  top: 1.25rem;
+  left: 5rem;
   z-index: 1000;
 }
 

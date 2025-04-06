@@ -104,8 +104,8 @@ body {
 }
 
 .second-logo-icon {
-  width: 200px;
-  height: 60px;
+  width: auto;
+  height: 55px;
   object-fit: contain;
 }
 
