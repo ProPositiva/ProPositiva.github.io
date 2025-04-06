@@ -52,6 +52,63 @@ body {
   border-radius: 0 !important;
 }
 
+/* Home Toggle Button */
+.home-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+}
+
+.home-button {
+  background: none !important; 
+  border: none !important;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  transition: var(--transition);
+}
+
+.home-button:hover {
+  transform: scale(1.1);
+}
+
+.home-icon {
+  width: 60px; 
+  height: 60px;
+  object-fit: contain;
+  filter: none;
+}
+
+/* Second Logo */
+.second-logo {
+  position: fixed;
+  top: 1rem;
+  left: 4.5rem; 
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.second-logo.scrolled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.second-logo-button {
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+}
+
+.second-logo-icon {
+  width: 200px;
+  height: 60px;
+  object-fit: contain;
+}
+
 /* Hero Section */
 .hero {
   background-color: var(--dark-bg);

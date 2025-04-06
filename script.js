@@ -206,3 +206,15 @@ $(document).ready(function () {
     ],
   });
 });
+// Second logo fade on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const secondLogo = document.querySelector('.second-logo');
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 10) {
+      secondLogo.classList.add('scrolled');
+    } else {
+      secondLogo.classList.remove('scrolled');
+    }
+  });
+});
