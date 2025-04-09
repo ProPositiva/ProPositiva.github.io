@@ -18,6 +18,60 @@ body {
   color: #fff;
 }
 
+
+/* Home Toggle Button */
+.home-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+}
+
+.home-button {
+  background: none !important; 
+  border: none !important;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  transition: var(--transition);
+}
+
+.home-icon {
+  width: 60px; 
+  height: 60px;
+  object-fit: contain;
+  filter: none;
+}
+
+/* Second Logo */
+.second-logo {
+  position: fixed;
+  top: 1rem;
+  left: 4.5rem; 
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.second-logo.scrolled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.second-logo-button {
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+}
+
+.second-logo-icon {
+  width: auto;
+  height: 55px;
+  object-fit: contain;
+}
+
 /* About Section */
 .about {
   padding: 4rem 2rem;
@@ -324,3 +378,116 @@ footer p {
   margin: 0;
   font-size: 1rem;
 }
+
+
+
+/* Dock Menu */
+.dock-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 50px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.dock-container {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  pointer-events: none;
+}
+
+.dock-menu {
+  position: relative;
+  left: -80px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 0.8rem;
+  background: rgba(64, 64, 64, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 0 12px 12px 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: all;
+}
+
+.dock-wrapper:hover .dock-menu {
+  left: 0;
+  background: rgba(64, 64, 64, 0.4);
+  width: 320px;
+}
+
+.dock-menu:hover .dock-label{
+	opacity: 1;
+}
+
+.dock-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.dock-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+  transition: all 0.2s ease;
+}
+
+.dock-item:hover {
+  transform: scale(1.2);
+}
+
+.dock-item:hover .dock-label {
+  opacity: 1;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.dock-label {
+  position: absolute;
+  left: calc(100% + 15px);
+  color: #ffffff;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.dock-indicator {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.dock-wrapper:hover .dock-indicator {
+  opacity: 0;
+}
+
+/* Auto-hide functionality */
+.dock-menu {
+  transition-delay: 0.5s;
+}
+
+.dock-wrapper:hover .dock-menu {
+  transition-delay: 0s;
+}
+
+

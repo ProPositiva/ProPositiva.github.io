@@ -277,3 +277,53 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize everything
   initPortfolio();
 });
+
+
+
+
+// Improved Dock Menu Functionality
+const dockWrapper = document.querySelector('.dock-wrapper');
+let dockHideTimeout;
+
+// Make the entire left edge trigger area interactive
+dockWrapper.style.pointerEvents = 'auto';
+
+dockWrapper.addEventListener('mouseenter', () => {
+  clearTimeout(dockHideTimeout);
+  dockWrapper.classList.add('dock-visible');
+});
+
+dockWrapper.addEventListener('mouseleave', () => {
+  dockHideTimeout = setTimeout(() => {
+    dockWrapper.classList.remove('dock-visible');
+  }, 300);
+});
+
+// Handle dock item clicks
+document.querySelectorAll('.dock-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    if (item.getAttribute('href').startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Mobile Touch Support
+if ('ontouchstart' in window) {
+  const dock = document.querySelector('.dock-wrapper');
+  
+  dock.addEventListener('touchstart', (e) => {
+    e.currentTarget.classList.add('dock-visible');
+  });
+
+  document.addEventListener('touchstart', (e) => {
+    if (!e.target.closest('.dock-wrapper')) {
+      document.querySelector('.dock-wrapper').classList.remove('dock-visible');
+    }
+  }, { passive: true });
+}
