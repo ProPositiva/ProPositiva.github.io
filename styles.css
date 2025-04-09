@@ -516,6 +516,10 @@ footer {
   width: 320px;
 }
 
+.dock-menu:hover .dock-label{
+	opacity: 1;
+}
+
 .dock-item {
   position: relative;
   display: flex;
