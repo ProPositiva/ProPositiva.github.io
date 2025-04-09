@@ -218,3 +218,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+
+// Dock Menu Functionality
+const dockContainer = document.querySelector('.dock-container');
+let dockTimeout;
+
+dockContainer.addEventListener('mouseenter', () => {
+  clearTimeout(dockTimeout);
+  dockContainer.classList.add('active');
+});
+
+dockContainer.addEventListener('mouseleave', () => {
+  dockTimeout = setTimeout(() => {
+    dockContainer.classList.remove('active');
+  }, 1000);
+});
+
+// Smooth scroll for dock items
+document.querySelectorAll('.dock-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(item.getAttribute('href'));
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+});
