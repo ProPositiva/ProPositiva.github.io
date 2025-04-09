@@ -11,6 +11,46 @@ document.addEventListener('DOMContentLoaded', function() {
   heroVideo.addEventListener('error', function() {
     console.log('Video failed to load');
   });
+
+  // Second logo fade on scroll
+  const secondLogo = document.querySelector('.second-logo');
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 10) {
+      secondLogo.classList.add('scrolled');
+    } else {
+      secondLogo.classList.remove('scrolled');
+    }
+  });
+
+ // Dock Menu Functionality
+const dockContainer = document.querySelector('.dock-container');
+let dockTimeout;
+
+dockContainer.addEventListener('mouseenter', () => {
+  clearTimeout(dockTimeout);
+  dockContainer.classList.add('active');
+});
+
+dockContainer.addEventListener('mouseleave', () => {
+  dockTimeout = setTimeout(() => {
+    dockContainer.classList.remove('active');
+  }, 1000);
+});
+
+// Handle dock item clicks
+document.querySelectorAll('.dock-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    if (item.getAttribute('href').startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    // External links will follow normally
+  });
 });
 
 // Language Data
@@ -68,7 +108,6 @@ const languageData = {
     catalogButton2: "CONFIGURADOR"
   }
 };
-
 
 // Get the language button and all elements with text to update
 const languageButton = document.getElementById("language-button");
@@ -133,8 +172,6 @@ const portfolioItems = document.querySelectorAll(".portfolio-item");
 const portfolioBackground = document.getElementById("portfolio-background");
 
 // Store the original background image
-/* const originalBackground = portfolioBackground.style.backgroundImage; */
-
 const firstProjectBg = document.querySelector(".portfolio-item").getAttribute("data-bg");
 const originalBackground = `url(${firstProjectBg})`;
 portfolioBackground.style.backgroundImage = originalBackground;
@@ -204,45 +241,5 @@ $(document).ready(function () {
         },
       },
     ],
-  });
-});
-// Second logo fade on scroll
-document.addEventListener('DOMContentLoaded', function() {
-  const secondLogo = document.querySelector('.second-logo');
-  
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 10) {
-      secondLogo.classList.add('scrolled');
-    } else {
-      secondLogo.classList.remove('scrolled');
-    }
-  });
-});
-
-
-// Dock Menu Functionality
-const dockContainer = document.querySelector('.dock-container');
-let dockTimeout;
-
-dockContainer.addEventListener('mouseenter', () => {
-  clearTimeout(dockTimeout);
-  dockContainer.classList.add('active');
-});
-
-dockContainer.addEventListener('mouseleave', () => {
-  dockTimeout = setTimeout(() => {
-    dockContainer.classList.remove('active');
-  }, 1000);
-});
-
-// Smooth scroll for dock items
-document.querySelectorAll('.dock-item').forEach(item => {
-  item.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(item.getAttribute('href'));
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
   });
 });

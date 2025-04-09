@@ -415,74 +415,19 @@ footer {
   text-align: center;
 }
 
-/* Responsive Design */
-@media (min-width: 768px) {
-  .panel-container {
-    flex-direction: row;
-  }
-  
-  .panel {
-    margin-bottom: 0;
-  }
-  
-  .panel + .panel {
-    margin-left: -1px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .contact-button,
-  .catalog-link {
-    font-size: 2rem;
-    min-height: 8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .portfolio-items-container {
-    margin-left: 0;
-    transform: none;
-    padding-left: 2rem;
-  }
-  
-  .contact-button,
-  .catalog-link {
-    font-size: 1.8rem;
-    min-height: 7rem;
-    padding-left: 1.5rem;
-  }
-  
-  .process-abbrev {
-    font-size: 3.5rem;
-  }
-  
-  .process-description {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .portfolio-items-container {
-    padding-left: 1rem;
-  }
-  
-  .contact-button,
-  .catalog-link {
-    font-size: 1.5rem;
-    min-height: 6rem;
-    padding-left: 1rem;
-  }
-}
-
-/* macOS-style Dock */
+/* Dock Menu*/
 .dock-container {
   position: fixed;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
   z-index: 999;
-  height: 100vh;
+  height: auto;
+  width: auto;
   pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dock-menu {
@@ -497,6 +442,7 @@ footer {
   border-radius: 0 12px 12px 0;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   pointer-events: all;
+  align-items: flex-start;
 }
 
 .dock-container:hover .dock-menu {
@@ -506,7 +452,8 @@ footer {
 
 .dock-item {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   width: 40px;
   height: 40px;
   transition: all 0.2s ease;
@@ -525,36 +472,25 @@ footer {
   margin: 0.5rem 0;
 }
 
-.dock-item:hover .dock-label {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 .dock-label {
   position: absolute;
   left: 100%;
-  top: 50%;
-  transform: translateX(-10px) translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  color: #404040;
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  margin-left: 15px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 1.5rem;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s ease;
+  font-weight: normal;
+  text-transform: uppercase;
 }
 
-.dock-label::before {
-  content: '';
-  position: absolute;
-  left: -6px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-right: 6px solid rgba(255, 255, 255, 0.9);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
+.dock-item:hover .dock-label {
+  opacity: 1;
+  font-weight: bold;
+  color: var(--accent-color);
 }
 
 .dock-indicator {
