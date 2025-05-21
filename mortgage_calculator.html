@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Hipoteca</title>
+    <link rel="stylesheet" href="mortgage_calculator.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Calculadora de Hipoteca</h1>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <label for="loan-amount">Monto del Préstamo ($)</label>
+                <input type="number" id="loan-amount" placeholder="300,000">
+            </div>
+            
+            <div class="input-group">
+                <label for="interest-rate">Tasa de Interés (%)</label>
+                <input type="number" id="interest-rate" placeholder="3.5" step="0.01">
+            </div>
+            
+            <div class="input-group">
+                <label for="loan-term">Plazo del Préstamo (años)</label>
+                <input type="number" id="loan-term" placeholder="30">
+            </div>
+            
+            <div class="input-group">
+                <label for="down-payment">Pago Inicial ($)</label>
+                <input type="number" id="down-payment" placeholder="60,000">
+            </div>
+            
+            <button id="calculate-btn">Calcular Hipoteca</button>
+        </div>
+        
+        <div class="results-section">
+            <div class="result-card">
+                <h3>Pago Mensual</h3>
+                <p id="monthly-payment">$0</p>
+            </div>
+            
+            <div class="result-card">
+                <h3>Interés Total</h3>
+                <p id="total-interest">$0</p>
+            </div>
+            
+            <div class="result-card">
+                <h3>Costo Total</h3>
+                <p id="total-cost">$0</p>
+            </div>
+            
+            <div class="payment-breakdown">
+                <h3>Desglose de Pagos</h3>
+                <div class="breakdown-chart">
+                    <div class="principal" id="principal-breakdown"></div>
+                    <div class="interest" id="interest-breakdown"></div>
+                </div>
+                <div class="breakdown-labels">
+                    <span><span class="legend principal"></span> Capital</span>
+                    <span><span class="legend interest"></span> Interés</span>
+                </div>
+            </div>
+            
+            <div class="amortization-section">
+                <h3>Tabla de Amortización</h3>
+                <table id="amortization-table">
+                    <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Pago</th>
+                            <th>Capital</th>
+                            <th>Interés</th>
+                            <th>Saldo Restante</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Será completado por JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+	<!-- Sección de Contacto -->
+<section id="contact" class="contact position-relative">
+  <div class="contact-container container-fluid p-0">
+    <div class="contact-button-container">
+      <a href="contact.html" class="contact-button" id="contact-button">CONTÁCTENOS</a>
+    </div>
+  </div>
+</section>
+	
+    <script src="mortgage_calculator.js"></script>
+</body>
+</html>
