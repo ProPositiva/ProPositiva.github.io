@@ -374,3 +374,33 @@ footer {
     border-bottom: 3px solid var(--accent-color);
   }
 }
+
+.floating-calculator-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-color); 
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-decoration: none;
+    z-index: 1000; 
+    transition: all 0.3s ease;
+}
+
+.floating-calculator-btn:hover {
+    background-color: var(--secondary-color); 
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.floating-calculator-btn:active {
+    transform: scale(0.95);
+}

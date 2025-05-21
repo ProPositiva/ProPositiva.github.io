@@ -3,10 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Hipoteca</title>
+	 <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="Assets/Icons/FavIcon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="Assets/Icons/FavIcon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="Assets/Icons/FavIcon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="Assets/Icons/FavIcon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="Assets/Icons/FavIcon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="Assets/Icons/FavIcon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="Assets/Icons/FavIcon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="Assets/Icons/FavIcon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="Assets/Icons/FavIcon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="Assets/Icons/FavIcon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="Assets/Icons/FavIcon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="Assets/Icons/FavIcon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Assets/Icons/FavIcon/favicon-16x16.png">
+  <link rel="manifest" href="Assets/Icons/FavIcon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="Assets/Icons/FavIcon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+    <title>Calculadora de Hipoteca - Alianza ProPositiva</title>
     <link rel="stylesheet" href="mortgage_calculator.css">
-</head>
+</head
+<!-- Dock Menu -->
+<div class="dock-wrapper">
+  <div class="dock-indicator"></div>
+  <div class="dock-container">
+    <nav class="dock-menu">
+<!--       <a href="#hero" class="dock-item">
+        <img src="Assets/Icons/consulting-icon.png" alt="Home">
+        <span class="dock-label">HOME</span>
+      </a> -->
+      <a href="portfolio.html" class="dock-item">
+        <img src="Assets/Icons/project-management-icon.png" alt="Portfolio">
+        <span class="dock-label">PORTAFOLIO</span>
+      </a>
+      <a href="catalog.html" class="dock-item">
+        <img src="Assets/Icons/real-estate-icon.png" alt="Catalog">
+        <span class="dock-label">CATALOGO</span>
+      </a>
+      <a href="builder.html" class="dock-item">
+        <img src="Assets/Icons/consulting-icon.png" alt="Builder">
+        <span class="dock-label">CONFIGURAR</span>
+      </a>
+      <a href="contact.html" class="dock-item">
+        <img src="Assets/Icons/project-management-icon.png" alt="Contact">
+        <span class="dock-label">CONTACTENOS</span>
+      </a>
+    </nav>
+  </div>
+</div>
 <body>
+<!-- Home Toggle Button -->
+<div class="home-toggle position-fixed" style="top: 1rem; left: 1rem; z-index: 1000;">
+  <a href="index.html" class="home-button">
+    <img src="Assets/Icons/consulting-icon.png" alt="Home" class="home-icon">
+  </a>
+</div>
+<!-- Second Logo - Appears only at top -->
+<div class="second-logo position-fixed" style="top: 1rem; left: 4.5rem; z-index: 1000;">
+  <a href="index.html" class="second-logo-button">
+    <img src="Assets/Icons/propositiva-icon.png" alt="Home" class="second-logo-icon">
+  </a>
+</div>
     <div class="calculator-container">
         <h1>Calculadora de Hipoteca</h1>
         
@@ -90,7 +148,11 @@
     </div>
   </div>
 </section>
-	
+	    <footer>
+        <div class="container">
+            <p>&copy; ALIANZA PROPOSITIVA TROPICAL PARA EL DESARROLLO SOSTENIBLE S.A.</p>
+        </div>
+    </footer>
     <script src="mortgage_calculator.js"></script>
 </body>
 </html>
