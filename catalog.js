@@ -139,7 +139,7 @@ function initCatalog() {
 // Show loading state
 function showLoadingState() {
     catalogGrid.innerHTML = '';
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 1; i++) {
         const loadingItem = document.createElement('div');
         loadingItem.className = 'catalog-item loading-item';
         catalogGrid.appendChild(loadingItem);
