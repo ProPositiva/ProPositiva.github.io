@@ -33,7 +33,7 @@ function getProductById(id) {
             images: ["Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-1.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-2.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-3.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-4.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-5.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-6.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-7.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-8.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-9.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-10.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-11.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-12.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-13.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-14.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-15.jpg","Assets/Images/Catalog/Paso Domingo/paso_domingo-scaled-50A.jpg"],
             /* videos: ["https://www.youtube.com/embed/example1"] */
         },
-        /* {
+        {
             id: 2,
             title: "Product 2",
             category: "Category 2",
@@ -77,7 +77,7 @@ function getProductById(id) {
             description: "Detailed description of Product 6 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
             images: ["images/product6.jpg", "images/product6-1.jpg"],
             videos: []
-        } */
+        }
     ];
     
     return products.find(product => product.id === parseInt(id));
