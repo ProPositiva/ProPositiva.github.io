@@ -32,7 +32,7 @@ function getProductById(id) {
             description: "Esta es su oportunidad de construir la casa que siempre ha deseado en una excelente ubicación. Este terreno en condominio cuenta con 225m2 de área y ha sido cuidadosamente seleccionado. Esquinero, de topografía suave, con la adecuada exposición al sol y listo para construcción. Se encuentra en el centro de Santo Domingo de Heredia, con acceso a vías principales, comercios y múltiples servicios. El condominio cuenta con acceso controlado, vigilancia las 24 hrs, cerramiento perimetral y planta de tratamiento. Disfrute de amenidades como: casa club, piscina, gimnasio, cancha de fútbol 5, juegos infantiles, fire pit y una infraestructura de primera. Servicios públicos disponibles: agua, planta de tratamiento, electricidad, internet. Cuota de mantenimiento $150. Contáctenos hoy mismo.",
             images: ["Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-11.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-5.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-6.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-7.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-8.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-9.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-10.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-12.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-13.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-14.jpg","Assets/Images/Catalog/Paso Domingo/Paso-Domingo-CRC-15.jpg","Assets/Images/Catalog/Paso Domingo/paso_domingo-scaled-50A.jpg"],
             /* videos: ["https://www.youtube.com/embed/example1"] */
-        },
+        }/* ,
         {
             id: 2,
             title: "Product 2",
@@ -77,7 +77,7 @@ function getProductById(id) {
             description: "Detailed description of Product 6 with all its features and specifications.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc eu nisl.",
             images: ["images/product6.jpg", "images/product6-1.jpg"],
             videos: []
-        }
+        } */
     ];
     
     return products.find(product => product.id === parseInt(id));
