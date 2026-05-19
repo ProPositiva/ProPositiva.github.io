@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRONDECK – Modular Outdoor Living Systems</title>
+
+  <!-- SEO & AI Search Optimization -->
+  <meta name="description" content="IRONDECK transforms outdoor spaces into high-performance living environments. Modular deck, outdoor kitchen, and pergola systems engineered for strength, beauty, and lasting value." />
+  <meta name="keywords" content="outdoor kitchen system, modular outdoor kitchen, pergola system, modular deck, IRONDECK, STRATA flooring, KUBIK kitchen, AXIS pergola, outdoor living" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="IRONDECK Systems" />
+  <link rel="canonical" href="https://www.irondecksystems.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="IRONDECK – Engineer Your Outdoor Life" />
+  <meta property="og:description" content="Three integrated systems. One seamless outdoor environment. STRATA flooring, KUBIK kitchen, AXIS pergola — built for those who refuse to compromise." />
+  <meta property="og:url" content="https://www.irondecksystems.com/" />
+  <meta property="og:image" content="https://www.irondecksystems.com/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IRONDECK – Engineer Your Outdoor Life" />
+  <meta name="twitter:description" content="Modular outdoor living: deck, kitchen & pergola systems that transform any space into a premium outdoor environment." />
+
+  <!-- Structured Data (JSON-LD) for AI & SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "IRONDECK Systems",
+    "url": "https://www.irondecksystems.com",
+    "description": "IRONDECK designs and sells modular outdoor living systems including STRATA deck flooring, KUBIK outdoor kitchens, and AXIS pergola systems.",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "IRONDECK Product Systems",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "IRONDECK STRATA",
+            "description": "Modular deck and outdoor flooring system with drainage, leveling, and climate-resistance built in."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "IRONDECK KUBIK",
+            "description": "Modular outdoor kitchen system with industrial aluminum frames, storage, appliances, and work surfaces."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "IRONDECK AXIS",
+            "description": "Modular pergola and roofing system with shade, rain protection, and solar-ready integration."
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --iron: #0e0e0e;
+      --iron-mid: #1a1a1a;
+      --iron-light: #2a2928;
+      --ember: #c8602a;
+      --ember-bright: #e87240;
+      --ember-glow: #f5a06b;
+      --ash: #8a8278;
+      --bone: #e8e0d4;
+      --cream: #f4efe8;
+      --white: #ffffff;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --section-pad: clamp(5rem, 12vw, 10rem);
+      --gutter: clamp(1.5rem, 5vw, 6rem);
+      --radius: 2px;
+      --transition: 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--iron);
+      color: var(--bone);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--iron); }
+    ::-webkit-scrollbar-thumb { background: var(--ember); border-radius: 2px; }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem var(--gutter);
+      transition: background var(--transition), backdrop-filter var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(14, 14, 14, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200, 96, 42, 0.15);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      letter-spacing: 0.12em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--ember); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--ember-bright); }
+    .nav-cta {
+      background: var(--ember);
+      color: var(--white) !important;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.2em !important;
+      transition: background var(--transition) !important;
+    }
+    .nav-cta:hover { background: var(--ember-bright) !important; color: var(--white) !important; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--bone);
+      transition: var(--transition);
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--iron);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      letter-spacing: 0.08em;
+      color: var(--bone);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--ember); }
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.5rem; right: var(--gutter);
+      background: none;
+      border: none;
+      color: var(--bone);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 0 var(--gutter);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200, 96, 42, 0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(200, 96, 42, 0.08) 0%, transparent 60%),
+        linear-gradient(160deg, #0e0e0e 0%, #1a1612 50%, #0e0e0e 100%);
+    }
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,96,42,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,96,42,0.06) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1100px;
+      animation: heroIn 1.2s ease both;
+    }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 1.5rem;
+      animation: heroIn 1s 0.2s ease both;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 14vw, 13rem);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      animation: heroIn 1s 0.3s ease both;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--ember);
+    }
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--ash);
+      margin-top: 1.5rem;
+      animation: heroIn 1s 0.5s ease both;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      animation: heroIn 1s 0.7s ease both;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--ember);
+      color: var(--white);
+      padding: 1rem 2.2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { background: var(--ember-bright); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--bone);
+      padding: 1rem 2.2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(138, 130, 120, 0.4);
+      cursor: pointer;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .btn-secondary:hover { border-color: var(--ember); color: var(--ember); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: heroIn 1s 1s ease both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--ember), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    .scroll-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    /* ─── INTRO STRIP ─── */
+    #intro {
+      padding: var(--section-pad) var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .intro-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 1.2rem;
+    }
+    .intro-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--cream);
+    }
+    .intro-heading strong { font-weight: 600; color: var(--white); }
+    .intro-body { color: var(--ash); font-size: 1rem; line-height: 1.8; }
+    .intro-body p + p { margin-top: 1rem; }
+    .intro-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--ember);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-top: 0.4rem;
+    }
+    .intro-divider {
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--ember), transparent);
+      justify-self: center;
+    }
+
+    /* ─── SENSATION BANNER ─── */
+    .sensation-banner {
+      background: var(--iron-mid);
+      border-top: 1px solid rgba(200, 96, 42, 0.2);
+      border-bottom: 1px solid rgba(200, 96, 42, 0.2);
+      overflow: hidden;
+      padding: 1.2rem 0;
+    }
+    .sensation-track {
+      display: flex;
+      gap: 4rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .sensation-item {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--ash);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-shrink: 0;
+    }
+    .sensation-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ember);
+    }
+
+    /* ─── PRODUCTS ─── */
+    #systems {
+      padding: var(--section-pad) var(--gutter);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .systems-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 6rem);
+    }
+    .section-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      letter-spacing: 0.03em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .section-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: var(--ash);
+      margin-top: 1rem;
+    }
+
+    /* Product Cards */
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 6rem;
+      border: 1px solid rgba(200, 96, 42, 0.12);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .product-card:hover { border-color: rgba(200, 96, 42, 0.35); }
+    .product-card.reverse { direction: rtl; }
+    .product-card.reverse > * { direction: ltr; }
+    .product-visual {
+      position: relative;
+      min-height: clamp(280px, 50vw, 550px);
+      overflow: hidden;
+    }
+    .product-visual-inner {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .product-card:hover .product-visual-inner { transform: scale(1.04); }
+
+    /* STRATA Visual */
+    .visual-strata {
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(200, 96, 42, 0.25) 0%, transparent 50%),
+        linear-gradient(135deg, #1a1612 0%, #0e0b08 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .strata-pattern {
+      width: 80%;
+      height: 80%;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 3px;
+      opacity: 0.7;
+    }
+    .strata-tile {
+      background: rgba(200, 96, 42, 0.3);
+      border: 1px solid rgba(200, 96, 42, 0.5);
+    }
+    .strata-tile:nth-child(3n) { background: rgba(138, 130, 120, 0.2); border-color: rgba(138,130,120,0.3); }
+    .strata-tile:nth-child(5n) { background: rgba(200, 96, 42, 0.15); }
+
+    /* KUBIK Visual */
+    .visual-kubik {
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(200, 96, 42, 0.22) 0%, transparent 55%),
+        linear-gradient(145deg, #0e0e0e 0%, #1a1612 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .kubik-shape {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .kubik-module {
+      border: 2px solid rgba(200, 96, 42, 0.6);
+      background: rgba(200, 96, 42, 0.06);
+      position: relative;
+    }
+    .kubik-module::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px; right: 8px;
+      height: 2px;
+      background: rgba(200, 96, 42, 0.4);
+    }
+    .km1 { width: 80px; height: 120px; }
+    .km2 { width: 100px; height: 160px; }
+    .km3 { width: 80px; height: 100px; }
+
+    /* AXIS Visual */
+    .visual-axis {
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(200, 96, 42, 0.2) 0%, transparent 60%),
+        linear-gradient(180deg, #0e0e0e 0%, #1a1612 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .axis-frame {
+      width: 75%;
+      height: 70%;
+      position: relative;
+    }
+    .axis-post {
+      position: absolute;
+      bottom: 0;
+      width: 6px;
+      background: rgba(200, 96, 42, 0.7);
+      border-radius: 1px;
+    }
+    .axis-post.left { left: 0; height: 80%; }
+    .axis-post.right { right: 0; height: 80%; }
+    .axis-beam {
+      position: absolute;
+      top: 20%;
+      left: 0; right: 0;
+      height: 6px;
+      background: rgba(200, 96, 42, 0.7);
+      border-radius: 1px;
+    }
+    .axis-slat {
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 22%;
+      background: rgba(200, 96, 42, 0.4);
+      border-radius: 1px;
+    }
+
+    .product-info {
+      padding: clamp(2rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--iron-mid);
+    }
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 1.5rem;
+    }
+    .product-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--ember);
+    }
+    .product-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .product-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--ember-glow);
+      margin-bottom: 1.5rem;
+    }
+    .product-sensation {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.4;
+      border-left: 2px solid var(--ember);
+      padding-left: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .product-description { color: var(--ash); font-size: 0.92rem; line-height: 1.8; margin-bottom: 2rem; }
+    .product-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--bone);
+      letter-spacing: 0.05em;
+    }
+    .feature-icon {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--ember);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .feature-icon::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ember);
+    }
+
+    /* ─── INTEGRATION SECTION ─── */
+    #integration {
+      padding: var(--section-pad) var(--gutter);
+      background: var(--iron-mid);
+      border-top: 1px solid rgba(200, 96, 42, 0.1);
+      border-bottom: 1px solid rgba(200, 96, 42, 0.1);
+      text-align: center;
+    }
+    .integration-inner { max-width: 1200px; margin: 0 auto; }
+    .integration-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 4rem 0;
+      flex-wrap: wrap;
+    }
+    .int-block {
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(200, 96, 42, 0.3);
+      background: rgba(200, 96, 42, 0.04);
+      text-align: center;
+      flex: 1;
+      min-width: 160px;
+    }
+    .int-block-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .int-block-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-top: 0.3rem;
+    }
+    .int-connector {
+      width: 40px;
+      height: 2px;
+      background: var(--ember);
+      flex-shrink: 0;
+    }
+    .integration-promise {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--cream);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ─── EXPERIENCE SECTION ─── */
+    #experience {
+      padding: var(--section-pad) var(--gutter);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      margin-top: 4rem;
+      background: rgba(200, 96, 42, 0.15);
+    }
+    .exp-card {
+      background: var(--iron);
+      padding: clamp(2rem, 4vw, 3.5rem);
+      position: relative;
+      overflow: hidden;
+      transition: background var(--transition);
+    }
+    .exp-card:hover { background: var(--iron-mid); }
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--ember), transparent);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .exp-card:hover::before { transform: scaleX(1); }
+    .exp-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: rgba(200, 96, 42, 0.15);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .exp-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .exp-body { font-size: 0.88rem; color: var(--ash); line-height: 1.8; }
+
+    /* ─── PROCESS SECTION ─── */
+    #process {
+      padding: var(--section-pad) var(--gutter);
+      background: linear-gradient(to bottom, var(--iron) 0%, var(--iron-mid) 100%);
+    }
+    .process-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 4rem;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--ember), transparent);
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      align-items: start;
+      gap: 0;
+      margin-bottom: 3rem;
+    }
+    .process-step:nth-child(even) .step-content-left { grid-column: 3; }
+    .process-step:nth-child(even) .step-content-right { grid-column: 1; grid-row: 1; }
+    .step-content-left, .step-content-right {
+      padding: 1.5rem 2rem;
+      text-align: left;
+    }
+    .process-step:nth-child(even) .step-content-left { text-align: right; }
+    .step-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding-top: 1rem;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--ember);
+      background: var(--iron);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--ember);
+    }
+    .step-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ember);
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .step-body { font-size: 0.85rem; color: var(--ash); line-height: 1.7; }
+
+    /* ─── CTA SECTION ─── */
+    #cta {
+      padding: var(--section-pad) var(--gutter);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 50% 50%, rgba(200, 96, 42, 0.15) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+    .cta-big {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 9rem);
+      line-height: 0.9;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+    .cta-big em { font-style: normal; color: var(--ember); }
+    .cta-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--ash);
+      margin-bottom: 3rem;
+    }
+    .cta-form {
+      display: flex;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto 1rem;
+    }
+    .cta-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(138, 130, 120, 0.3);
+      border-right: none;
+      color: var(--cream);
+      padding: 1rem 1.4rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .cta-input::placeholder { color: var(--ash); }
+    .cta-input:focus { border-color: var(--ember); }
+    .cta-submit {
+      background: var(--ember);
+      color: var(--white);
+      border: none;
+      padding: 1rem 1.8rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .cta-submit:hover { background: var(--ember-bright); }
+    .cta-note { font-size: 0.7rem; color: var(--ash); letter-spacing: 0.05em; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--iron);
+      border-top: 1px solid rgba(200, 96, 42, 0.12);
+      padding: 4rem var(--gutter) 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto 4rem;
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-brand-name span { color: var(--ember); }
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--ash);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--ash);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--bone); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(138, 130, 120, 0.1);
+      padding-top: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      font-size: 0.72rem;
+      color: rgba(138, 130, 120, 0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      #intro {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .intro-divider { display: none; }
+      .product-card {
+        grid-template-columns: 1fr;
+      }
+      .product-card.reverse { direction: ltr; }
+      .product-visual { min-height: 260px; }
+      .experience-grid { grid-template-columns: 1fr 1fr; }
+      .process-step { grid-template-columns: 1fr; text-align: left; }
+      .process-steps::before { left: 20px; }
+      .step-node { flex-direction: row; justify-content: flex-start; align-items: center; padding-top: 0; margin-bottom: 0.5rem; }
+      .step-content-left, .step-content-right { padding: 0 0 0 1rem; }
+      .process-step:nth-child(even) .step-content-left,
+      .process-step:nth-child(even) .step-content-right { grid-column: auto; grid-row: auto; text-align: left; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .int-connector { width: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .experience-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .cta-form { flex-direction: column; }
+      .cta-input { border-right: 1px solid rgba(138, 130, 120, 0.3); border-bottom: none; }
+      .integration-visual { flex-direction: column; gap: 0; }
+      .int-connector { width: 2px; height: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+  <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="#systems" onclick="closeMobileMenu()">Systems</a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="#process" onclick="closeMobileMenu()">Process</a>
+  <a href="#cta" onclick="closeMobileMenu()" style="color: var(--ember)">Get Started</a>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav id="mainNav" role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="IRONDECK Home">IRON<span>DECK</span></a>
+  <ul class="nav-links">
+    <li><a href="#systems">Systems</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#cta" class="nav-cta">Get Started</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Engineered Outdoor Living</p>
+    <h1 class="hero-title" id="hero-title">IRON<em>DECK</em></h1>
+    <p class="hero-subtitle">Where fire meets form. Where strength meets beauty.</p>
+    <div class="hero-actions">
+      <a href="#systems" class="btn-primary">
+        Explore Systems
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#cta" class="btn-secondary">Request Info</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Discover</span>
+  </div>
+</section>
+
+<!-- ─── SENSATION BANNER ─── -->
+<div class="sensation-banner" aria-hidden="true">
+  <div class="sensation-track">
+    <span class="sensation-item"><span class="sensation-dot"></span>BUILT TO ENDURE</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>MODULAR PRECISION</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>CLIMATE RESISTANT</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>INDUSTRIAL STRENGTH</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>INFINITELY EXPANDABLE</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>ENGINEERED OUTDOOR LIVING</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="sensation-item"><span class="sensation-dot"></span>BUILT TO ENDURE</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>MODULAR PRECISION</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>CLIMATE RESISTANT</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>INDUSTRIAL STRENGTH</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>INFINITELY EXPANDABLE</span>
+    <span class="sensation-item"><span class="sensation-dot"></span>ENGINEERED OUTDOOR LIVING</span>
+  </div>
+</div>
+
+<!-- ─── INTRO ─── -->
+<section id="intro" aria-labelledby="intro-heading">
+  <div class="reveal">
+    <p class="intro-label">The Philosophy</p>
+    <h2 class="intro-heading" id="intro-heading">
+      Your outdoor space should feel like <strong>an extension of who you are.</strong>
+    </h2>
+    <div class="intro-stats">
+      <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Integrated Systems</div>
+      </div>
+      <div>
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Configuration Options</div>
+      </div>
+      <div>
+        <div class="stat-number">1</div>
+        <div class="stat-label">Seamless Experience</div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="intro-body">
+      <p>Most outdoor spaces are an afterthought — a scattered collection of furniture, a gas grill pushed against a wall, uneven tiles that shift with every season. They promise relaxation and deliver frustration.</p>
+      <p>IRONDECK is different. Built around industrial-grade aluminum, engineered drainage, and a philosophy that every component should speak to every other, IRONDECK transforms any outdoor space — garden, terrace, rooftop — into a seamless environment where you <em>want</em> to live.</p>
+      <p>Feel the solidity underfoot. Smell the evening air from under a perfectly sheltered pergola. Cook with the confidence of a professional kitchen, steps from your living room door.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRODUCT SYSTEMS ─── -->
+<section id="systems" aria-labelledby="systems-title">
+  <div class="systems-header reveal">
+    <p class="section-eyebrow">The Three Systems</p>
+    <h2 class="section-title" id="systems-title">BUILT AS ONE</h2>
+    <p class="section-sub">Three systems, designed together, that work as one.</p>
+  </div>
+
+  <!-- STRATA -->
+  <article class="product-card reveal" aria-labelledby="strata-name">
+    <div class="product-visual">
+      <div class="product-visual-inner visual-strata" aria-hidden="true">
+        <div class="strata-pattern">
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+          <div class="strata-tile"></div><div class="strata-tile"></div><div class="strata-tile"></div>
+        </div>
+      </div>
+    </div>
+    <div class="product-info">
+      <span class="product-tag">System 01 / Foundation</span>
+      <h3 class="product-name" id="strata-name">STRATA</h3>
+      <p class="product-subtitle">Modular Deck & Outdoor Flooring System</p>
+      <blockquote class="product-sensation">
+        That first step outside — solid, level, permanent. The ground that holds everything together.
+      </blockquote>
+      <p class="product-description">STRATA provides the structural base for every outdoor environment. Engineered to sit over soil, concrete, or uneven terrain, it resolves the drainage, leveling, and long-term durability issues that plague conventional outdoor flooring. Every surface feels intentional, every edge aligned.</p>
+      <div class="product-features">
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Installs over any terrain — soil, concrete, slopes</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Built-in drainage channels prevent pooling</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Climate-resistant materials rated for extreme weather</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Modular grid locks with KUBIK and AXIS systems</div>
+      </div>
+      <a href="#cta" class="btn-primary">Learn More About STRATA</a>
+    </div>
+  </article>
+
+  <!-- KUBIK -->
+  <article class="product-card reverse reveal" aria-labelledby="kubik-name">
+    <div class="product-visual">
+      <div class="product-visual-inner visual-kubik" aria-hidden="true">
+        <div class="kubik-shape">
+          <div class="kubik-module km1"></div>
+          <div class="kubik-module km2"></div>
+          <div class="kubik-module km3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="product-info">
+      <span class="product-tag">System 02 / The Kitchen</span>
+      <h3 class="product-name" id="kubik-name">KUBIK</h3>
+      <p class="product-subtitle">Modular Outdoor Kitchen System</p>
+      <blockquote class="product-sensation">
+        The sound of searing. The scent of smoke and evening air. A kitchen that rises to meet you.
+      </blockquote>
+      <p class="product-description">KUBIK is the functional heart of IRONDECK. Industrial aluminum frames, engineered to the same tolerances as commercial kitchen equipment, now live in your outdoor space. Integrate storage, appliances, and work surfaces that are built for real cooking — not just weekends, but every night you choose to be outside.</p>
+      <div class="product-features">
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Industrial aluminum frame — weatherproof, maintenance-free</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Appliance-ready modules with integrated connections</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Configurable countertops, storage, and sink modules</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Expandable — add modules as your lifestyle grows</div>
+      </div>
+      <a href="#cta" class="btn-primary">Learn More About KUBIK</a>
+    </div>
+  </article>
+
+  <!-- AXIS -->
+  <article class="product-card reveal" aria-labelledby="axis-name">
+    <div class="product-visual">
+      <div class="product-visual-inner visual-axis" aria-hidden="true">
+        <div class="axis-frame">
+          <div class="axis-post left"></div>
+          <div class="axis-post right"></div>
+          <div class="axis-beam"></div>
+          <div class="axis-slat" style="left: 12%"></div>
+          <div class="axis-slat" style="left: 24%"></div>
+          <div class="axis-slat" style="left: 36%"></div>
+          <div class="axis-slat" style="left: 48%"></div>
+          <div class="axis-slat" style="left: 60%"></div>
+          <div class="axis-slat" style="left: 72%"></div>
+          <div class="axis-slat" style="left: 84%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="product-info">
+      <span class="product-tag">System 03 / The Sky</span>
+      <h3 class="product-name" id="axis-name">AXIS</h3>
+      <p class="product-subtitle">Modular Pergola & Roofing System</p>
+      <blockquote class="product-sensation">
+        Shelter without walls. Light filtered through precision. A sky that's finally on your terms.
+      </blockquote>
+      <p class="product-description">AXIS brings the structure overhead, completing the outdoor room. Engineered to connect directly to STRATA and KUBIK, AXIS provides shade in summer, rain protection through the seasons, and a framework ready for louvered panels, integrated lighting, and solar upgrades. It is the defining gesture of the space — the moment your backyard becomes a destination.</p>
+      <div class="product-features">
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Direct integration with STRATA deck system</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Ready for louvers, screens, and solar panels</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Integrated lighting channel along every beam</div>
+        <div class="feature-item"><div class="feature-icon" aria-hidden="true"></div>Rain-rated roofing options available</div>
+      </div>
+      <a href="#cta" class="btn-primary">Learn More About AXIS</a>
+    </div>
+  </article>
+</section>
+
+<!-- ─── INTEGRATION ─── -->
+<section id="integration" aria-labelledby="integration-title">
+  <div class="integration-inner">
+    <p class="section-eyebrow">System Integration</p>
+    <h2 class="section-title reveal" id="integration-title">THREE SYSTEMS. ONE VISION.</h2>
+    <div class="integration-visual reveal" aria-label="STRATA connects to KUBIK connects to AXIS">
+      <div class="int-block">
+        <div class="int-block-name">STRATA</div>
+        <div class="int-block-sub">The Foundation</div>
+      </div>
+      <div class="int-connector" aria-hidden="true"></div>
+      <div class="int-block" style="border-color: var(--ember); background: rgba(200,96,42,0.08);">
+        <div class="int-block-name">KUBIK</div>
+        <div class="int-block-sub">The Kitchen</div>
+      </div>
+      <div class="int-connector" aria-hidden="true"></div>
+      <div class="int-block">
+        <div class="int-block-name">AXIS</div>
+        <div class="int-block-sub">The Sky</div>
+      </div>
+    </div>
+    <p class="integration-promise reveal">
+      "Each system is exceptional alone. Together, they create an outdoor environment that feels like it was always meant to be there — as permanent as the house itself."
+    </p>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE ─── -->
+<section id="experience" aria-labelledby="experience-title">
+  <div class="systems-header reveal">
+    <p class="section-eyebrow">What You'll Feel</p>
+    <h2 class="section-title" id="experience-title">THE IRONDECK DIFFERENCE</h2>
+    <p class="section-sub">Beyond specs. Beyond warranties. This is what changes.</p>
+  </div>
+  <div class="experience-grid">
+    <div class="exp-card reveal">
+      <div class="exp-number" aria-hidden="true">01</div>
+      <h3 class="exp-title">The Permanence</h3>
+      <p class="exp-body">Step outside and feel the ground that doesn't shift, settle, or splinter. STRATA's engineered base means the first sensation every morning is solid, cold reassurance beneath your feet — a foundation you can trust.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-number" aria-hidden="true">02</div>
+      <h3 class="exp-title">The Ritual</h3>
+      <p class="exp-body">There's a specific pleasure in a kitchen that fits your hands. In drawers that open smoothly in 40-degree heat, in countertops that don't wobble when you press down, in a grill that flames up with authority. KUBIK makes cooking outside feel professional.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-number" aria-hidden="true">03</div>
+      <h3 class="exp-title">The Shelter</h3>
+      <p class="exp-body">When the afternoon sun moves across the sky or the first drops of rain arrive, you don't move inside. You stay, under AXIS, the light falling through louvered slats, the sound of weather safely overhead. You've claimed the outside.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-number" aria-hidden="true">04</div>
+      <h3 class="exp-title">The Investment</h3>
+      <p class="exp-body">IRONDECK adds measurable value to your property. But more than that, it adds years of evenings, of dinners with people you love, of Sunday mornings with coffee and sky. That value doesn't depreciate.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-number" aria-hidden="true">05</div>
+      <h3 class="exp-title">The Simplicity</h3>
+      <p class="exp-body">Modular systems are sold as complex. IRONDECK is not. Each module is engineered to lock precisely with the next. What you see in the configurator is exactly what arrives — and exactly what it becomes once installed.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-number" aria-hidden="true">06</div>
+      <h3 class="exp-title">The Future</h3>
+      <p class="exp-body">Your outdoor space will grow with you. Add a KUBIK module when you upgrade the grill. Extend the AXIS when the family arrives. Every system is designed with tomorrow's configuration already in mind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section id="process" aria-labelledby="process-title">
+  <div class="process-inner">
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title reveal" id="process-title">FROM VISION TO REALITY</h2>
+    <p class="section-sub reveal">Four steps from your current backyard to your future outdoor room.</p>
+    <div class="process-steps" role="list">
+      <div class="process-step reveal" role="listitem">
+        <div class="step-content-left">
+          <div class="step-title">Discover & Design</div>
+          <p class="step-body">Share your space and your vision. Our team creates a custom configuration — floor, kitchen, pergola — that fits your exact dimensions and lifestyle.</p>
+        </div>
+        <div class="step-node">
+          <div class="step-num">1</div>
+          <div class="step-label">Day 1</div>
+        </div>
+        <div></div>
+      </div>
+      <div class="process-step reveal" role="listitem">
+        <div></div>
+        <div class="step-node">
+          <div class="step-num">2</div>
+          <div class="step-label">Week 2</div>
+        </div>
+        <div class="step-content-right">
+          <div class="step-title">Confirm & Customize</div>
+          <p class="step-body">Review your 3D layout, select finishes, appliances, and upgrades. Every detail confirmed before a single module is cut.</p>
+        </div>
+      </div>
+      <div class="process-step reveal" role="listitem">
+        <div class="step-content-left">
+          <div class="step-title">Engineered & Shipped</div>
+          <p class="step-body">Your IRONDECK system is precision-manufactured and delivered as a complete kit. Every component labeled, every connection point pre-cut.</p>
+        </div>
+        <div class="step-node">
+          <div class="step-num">3</div>
+          <div class="step-label">Week 4–6</div>
+        </div>
+        <div></div>
+      </div>
+      <div class="process-step reveal" role="listitem">
+        <div></div>
+        <div class="step-node">
+          <div class="step-num">4</div>
+          <div class="step-label">Week 7</div>
+        </div>
+        <div class="step-content-right">
+          <div class="step-title">Installed & Yours</div>
+          <p class="step-body">Professional installation. Final inspection. The evening your first meal happens outside — that's the moment IRONDECK was built for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta" aria-labelledby="cta-title">
+  <div class="cta-inner">
+    <h2 class="cta-big reveal" id="cta-title">YOUR SPACE.<br><em>TRANSFORMED.</em></h2>
+    <p class="cta-sub reveal">Get the IRONDECK catalog and a free space consultation — no commitment required.</p>
+    <form class="cta-form reveal" onsubmit="handleSubmit(event)" novalidate aria-label="Early access sign-up form">
+      <input type="email" class="cta-input" placeholder="your@email.com" required aria-label="Email address" />
+      <button type="submit" class="cta-submit">Get Access</button>
+    </form>
+    <p class="cta-note reveal" id="form-message">Early access. No spam. Cancel anytime.</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">IRON<span>DECK</span></div>
+      <p class="footer-tagline">Engineered for those who refuse to compromise on how they live outside.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Systems</div>
+      <ul class="footer-links">
+        <li><a href="#systems">STRATA — Flooring</a></li>
+        <li><a href="#systems">KUBIK — Kitchen</a></li>
+        <li><a href="#systems">AXIS — Pergola</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#intro">About IRONDECK</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#cta">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Get Started</div>
+      <ul class="footer-links">
+        <li><a href="#cta">Request Catalog</a></li>
+        <li><a href="#cta">Free Consultation</a></li>
+        <li><a href="#cta">Dealer Inquiries</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IRONDECK Systems. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Use</span>
+  </div>
+</footer>
+
+<script>
+  // ─── NAV SCROLL ───
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ─── MOBILE MENU ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('menuClose');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  menuClose.addEventListener('click', closeMobileMenu);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
+
+  // ─── REVEAL ON SCROLL ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ─── STAGGERED REVEALS (sibling cards) ───
+  document.querySelectorAll('.experience-grid .exp-card').forEach((card, i) => {
+    card.style.transitionDelay = `${(i % 3) * 0.1}s`;
+  });
+
+  // ─── FORM HANDLER ───
+  function handleSubmit(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    const msg = document.getElementById('form-message');
+    if (!input.value.includes('@')) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.style.color = 'var(--ember)';
+      return;
+    }
+    msg.textContent = '✓ Thank you! We\'ll be in touch with your catalog shortly.';
+    msg.style.color = 'var(--ember-glow)';
+    input.value = '';
+    e.target.querySelector('button').disabled = true;
+  }
+</script>
+</body>
+</html>
