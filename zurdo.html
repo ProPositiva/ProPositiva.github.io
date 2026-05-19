@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0e0d0b" />
+
+  <!-- SEO & AI Search Optimization -->
+  <title>FORM — Industrial Design Studio | Objects That Transform Experience</title>
+  <meta name="description" content="FORM is an industrial design studio creating products that merge material honesty with human sensation. Furniture, lighting, and objects designed to be felt, not just seen." />
+  <meta name="keywords" content="industrial design, product design, furniture design, lighting design, material design, luxury objects, design studio" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://formstudio.design/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FORM — Industrial Design Studio" />
+  <meta property="og:description" content="Objects that transform experience. Industrial design where material honesty meets human sensation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://formstudio.design/" />
+  <meta property="og:image" content="https://formstudio.design/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FORM — Industrial Design Studio" />
+  <meta name="twitter:description" content="Objects that transform experience." />
+
+  <!-- Schema.org Structured Data (AI Search) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "FORM Industrial Design Studio",
+    "description": "Industrial design studio specializing in furniture, lighting, and product design that merges material honesty with human sensation.",
+    "url": "https://formstudio.design",
+    "serviceType": "Industrial Design",
+    "areaServed": "Worldwide",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Design Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Product Design"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Furniture Design"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lighting Design"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Design Consulting"}}
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS ───────────────────────────────── */
+    :root {
+      --ink:       #0e0d0b;
+      --ink-2:     #1a1916;
+      --ink-3:     #2a2925;
+      --smoke:     #f5f2ee;
+      --smoke-2:   #e8e4de;
+      --copper:    #b5763a;
+      --copper-lt: #d4924e;
+      --copper-dk: #7a4e22;
+      --white:     #faf9f7;
+      --text-dim:  #7a7670;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'Cormorant Garamond', serif;
+      --font-body:    'DM Sans', sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:   cubic-bezier(0.87, 0, 0.13, 1);
+    }
+
+    /* ─── RESET & BASE ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--smoke);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    ::selection {
+      background: var(--copper);
+      color: var(--ink);
+    }
+
+    img { display: block; width: 100%; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── CUSTOM CURSOR ───────────────────────────────── */
+    #cursor {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--copper);
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s var(--ease-out-expo),
+                  width 0.3s var(--ease-out-expo),
+                  height 0.3s var(--ease-out-expo),
+                  background 0.3s;
+      mix-blend-mode: screen;
+    }
+    #cursor.expand {
+      width: 48px; height: 48px;
+      background: var(--copper-lt);
+    }
+
+    /* ─── NOISE OVERLAY ───────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── SCROLLBAR ───────────────────────────────────── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--copper-dk); border-radius: 2px; }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      mix-blend-mode: normal;
+    }
+
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(14,13,11,0.95) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.25em;
+      color: var(--white);
+      position: relative;
+    }
+
+    .nav-logo span {
+      color: var(--copper);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      position: relative;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke-2);
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--copper);
+      transition: width 0.4s var(--ease-out-expo);
+    }
+
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--copper);
+      border: 1px solid var(--copper-dk);
+      padding: 0.6rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s;
+      cursor: none;
+    }
+
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--copper);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-out-expo);
+    }
+
+    .nav-cta:hover { color: var(--ink); }
+    .nav-cta:hover::before { transform: scaleX(1); }
+    .nav-cta span { position: relative; z-index: 1; }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s var(--ease-out-expo) 0.3s forwards;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(4.5rem, 9vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s var(--ease-out-expo) 0.5s forwards;
+    }
+
+    .hero-headline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--smoke-2);
+      font-size: 0.75em;
+      display: block;
+    }
+
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 360px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s var(--ease-out-expo) 0.7s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out-expo) 0.9s forwards;
+    }
+
+    .btn-primary {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--copper);
+      color: var(--ink);
+      padding: 1rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out-expo);
+      cursor: none;
+      font-weight: 400;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--copper-lt);
+      transform: translateX(-100%);
+      transition: transform 0.5s var(--ease-out-expo);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+
+    .btn-ghost {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke-2);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: color 0.3s, gap 0.3s;
+      cursor: none;
+    }
+
+    .btn-ghost:hover { color: var(--white); gap: 1.2rem; }
+
+    .btn-ghost::after {
+      content: '→';
+      color: var(--copper);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      background: var(--ink-2);
+    }
+
+    /* Decorative product shape */
+    .hero-shape {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 1.2s var(--ease-out-expo) 0.4s forwards;
+    }
+
+    .hero-shape svg {
+      width: 70%;
+      height: 70%;
+    }
+
+    .hero-counter {
+      position: absolute;
+      bottom: 5rem;
+      right: 3rem;
+      font-family: var(--font-display);
+      font-size: 8rem;
+      line-height: 1;
+      color: var(--ink-3);
+      letter-spacing: -0.03em;
+      user-select: none;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--copper), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* ─── MANIFESTO BAND ──────────────────────────────── */
+    .marquee-band {
+      background: var(--copper);
+      padding: 1rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .marquee-track .dot {
+      color: var(--copper-dk);
+    }
+
+    /* ─── SECTION SHARED ──────────────────────────────── */
+    section {
+      position: relative;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--copper);
+    }
+
+    /* ─── PHILOSOPHY ──────────────────────────────────── */
+    #philosophy {
+      padding: 10rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .philosophy-left .section-label { margin-bottom: 3rem; }
+
+    .philosophy-number {
+      font-family: var(--font-display);
+      font-size: 12rem;
+      line-height: 0.85;
+      color: var(--ink-2);
+      margin-bottom: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .philosophy-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1.2;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 2.5rem;
+    }
+
+    .philosophy-headline strong {
+      font-weight: 600;
+      color: var(--smoke);
+      font-style: italic;
+    }
+
+    .philosophy-body {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+
+    .philosophy-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--ink-3);
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--copper-lt);
+      letter-spacing: 0.02em;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── PRODUCTS ────────────────────────────────────── */
+    #work {
+      padding: 6rem 0;
+      overflow: hidden;
+    }
+
+    .work-header {
+      padding: 0 3rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+
+    .work-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    .work-headline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--copper-lt);
+    }
+
+    .work-view-all {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.3s, gap 0.3s;
+      cursor: none;
+      white-space: nowrap;
+      padding-bottom: 0.5rem;
+    }
+
+    .work-view-all:hover { color: var(--copper); gap: 1rem; }
+    .work-view-all::after { content: '→'; color: var(--copper); }
+
+    /* Product Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2px;
+      padding: 0 2px;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+      background: var(--ink-2);
+    }
+
+    .product-card:first-child {
+      grid-row: span 2;
+    }
+
+    .product-visual {
+      width: 100%;
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card:first-child .product-visual {
+      aspect-ratio: 3/4;
+    }
+
+    .product-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.8s var(--ease-out-expo);
+    }
+
+    .product-card:hover .product-bg {
+      transform: scale(1.05);
+    }
+
+    /* Product illustration backgrounds */
+    .p-bg-1 { background: radial-gradient(ellipse at 40% 60%, #3a2a1a 0%, #1a1916 60%, #0e0d0b 100%); }
+    .p-bg-2 { background: radial-gradient(ellipse at 60% 40%, #1e2a2e 0%, #111618 60%, #0e0d0b 100%); }
+    .p-bg-3 { background: radial-gradient(ellipse at 50% 50%, #221a2e 0%, #16121e 60%, #0e0d0b 100%); }
+    .p-bg-4 { background: radial-gradient(ellipse at 30% 70%, #2e2a1a 0%, #1e1c10 60%, #0e0d0b 100%); }
+    .p-bg-5 { background: radial-gradient(ellipse at 70% 30%, #1a2e1a 0%, #111e11 60%, #0e0d0b 100%); }
+
+    .product-shape-wrap {
+      position: relative;
+      z-index: 2;
+      width: 55%;
+      opacity: 0.9;
+      transition: transform 0.6s var(--ease-out-expo), opacity 0.4s;
+    }
+
+    .product-card:hover .product-shape-wrap {
+      transform: translateY(-8px);
+      opacity: 1;
+    }
+
+    .product-info {
+      padding: 1.5rem 2rem 2rem;
+      position: relative;
+    }
+
+    .product-category {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .product-card:first-child .product-name {
+      font-size: 1.8rem;
+    }
+
+    .product-desc {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: 300px;
+    }
+
+    .product-hover-reveal {
+      position: absolute;
+      inset: 0;
+      background: rgba(14,13,11,0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      opacity: 0;
+      transition: opacity 0.4s;
+      backdrop-filter: blur(4px);
+    }
+
+    .product-card:hover .product-hover-reveal {
+      opacity: 1;
+    }
+
+    .hover-reveal-label {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      color: var(--white);
+    }
+
+    .hover-reveal-btn {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--copper);
+      border: 1px solid var(--copper-dk);
+      padding: 0.6rem 1.5rem;
+    }
+
+    /* ─── SENSATION SECTION ───────────────────────────── */
+    #sensation {
+      padding: 10rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sensation-header {
+      text-align: center;
+      margin-bottom: 6rem;
+    }
+
+    .sensation-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .sensation-headline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--copper-lt);
+    }
+
+    .sensation-sub {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .sensation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ink-3);
+      border: 1px solid var(--ink-3);
+    }
+
+    .sensation-card {
+      background: var(--ink);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+
+    .sensation-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--copper);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out-expo);
+    }
+
+    .sensation-card:hover { background: var(--ink-2); }
+    .sensation-card:hover::before { transform: scaleX(1); }
+
+    .sensation-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .sensation-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .sensation-text {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .sensation-num {
+      position: absolute;
+      top: 2rem;
+      right: 2.5rem;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--ink-3);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* ─── FEATURED QUOTE ──────────────────────────────── */
+    #quote-section {
+      padding: 8rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #quote-section::before {
+      content: '"';
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: 30rem;
+      line-height: 1;
+      color: var(--ink-2);
+      pointer-events: none;
+    }
+
+    .quote-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--smoke-2);
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .quote-author {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--copper);
+    }
+
+    .quote-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--copper-dk);
+      margin: 1.5rem auto;
+    }
+
+    /* ─── PROCESS ─────────────────────────────────────── */
+    #process {
+      padding: 8rem 3rem;
+      background: var(--ink-2);
+    }
+
+    .process-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .process-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 5rem;
+    }
+
+    .process-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.9;
+      color: var(--white);
+    }
+
+    .process-headline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--copper-lt);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--ink-3);
+    }
+
+    .process-step {
+      background: var(--ink-2);
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--ink-3);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      transition: color 0.4s;
+    }
+
+    .process-step:hover .step-num { color: var(--copper-dk); }
+
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .step-text {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    .step-line {
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px;
+      height: 0;
+      background: var(--copper);
+      transition: height 0.5s var(--ease-out-expo);
+    }
+
+    .process-step:hover .step-line { height: 100%; }
+
+    /* ─── TESTIMONIALS ────────────────────────────────── */
+    #testimonials {
+      padding: 8rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .testimonials-header {
+      margin-bottom: 4rem;
+    }
+
+    .testimonials-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      color: var(--white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      border: 1px solid var(--ink-3);
+      padding: 2.5rem;
+      position: relative;
+      transition: border-color 0.4s;
+    }
+
+    .testimonial-card:hover { border-color: var(--copper-dk); }
+
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--smoke-2);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--ink-3);
+      border: 1px solid var(--copper-dk);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--copper);
+    }
+
+    .author-name {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .author-role {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+
+    /* ─── CTA SECTION ─────────────────────────────────── */
+    #cta {
+      padding: 10rem 3rem;
+      background: var(--ink-2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,118,58,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 2rem;
+    }
+
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 8rem);
+      line-height: 0.9;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .cta-headline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--copper-lt);
+    }
+
+    .cta-sub {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 4rem 3rem 2rem;
+      border-top: 1px solid var(--ink-3);
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand .nav-logo {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-dim);
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 220px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-col a {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--smoke); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid var(--ink-3);
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      transition: color 0.3s;
+    }
+
+    .footer-socials a:hover { color: var(--copper); }
+
+    /* ─── REVEAL ANIMATIONS ───────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── KEYFRAMES ───────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* ─── MOBILE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      body { cursor: auto; }
+      #cursor { display: none; }
+
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+
+      #hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .hero-left {
+        padding: 7rem 1.5rem 3rem;
+        order: 2;
+      }
+
+      .hero-right {
+        order: 1;
+        height: 45svh;
+      }
+
+      .hero-counter { font-size: 5rem; bottom: 1rem; right: 1rem; }
+
+      #philosophy {
+        grid-template-columns: 1fr;
+        padding: 5rem 1.5rem;
+        gap: 3rem;
+      }
+
+      .philosophy-number { font-size: 7rem; }
+
+      .philosophy-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .product-card:first-child { grid-row: span 1; }
+      .product-card:first-child .product-visual { aspect-ratio: 4/3; }
+
+      .sensation-grid { grid-template-columns: 1fr; }
+
+      .process-steps { grid-template-columns: 1fr 1fr; }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+
+      .cta-actions { flex-direction: column; }
+
+      .work-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+      #sensation { padding: 5rem 1.5rem; }
+      #quote-section { padding: 5rem 1.5rem; }
+      #cta { padding: 6rem 1.5rem; }
+      #testimonials { padding: 5rem 1.5rem; }
+      #process { padding: 5rem 1.5rem; }
+      .process-inner { padding: 0; }
+      #work { padding: 5rem 0; }
+      .work-header { padding: 0 1.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-headline { font-size: 3.8rem; }
+      .philosophy-stats { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .sensation-headline { font-size: 3rem; }
+      .cta-headline { font-size: 2.8rem; }
+      #quote-section::before { font-size: 18rem; top: 0; }
+    }
+
+    /* ─── HAMBURGER MENU ──────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      position: relative;
+      z-index: 200;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 1px;
+      background: var(--smoke);
+      display: block;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(14,13,11,0.97);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      color: var(--smoke);
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover { color: var(--copper); }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cursor"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#work" onclick="closeMobileMenu()">Work</a>
+    <a href="#philosophy" onclick="closeMobileMenu()">Philosophy</a>
+    <a href="#process" onclick="closeMobileMenu()">Process</a>
+    <a href="#testimonials" onclick="closeMobileMenu()">Clients</a>
+    <a href="#cta" onclick="closeMobileMenu()">Contact</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="FORM Studio home">FORM<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#testimonials">Clients</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta"><span>Begin a Project</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Industrial Design Studio — Est. 2004</p>
+      <h1 class="hero-headline">
+        Objects<br>
+        <em>you feel</em><br>
+        before you<br>
+        see them.
+      </h1>
+      <p class="hero-sub">We design products that create a physical and emotional resonance — pieces that change the atmosphere of a room and the mood of a person.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary"><span>Explore the Work</span></a>
+        <a href="#philosophy" class="btn-ghost">Our Philosophy</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-shape">
+          <!-- Hero product SVG illustration -->
+          <svg viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ambient glow -->
+            <ellipse cx="250" cy="420" rx="180" ry="40" fill="#b5763a" opacity="0.12"/>
+            <!-- Chair / product silhouette - abstract luxury chair -->
+            <g style="animation: float 5s ease-in-out infinite;">
+              <!-- Seat surface -->
+              <ellipse cx="250" cy="280" rx="130" ry="20" fill="#3a2a1a" stroke="#b5763a" stroke-width="0.5" opacity="0.8"/>
+              <!-- Back panel -->
+              <path d="M160 270 L160 120 Q160 100 180 95 L320 95 Q340 100 340 120 L340 270 Z" fill="#1e1614" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Back texture lines -->
+              <line x1="190" y1="110" x2="190" y2="260" stroke="#2a1e14" stroke-width="1"/>
+              <line x1="220" y1="110" x2="220" y2="260" stroke="#2a1e14" stroke-width="1"/>
+              <line x1="250" y1="110" x2="250" y2="260" stroke="#2a1e14" stroke-width="1"/>
+              <line x1="280" y1="110" x2="280" y2="260" stroke="#2a1e14" stroke-width="1"/>
+              <line x1="310" y1="110" x2="310" y2="260" stroke="#2a1e14" stroke-width="1"/>
+              <!-- Copper highlight on back -->
+              <path d="M160 120 Q160 100 180 95 L320 95 Q340 100 340 120" stroke="#b5763a" stroke-width="1.5" fill="none" opacity="0.6"/>
+              <!-- Seat cushion -->
+              <path d="M130 270 Q130 260 140 258 L360 258 Q370 260 370 270 L370 285 Q370 295 360 296 L140 296 Q130 295 130 285 Z" fill="#2a1e14" stroke="#b5763a" stroke-width="0.5"/>
+              <!-- Seat highlight -->
+              <ellipse cx="250" cy="258" rx="110" ry="6" fill="#b5763a" opacity="0.15"/>
+              <!-- Left arm -->
+              <path d="M140 260 L130 260 L118 330 L130 345 L148 340 L160 270 Z" fill="#1a1310" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Right arm -->
+              <path d="M360 260 L370 260 L382 330 L370 345 L352 340 L340 270 Z" fill="#1a1310" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Front left leg -->
+              <path d="M178 295 L168 420 L178 424 L192 295 Z" fill="#1e1614" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Front right leg -->
+              <path d="M308 295 L318 295 L332 420 L322 424 Z" fill="#1e1614" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Back left leg -->
+              <path d="M168 270 L160 400 L170 405 L180 270 Z" fill="#161210" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Back right leg -->
+              <path d="M320 270 L340 270 L330 400 L340 405 Z" fill="#161210" stroke="#7a4e22" stroke-width="0.5"/>
+              <!-- Cross bar -->
+              <path d="M168 360 L332 360" stroke="#2a1e14" stroke-width="3" stroke-linecap="round"/>
+              <!-- Copper accent details -->
+              <circle cx="170" cy="258" r="4" fill="#b5763a" opacity="0.8"/>
+              <circle cx="330" cy="258" r="4" fill="#b5763a" opacity="0.8"/>
+              <rect x="168" y="418" width="12" height="8" rx="2" fill="#b5763a" opacity="0.6"/>
+              <rect x="320" y="418" width="12" height="8" rx="2" fill="#b5763a" opacity="0.6"/>
+            </g>
+            <!-- Light ray -->
+            <path d="M250 0 L280 200 L220 200 Z" fill="url(#lightGrad)" opacity="0.08"/>
+            <defs>
+              <linearGradient id="lightGrad" x1="250" y1="0" x2="250" y2="200" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="hero-counter">01</div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- Marquee Band -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Material Honesty</span><span class="dot">✦</span>
+      <span>Tactile Precision</span><span class="dot">✦</span>
+      <span>Sensorial Design</span><span class="dot">✦</span>
+      <span>Human Scale</span><span class="dot">✦</span>
+      <span>Enduring Form</span><span class="dot">✦</span>
+      <span>Lived Experience</span><span class="dot">✦</span>
+      <!-- Duplicate for seamless loop -->
+      <span>Material Honesty</span><span class="dot">✦</span>
+      <span>Tactile Precision</span><span class="dot">✦</span>
+      <span>Sensorial Design</span><span class="dot">✦</span>
+      <span>Human Scale</span><span class="dot">✦</span>
+      <span>Enduring Form</span><span class="dot">✦</span>
+      <span>Lived Experience</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <section id="philosophy" aria-labelledby="philosophy-heading">
+    <div class="reveal">
+      <div class="section-label">Our Philosophy</div>
+      <div class="philosophy-number" aria-hidden="true">01</div>
+    </div>
+    <div>
+      <h2 class="philosophy-headline reveal" id="philosophy-heading">
+        We believe objects carry <strong>emotional weight</strong> that transforms the spaces they inhabit.
+      </h2>
+      <p class="philosophy-body reveal reveal-delay-1">
+        Every curve, material choice, and edge radius is a deliberate decision. We don't design things that look good in photographs — we design things that feel right in the hand, that catch light unexpectedly, that make a room quieter just by being in it.
+      </p>
+      <p class="philosophy-body reveal reveal-delay-2">
+        The result is a product that you don't just own — you experience. One that ages with grace, that accumulates meaning over years, and that changes how you feel when you're near it.
+      </p>
+      <div class="philosophy-stats reveal reveal-delay-3">
+        <div>
+          <span class="stat-num">20+</span>
+          <p class="stat-label">Years of Practice</p>
+        </div>
+        <div>
+          <span class="stat-num">140</span>
+          <p class="stat-label">Products Realized</p>
+        </div>
+        <div>
+          <span class="stat-num">38</span>
+          <p class="stat-label">Industry Awards</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work / Products -->
+  <section id="work" aria-labelledby="work-heading">
+    <div class="work-header">
+      <h2 class="work-headline reveal" id="work-heading">Selected<br><em>Work</em></h2>
+      <a href="#" class="work-view-all reveal reveal-delay-2">View All Projects</a>
+    </div>
+
+    <div class="products-grid" role="list">
+
+      <!-- Card 1 — Featured -->
+      <article class="product-card" role="listitem">
+        <div class="product-visual">
+          <div class="product-bg p-bg-1"></div>
+          <div class="product-shape-wrap">
+            <!-- Lounge Chair SVG -->
+            <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="150" cy="330" rx="100" ry="18" fill="#b5763a" opacity="0.15"/>
+              <g style="animation: float 6s ease-in-out infinite;">
+                <path d="M80 170 Q78 120 100 100 L200 100 Q222 120 220 170 L220 200 L80 200 Z" fill="#1e1614" stroke="#7a4e22" stroke-width="0.8"/>
+                <path d="M80 100 Q82 80 90 72 L210 72 Q218 80 220 100" stroke="#b5763a" stroke-width="1.5" fill="none" opacity="0.7"/>
+                <rect x="72" y="196" width="156" height="22" rx="6" fill="#2a1e14" stroke="#b5763a" stroke-width="0.5"/>
+                <ellipse cx="150" cy="196" rx="72" ry="8" fill="#b5763a" opacity="0.12"/>
+                <path d="M82 218 L72 320 L90 322 L100 218 Z" fill="#1a1310" stroke="#7a4e22" stroke-width="0.5"/>
+                <path d="M218 218 L228 218 L208 320 L210 322 Z" fill="#1a1310" stroke="#7a4e22" stroke-width="0.5"/>
+                <circle cx="82" cy="197" r="5" fill="#b5763a" opacity="0.9"/>
+                <circle cx="218" cy="197" r="5" fill="#b5763a" opacity="0.9"/>
+                <rect x="70" y="318" width="22" height="8" rx="3" fill="#b5763a" opacity="0.5"/>
+                <rect x="208" y="318" width="22" height="8" rx="3" fill="#b5763a" opacity="0.5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="product-hover-reveal">
+            <p class="hover-reveal-label">MERIDIAN CHAIR</p>
+            <a href="#" class="hover-reveal-btn">View Details →</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Seating</p>
+          <h3 class="product-name">Meridian Lounge Chair</h3>
+          <p class="product-desc">Cold-bent solid walnut, hand-stitched saddle leather. The first object in a room you feel drawn to sit in — long before you've made the decision to.</p>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="product-card" role="listitem">
+        <div class="product-visual">
+          <div class="product-bg p-bg-2"></div>
+          <div class="product-shape-wrap">
+            <!-- Lamp SVG -->
+            <svg viewBox="0 0 240 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="120" cy="250" rx="70" ry="12" fill="#b5763a" opacity="0.12"/>
+              <g style="animation: float 4.5s ease-in-out 0.5s infinite;">
+                <path d="M120 30 L120 190" stroke="#7a4e22" stroke-width="2"/>
+                <path d="M80 30 Q80 16 120 14 Q160 16 160 30 L148 90 Q148 110 120 112 Q92 110 92 90 Z" fill="#1e2830" stroke="#4a8a9a" stroke-width="0.8"/>
+                <ellipse cx="120" cy="30" rx="36" ry="8" fill="#4a8a9a" opacity="0.3"/>
+                <ellipse cx="120" cy="30" rx="20" ry="4" fill="#b5d4da" opacity="0.4"/>
+                <path d="M96 60 Q96 52 120 50 Q144 52 144 60" stroke="#4a8a9a" stroke-width="0.5" fill="none" opacity="0.5"/>
+                <circle cx="120" cy="190" r="18" fill="#2a2a1a" stroke="#b5763a" stroke-width="1"/>
+                <ellipse cx="120" cy="240" rx="50" ry="10" fill="#1e1614" stroke="#7a4e22" stroke-width="0.5"/>
+                <rect x="112" y="188" width="16" height="52" rx="2" fill="#1e1614" stroke="#7a4e22" stroke-width="0.3"/>
+              </g>
+            </svg>
+          </div>
+          <div class="product-hover-reveal">
+            <p class="hover-reveal-label">ONYX LIGHT</p>
+            <a href="#" class="hover-reveal-btn">View Details →</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Lighting</p>
+          <h3 class="product-name">Onyx Floor Light</h3>
+          <p class="product-desc">Spun steel, oxidized bronze finish. Casts light the way a candle does — soft, directional, alive.</p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="product-card" role="listitem">
+        <div class="product-visual">
+          <div class="product-bg p-bg-3"></div>
+          <div class="product-shape-wrap">
+            <!-- Table SVG -->
+            <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="120" cy="180" rx="100" ry="12" fill="#b5763a" opacity="0.1"/>
+              <g style="animation: float 5.5s ease-in-out 1s infinite;">
+                <ellipse cx="120" cy="80" rx="100" ry="18" fill="#1e1a2e" stroke="#6a4a8a" stroke-width="0.8"/>
+                <ellipse cx="120" cy="76" rx="96" ry="14" fill="#2a2040" stroke="#6a4a8a" stroke-width="0.5"/>
+                <line x1="120" y1="94" x2="100" y2="170" stroke="#7a4e22" stroke-width="2.5"/>
+                <line x1="120" y1="94" x2="140" y2="170" stroke="#7a4e22" stroke-width="2.5"/>
+                <ellipse cx="100" cy="170" rx="10" ry="5" fill="#b5763a" opacity="0.4"/>
+                <ellipse cx="140" cy="170" rx="10" ry="5" fill="#b5763a" opacity="0.4"/>
+                <line x1="104" y1="148" x2="136" y2="148" stroke="#3a2a1a" stroke-width="1.5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="product-hover-reveal">
+            <p class="hover-reveal-label">VESPER TABLE</p>
+            <a href="#" class="hover-reveal-btn">View Details →</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Tables</p>
+          <h3 class="product-name">Vesper Side Table</h3>
+          <p class="product-desc">Hand-cast amethyst glass, forged iron base. An object with quiet authority — effortlessly sculptural.</p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="product-card" role="listitem">
+        <div class="product-visual">
+          <div class="product-bg p-bg-4"></div>
+          <div class="product-shape-wrap">
+            <!-- Vessel SVG -->
+            <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="100" cy="220" rx="80" ry="14" fill="#b5763a" opacity="0.12"/>
+              <g style="animation: float 5s ease-in-out 0.7s infinite;">
+                <path d="M70 50 Q60 90 55 130 Q52 170 60 200 L140 200 Q148 170 145 130 Q140 90 130 50 Z" fill="#2a2010" stroke="#b5763a" stroke-width="0.8"/>
+                <path d="M72 52 Q62 90 58 130 Q55 168 62 198" stroke="#7a4e22" stroke-width="0.5" fill="none"/>
+                <path d="M68 50 L132 50 Q136 42 130 36 Q100 20 70 36 Q64 42 68 50 Z" fill="#1e1a10" stroke="#b5763a" stroke-width="0.8"/>
+                <ellipse cx="100" cy="36" rx="28" ry="8" fill="#1a1610" stroke="#b5763a" stroke-width="0.5"/>
+                <ellipse cx="100" cy="200" rx="40" ry="6" fill="#1a1610" stroke="#7a4e22" stroke-width="0.5"/>
+                <path d="M80 80 Q100 76 120 80" stroke="#d4924e" stroke-width="0.8" fill="none" opacity="0.5"/>
+                <path d="M76 120 Q100 116 124 120" stroke="#d4924e" stroke-width="0.8" fill="none" opacity="0.4"/>
+                <path d="M78 160 Q100 156 122 160" stroke="#d4924e" stroke-width="0.8" fill="none" opacity="0.3"/>
+              </g>
+            </svg>
+          </div>
+          <div class="product-hover-reveal">
+            <p class="hover-reveal-label">OCHRE VESSEL</p>
+            <a href="#" class="hover-reveal-btn">View Details →</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Objects</p>
+          <h3 class="product-name">Ochre Vessel</h3>
+          <p class="product-desc">Wheel-thrown stoneware, copper-oxide glaze. Wabi-sabi form made to hold things that matter to you.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Sensation Section -->
+  <section id="sensation" aria-labelledby="sensation-heading">
+    <div class="sensation-header reveal">
+      <div class="section-label" style="justify-content:center">What We Design For</div>
+      <h2 class="sensation-headline" id="sensation-heading">
+        Design that<br><em>engages</em><br>all senses
+      </h2>
+      <p class="sensation-sub">Our products don't just fill space — they create an atmosphere, a mood, a physical feeling you return to again and again.</p>
+    </div>
+
+    <div class="sensation-grid">
+      <div class="sensation-card reveal">
+        <span class="sensation-num" aria-hidden="true">01</span>
+        <svg class="sensation-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" stroke="#b5763a" stroke-width="1" fill="none"/>
+          <path d="M24 14 L24 34 M14 24 L34 24" stroke="#b5763a" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="4" fill="#b5763a" opacity="0.5"/>
+        </svg>
+        <h3 class="sensation-title">The Weight of Presence</h3>
+        <p class="sensation-text">A FORM piece commands a room through mass and proportion — not visual noise. You feel its gravity before you consciously register it. That's the difference between furniture and an object with presence.</p>
+      </div>
+
+      <div class="sensation-card reveal reveal-delay-1">
+        <span class="sensation-num" aria-hidden="true">02</span>
+        <svg class="sensation-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 24 Q20 10 24 24 Q28 38 38 24" stroke="#b5763a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <circle cx="24" cy="24" r="3" fill="#b5763a" opacity="0.7"/>
+        </svg>
+        <h3 class="sensation-title">Touch That Rewards</h3>
+        <p class="sensation-text">Every edge is softened at exactly the right radius. Every surface has a temperature and texture that makes your hand want to linger. We prototype until the haptic response is instinctively satisfying.</p>
+      </div>
+
+      <div class="sensation-card reveal reveal-delay-2">
+        <span class="sensation-num" aria-hidden="true">03</span>
+        <svg class="sensation-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 32 Q24 16 32 32" stroke="#b5763a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <line x1="24" y1="14" x2="24" y2="10" stroke="#b5763a" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14" y1="20" x2="10" y2="18" stroke="#b5763a" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="34" y1="20" x2="38" y2="18" stroke="#b5763a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="sensation-title">Light as Material</h3>
+        <p class="sensation-text">We design for how objects interact with light across the day — morning sun, afternoon shadow, evening lamplight. A FORM piece is never the same object twice. It lives and shifts with the hours.</p>
+      </div>
+
+      <div class="sensation-card reveal">
+        <span class="sensation-num" aria-hidden="true">04</span>
+        <svg class="sensation-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="12" y="12" width="24" height="24" rx="4" stroke="#b5763a" stroke-width="1" fill="none"/>
+          <rect x="18" y="18" width="12" height="12" rx="2" fill="#b5763a" opacity="0.3"/>
+        </svg>
+        <h3 class="sensation-title">The Sound of Craft</h3>
+        <p class="sensation-text">The soft knock of solid walnut. The mineral resonance of cast stone. The dry, precise click of machined brass. Sound is a material. We choose materials in part for their acoustic character.</p>
+      </div>
+
+      <div class="sensation-card reveal reveal-delay-1">
+        <span class="sensation-num" aria-hidden="true">05</span>
+        <svg class="sensation-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 8 L36 20 L36 36 L24 40 L12 36 L12 20 Z" stroke="#b5763a" stroke-width="1" fill="none"/>
+          <circle cx="24" cy="24" r="6" stroke="#b5763a" stroke-width="1" fill="none"/>
+        </svg>
+        <h3 class="sensation-title">Enduring Materials</h3>
+        <p class="sensation-text">We source material for its future, not just its present. How does this leather patina? How does this stone age in a home? We design pieces that are more beautiful at ten years than at ten minutes.</p>
+      </div>
+
+      <div class="sensation-card reveal reveal-delay-2">
+        <span class="sensation-num" aria-hidden="true">06</span>
+        <svg class="sensation-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 40 C24 40 10 28 10 18 C10 12 16 8 24 16 C32 8 38 12 38 18 C38 28 24 40 24 40Z" stroke="#b5763a" stroke-width="1" fill="#b5763a" fill-opacity="0.15"/>
+        </svg>
+        <h3 class="sensation-title">Emotional Memory</h3>
+        <p class="sensation-text">The best objects become emotionally indexed — associated with a feeling, a period of life, a relationship. We design with enough warmth and specificity that objects become irreplaceable companions in a life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section id="quote-section" aria-label="Studio philosophy quote">
+    <blockquote>
+      <p class="quote-text reveal">"A product is finished not when there is nothing left to add, but when everything unnecessary has been stripped away — and what remains makes you feel something you cannot quite name."</p>
+      <div class="quote-divider"></div>
+      <cite class="quote-author">— Studio Founding Principle</cite>
+    </blockquote>
+  </section>
+
+  <!-- Process -->
+  <section id="process" aria-labelledby="process-heading">
+    <div class="process-inner">
+      <div class="process-header">
+        <div>
+          <div class="section-label reveal">How We Work</div>
+          <h2 class="process-headline reveal" id="process-heading">The<br><em>Process</em></h2>
+        </div>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-line"></div>
+          <div class="step-num" aria-hidden="true">01</div>
+          <h3 class="step-title">Sensory Brief</h3>
+          <p class="step-text">We begin not with dimensions, but with desired feelings. How should someone feel when they first see it? When they touch it for the first time? In five years? We build an emotional brief before a design brief.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-line"></div>
+          <div class="step-num" aria-hidden="true">02</div>
+          <h3 class="step-title">Material Research</h3>
+          <p class="step-text">We handle, test, and reject dozens of materials to find the right language. Sourced from craftspeople and mills we have built trust with over decades. Material is not chosen — it is discovered.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-line"></div>
+          <div class="step-num" aria-hidden="true">03</div>
+          <h3 class="step-title">Physical Prototyping</h3>
+          <p class="step-text">We build full-scale prototypes early and often. A product must be lived with, not just rendered. We photograph, touch, sit in, carry, and criticize prototypes before committing a single specification to production.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-line"></div>
+          <div class="step-num" aria-hidden="true">04</div>
+          <h3 class="step-title">Precision Production</h3>
+          <p class="step-text">We partner only with makers who match our obsession with finish quality. Tolerances are specified in tenths of millimeters. Every piece passes a hands-on quality review before it is released to a client.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" aria-labelledby="testimonials-heading">
+    <div class="testimonials-header reveal">
+      <div class="section-label">Client Words</div>
+      <h2 class="testimonials-headline" id="testimonials-heading">What Clients<br>Experience</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">"I didn't expect to feel emotional when the chair arrived. But I sat in it, ran my hands along the armrest, and understood immediately that I was touching something designed by someone who truly cares. It's been five years and I still feel the same way every morning."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">M</div>
+          <div>
+            <p class="author-name">Margaret Holloway</p>
+            <p class="author-role">Private Collector, London</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-quote">"We commissioned a lighting installation for our Tokyo flagship. FORM delivered something that our architects couldn't have specified — an atmosphere. Customers slow down. They stay longer. They feel the space differently. The ROI was immediate and unexpected."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">K</div>
+          <div>
+            <p class="author-name">Kenji Tanaka</p>
+            <p class="author-role">Creative Director, Ikeda Group</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <p class="testimonial-quote">"Three pieces for our penthouse project. Every one of them anchors the space differently. Guests always ask about them. They feel singular — like they couldn't have come from anywhere else. That specificity is very rare in design today."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">A</div>
+          <div>
+            <p class="author-name">Alessandra Fiori</p>
+            <p class="author-role">Interior Architect, Milan</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <p class="testimonial-quote">"The process itself was worth the investment. They asked us questions no design studio had asked before — about how we wanted to feel at the end of a long day, what sounds we associate with rest. The object they delivered answered every single one."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">R</div>
+          <div>
+            <p class="author-name">Robert Engström</p>
+            <p class="author-role">CEO, Engström Ventures, Stockholm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta" aria-labelledby="cta-heading">
+    <p class="cta-label reveal">Begin Your Project</p>
+    <h2 class="cta-headline reveal" id="cta-heading">
+      Let's make<br>something<br><em>unforgettable.</em>
+    </h2>
+    <p class="cta-sub reveal">We take on a limited number of commissions each year. If you have a space, a feeling, or an ambition — we'd like to hear about it.</p>
+    <div class="cta-actions reveal">
+      <a href="mailto:studio@formstudio.design" class="btn-primary"><span>Start a Conversation</span></a>
+      <a href="#work" class="btn-ghost">See More Work</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">FORM<span>.</span></span>
+          <p class="footer-tagline">Objects you feel before you see them. Industrial design for those who demand more from the spaces they inhabit.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#">Studio</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Work</h4>
+          <ul>
+            <li><a href="#">Seating</a></li>
+            <li><a href="#">Lighting</a></li>
+            <li><a href="#">Tables</a></li>
+            <li><a href="#">Objects</a></li>
+            <li><a href="#">Commissions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:studio@formstudio.design">studio@formstudio.design</a></li>
+            <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+            <li><a href="#">New York · Milan · Tokyo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 FORM Industrial Design Studio. All rights reserved.</p>
+        <nav class="footer-socials" aria-label="Social media links">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── Custom Cursor ──────────────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0;
+    let curX = 0, curY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      curX += (mouseX - curX) * 0.15;
+      curY += (mouseY - curY) * 0.15;
+      cursor.style.left = curX + 'px';
+      cursor.style.top  = curY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button, .product-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+
+    // ─── Scroll Reveal ──────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ─── Mobile Hamburger ───────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    // ─── Nav scroll style ───────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 60) {
+        nav.style.backdropFilter = 'blur(12px)';
+      } else {
+        nav.style.backdropFilter = 'none';
+      }
+    });
+
+    // ─── Parallax on hero shape (desktop) ──────────────────────
+    if (window.innerWidth > 900) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroShape = document.querySelector('.hero-shape');
+        if (heroShape) {
+          heroShape.style.transform = `translateY(${scrolled * 0.2}px)`;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
