@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PROPOSITIVA — script_v2.js
+   PROPOSITIVA — v2.js
    Venture Studio & Seed Capital
    Modular, performance-first, accessibility-aware
    ═══════════════════════════════════════════════════════════════ */
@@ -279,9 +279,9 @@ const initAnalytics = () => {
 const injectBreadcrumb = () => {
   const path = window.location.pathname;
   if (path === '/' || path === '/index.html') return;
-  const script_v2 = document.createElement('script_v2');
-  script_v2.type = 'application/ld+json';
-  script_v2.textContent = JSON.stringify({
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -289,7 +289,7 @@ const injectBreadcrumb = () => {
       { '@type': 'ListItem', position: 2, name: document.title, item: window.location.href }
     ]
   });
-  document.head.appendChild(script_v2);
+  document.head.appendChild(script);
 };
 
 /* ── INIT ALL ── */

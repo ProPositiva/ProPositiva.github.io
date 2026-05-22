@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PROPOSITIVA — styles_v2.css
+   PROPOSITIVA — v2.css
    Venture Studio & Seed Capital
    Brand: #404040 dark, #FFC000 gold | Syne (display) + DM Sans (body)
    Biome is proprietary — Syne is the closest geometric bold match
@@ -20,10 +20,10 @@
   --clr-mid-bg:     #EDEDEA;
   --clr-white:      #ffffff;
 
-  /* Typography — Syne mirrors Biome's geometric weight + personality */
-  --ff-heading: 'Syne', system-ui, sans-serif;
-  --ff-body:    'DM Sans', system-ui, sans-serif;
-  --ff-mono:    'DM Mono', 'Courier New', monospace;
+  /* Typography — Inter mirrors Helvetica Neue: neutral, precise, professional */
+  --ff-heading: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ff-body:    'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ff-mono:    'JetBrains Mono', 'Courier New', monospace;
 
   --fw-light:    300;
   --fw-regular:  400;
@@ -40,7 +40,7 @@
   --fs-xl:   clamp(1.5rem,  4vw,   2rem);
   --fs-2xl:  clamp(2rem,    5vw,   2.8rem);
   --fs-3xl:  clamp(2.5rem,  7vw,   4rem);
-  --fs-hero: clamp(3rem,    9vw,   6.5rem);
+  --fs-hero: clamp(2rem,    5vw,   4rem);
 
   --space-xs:  0.5rem;
   --space-sm:  1rem;
@@ -84,6 +84,7 @@ h1,h2,h3,h4,h5,h6 {
   font-family: var(--ff-heading);
   line-height: 1.08;
   font-weight: var(--fw-black);
+  letter-spacing: -0.025em; /* Inter needs tighter tracking at display sizes */
 }
 
 /* ── ACCESSIBILITY ── */
@@ -435,9 +436,9 @@ h1,h2,h3,h4,h5,h6 {
 .hero-heading {
   font-family: var(--ff-heading);
   font-size: var(--fs-hero);
-  font-weight: var(--fw-black);
+  font-weight: 900;
   line-height: 0.95;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: var(--clr-white);
   margin-bottom: var(--space-lg);
 }
@@ -584,8 +585,8 @@ h1,h2,h3,h4,h5,h6 {
 .ticker-track span {
   font-family: var(--ff-heading);
   font-size: var(--fs-sm);
-  font-weight: var(--fw-black);
-  letter-spacing: 0.05em;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--clr-dark);
 }
@@ -1296,6 +1297,189 @@ details[open] .faq-question::after { transform: rotate(45deg); }
   .hero-actions { flex-direction: column; }
   .btn--large { width: 100%; justify-content: center; }
   .tech-stack-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   METODOLOGÍA PROPOSITIVA
+   7-step methodology section
+══════════════════════════════════════════ */
+
+/* Phase track (visual breadcrumb) */
+.met-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+.met-phase {
+  padding: 0.5rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.met-phase--idea     { background: rgba(255,192,0,0.12); color: var(--clr-dark); border: 1px solid rgba(255,192,0,0.3); }
+.met-phase--producto { background: var(--clr-gold);      color: var(--clr-dark); }
+.met-phase--operacion{ background: var(--clr-dark);      color: var(--clr-white); border: 1px solid rgba(255,192,0,0.2); }
+.met-phase-arrow {
+  font-size: 1.2rem;
+  color: var(--clr-gray-light);
+  font-weight: var(--fw-light);
+}
+
+/* Phase groups — flex row: sidebar label + steps column */
+.met-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--space-xl);
+  border: 1px solid rgba(64,64,64,0.1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.met-phase-group {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(64,64,64,0.1);
+}
+.met-phase-group:last-child { border-bottom: none; }
+
+/* Phase sidebar label — fixed width, full height via align-self stretch */
+.met-phase-label {
+  flex-shrink: 0;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(64,64,64,0.1);
+  padding: var(--space-lg) 0.6rem;
+  align-self: stretch;   /* stretches to full height of the group */
+}
+.met-phase-label--idea     { background: rgba(255,192,0,0.06); color: var(--clr-dark); }
+.met-phase-label--producto { background: rgba(255,192,0,0.12); color: var(--clr-dark); }
+.met-phase-label--operacion{ background: var(--clr-dark);      color: var(--clr-gold); }
+
+/* Steps column — takes remaining width, stacks steps vertically */
+.met-phase-steps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual steps */
+.met-step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--space-md);
+  align-items: start;
+  padding: var(--space-lg);
+  background: var(--clr-white);
+  border-bottom: 1px solid rgba(64,64,64,0.07);
+  transition: background var(--transition);
+}
+.section--light .met-step         { background: var(--clr-off-white); }
+.met-phase-steps .met-step:last-child { border-bottom: none; }
+.met-step:hover                   { background: rgba(255,192,0,0.025); }
+
+.met-step-number {
+  font-family: var(--ff-mono);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: var(--fw-light);
+  color: rgba(64,64,64,0.14);
+  line-height: 1;
+  user-select: none;
+  padding-top: 0.2rem;
+}
+.met-step-body { display: flex; flex-direction: column; gap: 0.6rem; }
+.met-step-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.met-step-header h3 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.met-step-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(255,192,0,0.3);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.met-step-body > p {
+  font-size: var(--fs-sm);
+  color: var(--clr-gray-mid);
+  line-height: 1.7;
+}
+.met-step-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.tool-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: rgba(64,64,64,0.06);
+  color: var(--clr-gray-mid);
+  border: 1px solid rgba(64,64,64,0.1);
+}
+
+/* Methodology close statement */
+.met-close {
+  text-align: center;
+  padding: var(--space-xl) 0 0;
+  font-size: var(--fs-lg);
+  color: var(--clr-gray-mid);
+  font-weight: var(--fw-light);
+  line-height: 1.55;
+}
+.met-close strong { color: var(--clr-dark); font-weight: var(--fw-bold); }
+
+/* Responsive methodology */
+@media (max-width: 900px) {
+  .met-phase-group { flex-direction: column; }
+  .met-phase-label {
+    width: 100%;
+    writing-mode: horizontal-tb;
+    transform: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(64,64,64,0.1);
+    padding: 0.6rem var(--space-lg);
+    justify-content: flex-start;
+    letter-spacing: 0.12em;
+  }
+  .met-step { grid-template-columns: 48px 1fr; }
+}
+
+@media (max-width: 600px) {
+  .met-track { gap: 0.6rem; }
+  .met-phase { padding: 0.4rem 1rem; font-size: 0.72rem; }
+  .met-step { grid-template-columns: 1fr; gap: 0.5rem; }
+  .met-step-number { font-size: 1.1rem; }
+  .met-step-header { flex-direction: column; gap: 0.4rem; }
 }
 
 /* ══════════════════════════════════════════
