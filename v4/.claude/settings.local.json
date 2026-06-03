@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/tb898/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python skills/ui-ux-pro-max/scripts/search.py \"venture studio seed capital startup landing page dark professional\" --design-system -p \"Propositiva\")",
+      "Bash(python scripts/search.py \"venture studio seed capital startup landing page dark professional\" --design-system -p \"Propositiva\")",
+      "Bash(python scripts/search.py \"animation accessibility z-index loading hover\" --domain ux)",
+      "Bash(python scripts/search.py \"dark mode landing social proof startup\" --domain landing)",
+      "Bash(python scripts/search.py \"B2B professional services conversion trust credibility\" --domain landing -n 5)",
+      "Bash(python scripts/search.py \"dark mode glassmorphism professional premium\" --domain style -n 4)",
+      "Bash(python scripts/search.py \"micro-interaction scroll reveal motion premium feel\" --domain ux -n 5)",
+      "Bash(python scripts/search.py \"venture capital startup investor premium dark bold\" --domain typography -n 3)",
+      "Bash(python scripts/search.py \"portfolio case study logos client trust signals B2B\" --domain style -n 3)",
+      "Bash(python scripts/search.py \"conversion rate optimization CTA above fold hero\" --domain landing -n 3)",
+      "Bash(python scripts/search.py \"comparison table B2B differentiation features\" --domain style -n 2)"
+    ]
+  }
+}
