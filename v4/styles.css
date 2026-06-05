@@ -2,7 +2,7 @@
    ProPositiva — v4 styles.css
    Venture Studio & Seed Capital
    Brand: #303030 dark · #FFC000 gold
-   Fonts: Syne (display headings) · Inter (body) · JetBrains Mono (code)
+   Fonts: Space Grotesk (display headings) · Inter (body) · JetBrains Mono (code)
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── CUSTOM PROPERTIES ── */
@@ -199,7 +199,7 @@ h1,h2,h3,h4,h5,h6 {
   font-size: var(--fs-sm);
   font-weight: var(--fw-semibold);
   letter-spacing: 0.02em;
-  transition: all var(--transition);
+  transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
   cursor: pointer;
   white-space: nowrap;
   position: relative;
@@ -263,6 +263,7 @@ h1,h2,h3,h4,h5,h6 {
   border: 1px solid rgba(255,192,0,0.25);
   transition: all var(--transition);
 }
+.chip { transition: background var(--transition), border-color var(--transition); }
 .chip:hover { background: rgba(255,192,0,0.18); border-color: rgba(255,192,0,0.4); }
 .chip--sm { padding: 0.2rem 0.6rem; font-size: 0.68rem; }
 
@@ -368,22 +369,22 @@ h1,h2,h3,h4,h5,h6 {
 .footer-langs .lang-btn { color: rgba(255,255,255,0.2); min-width: 44px; min-height: 44px; }
 .footer-langs .lang-btn:hover { color: var(--clr-gold); }
 .footer-langs .lang-btn[aria-pressed="true"] { color: var(--clr-gold); }
-.nav-cta {
-  background: var(--clr-gold) !important;
-  color: var(--clr-dark) !important;
-  padding: 0.45rem 1.2rem !important;
-  border-radius: var(--radius-pill) !important;
-  font-weight: var(--fw-bold) !important;
-  font-size: var(--fs-xs) !important;
-  opacity: 1 !important;
-  font-family: var(--ff-body) !important;
-  transition: all var(--transition) !important;
+.nav-links a.nav-cta {
+  background: var(--clr-gold);
+  color: var(--clr-dark);
+  padding: 0.45rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xs);
+  font-family: var(--ff-body);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
 }
-.nav-cta::after { display: none !important; }
-.nav-cta:hover {
-  background: var(--clr-gold-light) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: var(--shadow-gold) !important;
+.nav-links a.nav-cta::after { display: none; }
+.nav-links a.nav-cta:hover {
+  color: var(--clr-dark);
+  background: var(--clr-gold-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-gold);
 }
 
 .nav-toggle {
@@ -397,8 +398,9 @@ h1,h2,h3,h4,h5,h6 {
   width: 22px; height: 2px;
   background: var(--clr-white);
   border-radius: 2px;
-  transition: all var(--transition);
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
 }
+.nav-toggle:hover span { background: var(--clr-gold); }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -1816,7 +1818,8 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 }
 .comp-cell--other { background: var(--clr-off-white); }
 .comp-cell--featured { background: var(--clr-dark); }
-.comparison-table tbody tr:last-child td { border-bottom: none; }
+.comparison-table tbody tr:last-child td,
+.comparison-table tbody tr:last-child th { border-bottom: none; }
 .comparison-table tbody tr:hover .comp-label,
 .comparison-table tbody tr:hover .comp-cell--other { background: rgba(255,192,0,0.04); }
 .comparison-table tbody tr:hover .comp-cell--featured { background: rgba(255,192,0,0.06); }
@@ -1871,6 +1874,10 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 .section--white .micro-cta-link { color: var(--clr-gray-mid); }
 .section--light .micro-cta-link:hover,
 .section--white .micro-cta-link:hover { color: var(--clr-dark); }
+/* Dark section variant — bump from 0.4 to 0.6 opacity to pass WCAG AA (4.5:1) */
+.section--dark .micro-cta-link,
+.section--manifiesto .micro-cta-link,
+.section--cta .micro-cta-link { color: rgba(255,255,255,0.6); }
 @media (max-width: 600px) {
   .micro-cta-link { font-size: var(--fs-sm); gap: 0.4rem; }
 }
@@ -1894,15 +1901,15 @@ details[open] .faq-question::after { transform: rotate(45deg); }
   pointer-events: auto;
 }
 .floating-cta-btn {
-  border-radius: var(--radius-pill) !important;
+  border-radius: var(--radius-pill);
   box-shadow: 0 8px 32px rgba(255,192,0,0.35), 0 2px 8px rgba(0,0,0,0.25);
-  font-size: var(--fs-sm) !important;
-  padding: 0.8rem 1.75rem !important;
+  font-size: var(--fs-sm);
+  padding: 0.8rem 1.75rem;
   white-space: nowrap;
 }
 @media (max-width: 600px) {
   .floating-cta { bottom: 1.25rem; right: 1.25rem; }
-  .floating-cta-btn { font-size: var(--fs-xs) !important; padding: 0.7rem 1.4rem !important; }
+  .floating-cta-btn { font-size: var(--fs-xs); padding: 0.7rem 1.4rem; }
 }
 
 /* ══════════════════════════════════════════

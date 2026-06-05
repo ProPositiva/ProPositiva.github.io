@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200" />
+  <title>OG Image Template — ProPositiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #141414;
+      font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid background */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,192,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,192,0,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Ambient glow */
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .glow-1 {
+      width: 480px; height: 480px;
+      background: rgba(255,192,0,0.09);
+      top: -120px; left: -80px;
+    }
+    .glow-2 {
+      width: 320px; height: 320px;
+      background: rgba(255,192,0,0.06);
+      bottom: -80px; right: 80px;
+    }
+
+    /* Content layout */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 72px 96px;
+    }
+
+    /* Top badge */
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFC000;
+      margin-bottom: 40px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #FFC000;
+      box-shadow: 0 0 10px rgba(255,192,0,0.6);
+    }
+    .badge::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: #FFC000;
+      opacity: 0.6;
+    }
+
+    /* Logo + wordmark row */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .brand svg {
+      flex-shrink: 0;
+    }
+    .wordmark {
+      font-size: 64px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    /* Divider */
+    .divider {
+      width: 56px; height: 2px;
+      background: #FFC000;
+      margin-bottom: 28px;
+      opacity: 0.7;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .tagline em {
+      color: #FFC000;
+      font-style: normal;
+    }
+
+    .sub {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.01em;
+    }
+
+    /* URL bottom-right */
+    .url {
+      position: absolute;
+      bottom: 48px;
+      right: 96px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: rgba(255,192,0,0.5);
+      letter-spacing: 0.08em;
+    }
+
+    /* Right-side decoration */
+    .deco {
+      position: absolute;
+      right: 96px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <!-- Decorative large logo -->
+  <div class="deco">
+    <svg width="260" height="260" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="24,2 42,12 42,36 24,46 6,36 6,12" fill="#303030" stroke="#FFC000" stroke-width="1.6" stroke-linejoin="round"/>
+      <polygon points="24,10 34,16 24,22 14,16" fill="rgba(255,192,0,0.14)" stroke="#FFC000" stroke-width="1.2"/>
+      <polygon points="14,16 24,22 24,34 14,28" fill="rgba(255,192,0,0.04)" stroke="#FFC000" stroke-width="1.2"/>
+      <polygon points="34,16 34,28 24,34 24,22" fill="rgba(255,192,0,0.08)" stroke="#FFC000" stroke-width="1.2"/>
+      <line x1="14" y1="16" x2="34" y2="16" stroke="#FFC000" stroke-width="0.7" opacity="0.45"/>
+      <line x1="24" y1="10" x2="24" y2="22" stroke="#FFC000" stroke-width="0.7" opacity="0.45"/>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span>Venture Studio · Seed Capital · San José, CR</span>
+    </div>
+
+    <div class="brand">
+      <svg width="56" height="56" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="24,2 42,12 42,36 24,46 6,36 6,12" fill="#303030" stroke="#FFC000" stroke-width="1.6" stroke-linejoin="round"/>
+        <polygon points="24,10 34,16 24,22 14,16" fill="rgba(255,192,0,0.14)" stroke="#FFC000" stroke-width="1.2"/>
+        <polygon points="14,16 24,22 24,34 14,28" fill="rgba(255,192,0,0.04)" stroke="#FFC000" stroke-width="1.2"/>
+        <polygon points="34,16 34,28 24,34 24,22" fill="rgba(255,192,0,0.08)" stroke="#FFC000" stroke-width="1.2"/>
+        <line x1="14" y1="16" x2="34" y2="16" stroke="#FFC000" stroke-width="0.7" opacity="0.45"/>
+        <line x1="24" y1="10" x2="24" y2="22" stroke="#FFC000" stroke-width="0.7" opacity="0.45"/>
+      </svg>
+      <span class="wordmark">ProPositiva</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="tagline">Conoces el problema.<br><em>Falta quien lo construya.</em></p>
+    <p class="sub">Capital semilla · Equipo técnico · Metodología de 7 pasos</p>
+  </div>
+
+  <span class="url">propositivacr.com</span>
+</body>
+</html>
+<!-- ═══════════════════════════════════════════════════════
+     HOW TO GENERATE og-image.jpg FROM THIS FILE:
+
+     1. Open this file in Chrome (File > Open File)
+     2. Open DevTools → Ctrl+Shift+I (or F12)
+     3. Run in Console:
+          document.body.style.zoom = '1'
+     4. Set browser zoom to 100% (Ctrl+0)
+     5. Take a full-page screenshot:
+        • DevTools → Ctrl+Shift+P → "Capture full size screenshot"
+        • Or use a tool like: npx capture-website-cli og-image-template.html --width=1200 --height=630 --output=og-image.jpg
+     6. Save the output as og-image.jpg in this Assets/ folder
+     7. Upload Assets/og-image.jpg to the server root /Assets/og-image.jpg
+     ═══════════════════════════════════════════════════════ -->

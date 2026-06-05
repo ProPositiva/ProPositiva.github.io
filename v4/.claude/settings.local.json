@@ -12,7 +12,14 @@
       "Bash(python scripts/search.py \"venture capital startup investor premium dark bold\" --domain typography -n 3)",
       "Bash(python scripts/search.py \"portfolio case study logos client trust signals B2B\" --domain style -n 3)",
       "Bash(python scripts/search.py \"conversion rate optimization CTA above fold hero\" --domain landing -n 3)",
-      "Bash(python scripts/search.py \"comparison table B2B differentiation features\" --domain style -n 2)"
+      "Bash(python scripts/search.py \"comparison table B2B differentiation features\" --domain style -n 2)",
+      "WebFetch(domain:www.propositivacr.com)",
+      "Bash(not exist *)",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\tb898\\\\OneDrive - propositivacr.com\\\\Documents\\\\GitHub\\\\propositiva..github.io\\\\v4\\\\Assets\")",
+      "PowerShell(python3 \"C:\\\\Users\\\\tb898\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"venture studio seed capital startup landing page professional dark\" --design-system -p \"ProPositiva\" 2>&1)",
+      "PowerShell(python \"C:\\\\Users\\\\tb898\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"venture studio seed capital startup landing page professional dark\" --design-system -p \"ProPositiva\" 2>&1)",
+      "PowerShell(python \"C:\\\\Users\\\\tb898\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"animation accessibility z-index loading focus\" --domain ux -n 10 2>&1)",
+      "PowerShell(python \"C:\\\\Users\\\\tb898\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"responsive mobile touch\" --stack html-tailwind 2>&1)"
     ]
   }
 }

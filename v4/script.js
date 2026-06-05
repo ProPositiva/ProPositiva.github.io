@@ -24,12 +24,14 @@ const initNav = () => {
   const openMenu = () => {
     menu.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Cerrar menú');
     document.body.style.overflow = 'hidden';
     menu.querySelector('a')?.focus();
   };
   const closeMenu = () => {
     menu.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
     document.body.style.overflow = '';
   };
 
