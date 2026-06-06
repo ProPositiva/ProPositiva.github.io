@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse — Know Your Financial Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+:root {
+  --gold:#FFC000;
+  --dark:#1C1C1C;
+  --darker:#07080f;
+  --navy:#0a0f2e;
+  --white:#F5F0E8;
+  --white-dim:rgba(245,240,232,0.45);
+  --white-faint:rgba(245,240,232,0.07);
+}
+html { scroll-behavior:auto; }
+body {
+  background:var(--darker);
+  color:var(--white);
+  font-family:'JetBrains Mono',monospace;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+#cur { position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference; }
+#cur-ring { position:fixed;width:36px;height:36px;border:1px solid rgba(255,192,0,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%); }
+
+/* CANVASES */
+#bg-canvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:0; }
+#main-canvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none; }
+#wave-canvas { position:fixed;bottom:0;left:0;width:100%;height:200px;z-index:3;pointer-events:none;opacity:0;transition:opacity 1s; }
+#explode-canvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:6;pointer-events:none; }
+
+/* GRAIN */
+#grain {
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:4;pointer-events:none;opacity:0.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px;
+  animation:grainAnim .4s steps(2) infinite;
+}
+@keyframes grainAnim { 0%{transform:translate(0,0)} 25%{transform:translate(-3px,2px)} 50%{transform:translate(2px,-2px)} 75%{transform:translate(-2px,3px)} 100%{transform:translate(3px,-3px)} }
+
+/* VIGNETTE */
+#vignette {
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(7,8,15,0.85) 100%);
+}
+
+/* PROGRESS */
+#prog { position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:500;box-shadow:0 0 14px var(--gold),0 0 35px rgba(255,192,0,0.25);transition:width .08s; }
+
+/* NAV */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:400;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.8rem 3rem;
+  transition:backdrop-filter .5s,background .5s,border-color .5s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled { backdrop-filter:blur(24px);background:rgba(7,8,15,0.6);border-color:rgba(255,192,0,0.06); }
+.nav-logo { display:flex;align-items:center;gap:.7rem; }
+.hex { width:20px;height:20px;background:var(--gold);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);flex-shrink:0; }
+.logo-text { font-family:'Bebas Neue',cursive;font-size:1.4rem;letter-spacing:.3em;color:var(--white); }
+.nav-right { display:flex;align-items:center;gap:2.5rem; }
+.nav-link { font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--white-dim);text-decoration:none;transition:color .3s;cursor:none; }
+.nav-link:hover { color:var(--gold); }
+.nav-cta { font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.5rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;transition:all .3s;cursor:none; }
+.nav-cta:hover { background:var(--gold);color:var(--darker); }
+
+/* SECTIONS */
+.sec {
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:10;pointer-events:none;
+  opacity:0;transition:opacity .7s;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+}
+.sec.active { opacity:1; }
+
+/* HERO */
+#s-hero { text-align:center; }
+.hero-eyebrow { font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:riseIn .9s .3s forwards; }
+.hero-h1 { font-family:'Bebas Neue',cursive;font-size:clamp(5.5rem,15vw,14rem);line-height:.85;letter-spacing:-.02em;color:var(--white);opacity:0;animation:riseIn .9s .55s forwards; }
+.hero-h1 .g { color:var(--gold);text-shadow:0 0 40px rgba(255,192,0,0.4); }
+.hero-sub { font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(.9rem,2.2vw,1.5rem);color:var(--white-dim);margin-top:1.8rem;letter-spacing:.02em;opacity:0;animation:riseIn .9s .8s forwards; }
+.hero-actions { display:flex;align-items:center;gap:2rem;margin-top:3rem;justify-content:center;opacity:0;animation:riseIn .9s 1.05s forwards;pointer-events:auto; }
+.btn-primary { padding:1rem 3rem;background:var(--gold);color:var(--darker);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .3s;position:relative;overflow:hidden; }
+.btn-primary::after { content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .4s; }
+.btn-primary:hover::after { transform:translateX(0); }
+.btn-ghost { padding:1rem 3rem;border:1px solid rgba(255,192,0,.25);color:var(--white-dim);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .3s; }
+.btn-ghost:hover { border-color:var(--gold);color:var(--gold); }
+
+/* SCROLL HINT */
+#scroll-ind { position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:400;text-align:center;pointer-events:none;opacity:0;animation:riseIn .9s 1.5s forwards; }
+#scroll-ind span { font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(245,240,232,.18); }
+.scroll-line { width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);margin:.5rem auto 0;animation:blinkLine 2s infinite; }
+@keyframes blinkLine { 0%,100%{opacity:.2}50%{opacity:1} }
+
+/* SCORE */
+#s-score { flex-direction:column;text-align:center; }
+.score-label { font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem; }
+.score-ring-wrap { position:relative;width:260px;height:260px;margin:0 auto; }
+#score-svg { position:absolute;top:0;left:0;width:100%;height:100%;transform:rotate(-90deg); }
+.score-bg-ring { fill:none;stroke:rgba(255,192,0,0.07);stroke-width:2; }
+.score-fill-ring { fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:720;stroke-dashoffset:720;transition:stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 10px rgba(255,192,0,.7)); }
+.score-outer-ring { fill:none;stroke:rgba(255,192,0,0.04);stroke-width:8; }
+.score-number { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',cursive;font-size:5.5rem;color:var(--gold);line-height:1;text-shadow:0 0 30px rgba(255,192,0,.5); }
+.score-sub { font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.25);margin-top:.4rem; }
+.score-verdict { font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(1.3rem,3.5vw,2.5rem);color:var(--white);margin-top:2rem;max-width:500px;text-align:center; }
+.score-verdict em { color:var(--gold);font-style:normal; }
+
+/* PROBLEMS */
+#s-problems { align-items:flex-start;padding:0 8vw;justify-content:center; }
+.problems-inner { width:100%;max-width:1100px;margin:0 auto; }
+.sec-eyebrow { font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem; }
+.problems-h { font-family:'Bebas Neue',cursive;font-size:clamp(2.8rem,6.5vw,6rem);line-height:.93;margin-bottom:3rem;color:var(--white); }
+.problems-h em { color:var(--gold);font-style:normal; }
+.problem-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,192,0,0.06); }
+.problem-card { background:rgba(7,8,15,0.8);padding:1.8rem 1.4rem;border-top:1px solid rgba(255,192,0,.1);backdrop-filter:blur(8px);transition:background .3s; }
+.problem-card:hover { background:rgba(255,192,0,0.04); }
+.problem-icon { font-size:1.3rem;margin-bottom:.8rem; }
+.problem-title { font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:.05em;color:var(--gold);margin-bottom:.5rem; }
+.problem-desc { font-size:.55rem;letter-spacing:.07em;line-height:2;color:var(--white-dim); }
+.problem-amount { font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--white);margin-top:.7rem;text-shadow:0 0 20px rgba(255,192,0,.2); }
+
+/* HOW */
+#s-how { align-items:flex-start;padding:0 8vw;justify-content:center; }
+.how-inner { width:100%;max-width:860px; }
+.how-h { font-family:'Bebas Neue',cursive;font-size:clamp(2.8rem,6.5vw,6rem);line-height:.93;color:var(--white);margin-bottom:3.5rem; }
+.how-h em { color:var(--gold);font-style:normal; }
+.steps { display:flex;flex-direction:column; }
+.step { display:grid;grid-template-columns:70px 1fr;gap:2rem;padding:1.8rem 0;border-bottom:1px solid rgba(255,192,0,0.07);align-items:start; }
+.step-num { font-family:'Bebas Neue',cursive;font-size:3.5rem;color:rgba(255,192,0,.12);line-height:1; }
+.step-title { font-family:'Bebas Neue',cursive;font-size:1.7rem;letter-spacing:.04em;color:var(--white);margin-bottom:.5rem; }
+.step-title em { color:var(--gold);font-style:normal; }
+.step-desc { font-size:.56rem;letter-spacing:.07em;line-height:2.2;color:var(--white-dim); }
+
+/* WAITLIST */
+#s-waitlist { flex-direction:column;text-align:center;padding:0 5vw; }
+.waitlist-h { font-family:'Bebas Neue',cursive;font-size:clamp(3.5rem,10vw,9.5rem);line-height:.88;color:var(--white);margin-bottom:1.5rem; }
+.waitlist-h em { color:var(--gold);text-shadow:0 0 50px rgba(255,192,0,.35);font-style:normal; }
+.waitlist-sub { font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(.85rem,1.8vw,1.2rem);color:var(--white-dim);margin-bottom:3rem; }
+.waitlist-form { display:flex;max-width:460px;margin:0 auto;pointer-events:auto; }
+.waitlist-input { flex:1;padding:.9rem 1.4rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,192,0,.18);border-right:none;color:var(--white);font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;outline:none;cursor:text;transition:border-color .3s; }
+.waitlist-input::placeholder { color:rgba(245,240,232,.18); }
+.waitlist-input:focus { border-color:rgba(255,192,0,.5); }
+.waitlist-btn { padding:.9rem 1.8rem;background:var(--gold);color:var(--darker);font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:none;transition:all .3s;white-space:nowrap; }
+.waitlist-btn:hover { background:var(--white); }
+.waitlist-count { margin-top:1.8rem;font-size:.52rem;letter-spacing:.18em;color:rgba(245,240,232,.18);text-transform:uppercase; }
+.waitlist-count span { color:var(--gold); }
+
+/* FLOATING STATS */
+.fstat { position:fixed;z-index:15;background:rgba(7,8,15,0.75);border:1px solid rgba(255,192,0,.1);backdrop-filter:blur(20px);padding:.9rem 1.2rem;pointer-events:none;opacity:0;transition:opacity .7s,transform .7s;transform:translateY(12px); }
+.fstat.show { opacity:1;transform:translateY(0); }
+.fstat-label { font-size:.47rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.28); }
+.fstat-val { font-family:'Bebas Neue',cursive;font-size:2rem;color:var(--gold);line-height:1.15;margin-top:.15rem; }
+.fstat-delta { font-size:.45rem;letter-spacing:.1em;margin-top:.1rem; }
+.up { color:#4ade80; } .dn { color:#f87171; }
+#fs1{top:22%;left:4%;} #fs2{top:36%;right:4%;} #fs3{bottom:30%;left:6%;} #fs4{bottom:22%;right:5%;}
+
+/* FOOTER */
+footer { position:fixed;bottom:0;left:0;right:0;z-index:400;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3rem;pointer-events:none; }
+.ft { font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.12); }
+.ft-gold { color:var(--gold); }
+
+@keyframes riseIn { from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)} }
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:1.2rem 1.5rem;}
+  .nav-right .nav-link{display:none;}
+  #s-problems,#s-how{padding:0 4vw;}
+  .problem-grid{grid-template-columns:1fr;}
+  footer{padding:.8rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- CANVASES: bg aurora → three.js globe → vignette → wave → ui -->
+<canvas id="bg-canvas"></canvas>
+<canvas id="main-canvas"></canvas>
+<div id="vignette"></div>
+<canvas id="wave-canvas"></canvas>
+<canvas id="explode-canvas"></canvas>
+<div id="grain"></div>
+
+<div id="prog"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><div class="hex"></div><div class="logo-text">PULSE</div></div>
+  <div class="nav-right">
+    <a href="#" class="nav-link">Features</a>
+    <a href="#" class="nav-link">How it works</a>
+    <a href="#" class="nav-link">Pricing</a>
+    <a href="#" class="nav-cta">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- FLOATING STATS -->
+<div class="fstat" id="fs1"><div class="fstat-label">Avg Monthly Leaks</div><div class="fstat-val">$347</div><div class="fstat-delta dn">↑ You're losing this</div></div>
+<div class="fstat" id="fs2"><div class="fstat-label">Idle Cash Found</div><div class="fstat-val">$2.1K</div><div class="fstat-delta up">↗ Ready to work</div></div>
+<div class="fstat" id="fs3"><div class="fstat-label">Bill Inflation</div><div class="fstat-val">+18%</div><div class="fstat-delta dn">↑ Last 12 months</div></div>
+<div class="fstat" id="fs4"><div class="fstat-label">Unused Perks</div><div class="fstat-val">$890</div><div class="fstat-delta up">↗ Unclaimed value</div></div>
+
+<!-- SECTIONS -->
+<div id="s-hero" class="sec active">
+  <div class="hero-eyebrow">Financial Health Intelligence</div>
+  <h1 class="hero-h1">YOUR<br>MONEY<br>HAS A <span class="g">PULSE</span></h1>
+  <div class="hero-sub">We diagnose what's draining you. Then we fix it.</div>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">Get Early Access</a>
+    <a href="#" class="btn-ghost">See How It Works</a>
+  </div>
+</div>
+
+<div id="s-score" class="sec">
+  <div class="score-label">Your Financial Health Score</div>
+  <div class="score-ring-wrap">
+    <svg id="score-svg" viewBox="0 0 260 260">
+      <circle class="score-outer-ring" cx="130" cy="130" r="125"/>
+      <circle class="score-bg-ring" cx="130" cy="130" r="112"/>
+      <circle class="score-fill-ring" id="score-arc" cx="130" cy="130" r="112"/>
+    </svg>
+    <div class="score-number" id="score-num">0</div>
+  </div>
+  <div class="score-sub">out of 100</div>
+  <div class="score-verdict">Your finances are <em id="score-word">bleeding</em> right now.</div>
+</div>
+
+<div id="s-problems" class="sec">
+  <div class="problems-inner">
+    <div class="sec-eyebrow">What Pulse Finds</div>
+    <h2 class="problems-h">YOUR MONEY LEAKS<br>THROUGH <em>6 HIDDEN HOLES</em></h2>
+    <div class="problem-grid">
+      <div class="problem-card"><div class="problem-icon">📡</div><div class="problem-title">Subscription Leaks</div><div class="problem-desc">Forgotten services. Trials that became charges.</div><div class="problem-amount">$127/mo</div></div>
+      <div class="problem-card"><div class="problem-icon">📈</div><div class="problem-title">Bill Inflation</div><div class="problem-desc">Your bills increased quietly. You never noticed.</div><div class="problem-amount">+18% avg</div></div>
+      <div class="problem-card"><div class="problem-icon">💳</div><div class="problem-title">Unused Perks</div><div class="problem-desc">Benefits you pay for but never claim.</div><div class="problem-amount">$890/yr</div></div>
+      <div class="problem-card"><div class="problem-icon">💸</div><div class="problem-title">Debt Interest</div><div class="problem-desc">Interest eating your income while you sleep.</div><div class="problem-amount">$2.3K/yr</div></div>
+      <div class="problem-card"><div class="problem-icon">🪨</div><div class="problem-title">Idle Money</div><div class="problem-desc">Cash sitting in accounts earning nothing.</div><div class="problem-amount">$2,100</div></div>
+      <div class="problem-card"><div class="problem-icon">☕</div><div class="problem-title">Micro-Spend Drift</div><div class="problem-desc">Small daily habits compounding into big losses.</div><div class="problem-amount">$1.8K/yr</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="s-how" class="sec">
+  <div class="how-inner">
+    <div class="sec-eyebrow">The System</div>
+    <h2 class="how-h">THREE PHASES.<br><em>ONE SCORE.</em></h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div><div class="step-title"><em>DIAGNOSE</em> — Connect & Scan</div><div class="step-desc">Pulse connects to your accounts in seconds. Our engine scans every transaction, subscription, and pattern to calculate your Financial Health Score — a single number from 0 to 100.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div><div class="step-title"><em>RECOVER</em> — Stop the Bleeding</div><div class="step-desc">We surface every leak with exact dollar amounts. Cancel with one tap. Negotiate automatically. Claim unused perks. The average user recovers $347/month in the first week.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div><div class="step-title"><em>BUILD</em> — Grow Your Score</div><div class="step-desc">Your score improves in real time as you act. Idle money goes to work. Debt shrinks. Watch your financial health transform — measurably, month over month.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="s-waitlist" class="sec">
+  <div class="sec-eyebrow">Early Access — Limited Spots</div>
+  <h2 class="waitlist-h">GET YOUR<br><em>SCORE</em><br>FIRST.</h2>
+  <div class="waitlist-sub">Join the waitlist. Be first to know when Pulse launches.</div>
+  <div class="waitlist-form">
+    <input class="waitlist-input" type="email" placeholder="your@email.com" id="wl-input"/>
+    <button class="waitlist-btn" id="wl-btn" onclick="handleWaitlist()">Get Early Access →</button>
+  </div>
+  <div class="waitlist-count">Already <span id="wl-count">1,247</span> people on the list</div>
+</div>
+
+<div id="scroll-ind"><span>Scroll to explore</span><div class="scroll-line"></div></div>
+<footer><div class="ft">© 2025 Pulse — by Propositiva</div><div class="ft"><span class="ft-gold" id="ft-pct">00%</span> &nbsp;·&nbsp; Financial Health</div></footer>
+
+<div style="height:700vh;position:relative;z-index:-1;pointer-events:none;"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ══════════════════════════════════════════════
+// CURSOR
+// ══════════════════════════════════════════════
+const cur=document.getElementById('cur');
+const curR=document.getElementById('cur-ring');
+let mx=window.innerWidth/2,my=window.innerHeight/2,crx=mx,cry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function ac(){crx+=(mx-crx)*.14;cry+=(my-cry)*.14;cur.style.cssText=`left:${mx}px;top:${my}px;`;curR.style.cssText=`left:${crx}px;top:${cry}px;`;requestAnimationFrame(ac);})();
+
+// ══════════════════════════════════════════════
+// AURORA BACKGROUND — GLSL fullscreen shader
+// ══════════════════════════════════════════════
+const bgCanvas=document.getElementById('bg-canvas');
+bgCanvas.width=window.innerWidth; bgCanvas.height=window.innerHeight;
+const gl2=bgCanvas.getContext('webgl')||bgCanvas.getContext('experimental-webgl');
+
+const bgVS=`
+attribute vec2 a_pos;
+void main(){ gl_Position=vec4(a_pos,0,1); }
+`;
+const bgFS=`
+precision highp float;
+uniform float u_time;
+uniform float u_scroll;
+uniform vec2 u_res;
+
+// Classic Perlin-style noise helpers
+vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
+vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
+float snoise(vec2 v){
+  const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);
+  vec2 i=floor(v+dot(v,C.yy));
+  vec2 x0=v-i+dot(i,C.xx);
+  vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+  vec4 x12=x0.xyxy+C.xxzz;
+  x12.xy-=i1;
+  i=mod289(i);
+  vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+  vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+  m=m*m; m=m*m;
+  vec3 x2=2.*fract(p*C.www)-1.;
+  vec3 h=abs(x2)-.5;
+  vec3 ox=floor(x2+.5);
+  vec3 a0=x2-ox;
+  m*=1.79284291400159-.85373472095314*(a0*a0+h*h);
+  vec3 g;
+  g.x=a0.x*x0.x+h.x*x0.y;
+  g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+  return 130.*dot(m,g);
+}
+
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_res;
+  vec2 p=uv*2.-1.;
+  p.x*=u_res.x/u_res.y;
+
+  float t=u_time*.12;
+  float sc=u_scroll;
+
+  // --- LAYER 1: deep base fog (navy → darkest)
+  float n1=snoise(p*.8+vec2(t*.3,t*.15));
+  float n2=snoise(p*1.4+vec2(-t*.2,t*.25)+n1*.3);
+  float n3=snoise(p*2.5+vec2(t*.18,-t*.12)+n2*.25);
+  float fog=(n1*.5+n2*.3+n3*.2)*.5+.5;
+
+  // Base colors
+  vec3 cDark=vec3(.027,.031,.059);   // deep navy #070810
+  vec3 cMid=vec3(.042,.048,.092);    // navy #0a0f2e
+  vec3 cDeep=vec3(.012,.012,.018);   // almost black
+
+  vec3 base=mix(cDeep,mix(cDark,cMid,fog),fog*.9);
+
+  // --- LAYER 2: aurora bands (flowing gold/teal/amber)
+  float auroraY=uv.y+snoise(vec2(uv.x*2.+t*.4,t*.2))*.15;
+  float band1=smoothstep(.3,.7,sin(auroraY*3.14159+t*.5+snoise(vec2(uv.x*1.5,t*.3))*.8)*.5+.5);
+  float band2=smoothstep(.3,.7,sin(auroraY*2.5-t*.4+snoise(vec2(uv.x*2.2+1.5,t*.25))*.7)*.5+.5);
+  float band3=smoothstep(.4,.6,sin(auroraY*4.5+t*.7+snoise(vec2(uv.x*3.+3.,t*.35))*.6)*.5+.5);
+
+  // Aurora colors
+  vec3 cGold=vec3(1.,.75,.0);        // #FFC000
+  vec3 cAmber=vec3(.8,.45,.05);      // deep amber
+  vec3 cTeal=vec3(.05,.18,.25);      // dark teal accent
+  vec3 cGoldDim=vec3(.4,.28,.02);    // muted gold
+
+  // Blend aurora layers
+  vec3 aurora=vec3(0.);
+  aurora+=cGoldDim*band1*(.04+sc*.06);
+  aurora+=cAmber*band2*(.025+sc*.04);
+  aurora+=cTeal*band3*.018;
+
+  // Edge fade so aurora doesn't hit corners hard
+  float edgeFade=1.-smoothstep(.3,1.,length(vec2(p.x*.7,p.y*.5)));
+  aurora*=edgeFade;
+
+  // --- LAYER 3: gold radial bloom at center-bottom (the pulse source)
+  vec2 bloomCenter=vec2(0.,.2-sc*.3);
+  float bloomDist=length(p-bloomCenter*vec2(1.,u_res.y/u_res.x*2.));
+  float bloom=exp(-bloomDist*bloomDist*1.8)*(0.04+sc*.05);
+  vec3 bloomCol=cGold*bloom;
+
+  // --- LAYER 4: subtle scanline depth
+  float scanline=sin(uv.y*u_res.y*.5)*.5+.5;
+  scanline=smoothstep(.45,.55,scanline)*.008;
+
+  // --- COMPOSE
+  vec3 col=base+aurora+bloomCol+scanline;
+
+  // Subtle scroll-driven darkening at top (letterbox feel)
+  float topDark=smoothstep(0.,.15,uv.y)*smoothstep(1.,.85,uv.y);
+  col*=.85+topDark*.15;
+
+  // Very slight vignette contribution from shader too
+  float vig=1.-smoothstep(.4,.95,length(p)*.55);
+  col*=.7+vig*.3;
+
+  gl_FragColor=vec4(col,1.);
+}
+`;
+
+function createShader(gl,type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+const bgProg=gl2.createProgram();
+gl2.attachShader(bgProg,createShader(gl2,gl2.VERTEX_SHADER,bgVS));
+gl2.attachShader(bgProg,createShader(gl2,gl2.FRAGMENT_SHADER,bgFS));
+gl2.linkProgram(bgProg);
+gl2.useProgram(bgProg);
+const bgBuf=gl2.createBuffer();
+gl2.bindBuffer(gl2.ARRAY_BUFFER,bgBuf);
+gl2.bufferData(gl2.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl2.STATIC_DRAW);
+const aPosLoc=gl2.getAttribLocation(bgProg,'a_pos');
+gl2.enableVertexAttribArray(aPosLoc);
+gl2.vertexAttribPointer(aPosLoc,2,gl2.FLOAT,false,0,0);
+const uTime2=gl2.getUniformLocation(bgProg,'u_time');
+const uScroll2=gl2.getUniformLocation(bgProg,'u_scroll');
+const uRes2=gl2.getUniformLocation(bgProg,'u_res');
+gl2.uniform2f(uRes2,bgCanvas.width,bgCanvas.height);
+
+// ══════════════════════════════════════════════
+// THREE.JS — GLOBE + PARTICLES
+// ══════════════════════════════════════════════
+const mainCanvas=document.getElementById('main-canvas');
+const W=()=>window.innerWidth, H=()=>window.innerHeight;
+const renderer=new THREE.WebGLRenderer({canvas:mainCanvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(W(),H());
+renderer.setClearColor(0x000000,0); // transparent — aurora shows through
+
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(55,W()/H(),.1,500);
+camera.position.set(0,0,32);
+
+// FOG — ties Three.js scene to aurora
+scene.fog=new THREE.FogExp2(0x07080f,.011);
+
+// GLOBE
+const gGeo=new THREE.SphereGeometry(8,72,72);
+const gMat=new THREE.ShaderMaterial({
+  transparent:true,
+  uniforms:{uTime:{value:0},uScroll:{value:0},uPulse:{value:0}},
+  vertexShader:`
+    varying vec3 vPos; varying vec3 vNormal; varying vec2 vUv;
+    uniform float uTime; uniform float uScroll;
+    void main(){
+      vPos=position; vNormal=normal; vUv=uv;
+      vec3 p=position;
+      float breathe=sin(uTime*1.8+p.y*2.5)*.06*sin(uTime*.7);
+      p+=normal*breathe;
+      gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);
+    }
+  `,
+  fragmentShader:`
+    varying vec3 vPos; varying vec3 vNormal; varying vec2 vUv;
+    uniform float uTime; uniform float uScroll; uniform float uPulse;
+    void main(){
+      vec3 gold=vec3(1.,.753,0.);
+      vec3 navy=vec3(.04,.06,.18);
+      // Grid
+      float lat=sin(vUv.y*48.)*.5+.5;
+      float lng=sin(vUv.x*96.)*.5+.5;
+      float grid=smoothstep(.91,1.,lat)*.5+smoothstep(.93,1.,lng)*.25;
+      // Fresnel
+      vec3 vd=normalize(cameraPosition-vPos);
+      float f=pow(1.-dot(vNormal,vd),3.);
+      // Pulse wave from equator
+      float wave=sin(vPos.y*1.5-uTime*2.5)*.5+.5;
+      float latBand=exp(-vPos.y*vPos.y*.08)*wave*.3;
+      // Compose
+      float alpha=(grid*.7+f*.5+latBand*.4+uPulse*.1)*.65*(1.-uScroll*.5);
+      vec3 col=mix(navy,gold,grid+f*.25+latBand*.3);
+      gl_FragColor=vec4(col,alpha);
+    }
+  `
+});
+const globe=new THREE.Mesh(gGeo,gMat);
+scene.add(globe);
+
+// ATMOSPHERE HALO
+const aGeo=new THREE.SphereGeometry(9.2,48,48);
+const aMat=new THREE.ShaderMaterial({
+  transparent:true,side:THREE.BackSide,depthWrite:false,
+  uniforms:{uTime:{value:0},uPulse:{value:0}},
+  vertexShader:`varying vec3 vNormal;void main(){vNormal=normal;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+  fragmentShader:`
+    varying vec3 vNormal;
+    uniform float uTime; uniform float uPulse;
+    void main(){
+      vec3 vd=normalize(cameraPosition-vNormal*9.);
+      float f=pow(1.-abs(dot(vNormal,vec3(0.,0.,1.))),2.5);
+      float pulse=sin(uTime*2.)*.5+.5;
+      vec3 col=mix(vec3(.05,.1,.3),vec3(1.,.75,0.),f*.6+uPulse*.2);
+      gl_FragColor=vec4(col,(f*.4+pulse*.05)*(.8+uPulse*.2));
+    }
+  `
+});
+scene.add(new THREE.Mesh(aGeo,aMat));
+
+// PARTICLES
+const PC=5500;
+const pgeo=new THREE.BufferGeometry();
+const pp=new Float32Array(PC*3),pc=new Float32Array(PC*3),ps=new Float32Array(PC),pt=new Float32Array(PC);
+const gC=new THREE.Color(0xFFC000),wC=new THREE.Color(0xF5F0E8),dC=new THREE.Color(0x1a2040);
+
+for(let i=0;i<PC;i++){
+  if(i<3200){
+    const r=14+Math.random()*38,th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
+    pp[i*3]=r*Math.sin(ph)*Math.cos(th); pp[i*3+1]=r*Math.sin(ph)*Math.sin(th); pp[i*3+2]=r*Math.cos(ph);
+    pt[i]=0;
+    const t=Math.random(); const c=t>.96?gC:t>.88?wC:dC;
+    pc[i*3]=c.r;pc[i*3+1]=c.g;pc[i*3+2]=c.b;
+    ps[i]=Math.random()*2.5+.5;
+  } else if(i<4400){
+    const ring=Math.floor(Math.random()*4),r=9+ring*3,a=Math.random()*Math.PI*2;
+    pp[i*3]=Math.cos(a)*r; pp[i*3+1]=(Math.random()-.5)*1.5; pp[i*3+2]=Math.sin(a)*r;
+    pt[i]=1; pc[i*3]=gC.r;pc[i*3+1]=gC.g;pc[i*3+2]=gC.b;
+    ps[i]=Math.random()*1.5+.5;
+  } else {
+    pp[i*3]=(Math.random()-.5)*.1; pp[i*3+1]=(Math.random()-.5)*.1; pp[i*3+2]=(Math.random()-.5)*.1;
+    pt[i]=2; pc[i*3]=gC.r;pc[i*3+1]=gC.g;pc[i*3+2]=gC.b;
+    ps[i]=Math.random()*3+1;
+  }
+}
+pgeo.setAttribute('position',new THREE.BufferAttribute(pp,3));
+pgeo.setAttribute('color',new THREE.BufferAttribute(pc,3));
+pgeo.setAttribute('size',new THREE.BufferAttribute(ps,1));
+pgeo.setAttribute('ptype',new THREE.BufferAttribute(pt,1));
+
+const pMat=new THREE.ShaderMaterial({
+  vertexColors:true,transparent:true,depthWrite:false,
+  uniforms:{uTime:{value:0},uScroll:{value:0},uExplode:{value:0}},
+  vertexShader:`
+    attribute float size; attribute float ptype;
+    varying vec3 vC; varying float vA;
+    uniform float uTime,uScroll,uExplode;
+    void main(){
+      vC=color; vec3 p=position;
+      if(ptype<.5){
+        float pulse=sin(uTime+p.x*.18+p.y*.13)*.5+.5;
+        vA=.12+pulse*.3; p*=1.+uScroll*.55;
+      } else if(ptype<1.5){
+        float a=atan(p.z,p.x)+uTime*(.18+length(p)*.008);
+        float r=length(vec2(p.x,p.z));
+        p.x=cos(a)*r; p.z=sin(a)*r; p.y+=sin(uTime*1.5+a*3.)*.4;
+        vA=.35+sin(uTime*2.+a*4.)*.35+.3;
+      } else {
+        p+=normalize(p+vec3(.001))*uExplode*28.;
+        vA=max(0.,1.-uExplode*1.3);
+      }
+      vec4 mv=modelViewMatrix*vec4(p,1.);
+      gl_PointSize=size*(320./-mv.z); gl_Position=projectionMatrix*mv;
+    }
+  `,
+  fragmentShader:`
+    varying vec3 vC; varying float vA;
+    void main(){
+      vec2 uv=gl_PointCoord-.5; float d=length(uv);
+      if(d>.5)discard;
+      gl_FragColor=vec4(vC,(1.-d*2.)*vA);
+    }
+  `
+});
+const particles=new THREE.Points(pgeo,pMat);
+scene.add(particles);
+
+// LIGHTS
+const goldLight=new THREE.PointLight(0xFFC000,4,55); scene.add(goldLight);
+const blueLight=new THREE.PointLight(0x0a1a5a,2,80); blueLight.position.set(-22,8,-18); scene.add(blueLight);
+scene.add(new THREE.AmbientLight(0x0a0f2e,.3));
+
+// ══════════════════════════════════════════════
+// WAVEFORM
+// ══════════════════════════════════════════════
+const wCvs=document.getElementById('wave-canvas');
+const wCtx=wCvs.getContext('2d');
+wCvs.width=window.innerWidth; wCvs.height=200;
+let wOpacity=0;
+
+function drawWave(t){
+  wCtx.clearRect(0,0,wCvs.width,200);
+  const W=wCvs.width;
+  [{col:'rgba(255,192,0,.9)',amp:28,freq:.018,spd:2.2,off:0,lw:2},
+   {col:'rgba(255,192,0,.25)',amp:18,freq:.022,spd:1.6,off:1.5,lw:1},
+   {col:'rgba(200,160,50,.08)',amp:40,freq:.011,spd:.9,off:3,lw:1.5},
+   {col:'rgba(255,255,255,.04)',amp:55,freq:.008,spd:.6,off:5,lw:1}
+  ].forEach(w=>{
+    wCtx.beginPath(); wCtx.strokeStyle=w.col; wCtx.lineWidth=w.lw;
+    for(let x=0;x<W;x++){
+      let y=100+Math.sin(x*w.freq+t*w.spd+w.off)*w.amp;
+      // Heartbeat spikes
+      const sp=Math.abs(((x+t*60)%180)-90);
+      if(sp<22){ const s=1-sp/22; y-=s*s*50*(w.amp/28); }
+      const sp2=Math.abs(((x+t*60+40)%180)-90);
+      if(sp2<10){ const s=1-sp2/10; y+=s*s*15*(w.amp/28); }
+      x===0?wCtx.moveTo(x,y):wCtx.lineTo(x,y);
+    }
+    wCtx.stroke();
+  });
+  // Edge fade
+  const lg=wCtx.createLinearGradient(0,0,W,0);
+  lg.addColorStop(0,'rgba(7,8,15,1)'); lg.addColorStop(.06,'rgba(7,8,15,0)');
+  lg.addColorStop(.94,'rgba(7,8,15,0)'); lg.addColorStop(1,'rgba(7,8,15,1)');
+  wCtx.fillStyle=lg; wCtx.fillRect(0,0,W,200);
+}
+
+// ══════════════════════════════════════════════
+// EXPLOSION
+// ══════════════════════════════════════════════
+const exCvs=document.getElementById('explode-canvas');
+const exCtx=exCvs.getContext('2d');
+exCvs.width=window.innerWidth; exCvs.height=window.innerHeight;
+let exParts=[],exploding=false;
+
+function triggerExplosion(){
+  if(exploding)return; exploding=true; exCvs.style.opacity=1;
+  exParts=[];
+  const cx=exCvs.width/2,cy=exCvs.height/2;
+  for(let i=0;i<220;i++){
+    const a=Math.random()*Math.PI*2,spd=1.5+Math.random()*9;
+    exParts.push({x:cx,y:cy,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,
+      alpha:1,size:1+Math.random()*4,life:.7+Math.random()*.3,
+      col:Math.random()>.35?'rgba(255,192,0,':'rgba(245,240,232,'});
+  }
+}
+
+function animateExplosion(){
+  if(!exploding){exCtx.clearRect(0,0,exCvs.width,exCvs.height);return;}
+  exCtx.clearRect(0,0,exCvs.width,exCvs.height);
+  let alive=false;
+  exParts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.vy+=.08; p.vx*=.98; p.vy*=.98; p.alpha-=.014/p.life;
+    if(p.alpha>0){alive=true;exCtx.beginPath();exCtx.arc(p.x,p.y,p.size,0,Math.PI*2);exCtx.fillStyle=p.col+p.alpha+')';exCtx.fill();}
+  });
+  if(!alive){exploding=false;exCvs.style.opacity=0;}
+}
+
+// ══════════════════════════════════════════════
+// SCORE ANIMATION
+// ══════════════════════════════════════════════
+let scoreAnimated=false;
+function animateScore(target){
+  if(scoreAnimated)return; scoreAnimated=true;
+  const arc=document.getElementById('score-arc');
+  const numEl=document.getElementById('score-num');
+  const wordEl=document.getElementById('score-word');
+  const C=2*Math.PI*112;
+  const words=['critical','bleeding','struggling','recovering','stable','strong','excellent'];
+  let cur=0;
+  const iv=setInterval(()=>{
+    cur++;
+    numEl.textContent=cur;
+    arc.style.strokeDashoffset=C-(C*cur/100);
+    wordEl.textContent=words[Math.min(Math.floor(cur/100*(words.length-1)),words.length-1)];
+    if(cur>=target)clearInterval(iv);
+  },18);
+}
+
+// ══════════════════════════════════════════════
+// SCROLL
+// ══════════════════════════════════════════════
+let scrollPct=0,smoothPct=0,lastSec=-1;
+const SECS=['s-hero','s-score','s-problems','s-how','s-waitlist'];
+const RANGES=[[0,.15],[.15,.32],[.32,.54],[.54,.75],[.75,1]];
+let exTrigs={score:false,waitlist:false};
+
+window.addEventListener('scroll',()=>{
+  const ms=document.body.scrollHeight-window.innerHeight;
+  scrollPct=window.scrollY/ms;
+  document.getElementById('prog').style.width=(scrollPct*100)+'%';
+  document.getElementById('ft-pct').textContent=String(Math.round(scrollPct*100)).padStart(2,'0')+'%';
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// ══════════════════════════════════════════════
+// MOUSE
+// ══════════════════════════════════════════════
+let mouseX=0,mouseY=0;
+document.addEventListener('mousemove',e=>{mouseX=(e.clientX/W()-.5)*2;mouseY=-(e.clientY/H()-.5)*2;});
+
+// ══════════════════════════════════════════════
+// MAIN LOOP
+// ══════════════════════════════════════════════
+const clock=new THREE.Clock();
+let explodeVal=0;
+
+function tick(){
+  requestAnimationFrame(tick);
+  const t=clock.getElapsedTime();
+  smoothPct+=(scrollPct-smoothPct)*.055;
+
+  // ── Aurora BG ──
+  gl2.uniform1f(uTime2,t);
+  gl2.uniform1f(uScroll2,smoothPct);
+  gl2.drawArrays(gl2.TRIANGLES,0,6);
+
+  // ── Sections ──
+  let curSec=-1;
+  RANGES.forEach(([s,e],i)=>{
+    const on=smoothPct>=s&&smoothPct<e;
+    document.getElementById(SECS[i]).classList.toggle('active',on);
+    if(on)curSec=i;
+  });
+
+  if(curSec!==lastSec){
+    if(curSec===1&&!exTrigs.score){triggerExplosion();exTrigs.score=true;setTimeout(()=>animateScore(72),400);}
+    if(curSec===4&&!exTrigs.waitlist){triggerExplosion();exTrigs.waitlist=true;let wc=1247;const wi=setInterval(()=>{wc+=Math.floor(Math.random()*3);document.getElementById('wl-count').textContent=wc.toLocaleString();if(wc>1300)clearInterval(wi);},80);}
+    lastSec=curSec;
+  }
+
+  // Stats cards
+  const showStats=smoothPct>.27&&smoothPct<.5;
+  document.getElementById('fs1').classList.toggle('show',showStats);
+  document.getElementById('fs2').classList.toggle('show',showStats&&smoothPct>.29);
+  document.getElementById('fs3').classList.toggle('show',showStats&&smoothPct>.31);
+  document.getElementById('fs4').classList.toggle('show',showStats&&smoothPct>.33);
+
+  // ── Globe ──
+  const pulse=Math.sin(t*2.)*.5+.5;
+  gMat.uniforms.uTime.value=t; gMat.uniforms.uScroll.value=smoothPct; gMat.uniforms.uPulse.value=pulse;
+  aMat.uniforms.uTime.value=t; aMat.uniforms.uPulse.value=pulse;
+  globe.rotation.y=t*.04+mouseX*.25; globe.rotation.x=mouseY*.12+smoothPct*.4;
+  globe.scale.setScalar(Math.max(.35,1-smoothPct*.3));
+
+  // ── Particles ──
+  pMat.uniforms.uTime.value=t; pMat.uniforms.uScroll.value=smoothPct;
+  explodeVal+=(smoothPct>.28&&smoothPct<.52?.8:0-explodeVal)*.025;
+  pMat.uniforms.uExplode.value=explodeVal;
+  particles.rotation.y=t*.014+smoothPct*.55;
+
+  // ── Gold light ──
+  goldLight.intensity=2.5+pulse*2.5;
+  goldLight.position.set(Math.sin(t*.6)*4,Math.cos(t*.45)*3,Math.sin(t*.35)*3);
+
+  // ── Camera ──
+  camera.position.z+=(((28-smoothPct*11))-camera.position.z)*.04;
+  camera.position.x+=(mouseX*4.5-camera.position.x)*.03;
+  camera.position.y+=(mouseY*2.5+smoothPct*4-camera.position.y)*.03;
+  camera.lookAt(0,smoothPct*1.5,0);
+
+  // ── Wave ──
+  const wTarget=smoothPct>.07&&smoothPct<.44?1:0;
+  wOpacity+=(wTarget-wOpacity)*.05;
+  wCvs.style.opacity=wOpacity;
+  if(wOpacity>.01)drawWave(t);
+
+  // ── Scroll hint ──
+  document.getElementById('scroll-ind').style.opacity=scrollPct<.04?1:0;
+
+  // ── Explosion ──
+  animateExplosion();
+
+  renderer.render(scene,camera);
+}
+tick();
+
+// ══════════════════════════════════════════════
+// WAITLIST
+// ══════════════════════════════════════════════
+function handleWaitlist(){
+  const inp=document.getElementById('wl-input');
+  const btn=document.getElementById('wl-btn');
+  if(!inp.value||!inp.value.includes('@')){inp.focus();return;}
+  btn.textContent='✓ You\'re on the list';
+  btn.style.background='#4ade80'; btn.style.color='#07080f';
+  inp.disabled=true; btn.disabled=true;
+  triggerExplosion();
+  const wc=document.getElementById('wl-count');
+  wc.textContent=(parseInt(wc.textContent.replace(/,/g,''))+1).toLocaleString();
+}
+
+// ══════════════════════════════════════════════
+// RESIZE
+// ══════════════════════════════════════════════
+window.addEventListener('resize',()=>{
+  const nw=window.innerWidth,nh=window.innerHeight;
+  renderer.setSize(nw,nh); camera.aspect=nw/nh; camera.updateProjectionMatrix();
+  bgCanvas.width=nw; bgCanvas.height=nh; gl2.viewport(0,0,nw,nh); gl2.uniform2f(uRes2,nw,nh);
+  wCvs.width=nw; exCvs.width=nw; exCvs.height=nh;
+});
+</script>
+</body>
+</html>
