@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProPositiva Group</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@400;600;700;800&family=Inconsolata:wght@400;600;700&display=swap');
+
+  :root {
+    --black:#060608;
+    --dark:#0a0a0e;
+    --surface:#101014;
+    --card:#161618;
+    --border:rgba(255,255,255,0.06);
+    --border2:rgba(255,255,255,0.03);
+    --white:#f2efe9;
+    --muted:rgba(242,239,233,0.42);
+    --muted2:rgba(242,239,233,0.18);
+    --gold:#c8922a;
+    --gold-bright:#e8b84b;
+    --gold-line:rgba(200,146,42,0.2);
+    --gold-glow:rgba(200,146,42,0.06);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Syne',sans-serif;
+    background:var(--black);
+    color:var(--white);
+    overflow-x:hidden;
+    cursor:none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor{
+    width:8px;height:8px;
+    background:var(--gold);
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    z-index:9999;
+    transition:transform .15s ease;
+    transform:translate(-50%,-50%);
+  }
+  .cursor-ring{
+    width:32px;height:32px;
+    border:1px solid rgba(200,146,42,0.4);
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    z-index:9998;
+    transition:transform .08s ease, width .2s, height .2s, border-color .2s;
+    transform:translate(-50%,-50%);
+  }
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    padding:0 56px;height:60px;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:background .4s, border-color .4s;
+  }
+  .nav.scrolled{
+    background:rgba(6,6,8,0.94);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;font-weight:600;
+    letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold);text-decoration:none;
+  }
+  .nav-links{display:flex;gap:0;align-items:center;}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;
+    font-size:10px;font-weight:700;letter-spacing:2px;
+    text-transform:uppercase;padding:0 18px;
+    transition:color .2s;white-space:nowrap;
+  }
+  .nav-links a:hover{color:var(--white);}
+  .nav-cta{
+    font-size:10px;font-weight:800;letter-spacing:2px;
+    text-transform:uppercase;padding:9px 22px;
+    border:1px solid rgba(200,146,42,0.4);
+    color:var(--gold);background:transparent;
+    cursor:none;transition:all .2s;
+    text-decoration:none;
+  }
+  .nav-cta:hover{background:var(--gold);color:var(--black);}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    position:relative;overflow:hidden;
+  }
+
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 50%, rgba(200,146,42,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 85% 30%, rgba(61,122,82,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 90%, rgba(42,61,90,0.04) 0%, transparent 50%);
+  }
+
+  /* ANIMATED GRID */
+  .hero-grid-bg{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(200,146,42,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,146,42,0.03) 1px, transparent 1px);
+    background-size:80px 80px;
+    mask-image:radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+
+  .hero-inner{
+    max-width:1200px;margin:0 auto;padding:0 56px;
+    width:100%;position:relative;z-index:1;
+    padding-top:100px;
+  }
+
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:36px;
+  }
+  .hero-eyebrow-line{width:40px;height:1px;background:var(--gold);}
+  .hero-eyebrow-text{
+    font-size:10px;letter-spacing:5px;text-transform:uppercase;
+    color:var(--gold);font-weight:700;
+  }
+
+  .hero-headline{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(52px,8vw,110px);
+    font-weight:300;line-height:0.95;
+    margin-bottom:48px;
+    overflow:hidden;
+  }
+
+  .hero-headline .line{
+    display:block;
+    transform:translateY(100%);
+    animation:slideUp .9s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+  .hero-headline .line:nth-child(1){animation-delay:.1s;}
+  .hero-headline .line:nth-child(2){animation-delay:.25s;}
+  .hero-headline .line:nth-child(3){animation-delay:.4s;}
+  .hero-headline .line em{font-style:italic;color:var(--gold);}
+  .hero-headline .line .indent{padding-left:clamp(60px,8vw,140px);}
+
+  @keyframes slideUp{
+    from{transform:translateY(100%);}
+    to{transform:translateY(0);}
+  }
+
+  .hero-bottom{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;align-items:end;margin-top:60px;
+  }
+
+  .hero-desc{
+    font-size:15px;color:var(--muted);
+    line-height:1.9;max-width:460px;
+    opacity:0;animation:fadeIn .8s ease .8s forwards;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+  .hero-numbers{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border:1px solid var(--border);
+    opacity:0;animation:fadeIn .8s ease 1s forwards;
+  }
+  .hnum{
+    padding:24px 20px;border-right:1px solid var(--border);
+    text-align:center;
+  }
+  .hnum:last-child{border-right:none;}
+  .hnum-val{
+    font-family:'Cormorant Garamond',serif;
+    font-size:36px;font-weight:300;color:var(--gold);
+    line-height:1;margin-bottom:6px;
+  }
+  .hnum-lbl{font-size:9px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;}
+
+  .hero-scroll{
+    position:absolute;bottom:40px;left:56px;
+    display:flex;align-items:center;gap:12px;
+    font-size:9px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--muted2);
+    opacity:0;animation:fadeIn .8s ease 1.2s forwards;
+  }
+  .hero-scroll-line{
+    width:40px;height:1px;background:var(--muted2);
+    animation:scrollLine 2s ease-in-out 1.5s infinite alternate;
+  }
+  @keyframes scrollLine{from{width:20px;}to{width:60px;}}
+
+  /* MARQUEE */
+  .marquee-wrap{
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:18px 0;overflow:hidden;
+    background:var(--dark);
+  }
+  .marquee-track{
+    display:flex;gap:0;
+    animation:marquee 30s linear infinite;
+    white-space:nowrap;
+  }
+  .marquee-track:hover{animation-play-state:paused;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee-item{
+    padding:0 40px;
+    font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--muted2);font-weight:700;
+    display:flex;align-items:center;gap:16px;white-space:nowrap;
+  }
+  .marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  /* SECTIONS */
+  section{padding:120px 0;position:relative;}
+  .container{max-width:1200px;margin:0 auto;padding:0 56px;}
+
+  .section-label{
+    font-size:10px;letter-spacing:5px;text-transform:uppercase;
+    color:var(--gold);font-weight:700;
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+  }
+  .section-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+
+  .section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(36px,5vw,64px);
+    font-weight:300;line-height:1.1;
+  }
+  .section-title em{font-style:italic;color:var(--gold);}
+
+  /* DIVIDER */
+  .hr{height:1px;background:linear-gradient(90deg,transparent,var(--gold-line),transparent);}
+
+  /* STATEMENT SECTION */
+  .statement-section{background:var(--dark);}
+  .statement-inner{
+    display:grid;grid-template-columns:1fr 2fr;
+    gap:80px;align-items:center;
+  }
+  .statement-text{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(24px,3.5vw,44px);
+    font-weight:300;line-height:1.35;
+    color:rgba(242,239,233,0.85);
+  }
+  .statement-text em{font-style:italic;color:var(--gold);}
+  .statement-aside{}
+  .statement-quote{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(18px,2.5vw,28px);
+    font-style:italic;font-weight:300;
+    line-height:1.55;
+    color:var(--muted);
+    padding:32px 36px;
+    border-left:1px solid var(--gold-line);
+    position:relative;
+  }
+
+  /* CREDENTIALS BAND */
+  .cred-band{
+    background:var(--black);
+    padding:80px 0;
+  }
+  .cred-row{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:1px;background:var(--border);
+    border:1px solid var(--border);
+  }
+  .cred-cell{
+    background:var(--surface);
+    padding:36px 32px;
+    position:relative;overflow:hidden;
+    transition:background .2s;
+  }
+  .cred-cell:hover{background:var(--card);}
+  .cred-cell::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    transition:background .2s;
+  }
+  .cred-cell:hover::before{background:var(--gold);}
+  .cred-role{
+    font-size:9px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--muted2);font-weight:700;margin-bottom:10px;
+  }
+  .cred-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;font-weight:600;margin-bottom:14px;
+  }
+  .cred-body{font-size:12px;color:var(--muted);line-height:1.75;margin-bottom:16px;}
+  .cred-tags{display:flex;flex-wrap:wrap;gap:5px;}
+  .cred-tag{
+    font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    padding:3px 8px;border:1px solid var(--border);
+    color:var(--muted2);
+  }
+
+  /* PORTFOLIO */
+  .portfolio-section{background:var(--dark);}
+  .portfolio-header{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;align-items:end;
+    margin-bottom:60px;
+  }
+  .portfolio-desc{font-size:14px;color:var(--muted);line-height:1.85;}
+
+  .portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:auto auto;
+    gap:1px;background:var(--border);
+    border:1px solid var(--border);
+  }
+
+  .pcard{
+    background:var(--surface);
+    padding:36px 32px;
+    position:relative;overflow:hidden;
+    transition:background .25s;
+    cursor:none;
+  }
+  .pcard:hover{background:var(--card);}
+  .pcard.featured{
+    grid-column:span 2;
+    background:linear-gradient(135deg,var(--surface),rgba(200,146,42,0.04));
+  }
+  .pcard.featured:hover{background:var(--card);}
+
+  .pcard-accent{
+    position:absolute;top:0;left:0;right:0;height:1px;
+    background:transparent;transition:background .25s;
+  }
+  .pcard:hover .pcard-accent{background:var(--gold);}
+  .pcard.featured .pcard-accent{background:var(--gold);}
+
+  .pcard-cat{
+    font-size:9px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:10px;
+  }
+  .pcard-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;font-weight:600;margin-bottom:10px;
+  }
+  .pcard.featured .pcard-name{font-size:34px;}
+  .pcard-detail{font-size:12px;color:var(--muted);line-height:1.75;margin-bottom:20px;}
+  .pcard-metric{
+    font-family:'Cormorant Garamond',serif;
+    font-size:32px;font-weight:300;color:var(--gold);line-height:1;
+  }
+  .pcard.featured .pcard-metric{font-size:48px;}
+  .pcard-metric-lbl{font-size:9px;color:var(--muted2);letter-spacing:2px;margin-top:4px;}
+  .pcard-badge{
+    display:inline-block;margin-top:12px;
+    font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    padding:4px 12px;
+    background:rgba(200,146,42,0.1);
+    border:1px solid rgba(200,146,42,0.2);
+    color:var(--gold);
+  }
+
+  /* ECOSYSTEM */
+  .eco-section{background:var(--black);}
+  .eco-header{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;align-items:start;margin-bottom:60px;
+  }
+  .eco-desc{font-size:14px;color:var(--muted);line-height:1.85;}
+
+  .eco-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:1px;background:var(--border);border:1px solid var(--border);
+    margin-bottom:20px;
+  }
+  .eco-card{
+    background:var(--surface);padding:32px 28px;
+    position:relative;
+    transition:background .2s;
+  }
+  .eco-card:hover{background:var(--card);}
+  .eco-top{
+    position:absolute;top:0;left:0;right:0;height:2px;
+    transition:opacity .2s;opacity:.4;
+  }
+  .eco-card:hover .eco-top{opacity:1;}
+  .eco-status{
+    font-size:9px;letter-spacing:2px;text-transform:uppercase;
+    font-weight:700;margin-bottom:8px;
+  }
+  .eco-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;font-weight:600;margin-bottom:6px;
+  }
+  .eco-type{font-size:10px;color:var(--muted2);margin-bottom:12px;letter-spacing:1px;}
+  .eco-desc-text{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px;}
+  .eco-link{
+    font-size:10px;font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;color:var(--gold);
+    display:flex;align-items:center;gap:6px;
+    padding-top:12px;border-top:1px solid var(--border2);
+  }
+  .eco-link::after{content:'→';transition:transform .2s;}
+  .eco-card:hover .eco-link::after{transform:translateX(4px);}
+
+  /* FLYWHEEL VISUAL */
+  .flywheel-visual{
+    background:var(--surface);border:1px solid var(--border);
+    padding:48px;margin-top:20px;
+  }
+  .fw-label{
+    font-size:10px;letter-spacing:4px;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:6px;
+  }
+  .fw-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;font-weight:300;font-style:italic;
+    color:var(--muted);margin-bottom:32px;
+  }
+  .fw-row{
+    display:flex;align-items:center;gap:0;
+  }
+  .fw-step{
+    flex:1;padding:20px 24px;background:var(--card);
+    border:1px solid var(--border);
+    position:relative;
+  }
+  .fw-step-num{
+    font-family:'Inconsolata',monospace;
+    font-size:10px;color:var(--muted2);letter-spacing:2px;margin-bottom:6px;
+  }
+  .fw-step-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .fw-step-action{font-size:11px;color:var(--muted);line-height:1.5;}
+  .fw-step-result{
+    font-size:10px;color:var(--gold);font-weight:700;
+    margin-top:8px;
+  }
+  .fw-arrow{
+    font-size:20px;color:var(--gold);
+    padding:0 12px;flex-shrink:0;opacity:.5;
+  }
+
+  /* METHODOLOGY */
+  .method-section{background:var(--dark);}
+  .method-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:1px;background:var(--border);border:1px solid var(--border);
+    margin-top:48px;
+  }
+  .method-card{
+    background:var(--surface);padding:28px 24px;
+    transition:background .2s;
+  }
+  .method-card:hover{background:var(--card);}
+  .method-num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;font-weight:300;
+    color:rgba(200,146,42,0.15);line-height:1;margin-bottom:12px;
+  }
+  .method-title{font-size:13px;font-weight:700;margin-bottom:6px;}
+  .method-desc{font-size:11px;color:var(--muted);line-height:1.7;}
+  .method-sdg{
+    margin-top:12px;font-size:9px;color:var(--gold);
+    font-weight:700;letter-spacing:1px;
+  }
+
+  /* CTA SECTION */
+  .cta-section{
+    background:var(--black);
+    padding:160px 0;
+    text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .cta-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(200,146,42,0.05) 0%,transparent 70%);
+  }
+  .cta-inner{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 56px;}
+  .cta-pre{
+    font-size:10px;letter-spacing:5px;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:24px;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+  }
+  .cta-pre::before,.cta-pre::after{content:'';width:32px;height:1px;background:var(--gold);}
+  .cta-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(40px,6vw,80px);
+    font-weight:300;line-height:1.1;margin-bottom:24px;
+  }
+  .cta-title em{font-style:italic;color:var(--gold);}
+  .cta-sub{
+    font-size:15px;color:var(--muted);
+    line-height:1.85;margin-bottom:48px;
+  }
+  .cta-buttons{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    font-family:'Syne',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    padding:16px 36px;
+    background:var(--gold);color:var(--black);
+    border:none;cursor:none;text-decoration:none;
+    transition:background .2s;display:inline-block;
+  }
+  .btn-primary:hover{background:var(--gold-bright);}
+  .btn-secondary{
+    font-family:'Syne',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    padding:16px 36px;
+    background:transparent;color:var(--white);
+    border:1px solid var(--border);cursor:none;text-decoration:none;
+    transition:border-color .2s;display:inline-block;
+  }
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.3);}
+
+  /* FOOTER */
+  .footer{
+    background:var(--dark);
+    border-top:1px solid var(--border);
+    padding:56px;
+  }
+  .footer-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:48px;align-items:start;
+  }
+  .footer-brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;font-weight:600;
+    letter-spacing:2px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:10px;
+  }
+  .footer-tagline{
+    font-size:12px;color:var(--muted);
+    line-height:1.7;max-width:280px;margin-bottom:16px;
+  }
+  .footer-full{
+    font-size:10px;color:var(--muted2);
+    letter-spacing:1px;line-height:1.7;
+  }
+  .footer-col-title{
+    font-size:9px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:16px;
+  }
+  .footer-col-body{font-size:11px;color:var(--muted);line-height:2.2;}
+  .footer-bottom{
+    max-width:1200px;margin:32px auto 0;
+    padding-top:24px;border-top:1px solid var(--border2);
+    display:flex;justify-content:space-between;align-items:center;
+    padding-left:56px;padding-right:56px;
+  }
+  .footer-copy{font-size:10px;color:var(--muted2);}
+  .footer-sdg{
+    font-size:10px;color:var(--gold);
+    letter-spacing:2px;text-transform:uppercase;font-weight:700;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;}
+  .reveal-delay-2{transition-delay:.2s;}
+  .reveal-delay-3{transition-delay:.3s;}
+
+  @media(max-width:1024px){
+    .nav{padding:0 32px;}
+    .hero-inner,.container{padding:0 32px;}
+    .cta-inner{padding:0 32px;}
+    .hero-bottom{grid-template-columns:1fr;}
+    .statement-inner,.portfolio-header,.eco-header{grid-template-columns:1fr;}
+    .portfolio-grid,.eco-grid{grid-template-columns:1fr;}
+    .pcard.featured{grid-column:span 1;}
+    .method-grid{grid-template-columns:repeat(2,1fr);}
+    .cred-row{grid-template-columns:repeat(2,1fr);}
+    .fw-row{flex-direction:column;}
+    .fw-arrow{transform:rotate(90deg);}
+    .footer-inner{grid-template-columns:1fr 1fr;}
+    .footer-bottom{padding-left:32px;padding-right:32px;}
+  }
+  @media(max-width:640px){
+    .nav-links{display:none;}
+    .hero-inner,.container{padding:0 24px;}
+    .method-grid,.cred-row{grid-template-columns:1fr;}
+    .hero-numbers{grid-template-columns:1fr 1fr;}
+    .footer-inner{grid-template-columns:1fr;}
+    .footer{padding:40px 24px;}
+    .footer-bottom{padding:24px;}
+    body{cursor:auto;}
+    .cursor,.cursor-ring{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">ProPositiva</a>
+  <div class="nav-links">
+    <a href="#statement">Who We Are</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#ecosystem">Ecosystem</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Work With Us</a>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <div class="hero-eyebrow-text">ProPositiva Group · San José, Costa Rica · Est. 40 Years</div>
+    </div>
+    <div class="hero-headline">
+      <span class="line">We <em>design.</em></span>
+      <span class="line"><span class="indent">We <em>build.</em></span></span>
+      <span class="line">We <em>fund.</em></span>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Four decades of award-winning sustainable architecture. A proven 7-step methodology. A vertically integrated ecosystem that designs properties, optimizes their construction, and opens them to investment. From Costa Rica. For the world.
+      </p>
+      <div class="hero-numbers">
+        <div class="hnum">
+          <div class="hnum-val">40+</div>
+          <div class="hnum-lbl">Years of Practice</div>
+        </div>
+        <div class="hnum">
+          <div class="hnum-val">$2,400</div>
+          <div class="hnum-lbl">Per Night · Designed by Us</div>
+        </div>
+        <div class="hnum">
+          <div class="hnum-val">7</div>
+          <div class="hnum-lbl">Step Methodology</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Arenas del Mar</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>National Geographic Earth Changer</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Villa Avalon — Airbnb Luxe</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Pacuare Lodge</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hotel Rosa Blanca</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Saint Francis College</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WTTC Tourism for Tomorrow Award</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Five Sustainability Leaf Award</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Tulemar Resort · Manuel Antonio</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Aligned with UN 17 SDGs</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item"><span class="marquee-dot"></span>Arenas del Mar</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>National Geographic Earth Changer</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Villa Avalon — Airbnb Luxe</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Pacuare Lodge</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hotel Rosa Blanca</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Saint Francis College</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WTTC Tourism for Tomorrow Award</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Five Sustainability Leaf Award</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Aligned with UN 17 SDGs</span>
+  </div>
+</div>
+
+<!-- ═══════ STATEMENT ═══════ -->
+<section class="statement-section" id="statement">
+  <div class="container">
+    <div class="statement-inner">
+      <div>
+        <div class="section-label reveal">The Thesis</div>
+        <div class="statement-text reveal reveal-delay-1">
+          The world's finest properties are <em>designed, built, funded</em> and operated by one team.<br><br>
+          We have been that team for <em>forty years.</em>
+        </div>
+      </div>
+      <div>
+        <div class="statement-quote reveal reveal-delay-2">
+          Most developers buy land and hire strangers. Most tech founders build platforms without owning the assets. Most funds deploy capital without domain expertise.<br><br>
+          We do none of that. We are the architect, the builder, the technologist, and the investor — in the same room, from the same family, with the same stake in every outcome.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:32px;" class="reveal reveal-delay-3">
+          <div style="background:var(--surface);padding:24px 20px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;">4</div>
+            <div style="font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;">Disciplines. One Family.</div>
+          </div>
+          <div style="background:var(--surface);padding:24px 20px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;">17</div>
+            <div style="font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;">UN SDGs Aligned</div>
+          </div>
+          <div style="background:var(--surface);padding:24px 20px;border-top:1px solid var(--border);">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;">$13M+</div>
+            <div style="font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;">Active Project Value</div>
+          </div>
+          <div style="background:var(--surface);padding:24px 20px;border-top:1px solid var(--border);">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;">3+</div>
+            <div style="font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;">Continents · Client Base</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ═══════ CREDENTIALS ═══════ -->
+<section style="background:var(--black);padding:100px 0;">
+  <div class="container">
+    <div class="section-label reveal">The People</div>
+    <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:48px;">Four disciplines.<br><em>One family.</em></h2>
+    <div class="cred-row reveal reveal-delay-2">
+      <div class="cred-cell">
+        <div class="cred-role">Principal Architect · Founder</div>
+        <div class="cred-name">The Architect</div>
+        <div class="cred-body">40 years of practice. MBA. Certified Project Manager. Designer of Costa Rica's most internationally recognized sustainable luxury properties. Clients across the Americas.</div>
+        <div class="cred-tags">
+          <span class="cred-tag">Architecture</span>
+          <span class="cred-tag">MBA</span>
+          <span class="cred-tag">PM</span>
+          <span class="cred-tag">Sustainable Design</span>
+          <span class="cred-tag">Luxury Hospitality</span>
+        </div>
+      </div>
+      <div class="cred-cell">
+        <div class="cred-role">Co-Founder · Design Director</div>
+        <div class="cred-name">The Designer</div>
+        <div class="cred-body">Architect, interior designer, jewelry designer. The aesthetic intelligence behind every project — the materials, the light, the objects, the experience of being inside the space.</div>
+        <div class="cred-tags">
+          <span class="cred-tag">Architecture</span>
+          <span class="cred-tag">Interior Design</span>
+          <span class="cred-tag">Jewelry Design</span>
+          <span class="cred-tag">Brand Identity</span>
+        </div>
+      </div>
+      <div class="cred-cell">
+        <div class="cred-role">Partner · Finance & Operations</div>
+        <div class="cred-name">The Builder</div>
+        <div class="cred-body">Finance, architecture, industrial design. Master's in Project Management. Can read a structural drawing, model financial returns, and design the product simultaneously.</div>
+        <div class="cred-tags">
+          <span class="cred-tag">Finance</span>
+          <span class="cred-tag">Architecture</span>
+          <span class="cred-tag">Industrial Design</span>
+          <span class="cred-tag">MSc PM</span>
+        </div>
+      </div>
+      <div class="cred-cell">
+        <div class="cred-role">Partner · Technology & Strategy</div>
+        <div class="cred-name">The Technologist</div>
+        <div class="cred-body">5 years of architecture, IT engineering, ISO 27001 LA and 12+ cybersecurity certifications. 15 years across 100+ corporate clients. The bridge between physical legacy and digital future.</div>
+        <div class="cred-tags">
+          <span class="cred-tag">IT Security</span>
+          <span class="cred-tag">ISO 27001 LA</span>
+          <span class="cred-tag">Architecture</span>
+          <span class="cred-tag">Project Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ═══════ PORTFOLIO ═══════ -->
+<section class="portfolio-section" id="portfolio">
+  <div class="container">
+    <div class="portfolio-header">
+      <div>
+        <div class="section-label reveal">The Portfolio</div>
+        <h2 class="section-title reveal reveal-delay-1">Work that speaks<br><em>before we do.</em></h2>
+      </div>
+      <p class="portfolio-desc reveal reveal-delay-2">
+        Forty years. Multiple countries. Three categories of client — luxury hospitality, institutional education, and private residential. The common thread is a standard that never drops and a methodology that never skips a step.
+      </p>
+    </div>
+
+    <div class="portfolio-grid reveal">
+      <div class="pcard featured">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">★ Flagship · Sustainable Luxury · Quepos, CR</div>
+        <div class="pcard-name">Arenas del Mar</div>
+        <div class="pcard-detail">Beachfront eco-lodge within Manuel Antonio National Park. 38 rooms across 11 acres — 75% preserved as natural habitat. Carbon-neutral. The first Costa Rican luxury hotel awarded the Five Sustainability Leaf at the maximum level.</div>
+        <div class="pcard-metric">5 / 5</div>
+        <div class="pcard-metric-lbl">Sustainability Leaves — Maximum Rating</div>
+        <div class="pcard-badge">National Geographic Earth Changer 2017</div>
+        <div class="pcard-badge" style="margin-left:8px;">WTTC Tourism for Tomorrow 2018</div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">Private Villa · Airbnb Luxe</div>
+        <div class="pcard-name">Villa Avalon</div>
+        <div class="pcard-detail">Punta Leona. 9-bedroom private villa. 5.0 stars on Airbnb Luxe. What $2,400 per night looks like when an award-winning architect designs for maximum experience.</div>
+        <div class="pcard-metric">$2,400</div>
+        <div class="pcard-metric-lbl">Per Night · Airbnb Luxe · 5.0 Stars</div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">Adventure Eco-Lodge · Turrialba</div>
+        <div class="pcard-name">Pacuare Lodge</div>
+        <div class="pcard-detail">One of the most celebrated eco-lodges in Central America. Accessible only by whitewater raft. Recognized by National Geographic, Condé Nast, and Travel + Leisure.</div>
+        <div class="pcard-metric">World's Best</div>
+        <div class="pcard-metric-lbl">National Geographic · Condé Nast · T+L</div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">Boutique Hotel · Heredia</div>
+        <div class="pcard-name">Hotel Rosa Blanca</div>
+        <div class="pcard-detail">Award-winning boutique hotel. A landmark of Costa Rican hospitality design — organic forms, local materials, landscape integration. The property that made international clients seek this architect specifically.</div>
+        <div class="pcard-metric">Multiple</div>
+        <div class="pcard-metric-lbl">International Design Awards</div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">Resort · Manuel Antonio</div>
+        <div class="pcard-name">Tulemar Resort</div>
+        <div class="pcard-detail">Manuel Antonio, Quepos. Boutique resort nestled within private rainforest reserve on Costa Rica's Pacific coast. One of the most distinctive resort experiences in the region — where architecture disappears into the landscape by design.</div>
+        <div class="pcard-metric">Manuel Antonio</div>
+        <div class="pcard-metric-lbl">Pacific Coast · Resort Architecture</div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">Institutional · Active Construction</div>
+        <div class="pcard-name">Saint Francis College</div>
+        <div class="pcard-detail">$13–15M private bilingual college under active construction. Full-scope: architecture, project management, procurement, personnel. Institutional trust at this scale is earned, not given.</div>
+        <div class="pcard-metric">$13–15M</div>
+        <div class="pcard-metric-lbl">Active Project · In Construction</div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-accent"></div>
+        <div class="pcard-cat">Residential · Real Estate Portfolio</div>
+        <div class="pcard-name">ProPositiva Residential</div>
+        <div class="pcard-detail">Residential development managed end-to-end. Active pipeline: fully designed land project ready to break ground and a condominium acquisition for rental income. The first assets in the PropInvest portfolio.</div>
+        <div class="pcard-metric">3 Assets</div>
+        <div class="pcard-metric-lbl">Completed · In Development · Rental</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ═══════ ECOSYSTEM ═══════ -->
+<section class="eco-section" id="ecosystem">
+  <div class="container">
+    <div class="eco-header">
+      <div>
+        <div class="section-label reveal">The Ecosystem</div>
+        <h2 class="section-title reveal reveal-delay-1">Three businesses.<br>One <em>flywheel.</em></h2>
+      </div>
+      <p class="eco-desc reveal reveal-delay-2">
+        This is not a portfolio of separate bets. Each entity makes every other entity stronger. ProPositiva builds the assets. Ferretería Express cuts the cost of building them. PropInvest funds the next one. Lower costs mean better investor returns. Better returns fund more projects. The flywheel runs itself.
+      </p>
+    </div>
+
+    <div class="eco-grid reveal">
+      <div class="eco-card">
+        <div class="eco-top" style="background:var(--gold);"></div>
+        <div class="eco-status" style="color:var(--gold);">● Active</div>
+        <div class="eco-name">ProPositiva</div>
+        <div class="eco-type">Architecture · Construction · PM Consulting</div>
+        <div class="eco-desc-text">The original entity. Architectural consultancy, project management, and real estate development. Active institutional-scale projects. Portfolio of luxury sustainable properties across Costa Rica and the Americas.</div>
+        <div class="eco-link">Design & Build</div>
+      </div>
+      <div class="eco-card">
+        <div class="eco-top" style="background:#3d7a52;"></div>
+        <div class="eco-status" style="color:#3d7a52;">◎ Building</div>
+        <div class="eco-name">Ferretería Express</div>
+        <div class="eco-type">Construction Tech · B2B + B2C Marketplace</div>
+        <div class="eco-desc-text">On-demand hardware and materials delivery. B2C for homeowners. B2B for construction project procurement — scheduled deliveries coordinated to your site timeline. Eliminates the cost of crews waiting for late materials.</div>
+        <div class="eco-link">Optimize & Procure</div>
+      </div>
+      <div class="eco-card">
+        <div class="eco-top" style="background:#2a3d5a;"></div>
+        <div class="eco-status" style="color:#6090c8;">◎ Planned</div>
+        <div class="eco-name">PropInvest</div>
+        <div class="eco-type">PropTech · Fractional Real Estate</div>
+        <div class="eco-desc-text">Fractional investment platform for properties designed by the team behind National Geographic award-winning eco-lodges. Anyone invests from $10K in projects with 40 years of proven design credentials behind them.</div>
+        <div class="eco-link">Invest & Earn</div>
+      </div>
+    </div>
+
+    <div class="flywheel-visual reveal">
+      <div class="fw-label">The Self-Sustaining Flywheel</div>
+      <div class="fw-title">Each business makes the next one stronger. No single point of failure.</div>
+      <div class="fw-row">
+        <div class="fw-step">
+          <div class="fw-step-num">01 — DESIGN & BUILD</div>
+          <div class="fw-step-name">ProPositiva</div>
+          <div class="fw-step-action">Designs and manages construction of luxury sustainable properties using the 7-step methodology. 40-year portfolio. Award-winning credentials.</div>
+          <div class="fw-step-result">→ Produces investment-grade assets</div>
+        </div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">
+          <div class="fw-step-num">02 — PROCURE</div>
+          <div class="fw-step-name">Ferretería Express</div>
+          <div class="fw-step-action">Coordinates material procurement and delivery scheduling across construction projects. Lower build costs. Better timelines. Every ProPositiva project runs through it.</div>
+          <div class="fw-step-result">→ Lower build cost = better investor margins</div>
+        </div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">
+          <div class="fw-step-num">03 — FUND</div>
+          <div class="fw-step-name">PropInvest</div>
+          <div class="fw-step-action">Fractional investment platform. Monthly returns after costs. International investor access. Every project funded here was designed by ProPositiva and procured through Ferretería Express.</div>
+          <div class="fw-step-result">→ Funds the next ProPositiva project</div>
+        </div>
+        <div class="fw-arrow" style="transform:rotate(180deg);opacity:.3;">↩</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ═══════ METHODOLOGY ═══════ -->
+<section class="method-section" id="methodology">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:16px;">
+      <div>
+        <div class="section-label reveal">The Operating System</div>
+        <h2 class="section-title reveal reveal-delay-1">The 7-Step<br><em>Metodología</em><br>ProPositiva.</h2>
+      </div>
+      <p class="reveal reveal-delay-2" style="font-size:14px;color:var(--muted);line-height:1.85;">
+        Originally developed for complex physical projects. Adapted for software, real estate development, and venture building. The same rigor that produced National Geographic award-winning lodges now runs a tech venture studio and a construction marketplace. Aligned with all 17 UN Sustainable Development Goals.
+      </p>
+    </div>
+    <div class="method-grid reveal reveal-delay-1">
+      <div class="method-card">
+        <div class="method-num">01</div>
+        <div class="method-title">Sustainable Business Plan</div>
+        <div class="method-desc">Value proposition. Business model. Target market. Competitive advantage. The foundation every project — physical or digital — is built on.</div>
+        <div class="method-sdg">UN SDGs 8 · 9 · 11</div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">02</div>
+        <div class="method-title">Viabilidad y Factibilidad</div>
+        <div class="method-desc">Define real scope. Prove financial self-sustainability. Validate with real data before committing capital. This step prevents more bad investments than any due diligence checklist.</div>
+        <div class="method-sdg">UN SDGs 12 · 17</div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">03</div>
+        <div class="method-title">Financiamiento</div>
+        <div class="method-desc">Secure the right capital structure for the project. PropInvest for real estate. Venture capital for tech. Procurement optimization for construction. The right funding for each asset class.</div>
+        <div class="method-sdg">UN SDGs 1 · 10</div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">04</div>
+        <div class="method-title">Design & Compliance</div>
+        <div class="method-desc">Product and technical architecture. Legal structure. Regulatory compliance. Sustainability certification. For physical: architectural drawings. For digital: system design and SUGEVAL compliance.</div>
+        <div class="method-sdg">UN SDGs 13 · 16</div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">05</div>
+        <div class="method-title">Ejecución</div>
+        <div class="method-desc">Build. Concrete or code — the execution phase runs on the same principles: short cycles, real deliverables, zero tolerance for scope drift. Ferretería Express coordinates the physical supply chain.</div>
+        <div class="method-sdg">UN SDGs 9 · 11</div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">06</div>
+        <div class="method-title">Go-to-Market</div>
+        <div class="method-desc">First real contact with the market. Acquisition. Onboarding. Measurement. Adjustment based on real data. Not assumptions. For real estate: first PropInvest investors. For tech: first paying users.</div>
+        <div class="method-sdg">UN SDGs 8 · 17</div>
+      </div>
+      <div class="method-card" style="grid-column:span 2;">
+        <div class="method-num">07</div>
+        <div class="method-title">Operación</div>
+        <div class="method-desc">Full operational deployment. Infrastructure optimization. Support systems. Preparation for the next project or next investment round. The flywheel is running. The methodology's job is to keep it running — efficiently, sustainably, indefinitely. We do not deliver a project and leave. We accompany until it operates.</div>
+        <div class="method-sdg">UN SDGs 11 · 15 · 17</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="cta-pre">The Conversation Starts Here</div>
+    <h2 class="cta-title reveal">
+      Ready to build<br>something <em>that lasts?</em>
+    </h2>
+    <p class="cta-sub reveal reveal-delay-1">
+      Whether you are an investor looking for exposure to award-winning sustainable real estate, a developer seeking a partner with 40 years of hospitality design credentials, or a founder who needs the methodology to take an idea to operation — the conversation starts here.
+    </p>
+    <div class="cta-buttons reveal reveal-delay-2">
+      <a href="mailto:contact@propositivacr.com" class="btn-primary">Get In Touch</a>
+      <a href="https://www.propositivacr.com" class="btn-secondary" target="_blank">Visit ProPositiva</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">ProPositiva Group</div>
+      <div class="footer-tagline">Design. Build. Fund. Operate. From Costa Rica — for the world. Built to outlast its founders.</div>
+      <div class="footer-full">Alianza ProPositiva Tropical<br>para el Desarrollo Sostenible S.A.<br>San José, Costa Rica</div>
+    </div>
+    <div>
+      <div class="footer-col-title">The Entities</div>
+      <div class="footer-col-body">
+        ProPositiva<br>
+        ProPositiva Ventures<br>
+        Ferretería Express<br>
+        PropInvest<br>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">The Portfolio</div>
+      <div class="footer-col-body">
+        Arenas del Mar<br>
+        Villa Avalon<br>
+        Pacuare Lodge<br>
+        Hotel Rosa Blanca<br>
+        Tulemar Resort<br>
+        Saint Francis College<br>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">The Recognition</div>
+      <div class="footer-col-body">
+        Natl. Geographic Earth Changer<br>
+        WTTC Tourism for Tomorrow<br>
+        Five Sustainability Leaf Award<br>
+        UN 17 SDGs Aligned<br>
+        ISO 27001 LA Certified<br>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 ProPositiva Group · All Rights Reserved · Confidential</div>
+    <div class="footer-sdg">✦ UN 17 Sustainable Development Goals</div>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .pcard, .eco-card, .cred-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+      ring.style.borderColor = 'rgba(200,146,42,0.7)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(200,146,42,0.4)';
+    });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
